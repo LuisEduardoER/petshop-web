@@ -12,7 +12,7 @@
                     <img src="img/PetShop.png" alt="Demo">
                 </a>
             </div>
-        
+         
 
         <div class="controls">
             <s:label name="strMessage"/>
