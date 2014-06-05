@@ -29,7 +29,7 @@
 	<li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-download-archive">Download Archive</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-business-directory">Business Directory</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-movie-database">Movie Database</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-cookbook">Cookbook</a></li>
 	<li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-documentation">Documentation</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-pages">Pages</a></li></ul></div></div></div></li>
 	
-	<li data-uk-dropdown="{}"><a href="showLoginAction">Login</a></li>
+	<li data-uk-dropdown="{}"><a href="logOut">Log Out</a></li>
 	
 	</ul>
 	

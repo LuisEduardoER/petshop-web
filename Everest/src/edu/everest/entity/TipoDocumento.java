@@ -23,7 +23,7 @@ public class TipoDocumento implements Serializable {
 	private String estado;
 
 	//bi-directional many-to-one association to Cliente
-	@OneToMany(mappedBy="tipodocumento")
+	@OneToMany(mappedBy="tipoDocumento")
 	private List<Cliente> clientes;
 
 	public TipoDocumento() {
@@ -63,14 +63,14 @@ public class TipoDocumento implements Serializable {
 
 	public Cliente addCliente(Cliente cliente) {
 		getClientes().add(cliente);
-		cliente.setTipodocumento(this);
+		cliente.setTipoDocumento(this);
 
 		return cliente;
 	}
 
 	public Cliente removeCliente(Cliente cliente) {
 		getClientes().remove(cliente);
-		cliente.setTipodocumento(null);
+		cliente.setTipoDocumento(null);
 
 		return cliente;
 	}

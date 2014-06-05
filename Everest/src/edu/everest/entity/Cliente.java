@@ -51,7 +51,7 @@ public class Cliente implements Serializable {
 	//bi-directional many-to-one association to TipoDocumento
 	@ManyToOne
 	@JoinColumn(name="idTipoDocumento")
-	private TipoDocumento tipodocumento;
+	private TipoDocumento tipoDocumento;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -191,12 +191,12 @@ public class Cliente implements Serializable {
 		return cita;
 	}
 
-	public TipoDocumento getTipodocumento() {
-		return this.tipodocumento;
+	public TipoDocumento getTipoDocumento() {
+		return this.tipoDocumento;
 	}
 
-	public void setTipodocumento(TipoDocumento tipodocumento) {
-		this.tipodocumento = tipodocumento;
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
 	public Usuario getUsuario() {

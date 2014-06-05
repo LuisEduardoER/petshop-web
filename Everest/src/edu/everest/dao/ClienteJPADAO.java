@@ -48,7 +48,7 @@ public class ClienteJPADAO implements ClienteDAO {
 		
 		Cliente entidadCliente=new Cliente();
 		
-		entidadCliente.setTipodocumento(cliente.getTipodocumento());
+		entidadCliente.setTipoDocumento(cliente.getTipoDocumento());
 		entidadCliente.setUsuario(cliente.getUsuario());
 		
 		entidadCliente.setIdDIstrito(cliente.getIdDIstrito());
