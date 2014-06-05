@@ -37,6 +37,8 @@ public class UsuarioAction extends ActionSupport{
 	private static RolService rolService = abd.getRolService();
 	private static ClienteService clienteService = abd.getClienteService();
 	private static OpcionService opcionService = abd.getOpcionService();
+	
+	@SuppressWarnings("rawtypes")
 	private Map session = ActionContext.getContext().getSession();
 	
 	@Action(value = "/validarUsuario", 
@@ -132,18 +134,17 @@ public class UsuarioAction extends ActionSupport{
 					listaChildOpcion = new ArrayList<Opcion>();
 					listaChildOpcion = opcionService.obtenerOpcionByParent(parentOpcion);					
 					
-					for (Opcion childOpcion : listaParentOpcion) {
+					for (Opcion childOpcion : listaChildOpcion) {
 						listaOpcion.add(childOpcion);
 					}
 					
 				}
 				
-				
 				for( Opcion obj : listaOpcion ){
 					if(obj.getOpcion() == null){
-						System.out.println( "[Parent]["+obj.getTitulo() );
+						System.out.println( "[Parent]["+obj.getTitulo() +"]" );
 					}else
-						System.out.println( "\t[Child]["+obj.getTitulo() );
+						System.out.println( "\t[Child]["+obj.getTitulo() +"]" );
 				}
 				
 				

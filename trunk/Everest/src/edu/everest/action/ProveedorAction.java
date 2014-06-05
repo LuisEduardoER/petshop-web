@@ -24,18 +24,15 @@ public class ProveedorAction extends ActionSupport{
 	private static ProveedorService proveedorService = abd.getProveedorService();
 	
 	@Action(value = "/obtenerProveedores", 
-			results = { 
-				@Result(location = "/proveedor/plantilla_busqueda.jsp", 
-				name = "success") 
-			}
-		)
+			results = { @Result(location = "proveedorListaTile", name = "success", type="tiles") } )
 	public String obtenerTodosProveedores() throws Exception {		
 		proveedores = proveedorService.obtenerTodosProveedores();
 		syso("obtenerProveedores");
 		return SUCCESS;
 	}
+	
 	@Action(value = "/inicializarInsertarOActualizarProveedor", 
-			results = { @Result(location = "/proveedor/plantilla_edicion.jsp", name = "success") })
+			results = { @Result(location = "proveedorFormTile", name = "success", type="tiles") })
 	public String inicializarInsertarOActualizar() throws Exception {
 		
 		if (proveedor != null && proveedor.getIdProveedor() != 0) {			
@@ -82,7 +79,7 @@ public class ProveedorAction extends ActionSupport{
 	}
 	
 	@Action(value = "/detalleProveedor", 
-			results = { @Result(location = "/proveedor/plantilla_detalle.jsp", name = "success") })
+			results = { @Result(location = "proveedorDetailTile", name = "success", type="tiles") })
 	// Metodo 5: Obtener detalle de Empleado
 	public String detalleProveedor() throws Exception {
 		proveedor = proveedorService.obtenerProveedor(proveedor);
