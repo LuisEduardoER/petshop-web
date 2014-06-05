@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+  <definition name="layoutMain" 	template="/layoutMain/baseLayout.jsp">
+      <put-attribute name="title"  		value="Template Main"/>
+      <put-attribute name="header"		value="/layout/header.jsp"/>
+      <put-attribute name="topMenu"		value="/layout/topMenu.jsp"/>
+      <put-attribute name="footer"		value="/layout/footer.jsp"/>
+      
+      <put-attribute name="topBody"		value="/layoutMain/topBody.jsp"/>
+      <put-attribute name="bottomBody"	value="/layoutMain/bottomBody.jsp"/>
+  </definition>
+  
+  <definition name="layoutSecond" 	template="/layoutSecond/baseLayout.jsp">
+      <put-attribute name="title"  		value="Template Second"/>
+      <put-attribute name="header"		value="/layout/header.jsp"/>
+      <put-attribute name="topMenu"		value="/layout/topMenu.jsp"/>
+      <put-attribute name="footer"		value="/layout/footer.jsp"/>
+      
+      <put-attribute name="rightMenu"	value="/layoutSecond/rightMenu.jsp"/>
+      <put-attribute name="body"		value="/layoutSecond/body.jsp"/>
+  </definition>
+  
+  <definition name="layoutIntranet" 	template="/layoutIntranet/baseLayout.jsp">
+      <put-attribute name="title"  		value="Template Intranet"/>
+      <put-attribute name="footer"		value="/layout/footer.jsp"/>
+      
+      <put-attribute name="topMenu"		value="/layoutIntranet/topMenu.jsp"/>
+      <put-attribute name="rightMenu"	value="/layoutIntranet/rightMenu.jsp"/>
+      <put-attribute name="body"		value="/layoutIntranet/body.jsp"/>
+  </definition>
+  
+  <definition name="indexTile" extends="layoutMain">
+      <put-attribute name="title"  value="PetShop"/>
+      <put-attribute name="topBody"   value="/index.jsp"/>
+  </definition>
+  
+  <definition name="loginTile" extends="layoutSecond">
+      <put-attribute name="title"  value="Login"/>
+      <put-attribute name="body"   value="/login.jsp"/>
+  </definition>
+  
+  <definition name="intranetBienvenidoTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/intranetBienvenido.jsp"/>
+  </definition>
+  
+</tiles-definitions>
