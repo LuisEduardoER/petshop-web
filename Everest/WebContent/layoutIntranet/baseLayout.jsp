@@ -23,6 +23,11 @@
   <script src="js/jquery-migrate.min-19e9837c.js" type="text/javascript"></script>
   <script src="js/html5fallback-7c3b8574.js" type="text/javascript"></script>
   <script src="js/widgetkit-6bfac609-540c13dd.js" type="text/javascript"></script>
+  
+  <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+  
   <script type="text/javascript">
 function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"}).send();} window.addEvent("domready", function(){ keepAlive.periodical(840000); });
   </script>

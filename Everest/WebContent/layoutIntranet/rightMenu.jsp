@@ -5,14 +5,15 @@
 		<h3 class="uk-panel-title">Opciones</h3>
 		<ul class="uk-nav uk-nav-parent-icon uk-nav-side" data-uk-nav="{}">
 		
-		<s:iterator value="listaParentOpcion" var="parentOpcion" status="stat">
-			<li class="uk-nav-header"><s:property value="#parentOpcion.titulo"/></li>
-			<li class="uk-nav-header"><s:property value="parentOpcion.titulo"/></li>
-			<li class="uk-nav-header"><s:property value="$parentOpcion.titulo"/></li>
-			<li class="uk-nav-header"><s:property value="stat.titulo"/></li>
-			<li class="uk-nav-header"><s:property value="#stat.titulo"/></li>
-			<li class="uk-nav-header"><s:property value="$stat.titulo"/></li>
-			<li class="uk-nav-header"><s:property/></li>
+		<s:iterator value="listaOpcion" var="objOpcion" status="stat">
+			
+			<s:if test="#objOpcion.opcion == null">
+		      <li class="uk-nav-header"><s:property value="#objOpcion.titulo"/></li>
+		    </s:if>
+		    <s:else>
+		      <li><a href="<s:property value="#objOpcion.url"/>"><s:property value="#objOpcion.titulo"/></a></li>
+		    </s:else>
+    
 		</s:iterator>
 		
 		</ul>

@@ -50,4 +50,17 @@
       <put-attribute name="body"   value="/intranetBienvenido.jsp"/>
   </definition>
   
+  <definition name="proveedorListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/proveedorLista.jsp"/>
+  </definition>
+  <definition name="proveedorFormTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/proveedorForm.jsp"/>
+  </definition>
+  <definition name="proveedorDetailTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/proveedorDetail.jsp"/>
+  </definition>
+  
 </tiles-definitions>
