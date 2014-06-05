@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
+<!DOCTYPE HTML>
+<html lang="en-gb" dir="ltr"  data-config='{"twitter":0,"plusone":0,"facebook":0,"style":"turquoise"}'>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <base href="http://localhost:8080/Everest/index.html" /> --> 
+  <meta name="author" content="Super User" />
+  <meta name="generator" content="Joomla! - Open Source Content Management" />
+  <title>Everest - Home</title>
+  <!-- 
+  <link href="http://localhost/Everest/" rel="canonical" />
+  <link href="http://localhost/demo/themes/joomla/2014/everest/index.php/component/search/?format=opensearch" rel="search" title="Search Everest Theme" type="application/opensearchdescription+xml" />
+   -->
+  <link href="img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+  <link rel="stylesheet" href="css/widgetkit-66e22cf1-177e9ac9.css" type="textcss" />
+  
+  <script src="js/jquery.min-c35f01fc.js" type="text/javascript"></script>
+  <script src="js/jquery-noconflict-82bf3726.js" type="text/javascript"></script>
+  <script src="js/jquery-migrate.min-19e9837c.js" type="text/javascript"></script>
+  <script src="js/tabs-state-c6ac6d4e.js" type="text/javascript"></script>
+  <script src="js/widgetkit-6bfac609-540c13dd.js" type="text/javascript"></script>
+
+<link rel="apple-touch-icon-precomposed" href="img/apple_touch_icon.png">
+<link rel="stylesheet" href="css/bootstrap-a9b9b142.css">
+<link rel="stylesheet" href="css/theme-92f24e24.css">
+<script src="js/theme-0e5b849f.js"></script>
+</head>
+
+<body class="tm-sidebar-a-right tm-sidebars-1 tm-isblog">
+
+    <div class="uk-container uk-container-center">
+
+<!-- ###################### HEADER ############################### -->
+        
+	<tiles:insertAttribute name="header" />
+        
+<!-- ######################### TOP MENU ##################################### -->
+        
+	<tiles:insertAttribute name="topMenu" />
+
+<!-- ################################### TOP BODY ######################################################3 -->
+        
+	<tiles:insertAttribute name="topBody" />
+	
+<!-- ################################### BOTTOM BODY ######################################################3 -->
+        
+	<tiles:insertAttribute name="bottomBody" />
+                
+<!-- ################################### FOOTER ######################################################3 -->
+        
+        
+    <tiles:insertAttribute name="footer" />            
+        
+    </div>
+
+    
+        <div id="offcanvas" class="uk-offcanvas">
+        <div class="uk-offcanvas-bar"><div class="uk-panel">
+<form id="search-112" class="uk-search" action="/demo/themes/joomla/2014/everest/index.php" method="post" role="search" >
+	<input class="uk-search-field" type="search" name="searchword" placeholder="search...">
+	<button class="uk-search-close" type="reset"></button>
+	<input type="hidden" name="task"   value="search">
+	<input type="hidden" name="option" value="com_search">
+	<input type="hidden" name="Itemid" value="107">
+</form></div>
+			<ul class="uk-nav uk-nav-offcanvas">
+				<li class="uk-parent uk-active"><a href="/demo/themes/joomla/2014/everest/">Home</a><ul class="uk-nav-sub"><li><a href="/demo/themes/joomla/2014/everest/?style=default">Default</a></li><li><a href="/demo/themes/joomla/2014/everest/?style=red">Red</a></li><li><a href="/demo/themes/joomla/2014/everest/?style=desert">Desert</a></li><li><a href="/demo/themes/joomla/2014/everest/?style=lilac">Lilac</a></li><li><a href="/demo/themes/joomla/2014/everest/?style=turquoise">Turquoise</a></li><li><a href="/demo/themes/joomla/2014/everest/?style=grey">Grey</a></li><li><a href="/demo/themes/joomla/2014/everest/?style=gold">Gold</a></li><li><a href="/demo/themes/joomla/2014/everest/?style=ocean">Ocean</a></li></ul></li>
+				<li class="uk-parent"><a href="/demo/themes/joomla/2014/everest/index.php/features">Features</a><ul class="uk-nav-sub"><li><a href="/demo/themes/joomla/2014/everest/index.php/features/layouts">Layouts</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/features/uikit">UIkit</a></li></ul></li>
+				<li class="uk-parent"><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit">Widgetkit</a><ul class="uk-nav-sub"><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/slideshow">Slideshow</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/slideset">Slideset</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/gallery">Gallery</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/map">Map</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/accordion">Accordion</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/lightbox">Lightbox</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/spotlight">Spotlight</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/twitter">Twitter</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/widgetkit/media-player">Media Player</a></li></ul></li>
+				<li><a href="/demo/themes/joomla/2014/everest/index.php/icons">Icons</a></li>
+				<li class="uk-parent"><a href="/demo/themes/joomla/2014/everest/index.php/zoo">ZOO</a><ul class="uk-nav-sub"><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-blog">Blog</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-product-catalog">Product Catalog</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-download-archive">Download Archive</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-business-directory">Business Directory</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-movie-database">Movie Database</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-cookbook">Cookbook</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-documentation">Documentation</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/zoo/zoo-pages">Pages</a></li></ul></li>
+				<li class="uk-parent"><a href="/demo/themes/joomla/2014/everest/index.php/joomla">Joomla</a><ul class="uk-nav-sub"><li><a href="#">Content views</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/joomla/featured-articles">Featured Articles</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/joomla/list-all-categories">List All Categories</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/joomla/category-list">Category List</a></li><li><a href="#">Other views</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/joomla/contacts">Contacts</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/joomla/web-links">Web Links</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/joomla/login">Login</a></li><li><a href="/demo/themes/joomla/2014/everest/index.php/joomla/tags">Tags</a></li></ul></li>
+			</ul>
+		</div>
+    </div>
+    
+</body>
+</html>
