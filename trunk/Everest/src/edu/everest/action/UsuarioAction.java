@@ -37,10 +37,7 @@ public class UsuarioAction extends ActionSupport{
 	private static RolService rolService = abd.getRolService();
 	private static ClienteService clienteService = abd.getClienteService();
 	private static OpcionService opcionService = abd.getOpcionService();
-	
-	ActionContext ctx= ActionContext.getContext();
-	@SuppressWarnings("rawtypes")
-	Map m=ctx.getSession();
+	private Map session = ActionContext.getContext().getSession();
 	
 	@Action(value = "/validarUsuario", 
 			results = { 
@@ -50,9 +47,10 @@ public class UsuarioAction extends ActionSupport{
 		)
 	public String validarUsuario() throws Exception {
 		int nValid = 0;
+		logOut();
 		
-		if(m.get("objCliente") != null){			
-			cliente = (Cliente) m.get("objCliente");
+		if(session.get("objCliente") != null){			
+			cliente = (Cliente) session.get("objCliente");
 			return SUCCESS;
 		}else{
 			
@@ -80,9 +78,15 @@ public class UsuarioAction extends ActionSupport{
 		
 	}
 	
+	@Action(value = "/logOut", 
+			results = { 
+				@Result(location = "loginTile", name = "success",  type = "tiles")
+			}
+		)
 	public String logOut(){
 		
-		
+		session.remove("objCliente");
+		session.remove("objOpciones");
 		
 		return SUCCESS;
 	}
@@ -92,7 +96,6 @@ public class UsuarioAction extends ActionSupport{
 	public void getDatosUsuario(){
 		
 		try {
-			
 			usuario = usuarioService.obtenerUsuario(usuario);
 			usuario.setRol( rolService.obtenerRol(usuario.getRol()) );
 			
@@ -101,7 +104,7 @@ public class UsuarioAction extends ActionSupport{
 			
 			strNameUsuario = cliente.getNombres()+" "+cliente.getApePat();
 			
-			m.put("objCliente", cliente);
+			session.put("objCliente", cliente);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,33 +116,38 @@ public class UsuarioAction extends ActionSupport{
 	public void getMenuByRol(){
 		
 		try {
-			
-			if(m.get("objCliente") != null){				
-				cliente = (Cliente) m.get("objCliente");
+			if(session.get("objOpciones") != null)
+				listaOpcion = (ArrayList<Opcion>) session.get("objOpciones");
+			else
+			{
+				List<Opcion> listaParentOpcion = new ArrayList<Opcion>();;
+				List<Opcion> listaChildOpcion;
+				listaParentOpcion = opcionService.obtenerOpcionParentByRol(cliente.getUsuario().getRol());
+				listaOpcion= new ArrayList<Opcion>();
 				
-				if(m.get("objOpciones") != null)
-					listaOpcion = (ArrayList<Opcion>) m.get("objOpciones");
-				else
-				{
-					List<Opcion> listaParentOpcion = new ArrayList<Opcion>();;
-					List<Opcion> listaChildOpcion;
-					listaParentOpcion = opcionService.obtenerOpcionParentByRol(cliente.getUsuario().getRol());
-									
-					for (Opcion parentOpcion : listaParentOpcion) {
-						
-						listaOpcion.add(parentOpcion);
-						
-						listaChildOpcion = new ArrayList<Opcion>();
-						listaChildOpcion = opcionService.obtenerOpcionByParent(parentOpcion);					
-						
-						for (Opcion childOpcion : listaParentOpcion) {
-							listaOpcion.add(childOpcion);
-						}
-						
+				for (Opcion parentOpcion : listaParentOpcion) {
+					
+					listaOpcion.add(parentOpcion);
+					
+					listaChildOpcion = new ArrayList<Opcion>();
+					listaChildOpcion = opcionService.obtenerOpcionByParent(parentOpcion);					
+					
+					for (Opcion childOpcion : listaParentOpcion) {
+						listaOpcion.add(childOpcion);
 					}
-					m.put("objOpciones",listaOpcion);
+					
 				}
 				
+				
+				for( Opcion obj : listaOpcion ){
+					if(obj.getOpcion() == null){
+						System.out.println( "[Parent]["+obj.getTitulo() );
+					}else
+						System.out.println( "\t[Child]["+obj.getTitulo() );
+				}
+				
+				
+				session.put("objOpciones",listaOpcion);
 			}
 			
 		} catch (Exception e) {

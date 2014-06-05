@@ -7,8 +7,12 @@
 		
 		<s:iterator value="listaParentOpcion" var="parentOpcion" status="stat">
 			<li class="uk-nav-header"><s:property value="#parentOpcion.titulo"/></li>
+			<li class="uk-nav-header"><s:property value="parentOpcion.titulo"/></li>
+			<li class="uk-nav-header"><s:property value="$parentOpcion.titulo"/></li>
 			<li class="uk-nav-header"><s:property value="stat.titulo"/></li>
-			<li class="uk-nav-header"><s:property value="stat.titulo"/></li>
+			<li class="uk-nav-header"><s:property value="#stat.titulo"/></li>
+			<li class="uk-nav-header"><s:property value="$stat.titulo"/></li>
+			<li class="uk-nav-header"><s:property/></li>
 		</s:iterator>
 		
 		</ul>
