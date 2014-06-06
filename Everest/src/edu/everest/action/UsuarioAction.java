@@ -114,7 +114,7 @@ public class UsuarioAction extends ActionSupport{
 		
 	}
 	
-	@SuppressWarnings({ "unused", "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	public void getMenuByRol(){
 		
 		try {

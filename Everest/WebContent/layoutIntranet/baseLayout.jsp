@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <!DOCTYPE HTML>
@@ -37,6 +38,7 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 <link rel="stylesheet" href="css/theme-92f24e24.css">
 <script src="js/theme-0e5b849f.js"></script>
 </head>
+<sj:head/>
 
 <body class="tm-sidebar-a-right tm-sidebars-1 tm-noblog  tm-content-boxed">
 

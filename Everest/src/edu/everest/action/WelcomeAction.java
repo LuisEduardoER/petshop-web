@@ -16,9 +16,14 @@ public class WelcomeAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	@Action(value = "/showLoginAction", results = { @Result(location = "loginTile", name = "login", type = "tiles") })
+	@Action(value = "/showLoginAction", results = { @Result(location = "loginTile", name = "success", type = "tiles") })
 	public String login() {
-		return "login";
+		return SUCCESS;
+	}
+	
+	@Action(value = "/intranetBienvenidoAction", results = { @Result(location = "intranetBienvenidoTile", name = "success", type = "tiles") })
+	public String intranetBienvenido() {
+		return SUCCESS;
 	}
 	
 }
