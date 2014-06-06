@@ -1,5 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
 <s:form id="form1">
 
@@ -11,6 +12,10 @@
 		
 	</tr>
 </table>
+<sj:a openDialog="myclickdialog" button="true" buttonIcon="ui-icon-circle-plus">
+	Agregar Proveedor
+</sj:a>
+
 <br>
 <table align=center class="category table table-striped table-bordered table-hover">
     <tr>
@@ -46,5 +51,17 @@
         </tr>  		
 	 </s:iterator>
     </table>
+    
+	<sj:dialog 
+    	id="myclickdialog" 
+    	autoOpen="false" 
+    	modal="true" 
+    	title="Modal Dialog">
+     
+     <s:include value="/mantenimiento/proveedorForm.jsp"/>
+     
+    </sj:dialog>
+    
+    
 	
 </s:form>
