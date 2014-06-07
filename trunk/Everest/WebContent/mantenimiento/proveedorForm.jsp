@@ -1,15 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-
-
-<h2>Proveedor </h2>
-<br/>
-	
-<table width=600 align=center>
-	<tr>
-		<td><a href="obtenerProveedores">Ver Proveedores</a></td>
-	</tr>
-</table>
 		 
 	 <table>
 		<tr><td align="left" style="font:bold;color:red"> 
@@ -20,9 +10,9 @@
         </tr>
      </table>
      		 	
-    <s:form>
+    <s:form id="frmProveedor">
     	<s:hidden name="proveedor.idProveedor"/>
-		<table align="center" class="borderAll">
+		<table align="center">
 		    <tr>
 		    	<td class="tdLabel"><s:text name="RUC"/></td>
 		    	<td><s:textfield name="proveedor.ruc" size="30"/></td>
@@ -39,8 +29,10 @@
 				 <br/>
 		<table> 
 			     <tr>
-				    <td><s:submit action="insertarOActualizarProveedor" key="button.label.submit" cssClass="butStnd"/></td>
-		        <td><s:reset key="button.label.cancel" cssClass="butStnd"/></td>
+				    <td>
+				    	<sj:a button="true" buttonIcon="ui-icon-disk"  href="insertarOActualizarProveedor" formIds="frmProveedor">Guardar</sj:a>
+				    </td>
+		        	<td><s:reset key="button.label.cancel" cssClass="butStnd"/></td>
 				 </tr>
 		</table> 		  		 
     </s:form>

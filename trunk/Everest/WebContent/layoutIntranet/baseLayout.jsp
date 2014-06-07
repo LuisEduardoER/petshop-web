@@ -37,8 +37,10 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 <link rel="stylesheet" href="css/bootstrap-a9b9b142.css">
 <link rel="stylesheet" href="css/theme-92f24e24.css">
 <script src="js/theme-0e5b849f.js"></script>
+
+<sj:head locale="de" jqueryui="true" jquerytheme="ui-everest" customBasepath="/Everest/template/themes"/>
+
 </head>
-<sj:head/>
 
 <body class="tm-sidebar-a-right tm-sidebars-1 tm-noblog  tm-content-boxed">
 
