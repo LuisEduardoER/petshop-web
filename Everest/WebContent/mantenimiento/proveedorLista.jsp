@@ -52,16 +52,16 @@
 	 </s:iterator>
     </table>
     
-	<sj:dialog 
+	
+</s:form>
+
+<sj:dialog 
     	id="myclickdialog" 
-    	autoOpen="false" 
+    	autoOpen="false"
+    	width="450"
     	modal="true" 
-    	title="Modal Dialog">
+    	title="Proveedor">
      
      <s:include value="/mantenimiento/proveedorForm.jsp"/>
      
     </sj:dialog>
-    
-    
-	
-</s:form>
