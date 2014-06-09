@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <!DOCTYPE HTML>
-<html lang="en-gb" dir="ltr"  data-config='{"twitter":0,"plusone":0,"facebook":0,"style":"turquoise"}'>
+<html lang="es-es" dir="ltr"  data-config='{"twitter":0,"plusone":0,"facebook":0,"style":"turquoise"}'>
 
 <head>
 <meta charset="utf-8">
@@ -16,31 +17,31 @@
   <!-- <link href="http://46.16.75.22/demo/themes/joomla/2014/everest/index.php/joomla/login" rel="canonical" /> -->
   <!-- <link href="http://46.16.75.22/demo/themes/joomla/2014/everest/index.php/component/search/?Itemid=129&amp;format=opensearch" rel="search" title="Search Everest Theme" type="application/opensearchdescription+xml" /> -->
   <link href="img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+  
   <link rel="stylesheet" href="css/widgetkit-66e22cf1-177e9ac9.css" type="text/css" />
-  <script src="js/mootools-core-d171a0eb.js" type="text/javascript"></script>
-  <script src="js/core-d5fdf156.js" type="text/javascript"></script>
-  <script src="js/jquery.min-c35f01fc.js" type="text/javascript"></script>
-  <script src="js/jquery-noconflict-82bf3726.js" type="text/javascript"></script>
-  <script src="js/jquery-migrate.min-19e9837c.js" type="text/javascript"></script>
-  <script src="js/html5fallback-7c3b8574.js" type="text/javascript"></script>
-  <script src="js/widgetkit-6bfac609-540c13dd.js" type="text/javascript"></script>
-  
-  <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-  <script src="js/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
-  <script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-  
-  <script type="text/javascript">
-function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"}).send();} window.addEvent("domready", function(){ keepAlive.periodical(840000); });
-  </script>
+<%--   <script src="js/mootools-core-d171a0eb.js" 		type="text/javascript"></script> --%>
+  <script src="js/core-d5fdf156.js" 				type="text/javascript"></script>
+  <script src="js/jquery.min-c35f01fc.js" 			type="text/javascript"></script>
+<%--   <script src="js/jquery-noconflict-82bf3726.js" 	type="text/javascript"></script> --%>
+<%--   <script src="js/jquery-migrate.min-19e9837c.js" 	type="text/javascript"></script> --%>
+  <script src="js/html5fallback-7c3b8574.js" 		type="text/javascript"></script>
+  <script src="js/widgetkit-6bfac609-540c13dd.js" 	type="text/javascript"></script>
+
+<%--   <script src="js/jquery-1.10.2.js" 				type="text/javascript"></script> --%>
+<%--   <script src="js/jquery-ui-1.10.4.custom.js" 		type="text/javascript"></script> --%>
+<%--   <script src="js/jquery-ui-1.10.4.custom.min.js" 	type="text/javascript"></script> --%>
 
 <link rel="apple-touch-icon-precomposed" href="img/apple_touch_icon.png">
 <link rel="stylesheet" href="css/bootstrap-a9b9b142.css">
 <link rel="stylesheet" href="css/theme-92f24e24.css">
 <script src="js/theme-0e5b849f.js"></script>
 
-<sj:head locale="de" jqueryui="true" jquerytheme="ui-everest" customBasepath="/Everest/template/themes"/>
+<sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes"/>
+<%-- <sj:head locale="es" jqueryui="true" jquerytheme="cupertino"/> --%>
 
 </head>
+
+
 
 <body class="tm-sidebar-a-right tm-sidebars-1 tm-noblog  tm-content-boxed">
 

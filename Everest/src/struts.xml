@@ -6,7 +6,7 @@
 <struts>
 	<include file="struts-default.xml" />
 
-	<package name="dawii" extends="struts-default" namespace="/">
+	<package name="dawii" extends="struts-default,,json-default" namespace="/">
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
 		</result-types>

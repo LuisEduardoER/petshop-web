@@ -41,6 +41,8 @@ public class ProveedorJPADAO implements ProveedorDAO {
 
 	@Override
 	public void insertar(Proveedor proveedor) throws Exception {
+		System.out.println("insertarProveedor");
+		
 		em=emf.createEntityManager();
 
 		//1.inicia la transacción
@@ -66,6 +68,8 @@ public class ProveedorJPADAO implements ProveedorDAO {
 
 	@Override
 	public void actualizar(Proveedor proveedor) throws Exception {
+		System.out.println("actualizarProveedor");
+		
 		em=emf.createEntityManager();
 		em.getTransaction().begin();
 		

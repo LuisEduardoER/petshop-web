@@ -27,4 +27,8 @@ public class ApplicationBusinessDelegate {
 		return new OpcionDAOService( DAOFactory.JPA );
 	}
 	
+	public MascotaService getMascotaService() {
+		return new MascotaDAOService( DAOFactory.JPA );
+	}
+	
 }

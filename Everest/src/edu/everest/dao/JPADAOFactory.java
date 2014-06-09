@@ -49,4 +49,11 @@ public class JPADAOFactory extends DAOFactory {
 		ed.setEntityManagerFactory(emf);
 		return (OpcionDAO)ed;
 	}
+
+	@Override
+	public MascotaDAO getMascotaDAO() {
+		MascotaJPADAO ed =  new MascotaJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (MascotaDAO)ed;
+	}
 }

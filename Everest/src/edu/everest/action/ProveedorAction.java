@@ -19,6 +19,9 @@ public class ProveedorAction extends ActionSupport{
 	
 	private Proveedor proveedor;
 	private List<Proveedor> proveedores;
+	private String oper;
+	private int idProveedor;
+	private String ruc, razonSocial, direccion, estado;
 	
 	private static ApplicationBusinessDelegate abd = new ApplicationBusinessDelegate();
 	private static ProveedorService proveedorService = abd.getProveedorService();
@@ -86,6 +89,46 @@ public class ProveedorAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	//======================== JSON ====================================	
+	
+	@Action(value="obtenerProveedorJSON",
+			results={ @Result(name="success",type="json") })
+	public String obtenerProveedorJSON() throws Exception{
+		proveedores = proveedorService.obtenerTodosProveedores();
+		return SUCCESS;
+	}
+	
+	@Action(value="mantenimientoProveedorJSON",
+			results={ @Result(name="success",type="json") })
+	public String MantenimientoJSON() throws Exception{
+		try{
+		
+			syso("oper: "+oper);
+			syso("[idProveedor]["+idProveedor+"]"
+			   + "[ruc]["+ruc+"]"
+			   + "[razonSocial]["+razonSocial+"]"
+			   + "[direccion]["+direccion+"]");
+			
+			proveedor = new Proveedor();
+			proveedor.setIdProveedor( idProveedor );
+			proveedor.setRuc( ruc );
+			proveedor.setRazonSocial( razonSocial );
+			proveedor.setDireccion( direccion );			
+			
+			if(oper.equals("add")){		
+				proveedorService.insertarProveedor(proveedor);
+			}else if(oper.equals("edit")){
+				proveedorService.actualizarProveedor(proveedor);
+			}else if(oper.equals("del")){
+				proveedorService.eliminarProveedor(proveedor);
+			}
+		}catch(Exception ex){
+			syso("MantenimientoJSON: "+ex);
+		}
+		
+		return SUCCESS;
+	}
+	
 	public void syso(String str){
 		System.out.println("[ProveedorAction."+str+"]");
 	}
@@ -103,6 +146,54 @@ public class ProveedorAction extends ActionSupport{
 	
 	public void setProveedor(Proveedor proveedor) {
 		this.proveedor = proveedor;
+	}
+
+	public String getOper() {
+		return oper;
+	}
+
+	public void setOper(String oper) {
+		this.oper = oper;
+	}
+
+	public String getRuc() {
+		return ruc;
+	}
+
+	public void setRuc(String ruc) {
+		this.ruc = ruc;
+	}
+
+	public String getRazonSocial() {
+		return razonSocial;
+	}
+
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public int getIdProveedor() {
+		return idProveedor;
+	}
+
+	public void setIdProveedor(int idProveedor) {
+		this.idProveedor = idProveedor;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 }
