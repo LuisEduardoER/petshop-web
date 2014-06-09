@@ -29,7 +29,7 @@ public class ClienteAction extends ActionSupport{
 	private int idCliente, idTipoDocumento, idUsuario, idDIstrito, telefono, celular;
 	private String documento, nombres, apePat, apeMat, sexo, fecNac, email, direccion, estado;
 	
-	SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Action(value="/showClienteRegistroAction",
 			results={ @Result(name="success", location="clienteRegistrarTile",type="tiles") })
@@ -75,11 +75,23 @@ public class ClienteAction extends ActionSupport{
 			if(!fecNac.equals("")){
 				//int date 
 				//fecNac = dateFormat.format(dateFormat.parse(fecNac));
-				dFecNac = new Date(fecNac);
-				int nDay = dFecNac.getDate();
-				int nMonth = dFecNac.getMonth();
-				dFecNac.setDate(nMonth);
-				dFecNac.setMonth(nDay);
+				System.out.println("fecNac: "+fecNac);
+				dFecNac = new Date();
+				
+				System.out.println("date: "+fecNac.substring(0,fecNac.indexOf("/")));
+				System.out.println("month: "+fecNac.substring(fecNac.indexOf("/"),fecNac.indexOf("/",fecNac.indexOf("/")+1) ));
+				System.out.println("year: "+fecNac.substring(fecNac.indexOf("/",fecNac.indexOf("/")+1) ) );
+				
+				dFecNac.setDate(Integer.parseInt(""+fecNac.substring(0,fecNac.indexOf("/")) ));
+				dFecNac.setMonth(Integer.parseInt(""+fecNac.substring(fecNac.indexOf("/")+1,fecNac.indexOf("/",fecNac.indexOf("/")+1) )));
+				dFecNac.setYear(Integer.parseInt(""+fecNac.substring(fecNac.indexOf("/",fecNac.indexOf("/")+1)+1 )));
+				
+				
+				
+				System.out.println("dFecNac: "+dFecNac.toString());
+				System.out.println("dateFormat.format(dFecNac): "+dateFormat.format(dFecNac));
+//				System.out.println("dateFormat.format(fecNac): "+dateFormat.format(fecNac));
+				
 			}
 			
 			cliente.setFecNac(dFecNac);
@@ -259,3 +271,4 @@ public class ClienteAction extends ActionSupport{
 	}
 	
 }
+
