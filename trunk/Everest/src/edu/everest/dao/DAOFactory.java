@@ -18,6 +18,7 @@ public abstract class DAOFactory {
     public abstract RolDAO			getRolDAO();
     public abstract ClienteDAO		getClienteDAO();
     public abstract OpcionDAO		getOpcionDAO();
+    public abstract MascotaDAO		getMascotaDAO();
     
        
     public static DAOFactory getDAOFactory(int whichFactory) {

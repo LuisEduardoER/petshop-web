@@ -77,6 +77,8 @@ public class ClienteJPADAO implements ClienteDAO {
 
 	@Override
 	public void actualizar(Cliente cliente) throws Exception {
+		try{
+		
 		em=emf.createEntityManager();
 		em.getTransaction().begin();
 		
@@ -87,6 +89,9 @@ public class ClienteJPADAO implements ClienteDAO {
 		em.flush();
 		em.getTransaction().commit();
 		em.close();
+		}catch(Exception ex){
+			System.out.println("ex: "+ex);
+		}
 	}
 
 	@Override
