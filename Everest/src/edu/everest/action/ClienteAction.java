@@ -1,7 +1,7 @@
 package edu.everest.action;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -29,8 +29,8 @@ public class ClienteAction extends ActionSupport{
 	private int idCliente, idTipoDocumento, idUsuario, idDIstrito, telefono, celular;
 	private String documento, nombres, apePat, apeMat, sexo, fecNac, email, direccion, estado;
 	
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	
+	DateFormat dateFormat = new SimpleDateFormat ("dd/MM/yyyy");
+		
 	@Action(value="/showClienteRegistroAction",
 			results={ @Result(name="success", location="clienteRegistrarTile",type="tiles") })
 	public String showClienteRegistrar() throws Exception{
@@ -48,12 +48,11 @@ public class ClienteAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Action(value="mantenimientoClienteJSON",
 			results={ @Result(name="success",type="json") })
 	public String MantenimientoJSON() throws Exception{
 		try{
-			Date dFecNac = new Date();
+			
 			syso("oper: "+oper);
 			/*syso("[idCliente]["+idCliente+"]"
 			   + "[ruc]["+ruc+"]"
@@ -70,31 +69,10 @@ public class ClienteAction extends ActionSupport{
 			cliente.setApePat(apePat);
 			cliente.setApeMat(apeMat);
 			cliente.setSexo(sexo);
-			//cliente.setFecNac(fecNac);
 			
-			if(!fecNac.equals("")){
-				//int date 
-				//fecNac = dateFormat.format(dateFormat.parse(fecNac));
-				System.out.println("fecNac: "+fecNac);
-				dFecNac = new Date();
-				
-				System.out.println("date: "+fecNac.substring(0,fecNac.indexOf("/")));
-				System.out.println("month: "+fecNac.substring(fecNac.indexOf("/"),fecNac.indexOf("/",fecNac.indexOf("/")+1) ));
-				System.out.println("year: "+fecNac.substring(fecNac.indexOf("/",fecNac.indexOf("/")+1) ) );
-				
-				dFecNac.setDate(Integer.parseInt(""+fecNac.substring(0,fecNac.indexOf("/")) ));
-				dFecNac.setMonth(Integer.parseInt(""+fecNac.substring(fecNac.indexOf("/")+1,fecNac.indexOf("/",fecNac.indexOf("/")+1) )));
-				dFecNac.setYear(Integer.parseInt(""+fecNac.substring(fecNac.indexOf("/",fecNac.indexOf("/")+1)+1 )));
-				
-				
-				
-				System.out.println("dFecNac: "+dFecNac.toString());
-				System.out.println("dateFormat.format(dFecNac): "+dateFormat.format(dFecNac));
-//				System.out.println("dateFormat.format(fecNac): "+dateFormat.format(fecNac));
-				
-			}
+			if(!fecNac.equals(""))
+				cliente.setFecNac( dateFormat.parse(fecNac) );
 			
-			cliente.setFecNac(dFecNac);
 			cliente.setEmail(email);
 			cliente.setTelefono(telefono);
 			cliente.setCelular(celular);
