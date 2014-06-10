@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="css/theme-92f24e24.css">
 <script src="js/theme-0e5b849f.js"></script>
 
-<sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes"/>
+<sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes" defaultIndicator="myLoadingBar"/>
 <%-- <sj:head locale="es" jqueryui="true" jquerytheme="cupertino"/> --%>
 
 </head>
@@ -44,6 +44,14 @@
 
 
 <body class="tm-sidebar-a-right tm-sidebars-1 tm-noblog  tm-content-boxed">
+
+<table id="myLoadingBar" border="0" cellspacing="0" cellpadding="0" style="width: 100%;position: fixed;margin-top: -1px; padding: 0px !important; display: none;">
+	<tr>
+		<td style="width: 100%;text-align: center;">
+			<img alt="Loading" src="img/loading200.gif">
+		</td>
+	</tr>
+</table>
 
     <div class="uk-container uk-container-center">
 

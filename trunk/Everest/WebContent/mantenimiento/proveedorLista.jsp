@@ -16,6 +16,7 @@
 		viewrecords="true"
 		rowNum="10"
 		navigator="true"
+		indicator="myLoadingBar"
 		navigatorView="true"
 		navigatorDelete="true"
 		navigatorEditOptions="{closeAfterEdit:true,closeAfterAdd:true}"
