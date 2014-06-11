@@ -18,10 +18,7 @@
 		viewrecords="true"
 		rowNum="10"
 		navigator="true"
-		indicator="myLoadingBar"
 		navigatorView="true"
-		navigatorSearchOptions="{multipleSearch:true}"
-		onSuccessTopics="actionerror"
 		navigatorEditOptions="{closeAfterEdit:true,closeAfterAdd:true}"
 		pager="true"
 		autowidth="false"
@@ -29,14 +26,14 @@
 	
 	<sjg:gridColumn key="true" name="idCliente" title="ID Cliente" hidden="true" editable="true"/>
 	<sjg:gridColumn key="true" name="tipoDocumento.descripcion" index="idTipoDocumento" title="Tipo Doc." editable="true"
-
+					edittype="select" editoptions="{value:'1:DNI;2:Carnet de Extranjeria'}"
  					/>
 	<sjg:gridColumn name="documento"  title="Documento" editable="true" width="50"/>
 	<sjg:gridColumn name="nombres" 	  title="Nombres"   editable="true" width="50"/>
 	<sjg:gridColumn name="apePat" 	  title="Ape. Pat." editable="true" width="80"/>
 	<sjg:gridColumn name="apeMat" 	  title="Ape. Mat." editable="true" />
 	<sjg:gridColumn name="sexo" 	  title="Sexo" 		editable="true"  
-
+					edittype="select" editoptions="{value:'M:Masculino;F:Femenino'}"
 					/>
 	<sjg:gridColumn name="fecNac" 	  title="Fec. Nac." editable="true" formatter="date"
         			formatoptions="{newformat : 'd/m/Y', srcformat : 'Y/m/d'}"/>
@@ -44,6 +41,9 @@
 	<sjg:gridColumn name="telefono"   title="Telefono"  editable="true" width="50"/>
 	<sjg:gridColumn name="celular"    title="Celular"   editable="true" width="50"/>
 	<sjg:gridColumn name="direccion"  title="Direccion" editable="true"  />
+	<sjg:gridColumn name="idCliente" title="Mascotas" editable="false">
+		<s:a href="#">Mascotas</s:a>
+	</sjg:gridColumn>
 		
 </sjg:grid>
 

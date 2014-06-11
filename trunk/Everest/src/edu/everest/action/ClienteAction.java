@@ -11,10 +11,13 @@ import org.apache.struts2.convention.annotation.Result;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.everest.entity.Cliente;
+import edu.everest.entity.Rol;
 import edu.everest.entity.TipoDocumento;
 import edu.everest.entity.Usuario;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.ClienteService;
+import edu.everest.service.UsuarioService;
+import edu.everest.util.Constants;
 
 @ParentPackage(value = "dawii")
 public class ClienteAction extends ActionSupport{
@@ -23,6 +26,7 @@ public class ClienteAction extends ActionSupport{
 	
 	private static ApplicationBusinessDelegate abd = new ApplicationBusinessDelegate();
 	private static ClienteService clienteService = abd.getClienteService();
+	private static UsuarioService usuarioService = abd.getUsuarioService();
 	
 	private Cliente cliente;
 	private List<Cliente> clientees;
@@ -54,8 +58,7 @@ public class ClienteAction extends ActionSupport{
 	
 	@Action(value="mantenimientoClienteJSON",
 			results={ @Result(name="success",type="json"),
-						@Result(name="input",type="json"),
-					  @Result(name="error",type="json")	})
+					  @Result(name="input", location="mantenimientoClienteJSON", type="redirect") })
 	public String MantenimientoJSON() throws Exception{
 		try{
 			
@@ -65,6 +68,8 @@ public class ClienteAction extends ActionSupport{
 			syso("[idTipoDocumento]["+idTipoDocumento+"]");
 			
 			cliente = new Cliente();
+			Usuario usuario;
+			Rol rol;
 			
 			if(oper.equals("del")){
 				if(idCliente ==0)
@@ -99,7 +104,21 @@ public class ClienteAction extends ActionSupport{
 				cliente.setDireccion(direccion);
 			}
 			
-			if(oper.equals("add")){		
+			if(oper.equals("add")){
+				
+				if(cliente.getEmail() != null){
+					syso("Registrando Usuario...");
+					usuario = new Usuario();
+					usuario.setUser( cliente.getEmail() );
+					usuario.setPass( cliente.getDocumento() );
+					
+					rol = new Rol();
+					rol.setIdRol( Constants.FK_ROL_CLIENTE );
+					
+					usuario.setRol( rol );
+					cliente.setUsuario(usuario);					
+				}
+				
 				clienteService.insertarCliente(cliente);
 			}else if(oper.equals("edit")){
 				clienteService.actualizarCliente(cliente);
