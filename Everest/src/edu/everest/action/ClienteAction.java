@@ -29,7 +29,7 @@ public class ClienteAction extends ActionSupport{
 	private static UsuarioService usuarioService = abd.getUsuarioService();
 	
 	private Cliente cliente;
-	private List<Cliente> clientees;
+	private List<Cliente> clienteLista;
 	private TipoDocumento tipoDocumento;
 	private Usuario usuario;
 	
@@ -49,7 +49,7 @@ public class ClienteAction extends ActionSupport{
 			results={ @Result(name="success",type="json") })
 	public String obtenerClienteJSON() throws Exception{
 		try{
-		clientees = clienteService.obtenerTodosCliente();
+			clienteLista = clienteService.obtenerTodosCliente();
 		}catch(Exception ex){
 			syso("obtenerClienteJSON: "+ex);
 		}
@@ -152,12 +152,12 @@ public class ClienteAction extends ActionSupport{
 		this.cliente = cliente;
 	}
 
-	public List<Cliente> getClientees() {
-		return clientees;
+	public List<Cliente> getClienteLista() {
+		return clienteLista;
 	}
 
-	public void setClientees(List<Cliente> clientees) {
-		this.clientees = clientees;
+	public void setClienteLista(List<Cliente> clienteLista) {
+		this.clienteLista = clienteLista;
 	}
 
 	public String getOper() {

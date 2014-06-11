@@ -68,4 +68,9 @@
       <put-attribute name="body"   value="/cliente/clienteRegistro.jsp"/>
   </definition>
   
+  <definition name="mascotaMantenimientoTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mascota/mascotaMantenimiento.jsp"/>
+  </definition>
+  
 </tiles-definitions>

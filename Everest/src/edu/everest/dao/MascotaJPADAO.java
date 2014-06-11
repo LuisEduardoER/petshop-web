@@ -1,11 +1,15 @@
 package edu.everest.dao;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
+import edu.everest.entity.Cliente;
 import edu.everest.entity.Mascota;
 
 public class MascotaJPADAO implements MascotaDAO {
@@ -25,11 +29,18 @@ public class MascotaJPADAO implements MascotaDAO {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List<Mascota> obtenerTodos() throws Exception {
+	public List<Mascota> obtenerTodos(Cliente cliente) throws Exception {
 		em=emf.createEntityManager();
 
 		List<Mascota> listaMascota = new ArrayList<Mascota>();
-		List l =  em.createQuery( "SELECT c FROM Mascota c ORDER BY c.idMascota" ).getResultList();
+//		em.createQuery( "SELECT c FROM Mascota c ORDER BY c.idMascota" ).getResultList();
+		Query query = em.createQuery("SELECT m FROM Mascota m "
+								   + "INNER JOIN m.cliente c "
+								   + "WHERE c.idCliente = :idCliente "
+								   + "ORDER BY m.idMascota");
+		query.setParameter("idCliente", cliente.getIdCliente() );
+		List l = query.getResultList();
+		
 		for ( int i=0; i < l.size(); i++ ) {
 			Mascota entidad = (Mascota)l.get(i);
 			listaMascota.add(entidad);
@@ -57,6 +68,27 @@ public class MascotaJPADAO implements MascotaDAO {
 		entidadMascota.setPedigree(mascota.getPedigree());
 		entidadMascota.setEsterilizacion(mascota.getEsterilizacion());
 		entidadMascota.setObservaciones(mascota.getObservaciones());
+		
+		entidadMascota.setFotobin(null);
+		
+		//Validamos que se haya seleccionado una foto
+		if(mascota.getFotobin() != null){
+			
+			//lectura del objeto binario
+			InputStream temp = new FileInputStream(mascota.getFoto());
+			
+			byte[] fotoBinary = new byte[temp.available()];
+			
+			temp.read(fotoBinary);
+			
+			temp.close();
+							
+			//Asignamos los bytes al objeto cliente
+			mascota.setFotobin(fotoBinary);
+			
+			entidadMascota.setFotobin(mascota.getFotobin());
+			
+		}
 		
 		//if(mascota.getEstado() == null)
 		//	entidadMascota.setEstado("1");

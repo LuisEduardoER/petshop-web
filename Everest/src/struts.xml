@@ -6,6 +6,9 @@
 <struts>
 	<include file="struts-default.xml" />
 
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    
 	<package name="dawii" extends="struts-default,,json-default" namespace="/">
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
