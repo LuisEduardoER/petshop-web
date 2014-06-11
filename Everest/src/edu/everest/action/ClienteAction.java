@@ -11,6 +11,8 @@ import org.apache.struts2.convention.annotation.Result;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.everest.entity.Cliente;
+import edu.everest.entity.TipoDocumento;
+import edu.everest.entity.Usuario;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.ClienteService;
 
@@ -24,9 +26,11 @@ public class ClienteAction extends ActionSupport{
 	
 	private Cliente cliente;
 	private List<Cliente> clientees;
+	private TipoDocumento tipoDocumento;
+	private Usuario usuario;
 	
 	private String oper;
-	private int idCliente, idTipoDocumento, idUsuario, idDIstrito, telefono, celular;
+	private int id, idCliente, idTipoDocumento, idUsuario, idDIstrito, telefono, celular;
 	private String documento, nombres, apePat, apeMat, sexo, fecNac, email, direccion, estado;
 	
 	DateFormat dateFormat = new SimpleDateFormat ("dd/MM/yyyy");
@@ -49,34 +53,51 @@ public class ClienteAction extends ActionSupport{
 	}
 	
 	@Action(value="mantenimientoClienteJSON",
-			results={ @Result(name="success",type="json") })
+			results={ @Result(name="success",type="json"),
+						@Result(name="input",type="json"),
+					  @Result(name="error",type="json")	})
 	public String MantenimientoJSON() throws Exception{
 		try{
 			
 			syso("oper: "+oper);
-			/*syso("[idCliente]["+idCliente+"]"
-			   + "[ruc]["+ruc+"]"
-			   + "[razonSocial]["+razonSocial+"]"
-			   + "[direccion]["+direccion+"]");*/
+			syso("[idCliente]["+idCliente+"]");
+			syso("[id]["+id+"]");
+			syso("[idTipoDocumento]["+idTipoDocumento+"]");
 			
 			cliente = new Cliente();
-			cliente.setIdCliente( idCliente );
-			//cliente.setTipoDocumento(tipoDocumento);
-			//cliente.setUsuario(usuario);
-			cliente.setIdDIstrito(idDIstrito);
-			cliente.setDocumento(documento);
-			cliente.setNombres(nombres);
-			cliente.setApePat(apePat);
-			cliente.setApeMat(apeMat);
-			cliente.setSexo(sexo);
 			
-			if(!fecNac.equals(""))
-				cliente.setFecNac( dateFormat.parse(fecNac) );
-			
-			cliente.setEmail(email);
-			cliente.setTelefono(telefono);
-			cliente.setCelular(celular);
-			cliente.setDireccion(direccion);
+			if(oper.equals("del")){
+				if(idCliente ==0)
+					idCliente = id;
+				cliente.setIdCliente( idCliente );
+				
+			}else{
+				cliente.setIdCliente( idCliente );
+				//cliente.setTipoDocumento(tipoDocumento);
+				//cliente.setUsuario(usuario);
+				cliente.setIdDIstrito(idDIstrito);
+				cliente.setDocumento(documento);
+				cliente.setNombres(nombres);
+				cliente.setApePat(apePat);
+				cliente.setApeMat(apeMat);
+				cliente.setSexo(sexo);
+				
+				if(tipoDocumento != null){
+					syso("[tipoDocumento.getDescripcion()]["+tipoDocumento.getDescripcion()+"]");
+					TipoDocumento auxTipoDocumento = new TipoDocumento();
+					auxTipoDocumento.setIdTipoDocumento( Integer.parseInt(tipoDocumento.getDescripcion()) );
+					
+					cliente.setTipoDocumento(auxTipoDocumento);
+				}
+				
+				if(!fecNac.equals(""))
+					cliente.setFecNac( dateFormat.parse(fecNac) );
+				
+				cliente.setEmail(email);
+				cliente.setTelefono(telefono);
+				cliente.setCelular(celular);
+				cliente.setDireccion(direccion);
+			}
 			
 			if(oper.equals("add")){		
 				clienteService.insertarCliente(cliente);
@@ -246,6 +267,30 @@ public class ClienteAction extends ActionSupport{
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }

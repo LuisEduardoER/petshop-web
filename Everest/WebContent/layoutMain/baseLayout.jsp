@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <!DOCTYPE HTML>
@@ -30,9 +32,18 @@
 <link rel="stylesheet" href="css/bootstrap-a9b9b142.css">
 <link rel="stylesheet" href="css/theme-92f24e24.css">
 <script src="js/theme-0e5b849f.js"></script>
+
+<sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes" defaultIndicator="myLoadingBar"/>
 </head>
 
 <body class="tm-sidebar-a-right tm-sidebars-1 tm-isblog">
+<table id="myLoadingBar" border="0" cellspacing="0" cellpadding="0" style="width: 100%;position: fixed;margin-top: -1px; padding: 0px !important; display: none;">
+	<tr>
+		<td style="width: 100%;text-align: center;">
+			<img alt="Loading" src="img/loading200.gif">
+		</td>
+	</tr>
+</table>
 
     <div class="uk-container uk-container-center">
 
