@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.everest.dao.DAOFactory;
 import edu.everest.dao.MascotaDAO;
+import edu.everest.entity.Cliente;
 import edu.everest.entity.Mascota;
 
 public class MascotaDAOService implements MascotaService {
@@ -17,8 +18,8 @@ public class MascotaDAOService implements MascotaService {
 	}
 	
 	@Override
-	public List<Mascota> obtenerTodosMascota() throws Exception {
-		return dao.obtenerTodos();
+	public List<Mascota> obtenerTodosMascota(Cliente cliente) throws Exception {
+		return dao.obtenerTodos(cliente);
 	}
 
 	@Override

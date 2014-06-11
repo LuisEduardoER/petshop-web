@@ -1,9 +1,22 @@
 package edu.everest.entity;
 
+import java.io.File;
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 /**
@@ -25,6 +38,19 @@ public class Mascota implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date fecNac;
+
+	@Lob
+	private byte[] fotobin;
+	
+	//Para trabajar con struts file
+	
+	@Transient
+	private File foto;	
+	@Transient
+	private String fotoContentType;	
+	@Transient
+	private String fotoFileName;
+		
 
 	private int idAnimal;
 
@@ -80,6 +106,14 @@ public class Mascota implements Serializable {
 
 	public void setFecNac(Date fecNac) {
 		this.fecNac = fecNac;
+	}
+
+	public byte[] getFotobin() {
+		return this.fotobin;
+	}
+
+	public void setFotobin(byte[] fotobin) {
+		this.fotobin = fotobin;
 	}
 
 	public int getIdAnimal() {
@@ -160,4 +194,29 @@ public class Mascota implements Serializable {
 		this.cliente = cliente;
 	}
 
+	public File getFoto() {
+		return foto;
+	}
+
+	public void setFoto(File foto) {
+		this.foto = foto;
+	}
+
+	public String getFotoContentType() {
+		return fotoContentType;
+	}
+
+	public void setFotoContentType(String fotoContentType) {
+		this.fotoContentType = fotoContentType;
+	}
+
+	public String getFotoFileName() {
+		return fotoFileName;
+	}
+
+	public void setFotoFileName(String fotoFileName) {
+		this.fotoFileName = fotoFileName;
+	}
+	
+	
 }
