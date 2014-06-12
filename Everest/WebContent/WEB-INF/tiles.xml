@@ -73,4 +73,9 @@
       <put-attribute name="body"   value="/mascota/mascotaMantenimiento.jsp"/>
   </definition>
   
+  <definition name="mascotaFormTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mascota/mascotaForm.jsp"/>
+  </definition>
+  
 </tiles-definitions>

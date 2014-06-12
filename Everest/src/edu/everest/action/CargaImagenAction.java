@@ -25,12 +25,11 @@ public class CargaImagenAction extends ActionSupport{
 	private String idMascota;
 
 	@Action(value="cargaImagenAction",
-			results={ @Result(name="success",type="stream", params = {"inputName", "${imagenCliente}"}) }
+			results={ @Result(name="success",type="stream", params = {"inputName", "imagenMascota"}) }
 	)
 	public String execute(){
 		
-		System.out.println("Cargando imagen de mascota");
-		
+		System.out.println("Cargando imagen de mascota");		
 		System.out.println("idMascota : " + idMascota);
 		
 		//Recuperamos la imagen de la mascota
@@ -47,8 +46,9 @@ public class CargaImagenAction extends ActionSupport{
 			byte[] fotoBinary =  mascota.getFotobin();
 			
 			imagenMascota = new ByteArrayInputStream(fotoBinary);
+			System.out.println("Imagen Cargada");
 		}catch(Exception ex){
-			
+			System.out.println("cargaImagenAction: "+ex);
 		}
 		
 		return SUCCESS;

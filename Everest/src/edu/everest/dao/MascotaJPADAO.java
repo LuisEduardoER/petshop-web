@@ -1,5 +1,6 @@
 package edu.everest.dao;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -9,8 +10,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import org.apache.struts2.ServletActionContext;
+
 import edu.everest.entity.Cliente;
 import edu.everest.entity.Mascota;
+import edu.everest.util.Constants;
 
 public class MascotaJPADAO implements MascotaDAO {
 	private EntityManagerFactory emf;
@@ -69,18 +73,14 @@ public class MascotaJPADAO implements MascotaDAO {
 		entidadMascota.setEsterilizacion(mascota.getEsterilizacion());
 		entidadMascota.setObservaciones(mascota.getObservaciones());
 		
-		entidadMascota.setFotobin(null);
-		
 		//Validamos que se haya seleccionado una foto
-		if(mascota.getFotobin() != null){
+		if(mascota.getFoto() != null){
 			
 			//lectura del objeto binario
 			InputStream temp = new FileInputStream(mascota.getFoto());
-			
 			byte[] fotoBinary = new byte[temp.available()];
 			
 			temp.read(fotoBinary);
-			
 			temp.close();
 							
 			//Asignamos los bytes al objeto cliente
@@ -88,6 +88,24 @@ public class MascotaJPADAO implements MascotaDAO {
 			
 			entidadMascota.setFotobin(mascota.getFotobin());
 			
+		}else{
+			String ruta = ServletActionContext.getServletContext().getRealPath(Constants.KV_IMG_PET_DEFAULT);
+			
+			File archivo = new File (ruta);
+			
+			System.out.println("-- Archivo:	"+archivo.getPath()+" --");			
+			InputStream temp = new FileInputStream(archivo);
+			
+//			InputStream temp = new FileInputStream();
+			byte[] fotoBinary = new byte[temp.available()];
+			
+			temp.read(fotoBinary);
+			temp.close();
+							
+			//Asignamos los bytes al objeto cliente
+			mascota.setFotobin(fotoBinary);
+			
+			entidadMascota.setFotobin(mascota.getFotobin());
 		}
 		
 		//if(mascota.getEstado() == null)
@@ -106,9 +124,29 @@ public class MascotaJPADAO implements MascotaDAO {
 	public void actualizar(Mascota mascota) throws Exception {
 		em=emf.createEntityManager();
 		em.getTransaction().begin();
+						
+		//Validamos que se haya seleccionado una foto
+		if(mascota.getFoto() != null){
+			
+			//lectura del objeto binario
+			InputStream temp = new FileInputStream(mascota.getFoto());
+			byte[] fotoBinary = new byte[temp.available()];
+			
+			temp.read(fotoBinary);
+			temp.close();
+							
+			//Asignamos los bytes al objeto cliente
+			mascota.setFotobin(fotoBinary);
+			
+		}		
 		
 		Mascota obj=(Mascota)em.find(Mascota.class,mascota.getIdMascota());
-		em.remove(obj);
+		
+		//Para evitar que la imagen actualize en nulo
+		if(mascota.getFoto() == null)
+			mascota.setFotobin(obj.getFotobin());
+		
+		em.merge(mascota);
 		
 		em.flush();
 		em.getTransaction().commit();
