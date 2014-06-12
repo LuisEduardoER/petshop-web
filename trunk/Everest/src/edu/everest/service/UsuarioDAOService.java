@@ -27,8 +27,8 @@ public class UsuarioDAOService implements UsuarioService {
 	}
 
 	@Override
-	public void insertarUsuario(Usuario usuario) throws Exception {
-		dao.insertar(usuario);
+	public Usuario insertarUsuario(Usuario usuario) throws Exception {
+		return dao.insertar(usuario);
 	}
 
 	@Override

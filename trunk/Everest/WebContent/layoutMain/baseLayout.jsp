@@ -31,6 +31,9 @@
 <link rel="apple-touch-icon-precomposed" href="img/apple_touch_icon.png">
 <link rel="stylesheet" href="css/bootstrap-a9b9b142.css">
 <link rel="stylesheet" href="css/theme-92f24e24.css">
+
+<link rel="stylesheet" href="css/reset.css">
+
 <script src="js/theme-0e5b849f.js"></script>
 
 <sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes" defaultIndicator="myLoadingBar"/>

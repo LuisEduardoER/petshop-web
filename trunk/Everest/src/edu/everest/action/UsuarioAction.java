@@ -72,7 +72,7 @@ public class UsuarioAction extends ActionSupport{
 				return "BADLOGIN";
 			}else{
 				getDatosUsuario();
-				getMenuByRol();
+//				getMenuByRol();
 				return SUCCESS;
 			}
 			
@@ -114,8 +114,11 @@ public class UsuarioAction extends ActionSupport{
 		
 	}
 	
+	@Action(value = "/loadMenuAction", 
+			results = { @Result(location = "/layoutIntranet/rightMenu.jsp", name = "success") }
+		)
 	@SuppressWarnings({ "unchecked" })
-	public void getMenuByRol(){
+	public String getMenuByRol(){
 		
 		try {
 			if(session.get("objOpciones") != null)
@@ -157,6 +160,7 @@ public class UsuarioAction extends ActionSupport{
 			e.printStackTrace();
 		}
 		
+		return SUCCESS;
 	}
 	
 	public void syso(String str){

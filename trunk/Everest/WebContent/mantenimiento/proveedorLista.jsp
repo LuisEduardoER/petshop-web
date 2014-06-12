@@ -8,9 +8,11 @@
 <s:url id="urlLista" action="obtenerProveedorJSON"/>
 <s:url id="URLMant" action="mantenimientoProveedorJSON"/>
 
+
+<h2>Mantenimiento de Proveedores</h2>
+
 <sjg:grid  
-		gridModel="proveedores"		
-		caption="Lista de Proveedores"
+		gridModel="proveedores"
 		dataType="json"
 		href="%{urlLista}"
 		viewrecords="true"
@@ -19,11 +21,12 @@
 		indicator="myLoadingBar"
 		navigatorView="true"
 		navigatorDelete="true"
-		navigatorEditOptions="{closeAfterEdit:true,closeAfterAdd:true}"
+		navigatorEditOptions="{closeAfterEdit:true}"
+		navigatorAddOptions="{closeAfterAdd:true}"
 		pager="true"
 		editurl="%{URLMant}" width="600">
 	
-	<sjg:gridColumn key="true" index="id" name="idProveedor" title="ID" editable="true"/>
+	<sjg:gridColumn key="true" index="id" name="idProveedor" title="ID" editable="true" hidden="true"/>
 	
 	<sjg:gridColumn name="ruc" width="50" title="RUC" editable="true"/>
 	<sjg:gridColumn name="razonSocial" title="Raz. Social" editable="true"/>

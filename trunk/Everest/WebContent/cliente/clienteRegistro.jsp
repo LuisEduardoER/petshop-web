@@ -11,6 +11,9 @@ $(function() {
 	$.subscribe('rowselect', function(event,data) {
         $("#hdIdCliente").val(event.originalEvent.id);
     });
+	$.subscribe('onsuccessgrid', function(event,data) {
+        $("#divResult").html(data);
+    });
 	$.subscribe('showPets', function(event,data) {
 	// 	$("#gridedittable").jqGrid('setColumns',{});
 	// 	$("#gridinfo").html('<p>Edit Mode for Row : '+event.originalEvent.id+'</p>');
@@ -35,22 +38,30 @@ $(function() {
 <s:url id="URLMant" action="mantenimientoClienteJSON"/>
 
 <sjg:grid  
-	
+		id="gridCliente"
 		gridModel="clienteLista"
+		name="clienteLista"
 		dataType="json"
 		href="%{urlLista}"
 		viewrecords="true"
 		rowNum="10"
 		navigator="true"
 		navigatorView="true"
-		navigatorEditOptions="{closeAfterEdit:true,closeAfterAdd:true}"
+		navigatorAdd="true"
+		navigatorEditOptions="{closeAfterEdit:true}"
+		navigatorAddOptions="{closeAfterAdd:true}"
     	onSelectRowTopics="rowselect"
+    	onSuccessTopics="onsuccessgrid"
 		pager="true"
+		targets="divResult"
 		autowidth="false"
 		editurl="%{URLMant}" width="650">
 	
-	<sjg:gridColumn key="true" name="idCliente" title="ID Cliente" hidden="true" editable="true"/>
-	<sjg:gridColumn key="true" name="tipoDocumento.descripcion" index="idTipoDocumento" title="Tipo Doc." editable="true"
+	<sjg:gridColumn name="id" index="id" title="ID" editable="true" hidden="true"/>
+	<sjg:gridColumn name="idCliente" index="id" title="ID Cliente" editable="true" hidden="true"/>
+	<sjg:gridColumn name="usuario.idUsuario" key="true" index="idUsuario" title="ID Usuario" editable="true" hidden="true"/>
+	
+	<sjg:gridColumn name="tipoDocumento.descripcion" index="idTipoDocumento" title="Tipo Doc." editable="true"
 					edittype="select" editoptions="{value:'1:DNI;2:Carnet de Extranjeria'}"
  					/>
 	<sjg:gridColumn name="documento"  title="Documento" editable="true" width="50"/>
@@ -77,8 +88,11 @@ $(function() {
 <s:submit id="showPets" cssClass="btn btn-primary" action="showMascotaMantenimientoAction" type="post" value="Ver Mascotas"></s:submit>
 <%-- <s:a href="%{urlShowPets}" method="submit">Mascotas</s:a>&nbsp;&nbsp;&nbsp; --%>
 
-<s:fielderror id="fieldError"/> 	 	
-<s:actionerror id="actionerror"/>
-<s:actionmessage id="actionMessage"/>
+<div id="divResult">
+</div>
+<s:fielderror/> 	 	
+<s:actionerror/>
+<s:actionmessage/>
+
 
 </s:form>
