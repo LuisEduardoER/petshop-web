@@ -29,7 +29,7 @@ $(function() {
 	<h2>Mantenimiento de Clientes</h2>
 
 <s:form id="form1">
-<s:hidden id="hdIdCliente" name="hdIdCliente"/>
+<s:hidden id="hdIdCliente" name="cliente.idCliente"/>
 
 <s:url id="urlLista" action="obtenerClienteJSON"/>
 <s:url id="URLMant" action="mantenimientoClienteJSON"/>
@@ -74,7 +74,7 @@ $(function() {
 
 <%-- <sj:a id="showPets" button="true" buttonIcon="ui-icon-calculator" href="%{urlShowPets}">Mascotas</sj:a> --%>
 <%-- <sj:submit formIds="form1" href="%{urlShowPets}" button="true" value="Mascotas"></sj:submit> --%>
-<s:submit id="showPets" action="showMascotaMantenimientoAction" type="post" value="Ver Mascotas"></s:submit>
+<s:submit id="showPets" cssClass="btn btn-primary" action="showMascotaMantenimientoAction" type="post" value="Ver Mascotas"></s:submit>
 <%-- <s:a href="%{urlShowPets}" method="submit">Mascotas</s:a>&nbsp;&nbsp;&nbsp; --%>
 
 <s:fielderror id="fieldError"/> 	 	

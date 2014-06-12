@@ -113,7 +113,7 @@ public class ClienteAction extends ActionSupport{
 					usuario.setPass( cliente.getDocumento() );
 					
 					rol = new Rol();
-					rol.setIdRol( Constants.FK_ROL_CLIENTE );
+					rol.setIdRol( Constants.KV_ROL_CLIENTE );
 					
 					usuario.setRol( rol );
 					cliente.setUsuario(usuario);					
