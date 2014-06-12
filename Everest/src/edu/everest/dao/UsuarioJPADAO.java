@@ -54,7 +54,7 @@ public class UsuarioJPADAO implements UsuarioDAO {
 	}
 
 	@Override
-	public void insertar(Usuario usuario) throws Exception {
+	public Usuario insertar(Usuario usuario) throws Exception {
 		em=emf.createEntityManager();
 
 		//1.inicia la transacción
@@ -77,6 +77,8 @@ public class UsuarioJPADAO implements UsuarioDAO {
 		//3.ejecuta commit a la transacción
 		em.getTransaction().commit();
 		em.close();
+		
+		return entidadUsuario;
 	}
 
 	@Override

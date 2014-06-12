@@ -58,29 +58,30 @@ public class ClienteAction extends ActionSupport{
 	
 	@Action(value="mantenimientoClienteJSON",
 			results={ @Result(name="success",type="json"),
-					  @Result(name="input", location="mantenimientoClienteJSON", type="redirect") })
+					  @Result(name="input", location="clienteRegistrarTile", type="tiles") })
 	public String MantenimientoJSON() throws Exception{
 		try{
 			
 			syso("oper: "+oper);
 			syso("[idCliente]["+idCliente+"]");
 			syso("[id]["+id+"]");
+			syso("[idUsuario]["+idUsuario+"]");
 			syso("[idTipoDocumento]["+idTipoDocumento+"]");
 			
 			cliente = new Cliente();
-			Usuario usuario;
-			Rol rol;
+			Usuario objUsuario;
+			Rol objRol;
 			
 			if(oper.equals("del")){
 				if(idCliente ==0)
 					idCliente = id;
+				cliente.setUsuario(usuario);
 				cliente.setIdCliente( idCliente );
 				
 			}else{
 				cliente.setIdCliente( idCliente );
-				//cliente.setTipoDocumento(tipoDocumento);
-				//cliente.setUsuario(usuario);
-				cliente.setIdDIstrito(idDIstrito);
+				cliente.setTipoDocumento(tipoDocumento);
+//				cliente.setIdDIstrito(idDIstrito);
 				cliente.setDocumento(documento);
 				cliente.setNombres(nombres);
 				cliente.setApePat(apePat);
@@ -108,19 +109,22 @@ public class ClienteAction extends ActionSupport{
 				
 				if(cliente.getEmail() != null){
 					syso("Registrando Usuario...");
-					usuario = new Usuario();
-					usuario.setUser( cliente.getEmail() );
-					usuario.setPass( cliente.getDocumento() );
+					objUsuario = new Usuario();
+					objUsuario.setUser( cliente.getEmail() );
+					objUsuario.setPass( cliente.getDocumento() );
 					
-					rol = new Rol();
-					rol.setIdRol( Constants.KV_ROL_CLIENTE );
+					objRol = new Rol();
+					objRol.setIdRol( Constants.KV_ROL_CLIENTE );
 					
-					usuario.setRol( rol );
-					cliente.setUsuario(usuario);					
+					objUsuario.setRol( objRol );
+					objUsuario = usuarioService.insertarUsuario(objUsuario);
+					
+					cliente.setUsuario(objUsuario);					
 				}
 				
 				clienteService.insertarCliente(cliente);
 			}else if(oper.equals("edit")){
+				cliente.setUsuario(usuario);
 				clienteService.actualizarCliente(cliente);
 			}else if(oper.equals("del")){
 				clienteService.eliminarCliente(cliente);

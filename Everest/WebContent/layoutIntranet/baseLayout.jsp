@@ -77,8 +77,8 @@
             		</div>
             		
             <!-- ############################### RIGTH MENU ############################### -->
-            
-            <tiles:insertAttribute name="rightMenu" />
+            <s:action name="loadMenuAction" executeResult="true"/>
+<%--             <tiles:insertAttribute name="rightMenu" /> --%>
                         
         </div>
         

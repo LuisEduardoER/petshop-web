@@ -10,7 +10,7 @@ public interface UsuarioDAO {
 	
 	public Usuario obtenerUsuario(Usuario usuario) throws Exception;
 	public List<Usuario> obtenerTodos() throws Exception;
-	public void insertar(Usuario usuario) throws Exception;
+	public Usuario insertar(Usuario usuario) throws Exception;
 	public void actualizar(Usuario usuario) throws Exception;
 	public void eliminar(Usuario usuario) throws Exception;
 	
