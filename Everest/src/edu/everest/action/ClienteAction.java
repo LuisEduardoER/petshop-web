@@ -75,8 +75,9 @@ public class ClienteAction extends ActionSupport{
 			if(oper.equals("del")){
 				if(idCliente ==0)
 					idCliente = id;
-				cliente.setUsuario(usuario);
+				
 				cliente.setIdCliente( idCliente );
+				cliente = clienteService.obtenerCliente(cliente);
 				
 			}else{
 				cliente.setIdCliente( idCliente );
