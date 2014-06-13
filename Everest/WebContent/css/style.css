@@ -69,6 +69,7 @@ background: #fff;
 color: #959b9b;
 background-image: none;
 box-shadow: 0 1px 6px rgba(50, 90, 90, 0.12), inset 0 0 1px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(0,0,0,0);
+width: 100%;
 }
 
 
@@ -80,6 +81,7 @@ ul.topMenu {
 padding: 0px;
  list-style: none;
  color: #959b9b;
+ margin: 0px;
 }
 
 ul.topMenu a {
@@ -87,10 +89,14 @@ height: 70px;
 line-height: 70px;
 padding: 0 25px;
 background: transparent;
+text-decoration: none;
+text-transform: uppercase;
+color: #959b9b;
+background-color: transparent;
 }
 
 ul.topMenu a:HOVER {
-background-color: rgba(0,0,0,0.15);
+
 }
    
 ul.topMenu li {
@@ -106,6 +112,8 @@ line-height: 24px;
 ul.topMenu li:hover{
  color: #aaa073;
  cursor:pointer;
+ background-color: rgba(0,0,0,0.015);
+ color: #64b8b2;
 }
    
 ul.topMenu ul {
