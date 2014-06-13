@@ -3,7 +3,7 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
 
-<%-- <sj:head locale="es" jqueryui="true" jquerytheme="cupertino" defaultIndicator="myLoadingBar"/> --%>
+<sj:head locale="es" jqueryui="true" jquerytheme="cupertino" defaultIndicator="myLoadingBar"/>
 
 
 <script>
@@ -44,12 +44,29 @@ $(function() {
 		dataType="json"
 		href="%{urlLista}"
 		viewrecords="true"
-		rowNum="10"
+		rowList="10,20,30"
+    	rowNum="10"
+    	rownumbers="true"
 		navigator="true"
 		navigatorView="true"
 		navigatorAdd="true"
 		navigatorEditOptions="{closeAfterEdit:true}"
 		navigatorAddOptions="{closeAfterAdd:true}"
+		navigatorExtraButtons="{
+                seperator: { 
+                        title : 'seperator'  
+                }, 
+                hide : { 
+                        title : 'Show/Hide', 
+                        icon: 'ui-icon-wrench', 
+                        topic: 'showPets'
+                },
+                alert : { 
+                        title : 'Alert', 
+                        caption : 'Show Alert!', 
+                        onclick: function(){ alert('Grid Button clicked!') }
+                }
+        }"
     	onSelectRowTopics="rowselect"
     	onSuccessTopics="onsuccessgrid"
 		pager="true"
@@ -58,7 +75,7 @@ $(function() {
 		editurl="%{URLMant}" width="650">
 	
 	<sjg:gridColumn name="id" index="id" title="ID" editable="true" hidden="true"/>
-	<sjg:gridColumn name="idCliente" index="id" title="ID Cliente" editable="true" hidden="true"/>
+	<sjg:gridColumn name="idCliente" index="id" key="true" title="ID Cliente" editable="true" hidden="true"/>
 	<sjg:gridColumn name="usuario.idUsuario" key="true" index="idUsuario" title="ID Usuario" editable="true" hidden="true"/>
 	
 	<sjg:gridColumn name="tipoDocumento.descripcion" index="idTipoDocumento" title="Tipo Doc." editable="true"
