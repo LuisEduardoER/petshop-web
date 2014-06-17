@@ -35,7 +35,13 @@ src:url("../fonts/IcoMoon.eot?#iefix") format('embedded-opentype'), url("../font
 font-weight:normal;
 font-style:normal}
 
-
+html {
+overflow-y: scroll;
+font-size: 14px;
+font-family: sans-serif;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
 body{
 	background: #b7d5da url("http://46.16.75.22/demo/themes/joomla/2012/subway/templates/yoo_subway/images/background/bridge/bridge_img.jpg") 50% 50% no-repeat fixed;
 	background-size: cover;
@@ -51,7 +57,12 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 1000px;
-	padding: 0 15px;	
+	padding: 0 15px;
+	box-sizing: border-box;
+	content: " ";
+	display: table;
+	clear: both;
+	line-height: 24px;
 }
 .dls-header{
 	border: 1px solid black;
@@ -64,12 +75,14 @@ margin-top: 15px;
 margin-bottom: 15px;
 }
 .dls-navbar {
-float: left;
 background: #fff;
 color: #959b9b;
 background-image: none;
 box-shadow: 0 1px 6px rgba(50, 90, 90, 0.12), inset 0 0 1px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(0,0,0,0);
 width: 100%;
+content: " ";
+display: table;
+clear: both;
 }
 
 
@@ -120,9 +133,9 @@ ul.topMenu ul {
  display: none;
 position: absolute;
 top: 60px;
-/* background: blue; */
+background: white;
 color: #fff;
-/* padding: 5px 0px 5px 5px; */
+padding: 0px;
 margin: 0;
  }
    
@@ -135,7 +148,8 @@ ul.topMenu ul li{
   
   
 ul.topMenu ul li a{
- color: #fff;
+ color: #959b9b;
+ white-space: nowrap;
 }
    
 ul.topMenu ul li a:hover{
@@ -151,4 +165,144 @@ ul.topMenu li:hover ul ul,ul.topMenu li:hover ul ul ul,ul.topMenu li.iehover ul 
 ul.topMenu li:hover ul,ul.topMenu ul li:hover ul,ul.topMenu ul ul li:hover ul,ul.topMenu li.iehover ul,ul.topMenu ul li.iehover ul,ul.topMenu ul ul li.iehover ul {
  display: block;
  cursor:pointer;
+}
+
+
+
+/**************************/
+
+.dls-grid:not(.uk-grid-preserve) {
+margin-left: -15px;
+}
+.dls-grid {
+margin: 0 0 0 -15px;
+padding: 0;
+list-style: none;
+content: " ";
+display: table;
+clear: both;
+}
+@media (min-width: 1220px)
+.dls-grid:not(.dls-grid-preserve)>* {
+padding-left: 15px;
+}
+@media (min-width: 768px)
+.dls-width-medium-3-4 {
+width: 75%;
+}
+[class*='dls-width'] {
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+width: 100%;
+}
+.dls-grid>* {
+margin: 0;
+padding-left: 15px;
+float: left;
+}
+.tm-content {
+padding: 30px;
+background: #fff;
+box-shadow: 0 1px 6px rgba(50, 90, 90, 0.12);
+}
+.dls-grid>*>:last-child {
+margin-bottom: 0;
+}
+.dls-grid:not(.dls-grid-preserve)>* {
+padding-left: 15px;
+}
+.dls-width-medium-1-4 {
+width: 25%;
+}
+[class*='uk-width'] {
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+width: 100%;
+}
+.dls-grid>* {
+margin: 0;
+padding-left: 15px;
+float: left;
+}
+.dls-grid>*>:last-child {
+margin-bottom: 0;
+}
+.dls-panel-box-primary {
+background-color: rgba(0, 0, 0, 0.35);
+}
+.dls-panel-box-primary {
+/* background-color: rgba(165, 165, 165, 0.15); */
+color: #959b9b;
+background-image: none;
+box-shadow: 0 1px 6px rgba(50, 90, 90, 0.12), inset 0 0 1px rgba(40, 40, 40, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0);
+text-shadow: 0 1px 1px rgba(0, 0, 0, 0);
+}
+.dls-panel-box {
+padding: 30px;
+/* background: #fff; */
+color: #656b6b;
+box-shadow: 0 1px 6px rgba(50, 90, 90, 0.12);
+}
+.dls-panel {
+display: block;
+position: relative;
+}
+.dls-panel>:not(.dls-panel-title):last-child {
+margin-bottom: 0;
+}
+.dls-panel-box>.dls-nav-side {
+margin: 0 -30px;
+}
+.dls-nav, .dls-nav ul {
+padding: 0;
+list-style: none;
+}
+.dls-panel-box .dls-nav-side > li > a, .dls-panel-box .dls-nav-side .dls-nav-header {
+padding-left: 15px;
+padding-right: 15px;
+margin-left: 15px;
+margin-right: 15px;
+}
+.dls-panel-box-primary .dls-nav-side .dls-nav-header {
+color: white;
+}
+.dls-nav-header {
+padding: 7px 0;
+text-transform: uppercase;
+font-weight: normal;
+font-size: 12px;
+}
+.dls-panel-box .dls-nav-side > li > a, .dls-panel-box .dls-nav-side .dls-nav-header {
+padding-left: 15px;
+padding-right: 15px;
+margin-left: 15px;
+margin-right: 15px;
+}
+.dls-panel-box-primary .dls-nav-side>li>a {
+border-color: rgba(0, 0, 0, 0.015);
+color: rgba(255, 255, 255, 0.5);
+border-width: 1px;
+border-style: solid;
+}
+.dls-nav-side>li>a {
+padding: 10px 15px;
+border-top: 1px solid #e9e9e9;
+}
+.dls-nav li>a {
+display: block;
+text-decoration: none;
+}
+a {
+background: transparent;
+}
+.dls-panel-box-primary .dls-nav-side > li > a:hover, .dls-panel-box-primary .dls-nav-side>li>a:focus {
+	background: rgba(0, 0, 0, 0.015);
+	color: white;
+	border: 1px solid white;
+}
+.dls-width-medium-3-4 {
+width: 75%;
+}
+.dls-width-medium-1-4 {
+width: 25%;
 }
