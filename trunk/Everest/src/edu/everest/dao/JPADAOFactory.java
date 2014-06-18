@@ -56,4 +56,11 @@ public class JPADAOFactory extends DAOFactory {
 		ed.setEntityManagerFactory(emf);
 		return (MascotaDAO)ed;
 	}
+
+	@Override
+	public CitaDAO getCitaDAO() {
+		CitaJPADAO ed =  new CitaJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (CitaDAO)ed;
+	}
 }

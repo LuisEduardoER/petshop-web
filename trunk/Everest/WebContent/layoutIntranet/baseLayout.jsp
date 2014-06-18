@@ -5,7 +5,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <!DOCTYPE html>
-<html>
+<html id="htmlIntranet">
 <head>
 <meta charset="UTF-8">
 
@@ -73,7 +73,7 @@
 	
 	<div class="tm-middle uk-grid" data-uk-grid-match="" data-uk-grid-margin="">
 		<div class="tm-main uk-width-medium-3-4" style="min-height: 512px;">                
-			<main class="tm-content">
+			<main id="mainContent" class="tm-content">
 				
 				<tiles:insertAttribute name="body" />
 				

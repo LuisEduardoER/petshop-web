@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import edu.everest.entity.Cliente;
 import edu.everest.entity.Usuario;
@@ -25,6 +26,7 @@ public class ClienteJPADAO implements ClienteDAO {
 		return obj;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Cliente> obtenerTodos() throws Exception {
 		em=emf.createEntityManager();
@@ -112,6 +114,25 @@ public class ClienteJPADAO implements ClienteDAO {
 		em=emf.createEntityManager();
 		Cliente obj=(Cliente)em.find(Cliente.class,usuario.getIdUsuario());
 		return obj;
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List<Cliente> obtenerFamliares(Cliente cliente) throws Exception {
+		em=emf.createEntityManager();
+
+		List<Cliente> listaCliente = new ArrayList<Cliente>();
+		Query query = em.createQuery( "SELECT c FROM Cliente o "
+									+ "where c.cliente = :cliente ");
+		query.setParameter("cliente", cliente);
+		
+		List l =  query.getResultList();
+		for ( int i=0; i < l.size(); i++ ) {
+			Cliente entidad = (Cliente)l.get(i);
+			listaCliente.add(entidad);
+		}
+		em.close();
+		return listaCliente;
 	}
 
 }

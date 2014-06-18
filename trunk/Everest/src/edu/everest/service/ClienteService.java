@@ -8,6 +8,7 @@ import edu.everest.entity.Usuario;
 public interface ClienteService {
 	
 	public Cliente obtenerClienteByUsuario(Usuario usuario) throws Exception;
+	public List<Cliente> obtenerFamiliares(Cliente cliente) throws Exception;
 	
 	public List<Cliente> obtenerTodosCliente() throws Exception;
 	public void insertarCliente(Cliente cliente) throws Exception;

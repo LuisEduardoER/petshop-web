@@ -9,6 +9,7 @@ public interface ClienteDAO {
 
 	public Cliente obtenerCliente(Cliente cliente) throws Exception;
 	public Cliente obtenerClienteByUsuario(Usuario usuario) throws Exception;
+	public List<Cliente> obtenerFamliares(Cliente cliente) throws Exception;
 	
 	public List<Cliente> obtenerTodos() throws Exception;
 	public void insertar(Cliente cliente) throws Exception;

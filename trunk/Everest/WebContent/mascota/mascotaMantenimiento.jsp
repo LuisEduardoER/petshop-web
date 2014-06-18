@@ -20,19 +20,22 @@ $(function() {
 
 <s:form id="form1">
 
-<s:url id="insert" action="inicializarInsertarOActualizarProveedor"/>
-<s:url id="insert2" action="showMascotaFormAction">
+<s:url id="insert" action="showMascotaFormAction" escapeAmp="false">
 	<s:param name="cliente.idCliente" value="cliente.idCliente"/>
+	<s:param name="oper">add</s:param>
 </s:url>
 
+<s:hidden name="cliente.idcLiente" value="cliente.idcLiente"></s:hidden>
+
 <h2>Mantenimiento de Mascotas </h2>
-<br/>
-	<table width=600 align=center>
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cliente: <s:text name="cliente.nombres"/> <s:text name="cliente.apePat"/></h2>
+
+	<table>
 	<tr> 
-		<!-- <td><s:a href="%{insert}">Agregar Nuevo Proveedor</s:a></td> -->
+		
 		<td>
 			<sj:a openDialog="dlgMascotaForm"
-				  href="%{insert2}"
+				  href="%{insert}"
 				  targets="dlgMascotaForm" 
 				  button="true" 
 				  indicator="myLoadingBar"
@@ -55,13 +58,17 @@ $(function() {
         <th class="ui-state-default ui-th-column ui-th-ltr"><s:text name="Edad"/></th>
         <th class="ui-state-default ui-th-column ui-th-ltr"><s:text name="Raza"/></th>
         <th class="ui-state-default ui-th-column ui-th-ltr"><s:text name="Sexo"/></th>
-        <th class="ui-state-default ui-th-column ui-th-ltr">&nbsp;</th>
-        <th class="ui-state-default ui-th-column ui-th-ltr">&nbsp;</th>
-        <th class="ui-state-default ui-th-column ui-th-ltr">&nbsp;</th>
+        <th class="ui-state-default ui-th-column ui-th-ltr">Ver</th>
+        <th class="ui-state-default ui-th-column ui-th-ltr">Editar</th>
+        <th class="ui-state-default ui-th-column ui-th-ltr">Eliminar</th>
     </tr>
  </thead>
     <s:if test="count==0">
-    	<tr><td colspan="5" style="text-align: center">No hay mascotas registradas para este Cliente.</td></tr>
+    	<tr>
+    		<td colspan="9" style="text-align: center">
+    			<h2>No hay mascotas registradas para este Cliente.</h2>
+    		</td>
+    	</tr>
     </s:if>
     
     <s:else>
@@ -84,9 +91,26 @@ $(function() {
             <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell"><s:property value="raza"/></td>
             <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell"><s:property value="sexo"/></td>
             <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell" style="width: 50px;text-align: center;">
+            	<s:url id="view" action="showMascotaFormAction" escapeAmp="false">
+	       		    <s:param name="oper">view</s:param>
+	       		    <s:param name="mascota.idMascota" value="idMascota"/>
+	       		    <s:param name="cliente.idCliente" value="cliente.idCliente"/>
+	       		</s:url>
+               	<sj:a openDialog="dlgMascotaForm"
+				  href="%{view}"
+				  targets="dlgMascotaForm" 
+				  button="true" 
+				  buttonText="false"
+				  indicator="myLoadingBar"
+				  buttonIcon="ui-icon-contact">
+					Ver Mascota
+				</sj:a>
+            </td>
+            <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell" style="width: 50px;text-align: center;">
                	<s:url id="update" action="showMascotaFormAction" escapeAmp="false">
 	       		    <s:param name="mascota.idMascota" value="idMascota"/>
 	       		    <s:param name="cliente.idCliente" value="cliente.idCliente"/>
+	       		    <s:param name="oper">edit</s:param>
 	       		</s:url> 
 <%--                	<s:a href="%{update}" cssClass="btn btn-primary"> --%>
 <%-- 					<span class="ui-button-icon-primary ui-icon ui-icon-pencil"></span> --%>
@@ -101,21 +125,19 @@ $(function() {
 					Editar Mascota
 				</sj:a>
             </td>
-            <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell">
-               	<s:url id="delete" action="eliminaProveedor">
-	       		   <s:param name="mascota.idMascota" value="idMascota"/>
-	       		</s:url>
-               	<s:a href="%{delete}" cssClass="btn btn-primary ">
-               		<span class="ui-button-icon-primary ui-icon ui-icon-circle-close"></span>
-               	</s:a>
-            </td>
-            <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell">
+            <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell" style="width: 50px;text-align: center;">
                	<s:url id="detalle" action="detalleProveedor">
 	       		   <s:param name="mascota.idMascota" value="idMascota"/>
 	       		</s:url>
-               	<s:a href="%{detalle}" cssClass="btn btn-primary ">
-               		<span class="ui-button-icon-primary ui-icon ui-icon-contact"></span>
-               	</s:a>
+               	<sj:a openDialog="dlgMascotaForm"
+				  href="%{update}"
+				  targets="dlgMascotaForm" 
+				  button="true" 
+				  buttonText="false"
+				  indicator="myLoadingBar"
+				  buttonIcon="ui-icon-circle-close">
+					Eliminar Mascota
+				</sj:a>
             </td>
         </tr>
 	 </s:iterator>
@@ -124,7 +146,10 @@ $(function() {
 	 </s:else>
 	 
     </table>
+    <br/>
     
+	
+	<s:a href="showClienteRegistroAction" >Volver</s:a>
 	
 </s:form>
 
@@ -132,8 +157,11 @@ $(function() {
     	id="dlgMascotaForm" 
     	autoOpen="false"
     	width="450"
+    	minHeight="350"
     	modal="true" 
     	onCloseTopics="closeDialog"
+    	showEffect="slide" 
+    	hideEffect="explode"
     	title="Mascota">
         
         <table style="width: 100%;">
