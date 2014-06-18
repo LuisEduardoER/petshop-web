@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
+<link href="img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
 <title>Model</title>
@@ -11,58 +12,47 @@
 
 <div class="dls-container">
 	<div class="dls-header">
-		Header
+		<a class="tm-logo" href="welcome">
+			<img src="img/PetShop.png" height="80" alt="Demo">
+		</a>
 	</div>
 	
 	<nav class="tm-navbar dls-navbar">
 		
 		<ul class="topMenu">
-			<li><a href="#">PESTAÑA 1</a></li>
-			<li><a href="#">PESTAÑA 2</a></li>
-			<li><a href="#">PESTAÑA 3</a></li>
-			<li><a href="#">PESTAÑA 4</a>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Menu 1</a></li>
+			<li><a href="#">Menu 2</a></li>
+			<li><a href="#">Menu 3</a>
 				<ul>
 				<li>
 					<a href="#">
-						SUBMENU 1 SUBMENU 1
+						SubMenu 3.1
 					</a>
 				</li>
 				<li>
 					<a href="#">
-						SUBMENU 2
+						SubMenu 3.2
 					</a>
 				</li>
 				</ul>
 			</li>
-			<li><a href="#">PESTAÑA 5</a></li>
-			<li><a href="#">PESTAÑA 4</a>
+			<li><a href="#">Menu 4</a></li>
+			<li><a href="#">Menu 5</a>
 				<ul>
 				<li>
 					<a href="#">
-						SUBMENU 1 SUBMENU 1
+						SubMenu 5.1
 					</a>
 				</li>
 				<li>
 					<a href="#">
-						SUBMENU 2
+						SubMenu 5.2
 					</a>
 				</li>
 				</ul>
 			</li>
-			<li><a href="#">PESTAÑA 4</a>
-				<ul>
-				<li>
-					<a href="#">
-						SUBMENU 1 SUBMENU 1
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						SUBMENU 2
-					</a>
-				</li>
-				</ul>
-			</li>
+			<li><a href="#">Login</a></li>
 		</ul>
 
 	</nav>

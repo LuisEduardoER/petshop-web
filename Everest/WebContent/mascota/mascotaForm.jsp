@@ -51,7 +51,26 @@
          <tr>
          	<td class="tdLabel"><s:text name="Edad"/></td>
          	<td>
-         	<s:textfield name="mascota.edad" size="30"/>
+<%--          	<s:textfield name="mascota.edad" size="30"/> --%>
+<%--          	<sj:spinner name="mascota.edad" --%>
+<%-- 				        showOn="always" --%>
+<%-- 				        min="0" --%>
+<%-- 				        max="10" --%>
+<%-- 				        step="1"/> --%>
+			<label style="float: left;" id="displayvaluespan" for="echo"><s:property value="mascota.edad"/></label>
+        	<sj:slider 
+				id="echo" 
+				name="mascota.edad"
+				value="0"
+				displayValueElement="displayvaluespan"
+				label="5" 
+				min="0" 
+				max="10" 
+				step="1"
+				animate="true"
+				cssStyle="margin-left: 20px; margin-top: 5px;"
+			/>
+			
          	</td>
          </tr>
          <tr>

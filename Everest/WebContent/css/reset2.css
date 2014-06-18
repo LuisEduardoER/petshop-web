@@ -1,0 +1,12 @@
+.ui-spinner {
+overflow: visible !important;
+}
+.ui-spinner .ui-icon-triangle-1-n {
+background-position: 0 -20px !important;
+}
+.ui-spinner .ui-icon-triangle-1-s {
+background-position: -65px -20px !important;
+}
+.ui-spinner {
+top: -3px !important;
+}
