@@ -3,7 +3,7 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
 
-<sj:head locale="es" jqueryui="true" jquerytheme="cupertino" defaultIndicator="myLoadingBar"/>
+<%-- <sj:head locale="es" jqueryui="true" jquerytheme="cupertino" defaultIndicator="myLoadingBar"/> --%>
 
 
 <script>
@@ -70,6 +70,8 @@ $(function() {
     	onSelectRowTopics="rowselect"
     	onSuccessTopics="onsuccessgrid"
 		pager="true"
+		indicator="myLoadingBar"
+		loadingText="Cargando..."
 		targets="divResult"
 		autowidth="false"
 		editurl="%{URLMant}" width="650">
@@ -78,17 +80,17 @@ $(function() {
 	<sjg:gridColumn name="idCliente" index="id" key="true" title="ID Cliente" editable="true" hidden="true"/>
 	<sjg:gridColumn name="usuario.idUsuario" key="true" index="idUsuario" title="ID Usuario" editable="true" hidden="true"/>
 	
-	<sjg:gridColumn name="tipoDocumento.descripcion" index="idTipoDocumento" title="Tipo Doc." editable="true"
+	<sjg:gridColumn name="tipoDocumento.descripcion" index="idTipoDocumento" title="Tipo Doc." editable="true" width="40"
 					edittype="select" editoptions="{value:'1:DNI;2:Carnet de Extranjeria'}"
  					/>
-	<sjg:gridColumn name="documento"  title="Documento" editable="true" width="50"/>
-	<sjg:gridColumn name="nombres" 	  title="Nombres"   editable="true" width="50"/>
-	<sjg:gridColumn name="apePat" 	  title="Ape. Pat." editable="true" width="80"/>
-	<sjg:gridColumn name="apeMat" 	  title="Ape. Mat." editable="true" />
-	<sjg:gridColumn name="sexo" 	  title="Sexo" 		editable="true"  
+	<sjg:gridColumn name="documento"  title="Documento" editable="true" width="70"/>
+	<sjg:gridColumn name="nombres" 	  title="Nombres"   editable="true" width="60"/>
+	<sjg:gridColumn name="apePat" 	  title="Ape. Pat." editable="true" width="90"/>
+	<sjg:gridColumn name="apeMat" 	  title="Ape. Mat." editable="true" width="90"/>
+	<sjg:gridColumn name="sexo" 	  title="Sexo" 		editable="true"  width="30"
 					edittype="select" editoptions="{value:'M:Masculino;F:Femenino'}"
 					/>
-	<sjg:gridColumn name="fecNac" 	  title="Fec. Nac." editable="true" formatter="date"
+	<sjg:gridColumn name="fecNac" 	  title="Fec. Nac." editable="true" formatter="date" width="90"
         			formatoptions="{newformat : 'd/m/Y', srcformat : 'Y/m/d'}"/>
 	<sjg:gridColumn name="email" 	  title="Email" 	editable="true" width="100"/>
 	<sjg:gridColumn name="telefono"   title="Telefono"  editable="true" width="50"/>
