@@ -2,24 +2,43 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
+<script>
+$(function() {
+	$.subscribe('closeDialog', function(event,data) {
+		var html = "<table style='width: 100%;'>"+
+				    	"<tr>"+
+						"<td style='width: 100%; text-align: center;'>"+
+							"<img alt='Loading' src='img/loading.gif'>"+
+						"</td>"+
+					"</tr>"+
+				"</table>";
+        $("#dlgMascotaForm").empty();
+        $("#dlgMascotaForm").html(html);
+    });
+});
+</script>
+
 <s:form id="form1">
+
+<s:url id="insert" action="inicializarInsertarOActualizarProveedor"/>
+<s:url id="insert2" action="showMascotaFormAction">
+	<s:param name="cliente.idCliente" value="cliente.idCliente"/>
+</s:url>
 
 <h2>Mantenimiento de Mascotas </h2>
 <br/>
 	<table width=600 align=center>
-	<tr> <s:url id="insert" action="inicializarInsertarOActualizarProveedor"/>
+	<tr> 
 		<!-- <td><s:a href="%{insert}">Agregar Nuevo Proveedor</s:a></td> -->
 		<td>
-			<sj:a openDialog="myclickdialog" button="true" buttonIcon="ui-icon-circle-plus">
+			<sj:a openDialog="dlgMascotaForm"
+				  href="%{insert2}"
+				  targets="dlgMascotaForm" 
+				  button="true" 
+				  indicator="myLoadingBar"
+				  buttonIcon="ui-icon-circle-plus">
 		Agregar Mascota
 	</sj:a>
-		</td>
-		<td>
-			<s:url id="insert2" action="showMascotaFormAction">
-				<s:param name="cliente.idCliente" value="cliente.idCliente"/>
-			</s:url>
-			<s:a href="%{insert2}">Agregar Nueva Mascota</s:a>
-
 		</td>
 	</tr>
 </table>
@@ -64,14 +83,23 @@
             <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell"><s:property value="edad"/></td>
             <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell"><s:property value="raza"/></td>
             <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell"><s:property value="sexo"/></td>
-            <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell">
-               	<s:url id="update" action="showMascotaFormAction">
-	       		   <s:param name="mascota.idMascota" value="idMascota"/>
-	       		   <s:param name="cliente.idCliente" value="cliente.idCliente"/>
+            <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell" style="width: 50px;text-align: center;">
+               	<s:url id="update" action="showMascotaFormAction" escapeAmp="false">
+	       		    <s:param name="mascota.idMascota" value="idMascota"/>
+	       		    <s:param name="cliente.idCliente" value="cliente.idCliente"/>
 	       		</s:url> 
-               	<s:a href="%{update}" cssClass="btn btn-primary">
-					<span class="ui-button-icon-primary ui-icon ui-icon-pencil"></span>
-				</s:a>
+<%--                	<s:a href="%{update}" cssClass="btn btn-primary"> --%>
+<%-- 					<span class="ui-button-icon-primary ui-icon ui-icon-pencil"></span> --%>
+<%-- 				</s:a> --%>
+				<sj:a openDialog="dlgMascotaForm"
+				  href="%{update}"
+				  targets="dlgMascotaForm" 
+				  button="true" 
+				  buttonText="false"
+				  indicator="myLoadingBar"
+				  buttonIcon="ui-icon-pencil">
+					Editar Mascota
+				</sj:a>
             </td>
             <td class="ui-widget-content jqgrow ui-row-ltr" role="gridcell">
                	<s:url id="delete" action="eliminaProveedor">
@@ -101,75 +129,21 @@
 </s:form>
 
 <sj:dialog 
-    	id="myclickdialog" 
+    	id="dlgMascotaForm" 
     	autoOpen="false"
     	width="450"
     	modal="true" 
+    	onCloseTopics="closeDialog"
     	title="Mascota">
-     
-<%--      <s:include value="/mascota/mascotaForm.jsp"/> --%>
-<h1>
-   <s:if test="mascota==null || mascota.idProveedor == null">
-	 <s:text name="Agregar Mascota"/>
-	 <s:hidden id="oper" name="oper" value="add"/>
-   </s:if>
-   <s:else>
-	 <s:text name="Editar Mascota"/>
-	 <s:hidden id="oper" name="oper" value="edit"/>
-   </s:else>
-</h1>
-	 <table>
-		<tr><td align="left" style="font:bold;color:red"> 
-	            <s:fielderror/> 	 	
-                <s:actionerror/>
-                <s:actionmessage/>
-             </td>
-        </tr>
-     </table>
-     		 	
-    <s:form enctype="multipart/form-data" method="post">
-    <s:hidden name="mascota.idMascota"/>
-    <s:hidden name="hdIdCliente"/>
-    
-     <table align="center" class="borderAll">
-     	 
-     	 
-     	 <tr>
-         	<td class="tdLabel"><s:text name="Imagen"/></td>
-         	<td>
-<!--          		<img alt="Imagen no disponible"  -->
-<%-- 					src="cargaImagenAction?mascota=<s:property value="mascota.idMascota"/>"> --%>
-					
-				<s:file name="mascota.fotobin"></s:file>
-			</td>
-         </tr>
-         <tr>
-         	<td class="tdLabel"><s:text name="Nombre"/></td>
-         	<td><s:textfield name="mascota.nombre" size="30"/></td>
-         </tr>
-         <tr>
-         	<td class="tdLabel"><s:text name="Edad"/></td>
-         	<td><s:textfield name="mascota.edad" size="30"/></td>
-         </tr>
-         <tr>
-         	<td class="tdLabel"><s:text name="Raza"/></td>
-         	<td><s:textfield name="mascota.raza" size="30"/></td>
-         </tr>
-         <tr>
-         	<td class="tdLabel"><s:text name="Sexo"/></td>
-         	<td><s:textfield name="mascota.sexo" size="30"/></td>
-         </tr>
-    </table>
-    		 <br/>
-    <table> 
-    	     <tr>
-    		    <td><s:submit action="insertarOActualizarMascota" key="button.label.submit" cssClass="butStnd"/></td>
-    	        <td><s:reset key="button.label.cancel" cssClass="butStnd"/></td>
-    		 </tr>
-    </table> 		  		 
-    	</s:form>
-
-     
+        
+        <table style="width: 100%;">
+        	<tr>
+        		<td style="width: 100%; text-align: center;">
+        			<img alt="Loading" src="img/loading.gif">
+        		</td>
+        	</tr>
+        </table>
+		 
     </sj:dialog>
 
     

@@ -20,7 +20,7 @@
 
 </head>
 <body>
-<table id="myLoadingBar" border="0" cellspacing="0" cellpadding="0" style="width: 100%;position: fixed;margin-top: -6px; padding: 0px !important; display: none;">
+<table id="myLoadingBar" border="0" cellspacing="0" cellpadding="0" style="width: 100%;position: fixed;margin-top: -6px; padding: 0px !important; display: none; z-index: 1009;">
 	<tr>
 		<td style="width: 100%;text-align: center;">
 			<img alt="Loading" src="img/loading200.gif">
