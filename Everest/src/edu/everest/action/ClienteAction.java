@@ -30,6 +30,10 @@ public class ClienteAction extends ActionSupport{
 	
 	private Cliente cliente;
 	private List<Cliente> clienteLista;
+	
+	private Cliente familiar;
+	private List<Cliente> familiarLista;
+	
 	private TipoDocumento tipoDocumento;
 	private Usuario usuario;
 	
@@ -42,6 +46,11 @@ public class ClienteAction extends ActionSupport{
 	@Action(value="/showClienteRegistroAction",
 			results={ @Result(name="success", location="clienteRegistrarTile",type="tiles") })
 	public String showClienteRegistrar() throws Exception{
+		return SUCCESS;
+	}
+	@Action(value="/showFamiliaresAction",
+			results={ @Result(name="success", location="/cliente/familiarMantenimiento.jsp") })
+	public String showFamiliares() throws Exception{
 		return SUCCESS;
 	}
 	
@@ -134,6 +143,19 @@ public class ClienteAction extends ActionSupport{
 			syso("MantenimientoJSON: "+ex);
 		}
 		
+		return SUCCESS;
+	}
+	
+	@Action(value="obtenerFamliaresJSON",
+			results={ @Result(name="success",type="json") })
+	public String obtenerFamliaresJSON() throws Exception{
+		try{
+			syso("idCliente: "+cliente.getIdCliente());
+			
+			familiarLista = clienteService.obtenerFamiliares(cliente);
+		}catch(Exception ex){
+			syso("obtenerFamliaresJSON: "+ex);
+		}
 		return SUCCESS;
 	}
 	
@@ -315,6 +337,22 @@ public class ClienteAction extends ActionSupport{
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Cliente getFamiliar() {
+		return familiar;
+	}
+
+	public void setFamiliar(Cliente familiar) {
+		this.familiar = familiar;
+	}
+
+	public List<Cliente> getFamiliarLista() {
+		return familiarLista;
+	}
+
+	public void setFamiliarLista(List<Cliente> familiarLista) {
+		this.familiarLista = familiarLista;
 	}
 	
 }

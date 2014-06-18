@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.everest.entity.Cliente;
 import edu.everest.entity.Mascota;
 import edu.everest.service.ApplicationBusinessDelegate;
+import edu.everest.service.ClienteService;
 import edu.everest.service.MascotaService;
 
 @ParentPackage(value = "dawii")
@@ -20,6 +21,7 @@ public class MascotaAction extends ActionSupport{
 	
 	private static ApplicationBusinessDelegate abd = new ApplicationBusinessDelegate();	
 	private static MascotaService mascotaService = abd.getMascotaService();
+	private static ClienteService clienteService = abd.getClienteService();
 	
 	private Mascota mascota;
 	private Cliente cliente;
@@ -32,8 +34,8 @@ public class MascotaAction extends ActionSupport{
 	public String showMascotaLista() throws Exception{
 		try{
 			System.out.println( "idCliente(): "+cliente.getIdCliente() );
-//			Cliente cliente = new Cliente();
-//			cliente.setIdCliente( Integer.parseInt(hdIdCliente) );
+			
+			cliente = clienteService.obtenerCliente(cliente);
 			
 			mascotaLista = mascotaService.obtenerTodosMascota(cliente);
 			count = mascotaLista.size();

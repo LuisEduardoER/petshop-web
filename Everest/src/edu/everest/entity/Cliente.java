@@ -48,6 +48,15 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="cliente")
 	private List<Cita> citas;
 
+	//bi-directional many-to-one association to Cliente
+	@ManyToOne
+	@JoinColumn(name="idParentCliente")
+	private Cliente cliente;
+
+	//bi-directional many-to-one association to Cliente
+	@OneToMany(mappedBy="cliente")
+	private List<Cliente> clientes;
+
 	//bi-directional many-to-one association to TipoDocumento
 	@ManyToOne
 	@JoinColumn(name="idTipoDocumento")
@@ -189,6 +198,36 @@ public class Cliente implements Serializable {
 		cita.setCliente(null);
 
 		return cita;
+	}
+
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<Cliente> getClientes() {
+		return this.clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public Cliente addCliente(Cliente cliente) {
+		getClientes().add(cliente);
+		cliente.setCliente(this);
+
+		return cliente;
+	}
+
+	public Cliente removeCliente(Cliente cliente) {
+		getClientes().remove(cliente);
+		cliente.setCliente(null);
+
+		return cliente;
 	}
 
 	public TipoDocumento getTipoDocumento() {

@@ -46,5 +46,10 @@ public class ClienteDAOService implements ClienteService {
 	public Cliente obtenerCliente(Cliente cliente) throws Exception {
 		return dao.obtenerCliente(cliente);
 	}
+
+	@Override
+	public List<Cliente> obtenerFamiliares(Cliente cliente) throws Exception {
+		return dao.obtenerFamliares(cliente);
+	}
 	
 }

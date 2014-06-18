@@ -65,7 +65,7 @@
   
   <definition name="clienteRegistrarTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
-      <put-attribute name="body"   value="/cliente/clienteRegistro.jsp"/>
+      <put-attribute name="body"   value="/cliente/clienteMantenimiento.jsp"/>
   </definition>
   
   <definition name="mascotaMantenimientoTile" extends="layoutIntranet">
@@ -76,6 +76,16 @@
   <definition name="mascotaFormTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mascota/mascotaForm.jsp"/>
+  </definition>
+  
+  <definition name="citaRegistrarTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/cita/citaRegistrar.jsp"/>
+  </definition>
+  
+  <definition name="citaRegistrarByClienteTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/cita/citaRegistrarByCliente.jsp"/>
   </definition>
   
 </tiles-definitions>

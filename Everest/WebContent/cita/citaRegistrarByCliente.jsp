@@ -15,23 +15,38 @@ $(function() {
         $("#divResult").html(data);
     });
 	$.subscribe('showPets', function(event,data) {
-	// 	$("#gridedittable").jqGrid('setColumns',{});
-	// 	$("#gridinfo").html('<p>Edit Mode for Row : '+event.originalEvent.id+'</p>');
-// 		alert("showPets id: "+ $("#hdIdCliente").val() );
-		$( "#dlgPets" ).dialog( "open" );
-	});
-	$("#showPets").click(function(){
+			
 		if($("#hdIdCliente").val() == ""){
 			alert("Seleccione un Cliente porfavor.");
 			return false;
 		}
+// 		$("#form1").ajaxSubmit(options);
+		
+		$("#form1").submit();
+		 
 	});
+	$.subscribe('familyTopic', function(event,data) {
+		$('#form1').attr('action', 'showFamiliaresAction');
+		$("#dlgFamiliaresForm").dialog("open");
+		
+	});
+	$.subscribe('closeDialog', function(event,data) {
+		var html = "<table style='width: 100%;'>"+
+				    	"<tr>"+
+						"<td style='width: 100%; text-align: center;'>"+
+							"<img alt='Loading' src='img/loading.gif'>"+
+						"</td>"+
+					"</tr>"+
+				"</table>";
+        $(this).empty();
+        $(this).html(html);
+    });
 });
 </script>
 
 	<h2>Mantenimiento de Clientes</h2>
 
-<s:form id="form1">
+<s:form id="form1" action="showMascotaMantenimientoAction" method="post">
 <s:hidden id="hdIdCliente" name="cliente.idCliente"/>
 
 <s:url id="urlLista" action="obtenerClienteJSON"/>
@@ -46,7 +61,7 @@ $(function() {
 		viewrecords="true"
 		rowList="10,20,30"
     	rowNum="10"
-    	rownumbers="true"
+
 		navigator="true"
 		navigatorView="true"
 		navigatorAdd="true"
@@ -56,15 +71,18 @@ $(function() {
                 seperator: { 
                         title : 'seperator'  
                 }, 
-                hide : { 
-                        title : 'Show/Hide', 
-                        icon: 'ui-icon-wrench', 
+                pets : { 
+                        title : 'Mascotas', 
+                        icon: 'ui-icon-calculator', 
                         topic: 'showPets'
                 },
-                alert : { 
-                        title : 'Alert', 
-                        caption : 'Show Alert!', 
-                        onclick: function(){ alert('Grid Button clicked!') }
+                family : { 
+                        title : 'Familiares', 
+                        icon: 'ui-icon-person', 
+                        topic: 'familyTopic'
+                },
+                seperator: { 
+                        title : 'seperator'  
                 }
         }"
     	onSelectRowTopics="rowselect"
@@ -73,7 +91,7 @@ $(function() {
 		indicator="myLoadingBar"
 		loadingText="Cargando..."
 		targets="divResult"
-		autowidth="false"
+		autowidth="true"
 		editurl="%{URLMant}" width="650">
 	
 	<sjg:gridColumn name="id" index="id" title="ID" editable="true" hidden="true"/>
@@ -90,22 +108,17 @@ $(function() {
 	<sjg:gridColumn name="sexo" 	  title="Sexo" 		editable="true"  width="30"
 					edittype="select" editoptions="{value:'M:Masculino;F:Femenino'}"
 					/>
-	<sjg:gridColumn name="fecNac" 	  title="Fec. Nac." editable="true" formatter="date" width="90"
+	<sjg:gridColumn name="fecNac" 	  title="Fec. Nac." editable="true" formatter="date" width="90" 
         			formatoptions="{newformat : 'd/m/Y', srcformat : 'Y/m/d'}"/>
-	<sjg:gridColumn name="email" 	  title="Email" 	editable="true" width="100"/>
-	<sjg:gridColumn name="telefono"   title="Telefono"  editable="true" width="50"/>
-	<sjg:gridColumn name="celular"    title="Celular"   editable="true" width="50"/>
+	<sjg:gridColumn name="email" 	  title="Email" 	editable="true" width="100" />
+	<sjg:gridColumn name="telefono"   title="Telefono"  editable="true" width="50" />
+	<sjg:gridColumn name="celular"    title="Celular"   editable="true" width="50" />
 	<sjg:gridColumn name="direccion"  title="Direccion" editable="true"  />
 	
 </sjg:grid>
 <br/>
 
 <s:url id="urlShowPets" action="showMascotaMantenimientoAction"/>
-
-<%-- <sj:a id="showPets" button="true" buttonIcon="ui-icon-calculator" href="%{urlShowPets}">Mascotas</sj:a> --%>
-<%-- <sj:submit formIds="form1" href="%{urlShowPets}" button="true" value="Mascotas"></sj:submit> --%>
-<s:submit id="showPets" cssClass="btn btn-primary" action="showMascotaMantenimientoAction" type="post" value="Ver Mascotas"></s:submit>
-<%-- <s:a href="%{urlShowPets}" method="submit">Mascotas</s:a>&nbsp;&nbsp;&nbsp; --%>
 
 <div id="divResult">
 </div>
@@ -115,3 +128,23 @@ $(function() {
 
 
 </s:form>
+
+<sj:dialog 
+    	id="dlgFamiliaresForm" 
+    	autoOpen="false"
+    	width="450"
+    	modal="true" 
+    	onCloseTopics="closeDialog"
+    	showEffect="slide" 
+    	hideEffect="explode"
+    	title="Familiares">
+        
+        <table style="width: 100%;">
+        	<tr>
+        		<td style="width: 100%; text-align: center;">
+        			<img alt="Loading" src="img/loading.gif">
+        		</td>
+        	</tr>
+        </table>
+		 
+    </sj:dialog>

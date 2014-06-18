@@ -31,4 +31,7 @@ public class ApplicationBusinessDelegate {
 		return new MascotaDAOService( DAOFactory.JPA );
 	}
 	
+	public CitaService getCitaService() {
+		return new CitaDAOService( DAOFactory.JPA );
+	}
 }
