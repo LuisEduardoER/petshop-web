@@ -44,7 +44,7 @@ public class MascotaAction extends ActionSupport{
 	}
 	
 	@Action(value="/showMascotaFormAction",
-			results={ @Result(name="success", location="mascotaFormTile",type="tiles") })
+			results={ @Result(name="success", location="/mascota/mascotaForm.jsp") })
 	public String showMascotaForm() throws Exception{
 		try{
 			

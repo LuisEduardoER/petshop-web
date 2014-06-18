@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-<sj:head locale="es" jqueryui="true" jquerytheme="cupertino" defaultIndicator="myLoadingBar"/>
+
 
 <h1>
    <s:if test="mascota==null || mascota.idProveedor == null">
@@ -58,17 +58,18 @@
 <%-- 				        max="10" --%>
 <%-- 				        step="1"/> --%>
 			<label style="float: left;" id="displayvaluespan" for="echo"><s:property value="mascota.edad"/></label>
+<!-- 			displayValueElement="displayvaluespan" -->
         	<sj:slider 
 				id="echo" 
 				name="mascota.edad"
-				value="0"
 				displayValueElement="displayvaluespan"
+				value="0"
 				label="5" 
 				min="0" 
 				max="10" 
 				step="1"
 				animate="true"
-				cssStyle="margin-left: 20px; margin-top: 5px;"
+				cssStyle="margin-left: 25px; margin-top: 5px;"
 			/>
 			
          	</td>
