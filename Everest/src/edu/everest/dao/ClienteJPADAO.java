@@ -22,7 +22,20 @@ public class ClienteJPADAO implements ClienteDAO {
 	@Override
 	public Cliente obtenerCliente(Cliente cliente) throws Exception {
 		em=emf.createEntityManager();
-		Cliente obj=(Cliente)em.find(Cliente.class,cliente.getIdCliente());
+		Cliente obj = null;
+		
+		if(cliente.getIdCliente() != 0)
+			obj=(Cliente)em.find(Cliente.class,cliente.getIdCliente());
+		else if(cliente.getDocumento() != null){
+			
+			Query query = em.createQuery( "SELECT c FROM Cliente c WHERE c.documento = :documento" );
+			
+			query.setParameter("documento", cliente.getDocumento());
+			
+			obj=(Cliente) query.getSingleResult();
+			
+		}	
+		
 		return obj;
 	}
 
