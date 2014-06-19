@@ -4,24 +4,37 @@
 
 <s:form id="form1">
 
-<h2>
+<h1>
 Registro de Citas
-</h2>
+</h1>
+
+<fieldset id="fsMascota">
+	
+	<legend> <h2>Mascota</h2> </legend>
+	
+	<s:include value="citaMascota.jsp"/>
+	
+</fieldset>
+
+<br>
 
 <fieldset>
-	<legend> <h1>Cita </h1> </legend>
+	<legend> <h2>Cita </h2> </legend>
 
-	<table style="width: 100%;">
+	<table>
 		<tr>
 			<td>Fecha</td>
 			<td>Hora</td>
 		</tr>
 		<tr>
 			<td>
-				<sj:datepicker showButtonPanel="true"/>
+				<sj:datepicker showOn="focus" changeMonth="true" changeYear="true"/>
 			</td>
 			<td>
-				<sj:datepicker showButtonPanel="true" timepicker="true"/>
+				<sj:datepicker showOn="focus" timepicker="true" timepickerOnly="true" timepickerGridHour="2" timepickerGridMinute="30" timepickerStepMinute="30"/>
+			</td>
+			<td>
+				<sj:a openDialog="dlgCalendar" button="true" buttonIcon="ui-icon-calendar">Horarios</sj:a>
 			</td>
 		</tr>
 		<tr>
@@ -40,39 +53,24 @@ Registro de Citas
 
 </fieldset>
 
-<fieldset>
-	<legend> <h1>Mascota</h1> </legend>
+<br>
 
-	<table style="width: 100%;">
-		<tr>
-			<td>DNI</td>
-			<td>
-				<s:textfield/>
-			</td>
-			<td>
-				<sj:a button="true" buttonIcon="ui-icon-circle-triangle-e" buttonText="false">|</sj:a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				Cliente
-			</td>
-			<td>
-				xxxxxxxx xxxxxxxx xxxxxxx
-			</td>
-		</tr>
-		<tr>
-			<td>Mascota</td>
-			<td>
-				<select>
-					<option>-- Seleccione --</option>
-				</select>
-			</td>
-		</tr>
-		
-	</table>
+<sj:a button="true" buttonIcon="ui-icon-disk">Registrar</sj:a>
 
-</fieldset>
-
+<br>
 </s:form>
 
+<sj:dialog 
+	id="dlgCalendar" 
+	autoOpen="false" 
+	modal="true"
+	showEffect="slide"
+	width="830"
+	closeOnEscape="true"
+	hideEffect="destroy"
+	title="Horarios">
+ 
+ <s:include value="citaHorarios.jsp"/>
+ 
+</sj:dialog>
+    

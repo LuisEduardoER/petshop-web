@@ -64,6 +64,13 @@ body{
 	color: #656b6b;
 	background-color: #fff;
 }
+fieldset{
+border: 1px solid threedface !important;
+font-family: 'News Cycle';
+}
+h1, h2, h3{
+color: #4890a0;
+}
 .uk-container{
 /* 	border: 1px solid black; */
 	margin-left: auto;
