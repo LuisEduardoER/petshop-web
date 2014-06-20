@@ -1,6 +1,7 @@
 package edu.everest.action;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -58,6 +59,32 @@ public class CitaAction extends ActionSupport{
 			
 		}else
 			strMessage = "Ingrese el Documento del cliente";
+		
+		return SUCCESS;
+	}
+	
+	@Action(value="/loadCalendarAction",
+			results={ @Result(name="success",location="/cita/citaHorarios.jsp") })
+	public String loadCalendar() {
+		
+		Calendar today = Calendar.getInstance();
+		int nDAY_OF_WEEK_TODAY = today.get(Calendar.DAY_OF_WEEK);
+		
+		System.out.println("dia de la semana: "+nDAY_OF_WEEK_TODAY);
+		System.out.println("dia de la semana: "+today.toString());
+		System.out.println("dia de la semana: "+today.getFirstDayOfWeek());
+		System.out.println("dia de DAY_OF_MONTH semana: "+today.get(Calendar.DAY_OF_MONTH));
+		
+		switch (nDAY_OF_WEEK_TODAY) {
+		case Calendar.SUNDAY:		break;
+		case Calendar.MONDAY:		break;
+		case Calendar.TUESDAY:		break;
+		case Calendar.WEDNESDAY:	break;
+		case Calendar.THURSDAY:		break;
+		case Calendar.FRIDAY:		break;
+		case Calendar.SATURDAY:		break;
+		default:					break;
+		}
 		
 		return SUCCESS;
 	}

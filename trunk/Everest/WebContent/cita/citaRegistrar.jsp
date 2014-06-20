@@ -34,7 +34,11 @@ Registro de Citas
 				<sj:datepicker showOn="focus" timepicker="true" timepickerOnly="true" timepickerGridHour="2" timepickerGridMinute="30" timepickerStepMinute="30"/>
 			</td>
 			<td>
-				<sj:a openDialog="dlgCalendar" button="true" buttonIcon="ui-icon-calendar">Horarios</sj:a>
+				<sj:a openDialog="dlgCalendar"
+					href="loadCalendarAction" 
+					targets="dlgCalendar"
+					button="true" 
+					buttonIcon="ui-icon-calendar">Horarios</sj:a>
 			</td>
 		</tr>
 		<tr>
@@ -70,7 +74,7 @@ Registro de Citas
 	hideEffect="destroy"
 	title="Horarios">
  
- <s:include value="citaHorarios.jsp"/>
+ 
  
 </sj:dialog>
     
