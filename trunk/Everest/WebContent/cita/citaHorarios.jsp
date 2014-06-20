@@ -52,6 +52,9 @@ color: white;
             	result.append($(this).html()+' ');
         });
 	});
+	function turnoChange(value){
+		  window.location="loadCalendarAction?turno="+value; //or you can submit a form from here or make an ajax call
+		}
     </script> 
 
 <table style="width: 100%;">
@@ -66,10 +69,18 @@ color: white;
 					</td>
 					<td>
 						Turno
-						<select>
-							<option>Mañana</option>
-							<option>Tarde</option>
-						</select>
+<%-- 						<s:url var="urlTurno" action="loadTurnoJSON"/> --%>
+<%-- 						<sj:select --%>
+<%-- 					        href="%{urlTurno}" --%>
+<%-- 					        name="turno"					         --%>
+<%-- 					        list="turnoLista" --%>
+<%-- 					        listKey="idTab" --%>
+<%-- 					        listValue="valueTab" --%>
+<%-- 					        onChangeTopics="reloadDivData"/> --%>
+					     
+					     <s:select name="turno"
+								list="#{'M':'Manana', 'T':'Tarde'}"
+					     		onchange="turnoChange(this.value)"/>
 					</td>
 					<td style="text-align: right;">
 						<sj:a button="true"
@@ -85,35 +96,31 @@ color: white;
 					    
 		    <sj:div cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40">
 		    	
-		    	<div class="selectable selectableHead">&nbsp;</div>
-		        <div class="selectable selectableHead">Lunes</div>
-		        <div class="selectable selectableHead">Martes</div>
-		        <div class="selectable selectableHead">Miercoles</div>
-		        <div class="selectable selectableHead">Jueves</div>
-		        <div class="selectable selectableHead">Viernes</div>
-		        <div class="selectable selectableHead">Sabado</div>
-		        <div class="selectable selectableHead">Domingo</div>
+		    	<s:iterator value="calendarioDaysLista">
+		    		<div class="selectable selectableHead"><s:property/></div>
+		    	</s:iterator>
+		    	
 		    </sj:div>
 		     
 		    <sj:div id="selectabledivs" 
 		    	selectableOnStopTopics="onstop" 
 		    	selectable="true"
-		    	cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40">
+		    	cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40" >
 		    	
-		    	<div class="selectable divHour">9:00</div>
-		        <div id="one" class="selectable">Uno</div>
-		        <div id="two" class="selectable">Dos</div>
-		        <div id="three" class="selectable">Tres</div>
-		        <div id="four" class="selectable">Cuatro</div>
-		        <div id="five" class="selectable">Cinco</div>
-		        <div id="six" class="selectable">Seis</div>
-		        <div id="seven" class="selectable">Seven</div>
+		    	<s:iterator value="calendarioLista" status="stat">
+		    		
+		    		<s:if test="hourTab==1">
+		    			<div class="selectable divHour"><s:property value="valueTab"/></div>
+		    		</s:if>
+		    		<s:else>
+		    			<div class="selectable"><s:property value="valueTab"/></div>
+		    		</s:else>
+		    		
+		    	</s:iterator>
+		    	
+<!-- 		    	<div class="selectable divHour">9:00</div> -->
+<!-- 		        <div class="selectable">Uno</div> -->
 		        
-		        <div class="selectable divHour">9:30</div>
-		        <div id="eigth" class="selectable">eigth</div>
-		        <div id="nine" class="selectable">nine</div>
-		        <div id="ten" class="selectable">ten</div>
-		        <div id="eleven" class="selectable">eleven</div>
 		    </sj:div>
 			
 			Tu Seleccionaste:  <strong><span id="selectresult"></span></strong>. <br/>

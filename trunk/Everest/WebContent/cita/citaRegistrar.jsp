@@ -2,6 +2,22 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
+<script>
+$(function() {
+	$.subscribe('closeDialog', function(event,data) {
+		var html = "<table style='width: 100%;'>"+
+				    	"<tr>"+
+						"<td style='width: 100%; text-align: center;'>"+
+							"<img alt='Loading' src='img/loading.gif'>"+
+						"</td>"+
+					"</tr>"+
+				"</table>";
+        $("#dlgCalendar").empty();
+        $("#dlgCalendar").html(html);
+    });
+});
+</script>
+
 <s:form id="form1">
 
 <h1>
@@ -71,10 +87,17 @@ Registro de Citas
 	showEffect="slide"
 	width="830"
 	closeOnEscape="true"
+	onCloseTopics="closeDialog"
 	hideEffect="destroy"
 	title="Horarios">
  
- 
+ 	<table style="width: 100%;">
+       	<tr>
+       		<td style="width: 100%; text-align: center;">
+       			<img alt="Loading" src="img/loading.gif">
+       		</td>
+       	</tr>
+	</table>
  
 </sj:dialog>
     
