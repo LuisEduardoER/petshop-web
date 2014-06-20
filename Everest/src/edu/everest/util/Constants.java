@@ -1,5 +1,7 @@
 package edu.everest.util;
 
+import java.util.Calendar;
+
 public class Constants {
 	
 	public static final int KV_ROL_ADMINISTRADOR 	= 1;
@@ -16,4 +18,15 @@ public class Constants {
 	
 	public static final String KV_IMG_PET_DEFAULT 	= "/img/PetShop_Gray.png";
 	
+	//Duracion min de una cita (Valor expresado en minutos)
+	public static int KV_INTERVAL_TIME_CITA= 30;
+	
+	public static Calendar KV_TODAY = Calendar.getInstance();
+		
+	public static int KV_TURN_MORNING_INI = 9;
+	public static int KV_TURN_MORNING_FIN = 13;
+	
+	public static int KV_TURN_EVENING_INI = 14;
+	public static int KV_TURN_EVENING_FIN = 18;
+			
 }

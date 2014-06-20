@@ -90,10 +90,10 @@ Registro de Citas
 	autoOpen="false" 
 	modal="true"
 	showEffect="slide"
+	hideEffect="explode"
 	width="830"
 	closeOnEscape="true"
 	onCloseTopics="closeDialog"
-	hideEffect="destroy"
 	title="Horarios">
  	
  	<table id="dlgLoading" style="width: 100%; ">
