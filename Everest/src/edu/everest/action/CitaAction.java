@@ -13,10 +13,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.everest.entity.Cita;
 import edu.everest.entity.Cliente;
 import edu.everest.entity.Mascota;
+import edu.everest.entity.Tab;
 import edu.everest.service.ApplicationBusinessDelegate;
-import edu.everest.service.CitaService;
 import edu.everest.service.ClienteService;
 import edu.everest.service.MascotaService;
+import edu.everest.util.MiUtil;
 
 @ParentPackage(value = "dawii")
 public class CitaAction extends ActionSupport{
@@ -26,19 +27,33 @@ public class CitaAction extends ActionSupport{
 	private static ApplicationBusinessDelegate abd = new ApplicationBusinessDelegate();
 	private static ClienteService clienteService = abd.getClienteService();
 	private static MascotaService mascotaService = abd.getMascotaService();
-	private static CitaService citaService = abd.getCitaService();
+//	private static CitaService citaService = abd.getCitaService();
 	
 	private Cita cita;
 	private Cliente cliente;
 	private Mascota mascota;
 	private List<Mascota> mascotaLista = new ArrayList<Mascota>();
 	private String strMessage;
-	private List<String> calendarioLista = new ArrayList<String>();
-	
+	private String turno = "M";
+	private List<Tab> calendarioLista = new ArrayList<Tab>();
+	private List<String> calendarioDaysLista = new ArrayList<String>();;
+	private List<Tab> turnoLista = new ArrayList<Tab>();
 	
 	@Action(value="/showCitaRegistroAction",
 			results={ @Result(name="success", location="citaRegistrarTile",type="tiles") })
 	public String showClienteRegistrar() throws Exception{
+		return SUCCESS;
+	}
+	
+	@Action(value="/loadTurnoJSON",
+			results={ @Result(name="success", type="json") })
+	public String loadTurno() throws Exception{
+		
+		turnoLista.add(new Tab("M", "Manana"));
+		turnoLista.add(new Tab("T", "Tarde"));
+		
+		loadCalendar();
+		
 		return SUCCESS;
 	}
 	
@@ -63,28 +78,122 @@ public class CitaAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	@Action(value="/loadCalendarJSON",
+			results={ @Result(name="success", type="json") })
+	public String loadCalendarJSON() {
+		
+		Calendar today = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();
+		
+		int nDAY_OF_WEEK_TODAY = today.get(Calendar.DAY_OF_WEEK);
+		int nFIRST_DAY_OF_WEEK = today.get(Calendar.DAY_OF_MONTH);
+		
+		System.out.println("nDAY_OF_WEEK_TODAY: "+nDAY_OF_WEEK_TODAY);
+		System.out.println("getFirstDayOfWeek:  "+today.getFirstDayOfWeek());
+		System.out.println("DAY_OF_MONTH: 		"+today.get(Calendar.DAY_OF_MONTH));
+		
+		//Obteniendo el primer dia de la semana (Lunes)
+		nDAY_OF_WEEK_TODAY = MiUtil.getMondayOfWeek(nDAY_OF_WEEK_TODAY);
+		
+		System.out.println("nFIRST_DAY_OF_WEEK:  "+nFIRST_DAY_OF_WEEK);
+		calendar.set(Calendar.DAY_OF_WEEK, nFIRST_DAY_OF_WEEK);
+		
+		String[] days = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
+		
+		//Cargando Dias de la semana
+		calendarioDaysLista.add("");
+		for(int i=0; i<7; i++ ){
+			calendarioDaysLista.add(days[i] + " "+nFIRST_DAY_OF_WEEK);
+			nFIRST_DAY_OF_WEEK+=1;
+		}
+		
+		//Cargando Values
+		if(turno.equals("M")){
+			
+			for( int h=9; h<=13; h++ ){
+				
+				calendarioLista.add( new Tab("0", h+":00", 1) );				
+				for(int i=1; i<=7; i++ ){
+					calendarioLista.add( new Tab(""+i, ""+i) );
+				}
+				
+			}
+			
+		}else if(turno.equals("T")){
+			
+			for( int h=14; h<=18; h++ ){
+				
+				calendarioLista.add( new Tab("0", h+":00", 1) );
+				for(int i=1; i<=7; i++ ){
+					calendarioLista.add( new Tab(""+i, ""+i) );
+				}
+				
+			}
+			
+		}
+		
+		
+
+		
+		return SUCCESS;
+	}
+	
 	@Action(value="/loadCalendarAction",
 			results={ @Result(name="success",location="/cita/citaHorarios.jsp") })
 	public String loadCalendar() {
 		
 		Calendar today = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();
+		
 		int nDAY_OF_WEEK_TODAY = today.get(Calendar.DAY_OF_WEEK);
+		int nFIRST_DAY_OF_WEEK = today.get(Calendar.DAY_OF_MONTH);
 		
-		System.out.println("dia de la semana: "+nDAY_OF_WEEK_TODAY);
-		System.out.println("dia de la semana: "+today.toString());
-		System.out.println("dia de la semana: "+today.getFirstDayOfWeek());
-		System.out.println("dia de DAY_OF_MONTH semana: "+today.get(Calendar.DAY_OF_MONTH));
+		System.out.println("nDAY_OF_WEEK_TODAY: "+nDAY_OF_WEEK_TODAY);
+		System.out.println("getFirstDayOfWeek:  "+today.getFirstDayOfWeek());
+		System.out.println("DAY_OF_MONTH: 		"+today.get(Calendar.DAY_OF_MONTH));
 		
-		switch (nDAY_OF_WEEK_TODAY) {
-		case Calendar.SUNDAY:		break;
-		case Calendar.MONDAY:		break;
-		case Calendar.TUESDAY:		break;
-		case Calendar.WEDNESDAY:	break;
-		case Calendar.THURSDAY:		break;
-		case Calendar.FRIDAY:		break;
-		case Calendar.SATURDAY:		break;
-		default:					break;
+		//Obteniendo el primer dia de la semana (Lunes)
+		nDAY_OF_WEEK_TODAY = MiUtil.getMondayOfWeek(nDAY_OF_WEEK_TODAY);
+		
+		System.out.println("nFIRST_DAY_OF_WEEK:  "+nFIRST_DAY_OF_WEEK);
+		calendar.set(Calendar.DAY_OF_WEEK, nFIRST_DAY_OF_WEEK);
+		
+		String[] days = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
+		
+		//Cargando Dias de la semana
+		calendarioDaysLista.add("");
+		for(int i=0; i<7; i++ ){
+			calendarioDaysLista.add(days[i] + " "+nFIRST_DAY_OF_WEEK);
+			nFIRST_DAY_OF_WEEK+=1;
 		}
+		
+		//Cargando Values
+		if(turno.equals("M")){
+			
+			for( int h=9; h<=13; h++ ){
+				
+				calendarioLista.add( new Tab("0", h+":00", 1) );				
+				for(int i=1; i<=7; i++ ){
+					calendarioLista.add( new Tab(""+i, ""+i) );
+				}
+				
+			}
+			
+		}else if(turno.equals("T")){
+			
+			for( int h=14; h<=18; h++ ){
+				
+				calendarioLista.add( new Tab("0", h+":00", 1) );
+				for(int i=1; i<=7; i++ ){
+					calendarioLista.add( new Tab(""+i, ""+i) );
+				}
+				
+			}
+			
+		}
+		
+		
+
 		
 		return SUCCESS;
 	}
@@ -126,13 +235,36 @@ public class CitaAction extends ActionSupport{
 		this.strMessage = strMessage;
 	}
 
-	public List<String> getCalendarioLista() {
+	public List<Tab> getCalendarioLista() {
 		return calendarioLista;
 	}
 
-	public void setCalendarioLista(List<String> calendarioLista) {
+	public void setCalendarioLista(List<Tab> calendarioLista) {
 		this.calendarioLista = calendarioLista;
 	}
-	
+
+	public List<String> getCalendarioDaysLista() {
+		return calendarioDaysLista;
+	}
+
+	public void setCalendarioDaysLista(List<String> calendarioDaysLista) {
+		this.calendarioDaysLista = calendarioDaysLista;
+	}
+
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
+
+	public List<Tab> getTurnoLista() {
+		return turnoLista;
+	}
+
+	public void setTurnoLista(List<Tab> turnoLista) {
+		this.turnoLista = turnoLista;
+	}
 	
 }
