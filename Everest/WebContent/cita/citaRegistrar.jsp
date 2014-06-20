@@ -50,11 +50,16 @@ Registro de Citas
 				<sj:datepicker showOn="focus" timepicker="true" timepickerOnly="true" timepickerGridHour="2" timepickerGridMinute="30" timepickerStepMinute="30"/>
 			</td>
 			<td>
+				<s:url var="urlLoadHorarios" value="loadDaysOfWeekAction"/>
 				<sj:a openDialog="dlgCalendar"
-					href="loadCalendarAction" 
-					targets="dlgCalendar"
-					button="true" 
-					buttonIcon="ui-icon-calendar">Horarios</sj:a>
+  					button="true"
+  					buttonIcon="ui-icon-calendar"
+  					href="%{urlLoadHorarios}"
+  					targets="dlgCalendar">Horarios</sj:a>
+ 					 
+<%-- 				<sj:a openDialog="dlgCalendar" --%>
+<%--  					button="true"  --%>
+<%--  					buttonIcon="ui-icon-calendar">Horarios</sj:a>  --%>
 			</td>
 		</tr>
 		<tr>
@@ -80,7 +85,7 @@ Registro de Citas
 <br>
 </s:form>
 
-<sj:dialog 
+<sj:dialog
 	id="dlgCalendar" 
 	autoOpen="false" 
 	modal="true"
@@ -90,14 +95,16 @@ Registro de Citas
 	onCloseTopics="closeDialog"
 	hideEffect="destroy"
 	title="Horarios">
- 
- 	<table style="width: 100%;">
+ 	
+ 	<table id="dlgLoading" style="width: 100%; ">
        	<tr>
        		<td style="width: 100%; text-align: center;">
        			<img alt="Loading" src="img/loading.gif">
        		</td>
        	</tr>
 	</table>
- 
+ 	
+<%--  	<s:include value="citaHorarios.jsp"/> --%>
+ 	
 </sj:dialog>
     
