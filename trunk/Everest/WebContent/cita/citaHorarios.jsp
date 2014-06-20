@@ -16,6 +16,10 @@ height: 20px;
 background: #61B4C8;
 color: white;
 }
+.selectableBody{
+color: white;
+font-size: 11px;
+}
 .divHour{
 background: white !important;
 color: black !important;
@@ -68,11 +72,18 @@ color: white;
 						<sj:a button="true"
 							buttonIcon="ui-icon-seek-prev">Anterior</sj:a>
 					</td>
-					<td>
+					<td style="width: 40px;">
 						Turno
+					</td>
+					<td>
 						<s:url var="urlTurno" action="loadTurnoJSON"/>
-						<sj:select
-							id="turno"
+<%-- 						<sj:select --%>
+<%-- 							id="turno" href="%{urlTurno}" name="turno" --%>
+<%--  					        list="turnoLista" listKey="idTab" listValue="valueTab" --%>
+<%--  					        formIds="formHorarios" value="turno" onChangeTopics="reloadDivData"/> --%>
+ 					        
+ 					     <sj:radio
+				    		id="turno"
  					        href="%{urlTurno}"
  					        name="turno"
  					        list="turnoLista"
@@ -81,10 +92,14 @@ color: white;
  					        formIds="formHorarios"
  					        value="turno"
  					        onChangeTopics="reloadDivData"/>
+					    
 					     
 <%-- 					     <s:select name="turno" --%>
 <%-- 								list="#{'M':'Manana', 'T':'Tarde'}" --%>
 <%-- 					     		onchange="turnoChange(this.value)"/> --%>
+					</td>
+					<td>
+						<h1><s:label name="strHeadSchedule"/></h1>
 					</td>
 					<td style="text-align: right;">
 						<sj:a button="true"
@@ -97,45 +112,20 @@ color: white;
 	</tr>
 	<tr>
 		<td style="width: 100%;">
-					    
-		    <sj:div cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40">
-		    	
-		    	<s:iterator value="calendarioDaysLista">
-		    		<div class="selectable selectableHead"><s:property/></div>
-		    	</s:iterator>
-		    	
-		    </sj:div>
-		     
-		    <s:url id="urlLoadCalendar" action="loadCalendarAction"/>
-		    <sj:div id="selectabledivs" 
-		    	selectableOnStopTopics="onstop" 
-		    	selectable="true"
-		    	formIds="formHorarios"
-		    	effect="highlight"
-		    	effectDuration="500"
-		    	reloadTopics="reloadDivData"
-		    	href="%{urlLoadCalendar}"
-		    	cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40" >
-		    	
-		    	<s:iterator value="calendarioLista" status="stat">
-		    		
-		    		<s:if test="hourTab==1">
-		    			<div class="selectable divHour"><s:property value="valueTab"/></div>
-		    		</s:if>
-		    		<s:else>
-		    			<div class="selectable"><s:property value="valueTab"/></div>
-		    		</s:else>
-		    		
-		    	</s:iterator>
-		    	
-		    </sj:div>
-			
-			Tu Seleccionaste:  <strong><span id="selectresult"></span></strong>. <br/>
-			
-			<br>
-					     
+		
+		<s:url id="urlLoadCalendar" action="loadCalendarAction"/>
+		<sj:div
+			formIds="formHorarios"
+			reloadTopics="reloadDivData"
+			effect="clip"
+			effectMode="show"
+			effectDuration="500"
+			href="%{urlLoadCalendar}" />
+		    		     
 		</td>
 	</tr>
 </table>
+
+<sj:a button="true" buttonIcon="ui-icon-circle-check">Aceptar</sj:a>
 
 </s:form>
