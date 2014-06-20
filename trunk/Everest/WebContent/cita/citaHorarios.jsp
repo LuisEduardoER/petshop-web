@@ -52,10 +52,11 @@ color: white;
             	result.append($(this).html()+' ');
         });
 	});
-	function turnoChange(value){
-		  window.location="loadCalendarAction?turno="+value; //or you can submit a form from here or make an ajax call
-		}
+// 	function turnoChange(value){
+// 		  window.location="loadCalendarAction?turno="+value; //or you can submit a form from here or make an ajax call
+// 		}
     </script> 
+<s:form id="formHorarios">
 
 <table style="width: 100%;">
 	<tr>
@@ -69,18 +70,21 @@ color: white;
 					</td>
 					<td>
 						Turno
-<%-- 						<s:url var="urlTurno" action="loadTurnoJSON"/> --%>
-<%-- 						<sj:select --%>
-<%-- 					        href="%{urlTurno}" --%>
-<%-- 					        name="turno"					         --%>
-<%-- 					        list="turnoLista" --%>
-<%-- 					        listKey="idTab" --%>
-<%-- 					        listValue="valueTab" --%>
-<%-- 					        onChangeTopics="reloadDivData"/> --%>
+						<s:url var="urlTurno" action="loadTurnoJSON"/>
+						<sj:select
+							id="turno"
+ 					        href="%{urlTurno}"
+ 					        name="turno"
+ 					        list="turnoLista"
+ 					        listKey="idTab"
+ 					        listValue="valueTab"
+ 					        formIds="formHorarios"
+ 					        value="turno"
+ 					        onChangeTopics="reloadDivData"/>
 					     
-					     <s:select name="turno"
-								list="#{'M':'Manana', 'T':'Tarde'}"
-					     		onchange="turnoChange(this.value)"/>
+<%-- 					     <s:select name="turno" --%>
+<%-- 								list="#{'M':'Manana', 'T':'Tarde'}" --%>
+<%-- 					     		onchange="turnoChange(this.value)"/> --%>
 					</td>
 					<td style="text-align: right;">
 						<sj:a button="true"
@@ -102,9 +106,15 @@ color: white;
 		    	
 		    </sj:div>
 		     
+		    <s:url id="urlLoadCalendar" action="loadCalendarAction"/>
 		    <sj:div id="selectabledivs" 
 		    	selectableOnStopTopics="onstop" 
 		    	selectable="true"
+		    	formIds="formHorarios"
+		    	effect="highlight"
+		    	effectDuration="500"
+		    	reloadTopics="reloadDivData"
+		    	href="%{urlLoadCalendar}"
 		    	cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40" >
 		    	
 		    	<s:iterator value="calendarioLista" status="stat">
@@ -118,9 +128,6 @@ color: white;
 		    		
 		    	</s:iterator>
 		    	
-<!-- 		    	<div class="selectable divHour">9:00</div> -->
-<!-- 		        <div class="selectable">Uno</div> -->
-		        
 		    </sj:div>
 			
 			Tu Seleccionaste:  <strong><span id="selectresult"></span></strong>. <br/>
@@ -130,3 +137,5 @@ color: white;
 		</td>
 	</tr>
 </table>
+
+</s:form>

@@ -34,7 +34,7 @@ public class CitaAction extends ActionSupport{
 	private Mascota mascota;
 	private List<Mascota> mascotaLista = new ArrayList<Mascota>();
 	private String strMessage;
-	private String turno = "M";
+	private String turno;
 	private List<Tab> calendarioLista = new ArrayList<Tab>();
 	private List<String> calendarioDaysLista = new ArrayList<String>();;
 	private List<Tab> turnoLista = new ArrayList<Tab>();
@@ -51,8 +51,6 @@ public class CitaAction extends ActionSupport{
 		
 		turnoLista.add(new Tab("M", "Manana"));
 		turnoLista.add(new Tab("T", "Tarde"));
-		
-		loadCalendar();
 		
 		return SUCCESS;
 	}
@@ -78,9 +76,9 @@ public class CitaAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	@Action(value="/loadCalendarJSON",
-			results={ @Result(name="success", type="json") })
-	public String loadCalendarJSON() {
+	@Action(value="/loadDaysOfWeekAction",
+			results={ @Result(name="success",location="/cita/citaHorarios.jsp") })
+	public String loadDays(){
 		
 		Calendar today = Calendar.getInstance();
 		Calendar calendar = Calendar.getInstance();
@@ -88,9 +86,9 @@ public class CitaAction extends ActionSupport{
 		int nDAY_OF_WEEK_TODAY = today.get(Calendar.DAY_OF_WEEK);
 		int nFIRST_DAY_OF_WEEK = today.get(Calendar.DAY_OF_MONTH);
 		
-		System.out.println("nDAY_OF_WEEK_TODAY: "+nDAY_OF_WEEK_TODAY);
-		System.out.println("getFirstDayOfWeek:  "+today.getFirstDayOfWeek());
-		System.out.println("DAY_OF_MONTH: 		"+today.get(Calendar.DAY_OF_MONTH));
+		System.out.println("turno: "+turno);
+		if(turno == null || turno.equals(""))
+			turno = "M";
 		
 		//Obteniendo el primer dia de la semana (Lunes)
 		nDAY_OF_WEEK_TODAY = MiUtil.getMondayOfWeek(nDAY_OF_WEEK_TODAY);
@@ -106,66 +104,17 @@ public class CitaAction extends ActionSupport{
 			calendarioDaysLista.add(days[i] + " "+nFIRST_DAY_OF_WEEK);
 			nFIRST_DAY_OF_WEEK+=1;
 		}
-		
-		//Cargando Values
-		if(turno.equals("M")){
-			
-			for( int h=9; h<=13; h++ ){
-				
-				calendarioLista.add( new Tab("0", h+":00", 1) );				
-				for(int i=1; i<=7; i++ ){
-					calendarioLista.add( new Tab(""+i, ""+i) );
-				}
-				
-			}
-			
-		}else if(turno.equals("T")){
-			
-			for( int h=14; h<=18; h++ ){
-				
-				calendarioLista.add( new Tab("0", h+":00", 1) );
-				for(int i=1; i<=7; i++ ){
-					calendarioLista.add( new Tab(""+i, ""+i) );
-				}
-				
-			}
-			
-		}
-		
-		
-
 		
 		return SUCCESS;
 	}
 	
 	@Action(value="/loadCalendarAction",
-			results={ @Result(name="success",location="/cita/citaHorarios.jsp") })
+			results={ @Result(name="success",location="/cita/citaCalendar.jsp") })
 	public String loadCalendar() {
 		
-		Calendar today = Calendar.getInstance();
-		Calendar calendar = Calendar.getInstance();
-		
-		int nDAY_OF_WEEK_TODAY = today.get(Calendar.DAY_OF_WEEK);
-		int nFIRST_DAY_OF_WEEK = today.get(Calendar.DAY_OF_MONTH);
-		
-		System.out.println("nDAY_OF_WEEK_TODAY: "+nDAY_OF_WEEK_TODAY);
-		System.out.println("getFirstDayOfWeek:  "+today.getFirstDayOfWeek());
-		System.out.println("DAY_OF_MONTH: 		"+today.get(Calendar.DAY_OF_MONTH));
-		
-		//Obteniendo el primer dia de la semana (Lunes)
-		nDAY_OF_WEEK_TODAY = MiUtil.getMondayOfWeek(nDAY_OF_WEEK_TODAY);
-		
-		System.out.println("nFIRST_DAY_OF_WEEK:  "+nFIRST_DAY_OF_WEEK);
-		calendar.set(Calendar.DAY_OF_WEEK, nFIRST_DAY_OF_WEEK);
-		
-		String[] days = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
-		
-		//Cargando Dias de la semana
-		calendarioDaysLista.add("");
-		for(int i=0; i<7; i++ ){
-			calendarioDaysLista.add(days[i] + " "+nFIRST_DAY_OF_WEEK);
-			nFIRST_DAY_OF_WEEK+=1;
-		}
+		System.out.println("turno: "+turno);
+		if(turno == null || turno.equals(""))
+			turno = "M";
 		
 		//Cargando Values
 		if(turno.equals("M")){
