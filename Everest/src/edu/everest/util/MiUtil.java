@@ -52,14 +52,14 @@ public class MiUtil {
 		String strDay = "";
 		
 		switch (nDay) {		
-		case Calendar.MONDAY:		strDay="Lunes"; 	break;
-		case Calendar.TUESDAY:		strDay="Martes";	break;
-		case Calendar.WEDNESDAY:	strDay="Miercoles";	break;
-		case Calendar.THURSDAY:		strDay="Jueves";	break;
-		case Calendar.FRIDAY:		strDay="Viernes";	break;
-		case Calendar.SATURDAY:		strDay="Sabado";	break;
-		case Calendar.SUNDAY:		strDay="Domingo";	break;
-		default:					break;
+		case 0:		strDay="Lunes"; 	break;
+		case 1:		strDay="Martes";	break;
+		case 2:		strDay="Miercoles";	break;
+		case 3:		strDay="Jueves";	break;
+		case 4:		strDay="Viernes";	break;
+		case 5:		strDay="Sabado";	break;
+		case 6:		strDay="Domingo";	break;
+		default:	break;
 	}
 		
 		return strDay;

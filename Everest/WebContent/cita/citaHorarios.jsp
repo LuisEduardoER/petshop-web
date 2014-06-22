@@ -69,7 +69,10 @@ color: white;
 			<table style="width: 800px;">
 				<tr>
 					<td style="width: 90px;">
-						<sj:a button="true"
+						<sj:a id="btnPrevWeek" 
+							href="reloadCalendarAction.action?oper=prev"
+							targets="divCalendarDinamic"
+							button="true"
 							buttonIcon="ui-icon-seek-prev">Anterior</sj:a>
 					</td>
 					<td style="width: 40px;">
@@ -90,7 +93,7 @@ color: white;
  					        listKey="idTab"
  					        listValue="valueTab"
  					        formIds="formHorarios"
- 					        value="turno"
+ 					        value="M"
  					        onChangeTopics="reloadDivData"/>
 					    
 					     
@@ -99,11 +102,15 @@ color: white;
 <%-- 					     		onchange="turnoChange(this.value)"/> --%>
 					</td>
 					<td>
-						<h1><s:label name="strHeadSchedule"/></h1>
+						<h1><s:label id="lblHeadSchedule"/></h1>
 					</td>
 					<td style="text-align: right;">
-						<sj:a button="true"
+						<sj:a id="btnNextWeek"
+							href="reloadCalendarAction.action?oper=next"
+							targets="divCalendarDinamic" 
+							button="true"
 							buttonIcon="ui-icon-seek-next">Siguiente</sj:a>
+							
 					</td>
 				</tr>
 			</table>
@@ -115,6 +122,7 @@ color: white;
 		
 		<s:url id="urlLoadCalendar" action="loadCalendarAction"/>
 		<sj:div
+			id="divCalendarDinamic"
 			formIds="formHorarios"
 			reloadTopics="reloadDivData"
 			effect="clip"
