@@ -71,6 +71,10 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="cliente")
 	private List<Mascota> mascotas;
 
+	//bi-directional many-to-one association to HistoriaClinica
+	@OneToMany(mappedBy="cliente")
+	private List<HistoriaClinica> historiaclinicas;
+
 	public Cliente() {
 	}
 
@@ -266,6 +270,28 @@ public class Cliente implements Serializable {
 		mascota.setCliente(null);
 
 		return mascota;
+	}
+
+	public List<HistoriaClinica> getHistoriaclinicas() {
+		return this.historiaclinicas;
+	}
+
+	public void setHistoriaclinicas(List<HistoriaClinica> historiaclinicas) {
+		this.historiaclinicas = historiaclinicas;
+	}
+
+	public HistoriaClinica addHistoriaclinica(HistoriaClinica historiaclinica) {
+		getHistoriaclinicas().add(historiaclinica);
+		historiaclinica.setCliente(this);
+
+		return historiaclinica;
+	}
+
+	public HistoriaClinica removeHistoriaclinica(HistoriaClinica historiaclinica) {
+		getHistoriaclinicas().remove(historiaclinica);
+		historiaclinica.setCliente(null);
+
+		return historiaclinica;
 	}
 
 }
