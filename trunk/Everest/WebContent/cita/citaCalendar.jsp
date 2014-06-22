@@ -5,7 +5,7 @@
 
 <sj:div cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40">
 	
-	<s:iterator value="calendarioDaysLista">
+	<s:iterator value="calendarioHeadLista">
 		<div class="selectable selectableHead"><s:property value="valueTab"/></div>
 	</s:iterator>
 	
@@ -17,7 +17,7 @@
 	formIds="formHorarios"
 	cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40" >
 	
-	<s:iterator value="calendarioLista" status="stat">
+	<s:iterator value="calendarioBodyLista" status="stat">
  		
  		<s:if test="hourTab==1">
  			<div class="selectable divHour"><s:property value="valueTab"/></div>
@@ -33,3 +33,8 @@
 Tu Seleccionaste:  <strong><span id="selectresult"></span></strong>. <br/>
 			
 <br>
+<s:hidden id="hdnHeadSchedule" name="strHeadSchedule"/>
+<script type="text/javascript">
+var headSchedule = $("#hdnHeadSchedule").val();
+$("#lblHeadSchedule").html(headSchedule);
+</script>

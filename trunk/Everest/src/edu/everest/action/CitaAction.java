@@ -1,5 +1,7 @@
 package edu.everest.action;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -17,6 +19,7 @@ import edu.everest.entity.Tab;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.ClienteService;
 import edu.everest.service.MascotaService;
+import edu.everest.util.Constants;
 import edu.everest.util.MiUtil;
 
 @ParentPackage(value = "dawii")
@@ -35,11 +38,14 @@ public class CitaAction extends ActionSupport{
 	private List<Mascota> 	mascotaLista = 			new ArrayList<Mascota>();
 	private String 			strMessage;
 	private String 			strHeadSchedule;
-	private String 			turno;
-	private List<Calendar> 	calendarioWeekLista = 	new ArrayList<Calendar>();
-	private List<Tab> 		calendarioLista = 		new ArrayList<Tab>();
-	private List<Tab> 		calendarioDaysLista = 	new ArrayList<Tab>();;
+	private String 			turno = "M";
 	private List<Tab> 		turnoLista = 			new ArrayList<Tab>();
+	private List<Tab> 		calendarioHeadLista = 	new ArrayList<Tab>();
+	private List<Tab> 		calendarioBodyLista = 	new ArrayList<Tab>();
+	private static Calendar		calFirstDayOfWeek;
+	private String 			oper;
+	
+	DateFormat dateFormat = new SimpleDateFormat ("HH:mm");
 	
 	@Action(value="/showCitaRegistroAction",
 			results={ @Result(name="success", location="citaRegistrarTile",type="tiles") })
@@ -81,36 +87,52 @@ public class CitaAction extends ActionSupport{
 	@Action(value="/loadDaysOfWeekAction",
 			results={ @Result(name="success",location="/cita/citaHorarios.jsp") })
 	public String loadDays(){
+		
+		calFirstDayOfWeek = Calendar.getInstance();
+		
+		//Obteniendo el primer dia de la semana (Lunes)
+		int nFirstDayOfWeek = MiUtil.getMondayOfWeek( Calendar.getInstance() );
+		
+		System.out.println("nFirstDayOfWeek:  "+nFirstDayOfWeek);
+		calFirstDayOfWeek.set(Calendar.DAY_OF_WEEK, nFirstDayOfWeek);
+		
 		return SUCCESS;
 	}
 	
+	@Action(value="/reloadCalendarAction",
+	results={ @Result(name="success",location="/cita/citaCalendar.jsp") })
+	public String reloadCalendar(){
+		
+		System.out.println("oper: "+oper);
+		if(oper != null || !oper.equals("")){
+			
+			if(oper.equals("next")){
+				calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, 7);
+				
+			}else if(oper.equals("prev")){
+				calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, -7);
+				
+			}
+			
+			loadCalendar();
+			
+		}
+		
+		return SUCCESS;
+	}	
+	
+	@SuppressWarnings({ "unused" })
 	@Action(value="/loadCalendarAction",
 			results={ @Result(name="success",location="/cita/citaCalendar.jsp") })
 	public String loadCalendar() {
 		
-		Calendar today = Calendar.getInstance();
-		
-		//Obteniendo el primer dia de la semana (Lunes)
-		int nFIRST_DAY_OF_WEEK = MiUtil.getMondayOfWeek(Calendar.getInstance());
-		
-		System.out.println("nFIRST_DAY_OF_WEEK:  "+nFIRST_DAY_OF_WEEK);
-		today.set(Calendar.DAY_OF_WEEK, nFIRST_DAY_OF_WEEK);
-		
-		calendarioWeekLista = new ArrayList<Calendar>();
-		for(int i = 0; i<7; i++){
-			calendarioWeekLista.add(today);
-			today.set( Calendar.DAY_OF_MONTH, today.get(Calendar.DAY_OF_MONTH)+1 );
-						
-		}
-		
-		//-----------------------------------
-		
 		//Cargando Dias de la semana
-		calendarioDaysLista.add( new Tab("","") );
+		calendarioHeadLista.add( new Tab("","") );
 		for(int i=0; i<7; i++ ){
-			calendarioDaysLista.add( new Tab( ""+i, MiUtil.getDayES(i) + " "+calendarioWeekLista.get(i).get(Calendar.DAY_OF_MONTH) ) );
+			calendarioHeadLista.add( new Tab( ""+i, MiUtil.getDayES(i) + " "+ (calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+i) ) );
+//			nFIRST_DAY_OF_WEEK+=1;
 		}
-		strHeadSchedule = MiUtil.getMonthES( calendarioWeekLista.get(1).get(Calendar.MONTH)+1 )+ " "+ calendarioWeekLista.get(1).get(Calendar.YEAR);		
+		strHeadSchedule = MiUtil.getMonthES( calFirstDayOfWeek.get(Calendar.MONTH)+1 )+ " "+ calFirstDayOfWeek.get(Calendar.YEAR);		
 		
 		//--------------------------
 		
@@ -118,33 +140,55 @@ public class CitaAction extends ActionSupport{
 		if(turno == null || turno.equals(""))
 			turno = "M";
 		
-		String strHourIni = "";
-		String strHourFin = "";
+		String strHourIni = "", strHourFin = "";
 		int nIni = 0, nFin = 0;
+		Calendar dHourIni = Calendar.getInstance();
+		Calendar dHourAux = Calendar.getInstance();
+		Calendar dHourFin = Calendar.getInstance();
+		
+		dHourIni.set(Calendar.MINUTE, 0);
+		dHourAux.set(Calendar.MINUTE, 0);
+		dHourFin.set(Calendar.MINUTE, 0);
 		
 		//Cargando Values
 		if(turno.equals("M")){
-			nIni = 9;
-			nFin = 13;
+			dHourIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
+			dHourAux.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
+			dHourFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_FIN);
+			
+			dHourAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
+			dHourFin.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
 		}else if(turno.equals("T")){
-			nIni = 14;
-			nFin = 18;
+			dHourIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
+			dHourAux.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
+			dHourFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_FIN);
+			
+			dHourAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
+			dHourFin.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
 		}
 		
-		for( int h=nIni; h<=nFin; h++ ){
+		int n=1;
+		while( !dHourIni.equals(dHourFin) ){
 			
-			strHourIni = h+":00";
-			strHourFin = (h+1)+":00";
+			strHourIni = dateFormat.format(dHourIni.getTime());
+			strHourFin = dateFormat.format(dHourAux.getTime());
 			
-			calendarioLista.add( new Tab("0", strHourIni, 1) );				
+			calendarioBodyLista.add( new Tab("0", strHourIni, 1) );				
 			for(int i=1; i<=7; i++ ){
-				calendarioLista.add( 
+				calendarioBodyLista.add( 
 						new Tab(""+i, 
-								""+calendarioWeekLista.get(i-1).get(Calendar.DAY_OF_MONTH)+"/"+(calendarioWeekLista.get(i-1).get(Calendar.MONTH)+1)+" ["+strHourIni+" - "+strHourFin+"]") 
+								""+(calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+i-1)+"/"+(calFirstDayOfWeek.get(Calendar.MONTH)+1)+
+								" ["+strHourIni+" - "+strHourFin+"]") 
 				);
 			}
 			
-		}
+			n++;
+			dHourIni.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
+			dHourAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
+			
+			System.out.println("hora: "+dHourIni.get(Calendar.HOUR_OF_DAY)+":"+dHourIni.get(Calendar.MINUTE));
+			
+		};
 		
 		return SUCCESS;
 	}
@@ -186,22 +230,6 @@ public class CitaAction extends ActionSupport{
 		this.strMessage = strMessage;
 	}
 
-	public List<Tab> getCalendarioLista() {
-		return calendarioLista;
-	}
-
-	public void setCalendarioLista(List<Tab> calendarioLista) {
-		this.calendarioLista = calendarioLista;
-	}
-
-	public List<Tab> getCalendarioDaysLista() {
-		return calendarioDaysLista;
-	}
-
-	public void setCalendarioDaysLista(List<Tab> calendarioDaysLista) {
-		this.calendarioDaysLista = calendarioDaysLista;
-	}
-
 	public String getTurno() {
 		return turno;
 	}
@@ -226,12 +254,28 @@ public class CitaAction extends ActionSupport{
 		this.strHeadSchedule = strHeadSchedule;
 	}
 
-	public List<Calendar> getCalendarioWeekLista() {
-		return calendarioWeekLista;
+	public List<Tab> getCalendarioHeadLista() {
+		return calendarioHeadLista;
 	}
 
-	public void setCalendarioWeekLista(List<Calendar> calendarioWeekLista) {
-		this.calendarioWeekLista = calendarioWeekLista;
+	public void setCalendarioHeadLista(List<Tab> calendarioHeadLista) {
+		this.calendarioHeadLista = calendarioHeadLista;
+	}
+
+	public List<Tab> getCalendarioBodyLista() {
+		return calendarioBodyLista;
+	}
+
+	public void setCalendarioBodyLista(List<Tab> calendarioBodyLista) {
+		this.calendarioBodyLista = calendarioBodyLista;
+	}
+
+	public String getOper() {
+		return oper;
+	}
+
+	public void setOper(String oper) {
+		this.oper = oper;
 	}
 	
 }
