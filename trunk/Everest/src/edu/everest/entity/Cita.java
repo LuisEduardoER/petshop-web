@@ -43,6 +43,11 @@ public class Cita implements Serializable {
 	@JoinColumn(name="idServicio")
 	private Servicio servicio;
 
+	//bi-directional many-to-one association to Medico
+	@ManyToOne
+	@JoinColumn(name="idMedico")
+	private Medico medico;
+
 	public Cita() {
 	}
 
@@ -108,6 +113,14 @@ public class Cita implements Serializable {
 
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
+	}
+
+	public Medico getMedico() {
+		return this.medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 }

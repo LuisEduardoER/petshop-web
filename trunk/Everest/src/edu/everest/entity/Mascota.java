@@ -2,21 +2,11 @@ package edu.everest.entity;
 
 import java.io.File;
 import java.io.Serializable;
+
+import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 
 /**
@@ -42,16 +32,14 @@ public class Mascota implements Serializable {
 	@Lob
 	private byte[] fotobin;
 	
-	//Para trabajar con struts file
-	
+	//Para trabajar con struts file	
 	@Transient
 	private File foto;	
 	@Transient
 	private String fotoContentType;	
 	@Transient
 	private String fotoFileName;
-		
-
+	
 	private int idAnimal;
 
 	private String nombre;
@@ -72,6 +60,10 @@ public class Mascota implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
+
+	//bi-directional many-to-one association to HistoriaClinica
+	@OneToMany(mappedBy="mascota")
+	private List<HistoriaClinica> historiaClinicas;
 
 	public Mascota() {
 	}
@@ -194,6 +186,28 @@ public class Mascota implements Serializable {
 		this.cliente = cliente;
 	}
 
+	public List<HistoriaClinica> getHistoriaClinicas() {
+		return this.historiaClinicas;
+	}
+
+	public void setHistoriaClinicas(List<HistoriaClinica> historiaClinicas) {
+		this.historiaClinicas = historiaClinicas;
+	}
+
+	public HistoriaClinica addHistoriaClinica(HistoriaClinica historiaClinica) {
+		getHistoriaClinicas().add(historiaClinica);
+		historiaClinica.setMascota(this);
+
+		return historiaClinica;
+	}
+
+	public HistoriaClinica removeHistoriaClinica(HistoriaClinica historiaClinica) {
+		getHistoriaClinicas().remove(historiaClinica);
+		historiaClinica.setMascota(null);
+
+		return historiaClinica;
+	}
+
 	public File getFoto() {
 		return foto;
 	}
@@ -217,6 +231,5 @@ public class Mascota implements Serializable {
 	public void setFotoFileName(String fotoFileName) {
 		this.fotoFileName = fotoFileName;
 	}
-	
-	
+
 }

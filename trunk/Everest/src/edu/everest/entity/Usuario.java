@@ -39,6 +39,10 @@ public class Usuario implements Serializable {
 	@JoinColumn(name="idRol")
 	private Rol rol;
 
+	//bi-directional many-to-one association to Medico
+	@OneToMany(mappedBy="usuario")
+	private List<Medico> medicos;
+
 	public Usuario() {
 	}
 
@@ -118,6 +122,28 @@ public class Usuario implements Serializable {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+
+	public List<Medico> getMedicos() {
+		return this.medicos;
+	}
+
+	public void setMedicos(List<Medico> medicos) {
+		this.medicos = medicos;
+	}
+
+	public Medico addMedico(Medico medico) {
+		getMedicos().add(medico);
+		medico.setUsuario(this);
+
+		return medico;
+	}
+
+	public Medico removeMedico(Medico medico) {
+		getMedicos().remove(medico);
+		medico.setUsuario(null);
+
+		return medico;
 	}
 
 }

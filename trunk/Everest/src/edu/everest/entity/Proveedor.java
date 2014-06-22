@@ -18,7 +18,7 @@ public class Proveedor implements Serializable {
 	private int idProveedor;
 
 	private String direccion;
-	
+
 	private String estado;
 
 	private String razonSocial;
@@ -43,7 +43,7 @@ public class Proveedor implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
+
 	public String getEstado() {
 		return this.estado;
 	}

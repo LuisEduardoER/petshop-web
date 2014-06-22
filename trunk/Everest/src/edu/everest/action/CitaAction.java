@@ -106,13 +106,10 @@ public class CitaAction extends ActionSupport{
 		System.out.println("oper: "+oper);
 		if(oper != null || !oper.equals("")){
 			
-			if(oper.equals("next")){
+			if(oper.equals("next"))
 				calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, 7);
-				
-			}else if(oper.equals("prev")){
+			else if(oper.equals("prev"))
 				calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, -7);
-				
-			}
 			
 			loadCalendar();
 			
