@@ -242,18 +242,20 @@ public class CitaAction extends ActionSupport{
 			strHourAux = hourFormat.format(dHourAux.getTime());
 			strHourFin = hourFormat.format(dHourFin.getTime());
 			
-			System.out.println("strHourIni: "+strHourIni);
-			System.out.println("strHourAux: "+strHourAux);
-			System.out.println("strHourFin: "+strHourFin);
+			System.out.println("dHourIni: "+strHourIni);
+			System.out.println("dHourAux: "+strHourAux);
+			System.out.println("dHourFin: "+strHourFin);
 			
-			for(int i=1; i<=7; i++ ){
+			//Cargando Horas
+			for(int i=1; i<=8; i++ ){
 				
 				n=1;
 				strHourIni = hourFormat.format(dHourIni.getTime());
 				strHourAux = hourFormat.format(dHourAux.getTime());
 				
-				calendarioBodyLista.add( new Tab("0", strHourIni, 1) );				
-				while( !strHourIni.equals(strHourFin) ){
+				calendarioBodyLista.add( new Tab("0", strHourIni, 1) );
+				//Cargando Dias de la semana
+				while( n != 8 ){
 					
 					strFecIni = MiUtil.lpad( ""+(calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+n-1), 2, "0")+"/"+
 								MiUtil.lpad( ""+(calFirstDayOfWeek.get(Calendar.MONTH)+1), 2, "0")+"/"+
@@ -279,14 +281,16 @@ public class CitaAction extends ActionSupport{
 									 ;
 						
 						System.out.println("strFecAux1: "+strFecAux1 );
-						System.out.println("strFecAux2: "+strFecAux2 );
-						System.out.println("");
+						System.out.println("Cita Prog : "+strFecAux2 );
+						
 						
 						if( strFecAux1.equals(strFecAux2) ){
 							tipo = 2;
+							System.out.println("Reservado");
 							c=citaLista.size();
 						}else 
 							tipo = 0;
+						System.out.println("");
 						
 					}
 					
