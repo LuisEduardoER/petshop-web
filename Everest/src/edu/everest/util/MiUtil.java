@@ -64,4 +64,30 @@ public class MiUtil {
 		
 		return strDay;
 	}
+	
+	public static String lpad(String string, int padLength){
+		int length=0;
+		
+		length = string.length();
+		if(padLength> length){
+			for(int i=0; i<(padLength-length); i++){
+				string = ' '+string;
+			}
+		}
+		
+		return string;
+	}
+	
+	public static String lpad(String string, int padLength, String padString){
+		int length=0;
+		
+		length = string.length();
+		if(padLength> length){
+			for(int i=0; i<(padLength-length); i++){
+				string = padString+string;
+			}
+		}
+		
+		return string;
+	}
 }

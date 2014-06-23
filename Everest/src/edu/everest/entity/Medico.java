@@ -28,11 +28,6 @@ public class Medico implements Serializable {
 	@OneToMany(mappedBy="medico")
 	private List<Cita> citas;
 
-	//bi-directional many-to-one association to Turno
-	@ManyToOne
-	@JoinColumn(name="idTurno")
-	private Turno turno;
-
 	//bi-directional many-to-one association to Especialidad
 	@ManyToOne
 	@JoinColumn(name="idEspecialidad")
@@ -45,14 +40,21 @@ public class Medico implements Serializable {
 
 	//bi-directional many-to-one association to Medico
 	@ManyToOne
+	@JoinColumn(name="Medico_idMedico")
 	private Medico medico;
 
 	//bi-directional many-to-one association to Medico
 	@OneToMany(mappedBy="medico")
 	private List<Medico> medicos;
 
+	//bi-directional many-to-one association to Turno
+	@ManyToOne
+	@JoinColumn(name="idTurno")
+	private Turno turno;
+
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
+	@JoinColumn(name="Usuario_idUsuario")
 	private Usuario usuario;
 
 	public Medico() {
@@ -112,14 +114,6 @@ public class Medico implements Serializable {
 		return cita;
 	}
 
-	public Turno getTurno() {
-		return this.turno;
-	}
-
-	public void setTurno(Turno turno) {
-		this.turno = turno;
-	}
-
 	public Especialidad getEspecialidad() {
 		return this.especialidad;
 	}
@@ -164,6 +158,14 @@ public class Medico implements Serializable {
 		medico.setMedico(null);
 
 		return medico;
+	}
+
+	public Turno getTurno() {
+		return this.turno;
+	}
+
+	public void setTurno(Turno turno) {
+		this.turno = turno;
 	}
 
 	public Usuario getUsuario() {
