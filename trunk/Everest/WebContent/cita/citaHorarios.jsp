@@ -13,12 +13,27 @@ width:85px;
 }
 .selectableHead{
 height: 20px;
-background: #61B4C8;
-color: white;
+background: #61B4C8 !important;
+color: white !important;
+}
+.alignRight{
+width: 100%;
+text-align: right;
 }
 .selectableBody{
 color: white;
 font-size: 11px;
+line-height: 11px;
+}
+.selectableBody:HOVER{
+color: #64B9B4;
+background: #F0F9F0;
+}
+.selectableReserved{
+background: #DC716E !important;
+color: white !important;
+font-size: 11px;
+line-height: 11px;
 }
 .divHour{
 background: white !important;
@@ -45,21 +60,21 @@ color: white;
 </style>
 
 <script type="text/javascript">
-	$.subscribe('onstop', function(event,data) {
-        var result = $("#selectresult").empty();
-        
-        $(".ui-selected").each(function(){
-        	
-        	var className= $(this).attr("class").indexOf("divHour");
-                  	
-            if(className == -1)
-            	result.append($(this).html()+' ');
-        });
-	});
-// 	function turnoChange(value){
-// 		  window.location="loadCalendarAction?turno="+value; //or you can submit a form from here or make an ajax call
-// 		}
-    </script> 
+$.subscribe('onstop', function(event,data) {
+       var result = $("#selectresult").empty();
+       
+       $(".ui-selected").each(function(){
+       	
+       	var className= $(this).attr("class").indexOf("divHour");
+       	className= $(this).attr("class").indexOf("selectableReserved");
+       	
+           if(className == -1)
+        	   result.append($(this).html()+' ');
+           else
+        	   result.append('&nbsp;');
+       });
+});
+</script> 
 <s:form id="formHorarios">
 
 <table style="width: 100%;">
@@ -86,14 +101,14 @@ color: white;
 <%--  					        formIds="formHorarios" value="turno" onChangeTopics="reloadDivData"/> --%>
  					        
  					     <sj:radio
-				    		id="turno"
+ 					     	id="rdnTurno"
  					        href="%{urlTurno}"
  					        name="turno"
  					        list="turnoLista"
  					        listKey="idTab"
- 					        listValue="valueTab"
+ 					        listValue="value1"
  					        formIds="formHorarios"
- 					        value="M"
+ 					        value="turno"
  					        onChangeTopics="reloadDivData"/>
 					    
 					     
@@ -107,7 +122,7 @@ color: white;
 					<td style="text-align: right;">
 						<sj:a id="btnNextWeek"
 							href="reloadCalendarAction.action?oper=next"
-							targets="divCalendarDinamic" 
+							targets="divCalendarDinamic"
 							button="true"
 							buttonIcon="ui-icon-seek-next">Siguiente</sj:a>
 							
@@ -124,12 +139,11 @@ color: white;
 		<sj:div
 			id="divCalendarDinamic"
 			formIds="formHorarios"
-			reloadTopics="reloadDivData"
-			effect="clip"
+			effect="blind"
 			effectMode="show"
 			effectDuration="500"
+			reloadTopics="reloadDivData"
 			href="%{urlLoadCalendar}" />
-		    		     
 		</td>
 	</tr>
 </table>

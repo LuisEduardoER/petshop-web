@@ -1,10 +1,12 @@
 package edu.everest.dao;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import edu.everest.entity.Cita;
 
@@ -26,11 +28,23 @@ public class CitaJPADAO implements CitaDAO {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List<Cita> obtenerTodos() throws Exception {
+	public List<Cita> obtenerTodos(Calendar objIni, Calendar objFin) throws Exception {
 		em=emf.createEntityManager();
-
-		List<Cita> listaCita = new ArrayList<Cita>();
-		List l =  em.createQuery( "SELECT c FROM Cita c ORDER BY c.idCita" ).getResultList();
+		
+		List<Cita> listaCita = new ArrayList<Cita>();		
+		Query query = em.createQuery( "SELECT c FROM Cita c "
+				+ "WHERE c.fecProg BETWEEN :fecProgIni AND :fecProgFin "
+				+ "AND c.hourProg BETWEEN :hourProgIni AND :hourProgFin "
+				+ "ORDER BY c.fecProg, c.hourProg " );
+		
+		query.setParameter("fecProgIni", objIni);
+		query.setParameter("fecProgFin", objFin);
+		
+		query.setParameter("hourProgIni", objIni);
+		query.setParameter("hourProgFin", objFin);
+		
+		List l =  query.getResultList();
+		
 		for ( int i=0; i < l.size(); i++ ) {
 			Cita entidad = (Cita)l.get(i);
 			listaCita.add(entidad);

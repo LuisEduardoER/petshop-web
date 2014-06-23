@@ -1,5 +1,6 @@
 package edu.everest.service;
 
+import java.util.Calendar;
 import java.util.List;
 
 import edu.everest.dao.CitaDAO;
@@ -22,8 +23,8 @@ public class CitaDAOService implements CitaService{
 	}
 
 	@Override
-	public List<Cita> obtenerTodosCliente() throws Exception {
-		return dao.obtenerTodos();
+	public List<Cita> obtenerTodosCliente(Calendar objIni, Calendar objFin) throws Exception {
+		return dao.obtenerTodos(objIni, objFin);
 	}
 
 	@Override

@@ -6,7 +6,7 @@
 <sj:div cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40">
 	
 	<s:iterator value="calendarioHeadLista">
-		<div class="selectable selectableHead"><s:property value="valueTab"/></div>
+		<div class="selectable selectableHead"><s:property value="value1"/></div>
 	</s:iterator>
 	
 </sj:div>
@@ -19,22 +19,39 @@
 	
 	<s:iterator value="calendarioBodyLista" status="stat">
  		
- 		<s:if test="hourTab==1">
- 			<div class="selectable divHour"><s:property value="valueTab"/></div>
+ 		<s:if test="tipo==1">
+ 			<div class="selectable divHour"><s:property value="value1"/></div>
  		</s:if>
+ 		<s:elseif test="tipo==2">
+ 			<div class="selectable selectableReserved" title="Reservado">
+ 				<div><s:property value="value1"/></div>
+ 				<div class="alignRight"><s:property value="value2"/></div>
+ 			</div>
+ 		</s:elseif>
  		<s:else>
- 			<div class="selectable selectableBody"><s:property value="valueTab"/></div>
+ 			<div class="selectable selectableBody">
+ 				<div><s:property value="value1"/></div>
+ 				<div class="alignRight"><s:property value="value2"/></div>
+			</div>
  		</s:else>
  		
  	</s:iterator>
 	
 </sj:div>
 
-Tu Seleccionaste:  <strong><span id="selectresult"></span></strong>. <br/>
+<h3><strong><span id="selectresult">&nbsp;</span></strong></h3> <br/>
 			
 <br>
 <s:hidden id="hdnHeadSchedule" name="strHeadSchedule"/>
+<%-- <s:hidden id="hdnTurno" name="turno"/> --%>
 <script type="text/javascript">
 var headSchedule = $("#hdnHeadSchedule").val();
+// var turno = $("#hdnTurno").val();
+
 $("#lblHeadSchedule").html(headSchedule);
+// var $radios = $('input:radio[name='+turno+']');//.button( "checked", "checked" );
+// var $radios = $('#turno');
+// if($radios.is(':checked') == false) {
+//     $radios.filter('[value='+turno+']').button( "checked", "checked" );
+// }
 </script>

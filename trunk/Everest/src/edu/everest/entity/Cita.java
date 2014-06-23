@@ -1,8 +1,18 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -23,8 +33,11 @@ public class Cita implements Serializable {
 
 	private String estado;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fecProg;
+	@Temporal(TemporalType.DATE)
+	private Calendar fecProg;
+	
+	@Temporal(TemporalType.TIME)
+	private Calendar hourProg;
 
 	private String userCreate;
 
@@ -38,15 +51,15 @@ public class Cita implements Serializable {
 	@JoinColumn(name="idMascota")
 	private Mascota mascota;
 
-	//bi-directional many-to-one association to Servicio
-	@ManyToOne
-	@JoinColumn(name="idServicio")
-	private Servicio servicio;
-
 	//bi-directional many-to-one association to Medico
 	@ManyToOne
 	@JoinColumn(name="idMedico")
 	private Medico medico;
+
+	//bi-directional many-to-one association to Servicio
+	@ManyToOne
+	@JoinColumn(name="idServicio")
+	private Servicio servicio;
 
 	public Cita() {
 	}
@@ -75,12 +88,20 @@ public class Cita implements Serializable {
 		this.estado = estado;
 	}
 
-	public Date getFecProg() {
+	public Calendar getFecProg() {
 		return this.fecProg;
 	}
 
-	public void setFecProg(Date fecProg) {
+	public void setFecProg(Calendar fecProg) {
 		this.fecProg = fecProg;
+	}
+
+	public Calendar getHourProg() {
+		return this.hourProg;
+	}
+
+	public void setHourProg(Calendar hourProg) {
+		this.hourProg = hourProg;
 	}
 
 	public String getUserCreate() {
@@ -107,20 +128,20 @@ public class Cita implements Serializable {
 		this.mascota = mascota;
 	}
 
-	public Servicio getServicio() {
-		return this.servicio;
-	}
-
-	public void setServicio(Servicio servicio) {
-		this.servicio = servicio;
-	}
-
 	public Medico getMedico() {
 		return this.medico;
 	}
 
 	public void setMedico(Medico medico) {
 		this.medico = medico;
+	}
+
+	public Servicio getServicio() {
+		return this.servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
 	}
 
 }
