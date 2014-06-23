@@ -253,7 +253,7 @@ public class CitaAction extends ActionSupport{
 				strHourAux = hourFormat.format(dHourAux.getTime());
 				
 				calendarioBodyLista.add( new Tab("0", strHourIni, 1) );				
-				while( !dHourIni.equals(dHourFin) ){
+				while( !strHourIni.equals(strHourFin) ){
 					
 					strFecIni = MiUtil.lpad( ""+(calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+n-1), 2, "0")+"/"+
 								MiUtil.lpad( ""+(calFirstDayOfWeek.get(Calendar.MONTH)+1), 2, "0")+"/"+
@@ -278,9 +278,9 @@ public class CitaAction extends ActionSupport{
 									 objCita.getHourProg().get(Calendar.MINUTE)
 									 ;
 						
-//						System.out.println("strFecAux1: "+strFecAux1 );
-//						System.out.println("strFecAux2: "+strFecAux2 );
-//						System.out.println("");
+						System.out.println("strFecAux1: "+strFecAux1 );
+						System.out.println("strFecAux2: "+strFecAux2 );
+						System.out.println("");
 						
 						if( strFecAux1.equals(strFecAux2) ){
 							tipo = 2;
