@@ -20,6 +20,10 @@ color: white !important;
 width: 100%;
 text-align: right;
 }
+.alignLeft{
+width: 100%;
+text-align: left;
+}
 .selectableBody{
 color: white;
 font-size: 11px;
@@ -32,6 +36,12 @@ background: #F0F9F0;
 .selectableReserved{
 background: #DC716E !important;
 color: white !important;
+font-size: 11px;
+line-height: 11px;
+}
+.selectableLocked{
+background: #656b6b;
+color: #fff;
 font-size: 11px;
 line-height: 11px;
 }
@@ -62,14 +72,26 @@ color: white;
 <script type="text/javascript">
 $.subscribe('onstop', function(event,data) {
        var result = $("#selectresult").empty();
+       var className;
        
        $(".ui-selected").each(function(){
        	
-       	var className= $(this).attr("class").indexOf("divHour");
+       	className= $(this).attr("class").indexOf("divHour");
        	className= $(this).attr("class").indexOf("selectableReserved");
        	
-           if(className == -1)
-        	   result.append($(this).html()+' ');
+       	$(this).each(function(){
+       		className= $(this).attr("class").indexOf("alignLeft");
+       		className= $(this).attr("class").indexOf("alignRight");
+       	});
+       	
+       	
+           if(className == -1){
+        	   
+        	   var detalle = 'Fecha: '+$(this).find('.alignLeft').html()+'<br/>'+
+        	   				 'Hora:  '+$(this).find('.alignRight').html();
+        	   result.html( detalle );
+        	   
+           }   
            else
         	   result.append('&nbsp;');
        });

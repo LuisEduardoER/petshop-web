@@ -20,18 +20,24 @@
 	<s:iterator value="calendarioBodyLista" status="stat">
  		
  		<s:if test="tipo==1">
- 			<div class="selectable divHour"><s:property value="value1"/></div>
+ 			<p class="selectable divHour"><s:property value="value1"/></p>
  		</s:if>
  		<s:elseif test="tipo==2">
  			<div class="selectable selectableReserved" title="Reservado">
- 				<div><s:property value="value1"/></div>
- 				<div class="alignRight"><s:property value="value2"/></div>
+ 				<p class="alignLeft"><s:property value="value1"/></p>
+ 				<p class="alignRight"><s:property value="value2"/></p>
+ 			</div>
+ 		</s:elseif>
+ 		<s:elseif test="tipo==3">
+ 			<div class="selectable selectableLocked" title="La reserva se debe hacer con una hora de anticipacion">
+ 				<p class="alignLeft"><s:property value="value1"/></p>
+ 				<p class="alignRight"><s:property value="value2"/></p>
  			</div>
  		</s:elseif>
  		<s:else>
  			<div class="selectable selectableBody">
- 				<div><s:property value="value1"/></div>
- 				<div class="alignRight"><s:property value="value2"/></div>
+ 				<p class="alignLeft"><s:property value="value1"/></p>
+ 				<p class="alignRight"><s:property value="value2"/></p>
 			</div>
  		</s:else>
  		
