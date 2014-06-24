@@ -2,6 +2,9 @@
 position: relative;
 font-size: 14px !important;
 }
+.ui-tabs .ui-tabs-nav li {
+padding: .5em 1em !important;
+}
 
 @font-face {
   font-family: 'Source Sans Pro';
@@ -364,4 +367,7 @@ background: #64b8b2;
 /* background-image: -webkit-linear-gradient(top, #66bcb6, #62b6b0); */
 /* background-image: linear-gradient(to bottom,#66bcb6,#62b6b0); */
 border-radius: 2px;
+}
+.dls-table{
+
 }
