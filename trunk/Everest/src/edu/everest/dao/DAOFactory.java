@@ -13,13 +13,14 @@ public abstract class DAOFactory {
     
     // Existirá un método por cada DAO que pueda ser creado.
     // registramos nuestros daos
-    public abstract ProveedorDAO 	getProveedorDAO();
-    public abstract UsuarioDAO		getUsuarioDAO();
-    public abstract RolDAO			getRolDAO();
-    public abstract ClienteDAO		getClienteDAO();
-    public abstract OpcionDAO		getOpcionDAO();
-    public abstract MascotaDAO		getMascotaDAO();
-    public abstract CitaDAO			getCitaDAO();
+    public abstract ProveedorDAO 		getProveedorDAO();
+    public abstract UsuarioDAO			getUsuarioDAO();
+    public abstract RolDAO				getRolDAO();
+    public abstract ClienteDAO			getClienteDAO();
+    public abstract OpcionDAO			getOpcionDAO();
+    public abstract MascotaDAO			getMascotaDAO();
+    public abstract CitaDAO				getCitaDAO();
+    public abstract TipoDocumentoDAO	getTipoDocumentoDAO();
     
        
     public static DAOFactory getDAOFactory(int whichFactory) {

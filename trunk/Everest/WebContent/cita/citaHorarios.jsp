@@ -11,6 +11,9 @@ margin:1px;
 padding:5px;
 width:85px;
 }
+.selectable p{
+margin: 0px;
+}
 .selectableHead{
 height: 20px;
 background: #61B4C8 !important;
@@ -40,8 +43,8 @@ font-size: 11px;
 line-height: 11px;
 }
 .selectableLocked{
-background: #656b6b;
-color: #fff;
+background: #656b6b !important;
+color: #fff !important;
 font-size: 11px;
 line-height: 11px;
 }
@@ -70,6 +73,21 @@ color: white;
 </style>
 
 <script type="text/javascript">
+$.subscribe('onstart', function(event,data) {
+// 	var result = $("#selectresult").empty();
+    var className;
+    
+    $(".ui-selected").each(function(){
+    	className= $(this).attr("class").indexOf("divHour");
+       	className= $(this).attr("class").indexOf("selectableReserved");
+       	className= $(this).attr("class").indexOf("selectableLocked");
+       	
+       	if(className != -1)
+       		return false;
+       	
+    });
+    
+});
 $.subscribe('onstop', function(event,data) {
        var result = $("#selectresult").empty();
        var className;
@@ -78,12 +96,12 @@ $.subscribe('onstop', function(event,data) {
        	
        	className= $(this).attr("class").indexOf("divHour");
        	className= $(this).attr("class").indexOf("selectableReserved");
+       	className= $(this).attr("class").indexOf("selectableLocked");
        	
-       	$(this).each(function(){
-       		className= $(this).attr("class").indexOf("alignLeft");
-       		className= $(this).attr("class").indexOf("alignRight");
-       	});
-       	
+//        	$(this).each(function(){
+//        		className= $(this).attr("class").indexOf("alignLeft");
+//        		className= $(this).attr("class").indexOf("alignRight");
+//        	});
        	
            if(className == -1){
         	   
@@ -157,6 +175,14 @@ $.subscribe('onstop', function(event,data) {
 	<tr>
 		<td style="width: 100%;">
 		
+		<table id="dlgLoading" style="width: 100%; margin-top: -23px; position: absolute; display: none;">
+	       	<tr>
+	       		<td style="width: 100%; text-align: center;">
+	       			<img alt="Loading" src="img/loading.gif">
+	       		</td>
+	       	</tr>
+		</table>
+		
 		<s:url id="urlLoadCalendar" action="loadCalendarAction"/>
 		<sj:div
 			id="divCalendarDinamic"
@@ -164,6 +190,7 @@ $.subscribe('onstop', function(event,data) {
 			effect="blind"
 			effectMode="show"
 			effectDuration="500"
+			indicator="dlgLoading"
 			reloadTopics="reloadDivData"
 			href="%{urlLoadCalendar}" />
 		</td>
