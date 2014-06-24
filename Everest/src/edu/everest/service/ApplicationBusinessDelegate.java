@@ -34,4 +34,8 @@ public class ApplicationBusinessDelegate {
 	public CitaService getCitaService() {
 		return new CitaDAOService( DAOFactory.JPA );
 	}
+	
+	public TipoDocumentoService getTipoDocumentoService() {
+		return new TipoDocumentoDAOService( DAOFactory.JPA );
+	}
 }

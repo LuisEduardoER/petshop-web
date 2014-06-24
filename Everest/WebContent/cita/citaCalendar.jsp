@@ -13,6 +13,7 @@
      
 <sj:div id="selectabledivs" 
 	selectableOnStopTopics="onstop" 
+	selectableOnStartTopics="onstart"
 	selectable="true"
 	formIds="formHorarios"
 	cssStyle="width: 800px; float: left; border-right: 1px dotted #FECA40" >
@@ -29,9 +30,8 @@
  			</div>
  		</s:elseif>
  		<s:elseif test="tipo==3">
- 			<div class="selectable selectableLocked" title="La reserva se debe hacer con una hora de anticipacion">
- 				<p class="alignLeft"><s:property value="value1"/></p>
- 				<p class="alignRight"><s:property value="value2"/></p>
+ 			<div class="selectable selectableLocked" title="Las Citas se deben hacer con una hora de anticipacion">
+ 				No Disponible
  			</div>
  		</s:elseif>
  		<s:else>

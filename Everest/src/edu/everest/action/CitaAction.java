@@ -43,13 +43,14 @@ public class CitaAction extends ActionSupport{
 	private List<Tab> 		turnoLista = 			new ArrayList<Tab>();
 	private List<Tab> 		calendarioHeadLista = 	new ArrayList<Tab>();
 	private List<Tab> 		calendarioBodyLista = 	new ArrayList<Tab>();
-	private static Calendar		calFirstDayOfWeek;
+	private static Calendar	calFirstDayOfWeek;
+	private static Calendar	calNow;
 	private String 			oper;
 	
-	DateFormat hourFormat = new SimpleDateFormat ("HH:mm");
-	DateFormat dateFormat = new SimpleDateFormat ("dd/MM/yyyy");
-	DateFormat dateFormatMin = new SimpleDateFormat ("dd/MM");
-	DateFormat dateFormatFull = new SimpleDateFormat ("dd/MM/yyyy HH:mm:ss");
+	DateFormat hourFormat 		= new SimpleDateFormat ("HH:mm");
+	DateFormat dateFormatMin 	= new SimpleDateFormat ("dd/MM");
+	DateFormat dateFormat 		= new SimpleDateFormat ("dd/MM/yyyy");
+	DateFormat dateFormatFull 	= new SimpleDateFormat ("dd/MM/yyyy HH:mm");
 	
 	@Action(value="/showCitaRegistroAction",
 			results={ @Result(name="success", location="citaRegistrarTile",type="tiles") })
@@ -98,7 +99,10 @@ public class CitaAction extends ActionSupport{
 		int nFirstDayOfWeek = MiUtil.getMondayOfWeek( Calendar.getInstance() );
 		
 		System.out.println("nFirstDayOfWeek:  "+nFirstDayOfWeek);
+		
 		calFirstDayOfWeek.set(Calendar.DAY_OF_WEEK, nFirstDayOfWeek);
+//		calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, 1);
+		System.out.println("calFirstDayOfWeek: "+dateFormatFull.format( calFirstDayOfWeek.getTime() ));
 		
 		return SUCCESS;
 	}
@@ -113,8 +117,10 @@ public class CitaAction extends ActionSupport{
 			if(oper.equals("next"))
 				calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, 7);
 			else if(oper.equals("prev"))
-				calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, -7);
+				if(!calNow.getTime().after(calFirstDayOfWeek.getTime()))
+					calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, -7);
 			
+			turno = "M";
 			loadCalendar();
 			
 		}
@@ -127,181 +133,135 @@ public class CitaAction extends ActionSupport{
 			results={ @Result(name="success",location="/cita/citaCalendar.jsp") })
 	public String loadCalendar() {
 		
+		calNow = Calendar.getInstance();
+		calNow.add(Calendar.HOUR_OF_DAY, 1);
+		
 		try {
 		
 			//Cargando Dias de la semana
 			calendarioHeadLista.add( new Tab("","") );
+			
 			for(int i=0; i<7; i++ ){
 				calendarioHeadLista.add( new Tab( ""+i, MiUtil.getDayES(i) + " "+ (calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+i) ) );
-	//			nFIRST_DAY_OF_WEEK+=1;
 			}
 			strHeadSchedule = MiUtil.getMonthES( calFirstDayOfWeek.get(Calendar.MONTH)+1 )+ " "+ calFirstDayOfWeek.get(Calendar.YEAR);		
 			
 			//--------------------------
-			
 			System.out.println("turno: "+turno);
-			if(turno == null || turno.equals(""))
-				turno = "M";
 			
 			String strHourIni = "", strHourFin = "", strHourAux = "";
 			String strFecIni  = "", strFecFin  = "";
 			String strFecAux1 = "", strFecAux2 = "";
-			int nIni = 0, nFin = 0;
-			Calendar objCalAux = Calendar.getInstance();
 			
-			Calendar dHourIni = Calendar.getInstance();
-			Calendar dHourAux = Calendar.getInstance();
-			Calendar dHourFin = Calendar.getInstance();
+			Calendar cFecIni = Calendar.getInstance();
+			Calendar cFecAux = Calendar.getInstance();
+			Calendar cFecFin = Calendar.getInstance();
 			
-			Calendar objIni = Calendar.getInstance();
-			Calendar objFin = Calendar.getInstance();
+			cFecIni.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
+			cFecIni.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
+			cFecIni.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
 			
-			objIni.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
-			objIni.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
-			objIni.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
+			cFecAux.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
+			cFecAux.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
+			cFecAux.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
 			
-			objFin.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
-			objFin.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
-			objFin.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
+			cFecFin.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
+			cFecFin.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
+			cFecFin.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
 			
-			objFin.add(Calendar.DATE, 7);
+			cFecIni.set(Calendar.MINUTE, 0);
+			cFecAux.set(Calendar.MINUTE, 0);
+			cFecFin.set(Calendar.MINUTE, 0);
 			
-			dHourIni.set(Calendar.MINUTE, 0);
-			dHourAux.set(Calendar.MINUTE, 0);
-			dHourFin.set(Calendar.MINUTE, 0);
+			cFecIni.set(Calendar.SECOND, 0);
+			cFecAux.set(Calendar.SECOND, 0);
+			cFecFin.set(Calendar.SECOND, 0);
 			
-			objIni.set(Calendar.MINUTE, 0);
-			objFin.set(Calendar.MINUTE, 0);
-			
-			objIni.set(Calendar.SECOND, 0);
-			objFin.set(Calendar.SECOND, 0);
+			cFecFin.add(Calendar.DATE, 7);
+			cFecAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
 			
 			//Cargando Values
 			if(turno.equals("M")){
-				dHourIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
-				dHourAux.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
-				dHourFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_FIN);
-				
-				objIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
-				objFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_FIN);
-				
-				dHourAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
-				dHourFin.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
+				cFecIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
+				cFecAux.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
+				cFecFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_FIN);
 				
 			}else if(turno.equals("T")){
-				dHourIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
-				dHourAux.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
-				dHourFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_FIN);
+				cFecIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
+				cFecAux.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
+				cFecFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_FIN);
 				
-				objIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
-				objFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_FIN);
-				
-				dHourAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
-				dHourFin.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
 			}
 			
-			System.out.println("["+objIni.get(Calendar.DAY_OF_MONTH)+"/"+objIni.get(Calendar.MONTH)+" - "+
-					   			   objFin.get(Calendar.DAY_OF_MONTH)+"/"+objFin.get(Calendar.MONTH)+"]");
-	
-			System.out.println("["+objIni.get(Calendar.HOUR_OF_DAY)+":"+objIni.get(Calendar.MINUTE)+" - "+
-							   	   objFin.get(Calendar.HOUR_OF_DAY)+":"+objFin.get(Calendar.MINUTE)+"]");
+			System.out.println("["+dateFormat.format(cFecIni.getTime())+" - "+dateFormat.format(cFecFin.getTime())+"]");
+			System.out.println("["+hourFormat.format(cFecIni.getTime())+" - "+hourFormat.format(cFecFin.getTime())+"]");
 			
-			/*
-			int n=1;
-			while( !dHourIni.equals(dHourFin) ){
-				
-				strHourIni = dateFormat.format(dHourIni.getTime());
-				strHourFin = dateFormat.format(dHourAux.getTime());
-				
-				calendarioBodyLista.add( new Tab("0", strHourIni, 1) );				
-				for(int i=1; i<=7; i++ ){
-					calendarioBodyLista.add( 
-							new Tab(""+i, 
-									""+(calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+i-1)+"/"+(calFirstDayOfWeek.get(Calendar.MONTH)+1)+
-									" ["+strHourIni+" - "+strHourFin+"]") 
-					);
-				}
-				
-				n++;
-				dHourIni.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
-				dHourAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
-				
-	//			System.out.println("hora: "+dHourIni.get(Calendar.HOUR_OF_DAY)+":"+dHourIni.get(Calendar.MINUTE));
-				
-			};
-			*/
+			//------------------------------------------------------------------------
 			
-			List<Cita> citaLista = citaService.obtenerTodosCliente(objIni, objFin);
+			List<Cita> citaLista = citaService.obtenerTodosCliente(cFecIni, cFecFin);
 			System.out.println( "citaLista: "+citaLista.size() );
 			Cita objCita = new Cita();
 			
 			int n=1;
 			int tipo = 0;
 			int d=1;
-			strHourIni = hourFormat.format(dHourIni.getTime());
-			strHourAux = hourFormat.format(dHourAux.getTime());
-			strHourFin = hourFormat.format(dHourFin.getTime());
+			strHourIni = hourFormat.format(cFecIni.getTime());
+			strHourAux = hourFormat.format(cFecAux.getTime());
+			strHourFin = hourFormat.format(cFecFin.getTime());
 			
-			System.out.println("dHourIni: "+strHourIni);
-			System.out.println("dHourAux: "+strHourAux);
-			System.out.println("dHourFin: "+strHourFin);
+			System.out.println("");
 			
 			//Cargando Horas
-			for(int i=1; i<=8; i++ ){
-				
+			while(!hourFormat.format(cFecIni.getTime()).equals(hourFormat.format(cFecFin.getTime()))){
+			
 				n=1;
-				strHourIni = hourFormat.format(dHourIni.getTime());
-				strHourAux = hourFormat.format(dHourAux.getTime());
+				strHourIni = hourFormat.format(cFecIni.getTime());
+				strHourAux = hourFormat.format(cFecAux.getTime());
 				
 				calendarioBodyLista.add( new Tab("0", strHourIni, 1) );
 				//Cargando Dias de la semana
 				while( n != 8 ){
 					
-					strFecIni = MiUtil.lpad( ""+(calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+n-1), 2, "0")+"/"+
-								MiUtil.lpad( ""+(calFirstDayOfWeek.get(Calendar.MONTH)+1), 2, "0")+"/"+
-								calFirstDayOfWeek.get(Calendar.YEAR);
-					
-					strFecAux1 = (calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+n-1)+"/"+
-								 (calFirstDayOfWeek.get(Calendar.MONTH)+1)+"/"+
-								 calFirstDayOfWeek.get(Calendar.YEAR)+" "+
-								 
-								 dHourIni.get(Calendar.HOUR_OF_DAY)+":"+
-								 dHourIni.get(Calendar.MINUTE)
-								 ;
+					strFecIni = dateFormat.format(cFecIni.getTime());
+					strFecAux1 = dateFormatFull.format(cFecIni.getTime());
 					
 					for(int c=0; c<citaLista.size(); c++){
 						objCita = citaLista.get(c);
 						
-						strFecAux2 = objCita.getFecProg().get(Calendar.DAY_OF_MONTH)+"/"+
-									 (objCita.getFecProg().get(Calendar.MONTH)+1)+"/"+
-									 objCita.getFecProg().get(Calendar.YEAR)+" "+
-									 
-									 objCita.getHourProg().get(Calendar.HOUR_OF_DAY)+":"+
-									 objCita.getHourProg().get(Calendar.MINUTE)
-									 ;
+						objCita.getFecProg().set(Calendar.HOUR_OF_DAY, objCita.getHourProg().get(Calendar.HOUR_OF_DAY));
+						objCita.getFecProg().set(Calendar.MINUTE, objCita.getHourProg().get(Calendar.MINUTE));
+						strFecAux2 = dateFormatFull.format(objCita.getFecProg().getTime());
 						
 						System.out.println("strFecAux1: "+strFecAux1 );
 						System.out.println("Cita Prog : "+strFecAux2 );
-						
+						System.out.println("FechaAct  : "+ dateFormatFull.format(calNow.getTime()));
 						
 						if( strFecAux1.equals(strFecAux2) ){
 							tipo = 2;
 							System.out.println("Reservado");
 							c=citaLista.size();
+						}else if(calNow.getTime().after(cFecIni.getTime())){
+							tipo = 3;
+							System.out.println("Bloqueado");
 						}else 
 							tipo = 0;
 						System.out.println("");
 						
 					}
 					
+					cFecIni.add(Calendar.DAY_OF_MONTH, 1);
 					calendarioBodyLista.add( new Tab(""+d, strFecIni, strHourIni+" - "+strHourAux, tipo) );
 					d++;
 					n++;
 					
 				};
 				
-				dHourIni.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
-				dHourAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
+				cFecIni.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
+				cFecIni.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
+				cFecIni.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
+				
+				cFecIni.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
+				cFecAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
 				
 			}
 				

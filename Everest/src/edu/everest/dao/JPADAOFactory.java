@@ -63,4 +63,11 @@ public class JPADAOFactory extends DAOFactory {
 		ed.setEntityManagerFactory(emf);
 		return (CitaDAO)ed;
 	}
+
+	@Override
+	public TipoDocumentoDAO getTipoDocumentoDAO() {
+		TipoDocumentoJPADAO ed =  new TipoDocumentoJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (TipoDocumentoDAO)ed;
+	}
 }
