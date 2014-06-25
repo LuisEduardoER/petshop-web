@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
 <aside class="tm-sidebar-a uk-width-medium-1-4">
 	<div class="uk-panel uk-panel-box uk-panel-box-primary">

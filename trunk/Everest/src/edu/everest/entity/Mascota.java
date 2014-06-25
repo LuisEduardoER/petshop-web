@@ -2,11 +2,21 @@ package edu.everest.entity;
 
 import java.io.File;
 import java.io.Serializable;
-
-import javax.persistence.*;
-
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 /**
@@ -40,8 +50,6 @@ public class Mascota implements Serializable {
 	@Transient
 	private String fotoFileName;
 	
-	private int idAnimal;
-
 	private String nombre;
 
 	private String observaciones;
@@ -64,7 +72,11 @@ public class Mascota implements Serializable {
 	//bi-directional many-to-one association to HistoriaClinica
 	@OneToMany(mappedBy="mascota")
 	private List<HistoriaClinica> historiaClinicas;
-
+	
+	@ManyToOne
+	@JoinColumn(name="idTipoAnimal")
+	private TipoAnimal tipoAnimal;
+	
 	public Mascota() {
 	}
 
@@ -106,14 +118,6 @@ public class Mascota implements Serializable {
 
 	public void setFotobin(byte[] fotobin) {
 		this.fotobin = fotobin;
-	}
-
-	public int getIdAnimal() {
-		return this.idAnimal;
-	}
-
-	public void setIdAnimal(int idAnimal) {
-		this.idAnimal = idAnimal;
 	}
 
 	public String getNombre() {
@@ -232,4 +236,12 @@ public class Mascota implements Serializable {
 		this.fotoFileName = fotoFileName;
 	}
 
+	public TipoAnimal getTipoAnimal() {
+		return tipoAnimal;
+	}
+
+	public void setTipoAnimal(TipoAnimal tipoAnimal) {
+		this.tipoAnimal = tipoAnimal;
+	}
+	
 }

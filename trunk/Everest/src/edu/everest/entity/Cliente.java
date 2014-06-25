@@ -1,9 +1,19 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -71,7 +81,7 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="cliente")
 	private List<Mascota> mascotas;
 
-	//bi-directional many-to-one association to HistoriaClinica
+	//bi-directional many-to-one association to Historiaclinica
 	@OneToMany(mappedBy="cliente")
 	private List<HistoriaClinica> historiaclinicas;
 
@@ -234,14 +244,6 @@ public class Cliente implements Serializable {
 		return cliente;
 	}
 
-	public TipoDocumento getTipoDocumento() {
-		return this.tipoDocumento;
-	}
-
-	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
-
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
@@ -292,6 +294,14 @@ public class Cliente implements Serializable {
 		historiaclinica.setCliente(null);
 
 		return historiaclinica;
+	}
+
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
 }
