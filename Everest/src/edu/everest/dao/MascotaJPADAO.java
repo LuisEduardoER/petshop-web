@@ -65,7 +65,7 @@ public class MascotaJPADAO implements MascotaDAO {
 		
 		entidadMascota.setNombre(mascota.getNombre());
 		entidadMascota.setEdad(mascota.getEdad());
-		entidadMascota.setIdAnimal(mascota.getIdAnimal());
+		entidadMascota.setTipoAnimal(mascota.getTipoAnimal());
 		entidadMascota.setRaza(mascota.getRaza());
 		entidadMascota.setFecNac(mascota.getFecNac());
 		entidadMascota.setSexo(mascota.getSexo());

@@ -46,6 +46,11 @@ public class ClienteAction extends ActionSupport{
 	@Action(value="/showClienteRegistroAction",
 			results={ @Result(name="success", location="clienteRegistrarTile",type="tiles") })
 	public String showClienteRegistrar() throws Exception{
+		try{
+			clienteLista = clienteService.obtenerTodosCliente();
+		}catch(Exception ex){
+			syso("obtenerClienteJSON: "+ex);
+		}
 		return SUCCESS;
 	}
 	@Action(value="/showFamiliaresAction",

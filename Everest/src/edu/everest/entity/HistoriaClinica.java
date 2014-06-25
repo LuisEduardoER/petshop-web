@@ -40,25 +40,15 @@ public class HistoriaClinica implements Serializable {
 
 	private String tratamiento;
 
-	//bi-directional many-to-one association to Sexo
+	//bi-directional many-to-one association to Cliente
 	@ManyToOne
-	@JoinColumn(name="idsexo")
-	private Sexo sexo;
-
-	//bi-directional many-to-one association to TipoAnimal
-	@ManyToOne
-	@JoinColumn(name="idTipoAnimal")
-	private TipoAnimal tipoanimal;
+	@JoinColumn(name="idCliente")
+	private Cliente cliente;
 
 	//bi-directional many-to-one association to Mascota
 	@ManyToOne
 	@JoinColumn(name="idMascota")
 	private Mascota mascota;
-
-	//bi-directional many-to-one association to Cliente
-	@ManyToOne
-	@JoinColumn(name="idCliente")
-	private Cliente cliente;
 
 	public HistoriaClinica() {
 	}
@@ -151,20 +141,12 @@ public class HistoriaClinica implements Serializable {
 		this.tratamiento = tratamiento;
 	}
 
-	public Sexo getSexo() {
-		return this.sexo;
+	public Cliente getCliente() {
+		return this.cliente;
 	}
 
-	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;
-	}
-
-	public TipoAnimal getTipoanimal() {
-		return this.tipoanimal;
-	}
-
-	public void setTipoanimal(TipoAnimal tipoanimal) {
-		this.tipoanimal = tipoanimal;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Mascota getMascota() {
@@ -173,14 +155,6 @@ public class HistoriaClinica implements Serializable {
 
 	public void setMascota(Mascota mascota) {
 		this.mascota = mascota;
-	}
-
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 }

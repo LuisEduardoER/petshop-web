@@ -20,6 +20,10 @@ public class Medico implements Serializable {
 
 	private String apellidos;
 
+	private int idParentMedico;
+
+	private int idUsuario;
+
 	private String nombres;
 
 	private String telefono;
@@ -38,24 +42,10 @@ public class Medico implements Serializable {
 	@JoinColumn(name="idLocal")
 	private Local local;
 
-	//bi-directional many-to-one association to Medico
-	@ManyToOne
-	@JoinColumn(name="Medico_idMedico")
-	private Medico medico;
-
-	//bi-directional many-to-one association to Medico
-	@OneToMany(mappedBy="medico")
-	private List<Medico> medicos;
-
 	//bi-directional many-to-one association to Turno
 	@ManyToOne
 	@JoinColumn(name="idTurno")
 	private Turno turno;
-
-	//bi-directional many-to-one association to Usuario
-	@ManyToOne
-	@JoinColumn(name="Usuario_idUsuario")
-	private Usuario usuario;
 
 	public Medico() {
 	}
@@ -74,6 +64,22 @@ public class Medico implements Serializable {
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}
+
+	public int getIdParentMedico() {
+		return this.idParentMedico;
+	}
+
+	public void setIdParentMedico(int idParentMedico) {
+		this.idParentMedico = idParentMedico;
+	}
+
+	public int getIdUsuario() {
+		return this.idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getNombres() {
@@ -130,50 +136,12 @@ public class Medico implements Serializable {
 		this.local = local;
 	}
 
-	public Medico getMedico() {
-		return this.medico;
-	}
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-
-	public List<Medico> getMedicos() {
-		return this.medicos;
-	}
-
-	public void setMedicos(List<Medico> medicos) {
-		this.medicos = medicos;
-	}
-
-	public Medico addMedico(Medico medico) {
-		getMedicos().add(medico);
-		medico.setMedico(this);
-
-		return medico;
-	}
-
-	public Medico removeMedico(Medico medico) {
-		getMedicos().remove(medico);
-		medico.setMedico(null);
-
-		return medico;
-	}
-
 	public Turno getTurno() {
 		return this.turno;
 	}
 
 	public void setTurno(Turno turno) {
 		this.turno = turno;
-	}
-
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 }

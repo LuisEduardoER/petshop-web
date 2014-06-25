@@ -20,9 +20,11 @@ public class TipoAnimal implements Serializable {
 
 	private String descripcion;
 
-	//bi-directional many-to-one association to HistoriaClinica
-	@OneToMany(mappedBy="tipoanimal")
-	private List<HistoriaClinica> historiaclinicas;
+	private String estado;
+
+	//bi-directional many-to-one association to Mascota
+	@OneToMany(mappedBy="tipoAnimal")
+	private List<Mascota> mascotas;
 
 	public TipoAnimal() {
 	}
@@ -43,26 +45,34 @@ public class TipoAnimal implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<HistoriaClinica> getHistoriaclinicas() {
-		return this.historiaclinicas;
+	public String getEstado() {
+		return this.estado;
 	}
 
-	public void setHistoriaclinicas(List<HistoriaClinica> historiaclinicas) {
-		this.historiaclinicas = historiaclinicas;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public HistoriaClinica addHistoriaclinica(HistoriaClinica historiaclinica) {
-		getHistoriaclinicas().add(historiaclinica);
-		historiaclinica.setTipoanimal(this);
-
-		return historiaclinica;
+	public List<Mascota> getMascotas() {
+		return this.mascotas;
 	}
 
-	public HistoriaClinica removeHistoriaclinica(HistoriaClinica historiaclinica) {
-		getHistoriaclinicas().remove(historiaclinica);
-		historiaclinica.setTipoanimal(null);
+	public void setMascotas(List<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
 
-		return historiaclinica;
+	public Mascota addMascota(Mascota mascota) {
+		getMascotas().add(mascota);
+		mascota.setTipoAnimal(this);
+
+		return mascota;
+	}
+
+	public Mascota removeMascota(Mascota mascota) {
+		getMascotas().remove(mascota);
+		mascota.setTipoAnimal(null);
+
+		return mascota;
 	}
 
 }
