@@ -2,12 +2,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
-  
+
 <s:form id="form1">
 
 <h1>Mantenimiento de Clientes</h1>
 
-<table class="dls-table" cellspacing="0" cellpadding="0">
+<table id="tableClientes" class="dls-table" cellspacing="0" cellpadding="0">
     <thead>
         <tr>
             <th>ID</th>
@@ -18,10 +18,10 @@
             <th>Ape. Mat.</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="dls-table-body">
     	<s:iterator value="clienteLista" var="objCliente" status="stat">
 	        <tr>
-	            <td> <s:property value="idCliente"/> </td>
+	            <td class="id"> <s:property value="idCliente"/> </td>
 	            <td> <s:property value="tipoDocumento.descripcion"/> </td>
 	            <td> <s:property value="documento"/> </td>
 	            <td> <s:property value="nombres"/> </td>
@@ -35,12 +35,6 @@
     <thead>
         <tr>
             <th class="tdButton">
-            	<sj:a button="true" buttonIcon="ui-icon-person" buttonText="false" cssClass="no-border">Familiares</sj:a>
-            </th>
-            <th class="tdButton">
-            	<sj:a button="true" buttonIcon="ui-icon-contact" buttonText="false" cssClass="no-border">Mascotas</sj:a>
-            </th>
-            <th class="tdButton">
             	<sj:a button="true" buttonIcon="ui-icon-document" buttonText="false" cssClass="no-border">Ver</sj:a>
             </th>
             <th class="tdButton">
@@ -49,8 +43,14 @@
             <th class="tdButton">
             	<sj:a button="true" buttonIcon="ui-icon-circle-close" buttonText="false" cssClass="no-border">Eliminar</sj:a>
             </th>
+            <th class="tdButton">&nbsp;</th>
+            <th class="tdButton">
+            	<sj:a button="true" buttonIcon="ui-icon-person" buttonText="false" cssClass="no-border">Familiares</sj:a>
+            </th>
+            <th class="tdButton">
+            	<sj:a button="true" buttonIcon="ui-icon-contact" buttonText="false" cssClass="no-border">Mascotas</sj:a>
+            </th>
             <th>&nbsp;</th>
-            
             <th class="tdButton">
             	<sj:a button="true" buttonIcon="ui-icon-seek-first" buttonText="false" cssClass="no-border">First</sj:a>
             </th>
@@ -80,6 +80,8 @@
         </tr>
     </thead>
 </table>
+
+<div id="divResult"></div>
 
 <br/>
 <sj:tabbedpanel id="localtabs">
