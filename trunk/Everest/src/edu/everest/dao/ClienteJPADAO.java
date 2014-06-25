@@ -46,18 +46,19 @@ public class ClienteJPADAO implements ClienteDAO {
 		String strQuery;
 		
 		List<Cliente> listaCliente = new ArrayList<Cliente>();
-		strQuery= "SELECT "+
-				"c.idCliente, "+
-				"u.idUsuario, " +
-				"c.idDIstrito, c.documento, c.nombres, c.apePat, "+
-				"c.apeMat, c.sexo, c.fecNac, c.email, c.telefono, c.celular, "+
-				"c.direccion, c.estado "+
-				"FROM Cliente c INNER JOIN c.tipoDocumento td "+
-//				"INNER JOIN c.usuario u "+
-				"WHERE c.estado = :estado ORDER BY c.idCliente ";
-		
-//		strQuery = "SELECT c FROM Cliente c "+ 
+//		strQuery= "SELECT "+
+//				"c.idCliente, "+
+////				"u.idUsuario, " +
+//				"c.idDIstrito, c.documento, c.nombres, c.apePat, "+
+//				"c.apeMat, c.sexo, c.fecNac, c.email, c.telefono, c.celular, "+
+//				"c.direccion, c.estado "+
+//				"FROM Cliente c " +
+////				"INNER JOIN c.tipoDocumento td "+
+////				"INNER JOIN c.usuario u "+
 //				"WHERE c.estado = :estado ORDER BY c.idCliente ";
+		
+		strQuery = "SELECT c FROM Cliente c "+ 
+				"WHERE c.estado = :estado ORDER BY c.idCliente ";
 		
 		Query query = em.createQuery( strQuery );
 		query.setParameter("estado", "1");

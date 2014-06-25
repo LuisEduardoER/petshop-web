@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,16 +56,16 @@ public class Cliente implements Serializable {
 	private int telefono;
 
 	//bi-directional many-to-one association to Cita
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
 	private List<Cita> citas;
 
 	//bi-directional many-to-one association to Cliente
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idParentCliente")
 	private Cliente cliente;
 
 	//bi-directional many-to-one association to Cliente
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
 	private List<Cliente> clientes;
 
 	//bi-directional many-to-one association to TipoDocumento
@@ -78,11 +79,11 @@ public class Cliente implements Serializable {
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to Mascota
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
 	private List<Mascota> mascotas;
 
 	//bi-directional many-to-one association to Historiaclinica
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
 	private List<HistoriaClinica> historiaclinicas;
 
 	public Cliente() {

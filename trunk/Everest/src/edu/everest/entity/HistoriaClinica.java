@@ -41,7 +41,7 @@ public class HistoriaClinica implements Serializable {
 	private String tratamiento;
 
 	//bi-directional many-to-one association to Cliente
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
 
