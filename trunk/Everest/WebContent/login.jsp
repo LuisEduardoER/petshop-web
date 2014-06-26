@@ -10,7 +10,7 @@
 		<h1>Login</h1>
 	</div>
 	
-	<form action="" method="post" class="form-horizontal">
+	<form action="validarUsuario" method="post" class="form-horizontal">
 
 		<fieldset class="well">
 			<div class="control-group">
