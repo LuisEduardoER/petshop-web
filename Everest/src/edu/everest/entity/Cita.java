@@ -1,19 +1,8 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
@@ -30,37 +19,32 @@ public class Cita implements Serializable {
 	private int idCita;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateCreate;
+	private Calendar dateCreate;
 
 	private String estado;
 
 	@Temporal(TemporalType.DATE)
 	private Calendar fecProg;
-	
+
 	@Temporal(TemporalType.TIME)
 	private Calendar hourProg;
 
 	private String userCreate;
-
-	//bi-directional many-to-one association to Cliente
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="idCliente")
-	private Cliente cliente;
 
 	//bi-directional many-to-one association to Mascota
 	@ManyToOne
 	@JoinColumn(name="idMascota")
 	private Mascota mascota;
 
-	//bi-directional many-to-one association to Medico
-	@ManyToOne
-	@JoinColumn(name="idMedico")
-	private Medico medico;
-
 	//bi-directional many-to-one association to Servicio
 	@ManyToOne
 	@JoinColumn(name="idServicio")
 	private Servicio servicio;
+
+	//bi-directional many-to-one association to Medico
+	@ManyToOne
+	@JoinColumn(name="idMedico")
+	private Medico medico;
 
 	public Cita() {
 	}
@@ -73,11 +57,11 @@ public class Cita implements Serializable {
 		this.idCita = idCita;
 	}
 
-	public Date getDateCreate() {
+	public Calendar getCalendarCreate() {
 		return this.dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setCalendarCreate(Calendar dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -113,14 +97,6 @@ public class Cita implements Serializable {
 		this.userCreate = userCreate;
 	}
 
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public Mascota getMascota() {
 		return this.mascota;
 	}
@@ -129,20 +105,20 @@ public class Cita implements Serializable {
 		this.mascota = mascota;
 	}
 
-	public Medico getMedico() {
-		return this.medico;
-	}
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-
 	public Servicio getServicio() {
 		return this.servicio;
 	}
 
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
+	}
+
+	public Medico getMedico() {
+		return this.medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 }

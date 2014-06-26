@@ -1,20 +1,9 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
@@ -55,10 +44,6 @@ public class Cliente implements Serializable {
 
 	private int telefono;
 
-	//bi-directional many-to-one association to Cita
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
-	private List<Cita> citas;
-
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idParentCliente")
@@ -74,17 +59,13 @@ public class Cliente implements Serializable {
 	private TipoDocumento tipoDocumento;
 
 	//bi-directional many-to-one association to Usuario
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to Mascota
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
 	private List<Mascota> mascotas;
-
-	//bi-directional many-to-one association to Historiaclinica
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
-	private List<HistoriaClinica> historiaclinicas;
 
 	public Cliente() {
 	}
@@ -193,28 +174,6 @@ public class Cliente implements Serializable {
 		this.telefono = telefono;
 	}
 
-	public List<Cita> getCitas() {
-		return this.citas;
-	}
-
-	public void setCitas(List<Cita> citas) {
-		this.citas = citas;
-	}
-
-	public Cita addCita(Cita cita) {
-		getCitas().add(cita);
-		cita.setCliente(this);
-
-		return cita;
-	}
-
-	public Cita removeCita(Cita cita) {
-		getCitas().remove(cita);
-		cita.setCliente(null);
-
-		return cita;
-	}
-
 	public Cliente getCliente() {
 		return this.cliente;
 	}
@@ -245,6 +204,14 @@ public class Cliente implements Serializable {
 		return cliente;
 	}
 
+	public TipoDocumento getTipoDocumento() {
+		return this.tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
@@ -273,36 +240,6 @@ public class Cliente implements Serializable {
 		mascota.setCliente(null);
 
 		return mascota;
-	}
-
-	public List<HistoriaClinica> getHistoriaclinicas() {
-		return this.historiaclinicas;
-	}
-
-	public void setHistoriaclinicas(List<HistoriaClinica> historiaclinicas) {
-		this.historiaclinicas = historiaclinicas;
-	}
-
-	public HistoriaClinica addHistoriaclinica(HistoriaClinica historiaclinica) {
-		getHistoriaclinicas().add(historiaclinica);
-		historiaclinica.setCliente(this);
-
-		return historiaclinica;
-	}
-
-	public HistoriaClinica removeHistoriaclinica(HistoriaClinica historiaclinica) {
-		getHistoriaclinicas().remove(historiaclinica);
-		historiaclinica.setCliente(null);
-
-		return historiaclinica;
-	}
-
-	public TipoDocumento getTipoDocumento() {
-		return tipoDocumento;
-	}
-
-	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
 	}
 
 }
