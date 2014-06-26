@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,7 +62,7 @@ public class Mascota implements Serializable {
 	private String sexo;
 
 	//bi-directional many-to-one association to Cita
-	@OneToMany(mappedBy="mascota")
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="mascota")
 	private List<Cita> citas;
 
 	//bi-directional many-to-one association to Cliente
@@ -70,7 +71,7 @@ public class Mascota implements Serializable {
 	private Cliente cliente;
 
 	//bi-directional many-to-one association to HistoriaClinica
-	@OneToMany(mappedBy="mascota")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="mascota")
 	private List<HistoriaClinica> historiaClinicas;
 	
 	@ManyToOne
