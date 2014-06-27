@@ -1,7 +1,11 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import edu.everest.util.Constants;
+
 import java.util.Date;
 import java.util.List;
 
@@ -75,6 +79,13 @@ public class Opcion implements Serializable {
 	}
 
 	public String getEstado() {
+		
+		if(this.estado.equals(Constants.KV_STATE_COD_INACTIVE))
+			this.estado = Constants.KV_STATE_INACTIVE;
+		
+		else if(this.estado.equals(Constants.KV_STATE_COD_ACTIVE))
+			this.estado = Constants.KV_STATE_ACTIVE;
+		
 		return this.estado;
 	}
 

@@ -67,9 +67,9 @@ $(function() {
 	            	<s:url id="update" action="showOpcionListaAction" escapeAmp="false">
 		       		    <s:param name="rol.idRol" value="idRol"/>
 		       		</s:url>
-					<sj:a openDialog="dlgOpcionForm"
+					<sj:a 
 					  href="%{update}"
-					  targets="dlgOpcionForm" 
+					  targets="mainContent" 
 					  button="true" 
 					  buttonText="false"
 					  cssClass="no-border"
