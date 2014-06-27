@@ -135,7 +135,7 @@ $.subscribe('onstop', function(event,data) {
 					</td>
 					<td>
 
-<%-- 						<s:url var="urlTurno" action="loadTurnoJSON"/> --%> 					        
+						<s:url var="urlTurno" action="loadTurnoJSON"/> 					        
  					     <sj:radio
  					     	id="rdnTurno"
  					        href="%{urlTurno}"
@@ -175,7 +175,7 @@ $.subscribe('onstop', function(event,data) {
 	       	</tr>
 		</table>
 		
-<%-- 		<s:url id="urlLoadCalendar" action="loadCalendarAction"/> --%>
+		<s:url id="urlLoadCalendar" action="loadCalendarAction"/>
 		<sj:div
 			id="divCalendarDinamic"
 			formIds="formHorarios"
