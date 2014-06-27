@@ -15,6 +15,12 @@ public class Constants {
 	
 	public static final String KV_SEXO_MACHO     	= "M";
 	public static final String KV_SEXO_HEMBRA	 	= "H";
+
+	public static final String KV_STATE_INACTIVE	= "Inactivo";
+	public static final String KV_STATE_ACTIVE		= "Activo";
+
+	public static final String KV_STATE_COD_INACTIVE	= "0";
+	public static final String KV_STATE_COD_ACTIVE		= "1";
 	
 	public static final String KV_IMG_PET_DEFAULT 	= "/img/PetShop_Gray.png";
 	

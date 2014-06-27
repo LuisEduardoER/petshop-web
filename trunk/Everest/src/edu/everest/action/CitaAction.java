@@ -62,6 +62,8 @@ public class CitaAction extends ActionSupport{
 			results={ @Result(name="success", type="json") })
 	public String loadTurno() throws Exception{
 		
+		System.out.println("===== loadTurnoJSON =====");
+		
 		turnoLista.add(new Tab("M", "Manana"));
 		turnoLista.add(new Tab("T", "Tarde"));
 		
@@ -71,7 +73,7 @@ public class CitaAction extends ActionSupport{
 	@Action(value="/validarClienteAction",
 			results={ @Result(name="success",location="/cita/citaMascota.jsp") })
 	public String validarClient() throws Exception{
-		System.out.println("validarClient");
+		System.out.println("===== validarClienteActio =====");
 		System.out.println("Documento: "+cliente.getDocumento());
 		
 		if(cliente.getDocumento() != null){
@@ -92,6 +94,7 @@ public class CitaAction extends ActionSupport{
 	@Action(value="/loadDaysOfWeekAction",
 			results={ @Result(name="success",location="/cita/citaHorarios.jsp") })
 	public String loadDays(){
+		System.out.println("===== loadDaysOfWeekAction =====");
 		
 		calFirstDayOfWeek = Calendar.getInstance();
 		
@@ -110,6 +113,7 @@ public class CitaAction extends ActionSupport{
 	@Action(value="/reloadCalendarAction",
 	results={ @Result(name="success",location="/cita/citaCalendar.jsp") })
 	public String reloadCalendar(){
+		System.out.println("===== reloadCalendarAction =====");
 		
 		System.out.println("oper: "+oper);
 		if(oper != null || !oper.equals("")){
@@ -132,6 +136,7 @@ public class CitaAction extends ActionSupport{
 	@Action(value="/loadCalendarAction",
 			results={ @Result(name="success",location="/cita/citaCalendar.jsp") })
 	public String loadCalendar() {
+		System.out.println("===== loadCalendarAction =====");
 		
 		calNow = Calendar.getInstance();
 		calNow.add(Calendar.HOUR_OF_DAY, 1);
@@ -147,7 +152,7 @@ public class CitaAction extends ActionSupport{
 			strHeadSchedule = MiUtil.getMonthES( calFirstDayOfWeek.get(Calendar.MONTH)+1 )+ " "+ calFirstDayOfWeek.get(Calendar.YEAR);		
 			
 			//--------------------------
-			System.out.println("turno: "+turno);
+//			System.out.println("turno: "+turno);
 			
 			String strHourIni = "", strHourFin = "", strHourAux = "";
 			String strFecIni  = "", strFecFin  = "";
@@ -193,13 +198,13 @@ public class CitaAction extends ActionSupport{
 				
 			}
 			
-			System.out.println("["+dateFormat.format(cFecIni.getTime())+" - "+dateFormat.format(cFecFin.getTime())+"]");
-			System.out.println("["+hourFormat.format(cFecIni.getTime())+" - "+hourFormat.format(cFecFin.getTime())+"]");
+//			System.out.println("["+dateFormat.format(cFecIni.getTime())+" - "+dateFormat.format(cFecFin.getTime())+"]");
+//			System.out.println("["+hourFormat.format(cFecIni.getTime())+" - "+hourFormat.format(cFecFin.getTime())+"]");
 			
 			//------------------------------------------------------------------------
 			
 			List<Cita> citaLista = citaService.obtenerTodosCliente(cFecIni, cFecFin);
-			System.out.println( "citaLista: "+citaLista.size() );
+//			System.out.println( "citaLista: "+citaLista.size() );
 			Cita objCita = new Cita();
 			
 			int n=1;
@@ -209,7 +214,7 @@ public class CitaAction extends ActionSupport{
 			strHourAux = hourFormat.format(cFecAux.getTime());
 			strHourFin = hourFormat.format(cFecFin.getTime());
 			
-			System.out.println("");
+//			System.out.println("");
 			
 			//Cargando Horas
 			while(!hourFormat.format(cFecIni.getTime()).equals(hourFormat.format(cFecFin.getTime()))){
@@ -232,20 +237,20 @@ public class CitaAction extends ActionSupport{
 						objCita.getFecProg().set(Calendar.MINUTE, objCita.getHourProg().get(Calendar.MINUTE));
 						strFecAux2 = dateFormatFull.format(objCita.getFecProg().getTime());
 						
-						System.out.println("strFecAux1: "+strFecAux1 );
-						System.out.println("Cita Prog : "+strFecAux2 );
-						System.out.println("FechaAct  : "+ dateFormatFull.format(calNow.getTime()));
+//						System.out.println("strFecAux1: "+strFecAux1 );
+//						System.out.println("Cita Prog : "+strFecAux2 );
+//						System.out.println("FechaAct  : "+ dateFormatFull.format(calNow.getTime()));
 						
 						if( strFecAux1.equals(strFecAux2) ){
 							tipo = 2;
-							System.out.println("Reservado");
+//							System.out.println("Reservado");
 							c=citaLista.size();
 						}else if(calNow.getTime().after(cFecIni.getTime())){
 							tipo = 3;
-							System.out.println("Bloqueado");
+//							System.out.println("Bloqueado");
 						}else 
 							tipo = 0;
-						System.out.println("");
+//						System.out.println("");
 						
 					}
 					

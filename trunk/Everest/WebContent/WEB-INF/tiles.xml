@@ -39,17 +39,15 @@
       <put-attribute name="title"  value="PetShop"/>
       <put-attribute name="topBody"   value="/index.jsp"/>
   </definition>
-  
   <definition name="loginTile" extends="layoutSecond">
       <put-attribute name="title"  value="Login"/>
       <put-attribute name="body"   value="/login.jsp"/>
   </definition>
-  
   <definition name="intranetBienvenidoTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/intranetBienvenido.jsp"/>
   </definition>
-  
+
   <definition name="proveedorListaTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mantenimiento/proveedorLista.jsp"/>
@@ -63,6 +61,16 @@
       <put-attribute name="body"   value="/mantenimiento/proveedorDetail.jsp"/>
   </definition>
   
+  <definition name="rolListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/rol/rolLista.jsp"/>
+  </definition>
+  
+  <definition name="opcionListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/opcion/opcionLista.jsp"/>
+  </definition>
+  
   <definition name="clienteRegistrarTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/cliente/clienteMantenimiento.jsp"/>
@@ -72,7 +80,6 @@
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mascota/mascotaMantenimiento.jsp"/>
   </definition>
-  
   <definition name="mascotaFormTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mascota/mascotaForm.jsp"/>
@@ -82,7 +89,6 @@
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/cita/citaRegistrar.jsp"/>
   </definition>
-  
   <definition name="citaRegistrarByClienteTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/cita/citaRegistrarByCliente.jsp"/>

@@ -1,9 +1,19 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import edu.everest.util.Constants;
 
 
 /**
@@ -64,10 +74,24 @@ public class Rol implements Serializable {
 	}
 
 	public String getEstado() {
+		
+		if(this.estado.equals(Constants.KV_STATE_COD_INACTIVE))
+			this.estado = Constants.KV_STATE_INACTIVE;
+		
+		else if(this.estado.equals(Constants.KV_STATE_COD_ACTIVE))
+			this.estado = Constants.KV_STATE_ACTIVE;
+		
 		return this.estado;
 	}
 
 	public void setEstado(String estado) {
+		
+		if(estado.equals(Constants.KV_STATE_INACTIVE))
+			this.estado = Constants.KV_STATE_COD_INACTIVE;
+		
+		else if(estado.equals(Constants.KV_STATE_ACTIVE))
+			this.estado = Constants.KV_STATE_COD_ACTIVE;
+		
 		this.estado = estado;
 	}
 
