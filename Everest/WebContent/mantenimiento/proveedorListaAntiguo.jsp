@@ -54,7 +54,7 @@
     </table>
     
 	
-</s:form>
+
 
 <sj:dialog 
     	id="myclickdialog" 
@@ -66,3 +66,5 @@
      <s:include value="/mantenimiento/proveedorForm.jsp"/>
      
     </sj:dialog>
+
+</s:form>

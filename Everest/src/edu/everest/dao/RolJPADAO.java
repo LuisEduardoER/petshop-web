@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import edu.everest.entity.Rol;
+import edu.everest.util.Constants;
 
 public class RolJPADAO implements RolDAO {
 	private EntityManagerFactory emf;
@@ -68,6 +69,12 @@ public class RolJPADAO implements RolDAO {
 		
 		if(rol.getEstado() == null)
 			rol.setEstado("1");
+		
+		if(rol.getEstado().equals(Constants.KV_STATE_INACTIVE))
+			rol.setEstado( Constants.KV_STATE_COD_INACTIVE );
+		
+		else if(rol.getEstado().equals(Constants.KV_STATE_ACTIVE))
+			rol.setEstado( Constants.KV_STATE_COD_ACTIVE );
 		
 		em.merge(rol);
 		em.flush();

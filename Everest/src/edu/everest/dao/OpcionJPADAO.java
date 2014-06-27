@@ -28,6 +28,7 @@ public class OpcionJPADAO implements OpcionDAO {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Opcion> obtenerOpcionParentByRol(Rol rol) throws Exception {
+				
 		em=emf.createEntityManager();
 		
 		List<Opcion> listaOpcion = new ArrayList<Opcion>();
@@ -49,6 +50,7 @@ public class OpcionJPADAO implements OpcionDAO {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Opcion> obtenerOpcionByParent(Opcion opcion) throws Exception {
+		
 		em=emf.createEntityManager();
 		
 		List<Opcion> listaOpcion = new ArrayList<Opcion>();

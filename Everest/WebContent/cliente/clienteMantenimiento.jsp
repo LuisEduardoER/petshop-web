@@ -60,8 +60,7 @@ $(function() {
 		href="%{urlLista}"
 		viewrecords="true"
 		rowList="10,20,30"
-    	rowNum="10"
-
+    	rowNum="10"	
 		navigator="true"
 		navigatorView="true"
 		navigatorAdd="true"
@@ -91,7 +90,6 @@ $(function() {
 		indicator="myLoadingBar"
 		loadingText="Cargando..."
 		targets="divResult"
-		autowidth="true"
 		editurl="%{URLMant}" width="650">
 	
 	<sjg:gridColumn name="id" index="id" title="ID" editable="true" hidden="true"/>

@@ -55,11 +55,8 @@ Registro de Citas
   					button="true"
   					buttonIcon="ui-icon-calendar"
   					href="%{urlLoadHorarios}"
-  					targets="dlgCalendar">Horarios</sj:a>
+  					>Horarios</sj:a>
  					 
-<%-- 				<sj:a openDialog="dlgCalendar" --%>
-<%--  					button="true"  --%>
-<%--  					buttonIcon="ui-icon-calendar">Horarios</sj:a>  --%>
 			</td>
 		</tr>
 		<tr>
@@ -103,8 +100,6 @@ Registro de Citas
        		</td>
        	</tr>
 	</table>
- 	
-<%--  	<s:include value="citaHorarios.jsp"/> --%>
  	
 </sj:dialog>
     

@@ -2,21 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-<script>
-$(function() {
-	$.subscribe('closeDialog', function(event,data) {
-		var html = "<table style='width: 100%;'>"+
-				    	"<tr>"+
-						"<td style='width: 100%; text-align: center;'>"+
-							"<img alt='Loading' src='img/loading.gif'>"+
-						"</td>"+
-					"</tr>"+
-				"</table>";
-        $("#dlgMascotaForm").empty();
-        $("#dlgMascotaForm").html(html);
-    });
-});
-</script>
+
 
 <s:form id="form1">
 
@@ -34,9 +20,9 @@ $(function() {
 	<tr> 
 		
 		<td>
-			<sj:a openDialog="dlgMascotaForm"
+			<sj:a openDialog="dlgForm"
 				  href="%{insert}"
-				  targets="dlgMascotaForm" 
+				  targets="dlgForm" 
 				  button="true" 
 				  indicator="myLoadingBar"
 				  buttonIcon="ui-icon-circle-plus">
@@ -96,9 +82,9 @@ $(function() {
 	       		    <s:param name="mascota.idMascota" value="idMascota"/>
 	       		    <s:param name="cliente.idCliente" value="cliente.idCliente"/>
 	       		</s:url>
-               	<sj:a openDialog="dlgMascotaForm"
+               	<sj:a openDialog="dlgForm"
 				  href="%{view}"
-				  targets="dlgMascotaForm" 
+				  targets="dlgForm" 
 				  button="true" 
 				  buttonText="false"
 				  indicator="myLoadingBar"
@@ -115,9 +101,9 @@ $(function() {
 <%--                	<s:a href="%{update}" cssClass="btn btn-primary"> --%>
 <%-- 					<span class="ui-button-icon-primary ui-icon ui-icon-pencil"></span> --%>
 <%-- 				</s:a> --%>
-				<sj:a openDialog="dlgMascotaForm"
+				<sj:a openDialog="dlgForm"
 				  href="%{update}"
-				  targets="dlgMascotaForm" 
+				  targets="dlgForm" 
 				  button="true" 
 				  buttonText="false"
 				  indicator="myLoadingBar"
@@ -129,9 +115,9 @@ $(function() {
                	<s:url id="detalle" action="detalleProveedor">
 	       		   <s:param name="mascota.idMascota" value="idMascota"/>
 	       		</s:url>
-               	<sj:a openDialog="dlgMascotaForm"
+               	<sj:a openDialog="dlgForm"
 				  href="%{update}"
-				  targets="dlgMascotaForm" 
+				  targets="dlgForm" 
 				  button="true" 
 				  buttonText="false"
 				  indicator="myLoadingBar"
@@ -154,7 +140,7 @@ $(function() {
 </s:form>
 
 <sj:dialog 
-    	id="dlgMascotaForm" 
+    	id="dlgForm" 
     	autoOpen="false"
     	width="450"
     	minHeight="350"
