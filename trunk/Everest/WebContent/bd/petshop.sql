@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `petshop` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `petshop`;
--- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.18, for Win32 (x86)
 --
 -- Host: localhost    Database: petshop
 -- ------------------------------------------------------
--- Server version	5.5.37
+-- Server version	5.6.18-enterprise-commercial-advanced
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -276,13 +276,13 @@ CREATE TABLE `opcion` (
   `Titulo` varchar(200) NOT NULL,
   `url` varchar(1000) NOT NULL,
   `orden` int(11) DEFAULT NULL,
-  `estado` char(1) DEFAULT NULL,
+  `estado` char(50) DEFAULT NULL,
   `userCreate` varchar(200) DEFAULT NULL,
   `dateCreate` datetime DEFAULT NULL,
   PRIMARY KEY (`idOpcion`),
   KEY `fk_opcion_parent_idx` (`parentOpcionId`),
   CONSTRAINT `fk_opcion_parent` FOREIGN KEY (`parentOpcionId`) REFERENCES `opcion` (`idOpcion`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,7 +291,7 @@ CREATE TABLE `opcion` (
 
 LOCK TABLES `opcion` WRITE;
 /*!40000 ALTER TABLE `opcion` DISABLE KEYS */;
-INSERT INTO `opcion` VALUES (1,NULL,'Mantenimientos','Mantenimiento','#',1,'1',NULL,NULL),(2,1,'Mant. Usuarios','Usuario','#',1,'1',NULL,NULL),(3,1,'Mant. Citas','Cita','#',2,'1',NULL,NULL),(4,NULL,'Citas','Cita','#',2,'1',NULL,NULL),(5,4,'Registro de Cita','Registro de Cita','showCitaRegistroAction',1,'1',NULL,NULL),(6,NULL,'Cliente','Cliente','#',3,'1',NULL,NULL),(7,6,'Registro de Cliente','Registro de Cliente','showClienteRegistroAction',1,'1',NULL,NULL),(8,1,'Mant. Proveedores','Proveedor','obtenerProveedores',3,'1',NULL,NULL);
+INSERT INTO `opcion` VALUES (1,NULL,'Mantenimientos','Mantenimiento','#',1,'Activo',NULL,NULL),(2,1,'Mant. Usuarios','Usuario','#',1,'Activo',NULL,NULL),(3,1,'Mant. Citas','Cita','#',2,'Activo',NULL,NULL),(4,NULL,'Citas','Cita','#',2,'Activo',NULL,NULL),(5,4,'Registro de Cita','Registro de Cita','showCitaRegistroAction',1,'Activo',NULL,NULL),(6,NULL,'Cliente','Cliente','#',3,'Activo',NULL,NULL),(7,1,'Registro de Cliente','Registro de Cliente','showClienteRegistroAction',1,'Activo',NULL,NULL),(8,1,'Mant. Proveedores','Proveedor','obtenerProveedores',3,'Activo',NULL,NULL),(9,1,'Mant. Roles','Rol','showRolLista',4,'Activo',NULL,NULL);
 /*!40000 ALTER TABLE `opcion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,7 +356,7 @@ DROP TABLE IF EXISTS `rol`;
 CREATE TABLE `rol` (
   `idRol` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(200) NOT NULL,
-  `estado` char(1) DEFAULT NULL,
+  `estado` char(50) DEFAULT NULL,
   `userCreate` varchar(200) DEFAULT NULL,
   `dateCreate` datetime DEFAULT NULL,
   PRIMARY KEY (`idRol`)
@@ -369,7 +369,7 @@ CREATE TABLE `rol` (
 
 LOCK TABLES `rol` WRITE;
 /*!40000 ALTER TABLE `rol` DISABLE KEYS */;
-INSERT INTO `rol` VALUES (1,'Administrador','1',NULL,NULL),(2,'Secretaria','1',NULL,NULL),(3,'Pediatra','1',NULL,NULL),(4,'Operario','1',NULL,NULL),(5,'Cliente','1',NULL,NULL);
+INSERT INTO `rol` VALUES (1,'Administrador','Activo',NULL,NULL),(2,'Secretaria','Activo',NULL,NULL),(3,'Pediatra','Activo',NULL,NULL),(4,'Operario','Activo',NULL,NULL),(5,'Cliente','Activo',NULL,NULL);
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -545,4 +545,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-26 18:26:49
+-- Dump completed on 2014-06-28  5:12:08
