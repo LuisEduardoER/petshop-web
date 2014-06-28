@@ -1,13 +1,20 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
-import edu.everest.util.Constants;
-
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -39,16 +46,16 @@ public class Opcion implements Serializable {
 	private String userCreate;
 
 	//bi-directional many-to-one association to Opcion
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="parentOpcionId")
 	private Opcion opcion;
 
 	//bi-directional many-to-one association to Opcion
-	@OneToMany(mappedBy="opcion")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="opcion")
 	private List<Opcion> opcions;
 
 	//bi-directional many-to-one association to RolOpcion
-	@OneToMany(mappedBy="opcion")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="opcion")
 	private List<RolOpcion> rolopcions;
 
 	public Opcion() {
@@ -79,13 +86,6 @@ public class Opcion implements Serializable {
 	}
 
 	public String getEstado() {
-		
-		if(this.estado.equals(Constants.KV_STATE_COD_INACTIVE))
-			this.estado = Constants.KV_STATE_INACTIVE;
-		
-		else if(this.estado.equals(Constants.KV_STATE_COD_ACTIVE))
-			this.estado = Constants.KV_STATE_ACTIVE;
-		
 		return this.estado;
 	}
 

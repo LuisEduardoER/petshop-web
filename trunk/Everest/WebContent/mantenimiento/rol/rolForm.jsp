@@ -35,7 +35,7 @@
 				    <td>
 <%-- 				    	<sj:a button="true" buttonIcon="ui-icon-disk" href="insertarOActualizarRol.action" formIds="frmRol">Guardar</sj:a> --%>
 <%-- 				    	<s:submit action="insertarOActualizarRol" key="button.label.submit" cssClass="butStnd"/> --%>
-				    	<sj:submit button="true" href="insertarOActualizarRol" value="Guardar"/>
+				    	<sj:submit button="true" value="Guardar"/>
 				    </td>
 		        	<td><s:reset key="button.label.cancel" cssClass="butStnd"/></td>
 				 </tr>

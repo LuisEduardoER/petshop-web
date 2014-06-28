@@ -11,6 +11,7 @@
      </table>
      		 	
     <s:form id="frmOpcion" action="insertarOActualizarOpcion">
+    	<s:hidden name="rol.idRol"/>
     	<s:hidden name="opcion.idOpcion"/>
 		<table align="center">
 		    <tr>
@@ -22,7 +23,7 @@
 		    	<td>
 		    		<s:select
 				       name="opcion.opcion.idOpcion"
-				       headerKey="" headerValue="-- Seleccione --"
+				       headerKey="0" headerValue="-- Parent --"
 				       list="opcionParentLista"
 				       listKey="idOpcion"
 				       listValue="descripcion"
@@ -65,7 +66,7 @@
 				    <td>
 <%-- 				    	<sj:a button="true" buttonIcon="ui-icon-disk" href="insertarOActualizarOpcion.action" formIds="frmOpcion">Guardar</sj:a> --%>
 <%-- 				    	<s:submit action="insertarOActualizarOpcion" key="button.label.submit" cssClass="butStnd"/> --%>
-				    	<sj:submit button="true" href="insertarOActualizarOpcion" value="Guardar"/>
+				    	<sj:submit button="true" value="Guardar"/>
 				    </td>
 		        	<td><s:reset key="button.label.cancel" cssClass="butStnd"/></td>
 				 </tr>

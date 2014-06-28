@@ -9,6 +9,7 @@ public interface OpcionDAO {
 	
 	public Opcion obtenerOpcion(Opcion opcion) throws Exception;
 	public List<Opcion> obtenerOpcionParentByRol(Rol rol) throws Exception;
+	public List<Opcion> obtenerOpcionParents() throws Exception;
 	public List<Opcion> obtenerOpcionByParent(Opcion opcion) throws Exception;
 	
 	public List<Opcion> obtenerTodos() throws Exception;

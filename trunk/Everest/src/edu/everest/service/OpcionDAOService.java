@@ -52,4 +52,9 @@ public class OpcionDAOService implements OpcionService {
 		return dao.obtenerOpcion(opcion);
 	}
 
+	@Override
+	public List<Opcion> obtenerOpcionParents() throws Exception {
+		return dao.obtenerOpcionParents();
+	}
+
 }

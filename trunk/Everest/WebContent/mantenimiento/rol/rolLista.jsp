@@ -19,7 +19,7 @@ $(function() {
 });
 </script>
 
-<s:form id="form1">
+
 
 <h1>Mantenimiento de Roles</h1>
 
@@ -62,21 +62,19 @@ $(function() {
 					</sj:a>
 	            </td>
 	            <td class="tdButton">
-<%-- 	            	<sj:a button="true" buttonIcon="ui-icon-circlesmall-plus" buttonText="false" cssClass="no-border">Opciones</sj:a> --%>
-	            	
-	            	<s:url id="update" action="showOpcionListaAction" escapeAmp="false">
-		       		    <s:param name="rol.idRol" value="idRol"/>
-		       		</s:url>
-					<sj:a 
-					  href="%{update}"
-					  targets="mainContent" 
-					  button="true" 
-					  buttonText="false"
-					  cssClass="no-border"
-					  indicator="myLoadingBar"	
-					  buttonIcon="ui-icon-circlesmall-plus">
-						Opciones
-					</sj:a>
+		       		<s:form id="formOpcion%{#stat.count}" action="showOpcionListaAction" method="post">
+				      <s:hidden name="rol.idRol" value="%{idRol}"/>
+				    
+ 					<sj:submit 
+ 						type="button"
+ 						formIds="formOpcion%{#stat.count}"
+ 						indicator="myLoadingBar"
+ 						button="true"
+ 						buttonIcon="ui-icon-circlesmall-plus" 
+ 						buttonText="false">
+ 						Opciones
+ 					</sj:submit>
+ 					</s:form>
 	            </td>
 	        </tr>
 		</s:iterator>
@@ -90,7 +88,6 @@ $(function() {
 
 <br/>
 
-</s:form>
 
 <sj:dialog 
     	id="dlgForm" 
