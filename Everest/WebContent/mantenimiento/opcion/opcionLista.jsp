@@ -21,13 +21,13 @@ $(function() {
 
 <s:form id="form1">
 
-<h1>Mantenimiento de Opciones</h1>
-
-<div id="gridinfo" class="ui-widget-content ui-corner-all">
+<fieldset>
+	<legend>
+		<h1>Mantenimiento de Opciones</h1>
+	</legend>
 	<s:hidden name="rol.idRol"/>
 	<h2> Rol: <s:property value="rol.descripcion"/> </h2>
-</div>
-<br/>
+</fieldset>
 
 <table id="tableClientes" class="dls-table" cellspacing="0" cellpadding="0">
     <thead>
@@ -49,7 +49,7 @@ $(function() {
 	            <td><s:property value="idOpcion"/></td>
 	            
 	            <s:if test="opcion.titulo!=''">
-		        	<td><s:property value="opcion.titulo"/></td>
+		        	<td><s:property value="opcion.descripcion"/></td>
 		        </s:if>
 		        <s:else>
 		        	<td style="background-color: #62B4C9; color: #FFF;">Parent</td>
@@ -67,9 +67,9 @@ $(function() {
 		       		    <s:param name="rol.idRol" value="rol.idRol"/>
 		       		    <s:param name="oper">edit</s:param>
 		       		</s:url>
-					<sj:a openDialog="dlgForm"
+					<sj:a openDialog="dlgOpcionForm"
 					  href="%{update}"
-					  targets="dlgForm" 
+					  targets="dlgOpcionForm" 
 					  button="true" 
 					  buttonText="false"
 					  cssClass="no-border"

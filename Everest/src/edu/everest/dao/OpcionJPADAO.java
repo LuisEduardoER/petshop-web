@@ -96,9 +96,6 @@ public class OpcionJPADAO implements OpcionDAO {
 		//entidadOpcion.setUser(opcion.getUser());
 		//entidadOpcion.setPass(opcion.getPass());
 		
-		if(opcion.getEstado() == null)
-			entidadOpcion.setEstado("1");
-				
 		//2.ejecuta las operaciones
 		em.persist(entidadOpcion);
 		em.flush();
@@ -113,11 +110,30 @@ public class OpcionJPADAO implements OpcionDAO {
 		em=emf.createEntityManager();
 		em.getTransaction().begin();
 		
-		if(opcion.getEstado() == null)
-			opcion.setEstado("1");
-		
-		em.merge(opcion);
+		if(opcion.getOpcion().getIdOpcion() != 0){
+			
+			em.merge(opcion);
+			
+		}
+		else{
+			Query query = em.createQuery( "UPDATE Opcion o "
+					+ "SET o.descripcion = :descripcion, "
+					+ "o.titulo = :titulo, "
+					+ "o.url = :url, "
+					+ "o.orden = :orden, "
+					+ "o.estado = :estado "
+					+ "WHERE o.idOpcion = :idOpcion " );
+			
+			query.setParameter("descripcion", 	opcion.getDescripcion() );
+			query.setParameter("titulo", 		opcion.getTitulo() );
+			query.setParameter("url", 			opcion.getUrl() );
+			query.setParameter("orden", 		opcion.getOrden() );
+			query.setParameter("estado", 		opcion.getEstado() );
+			query.setParameter("idOpcion", 		opcion.getIdOpcion() );
+			query.executeUpdate();
+		}
 		em.flush();
+		
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -133,6 +149,23 @@ public class OpcionJPADAO implements OpcionDAO {
 		em.flush();
 		em.getTransaction().commit();
 		em.close();
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List<Opcion> obtenerOpcionParents() throws Exception {
+		em=emf.createEntityManager();
+		
+		List<Opcion> listaOpcion = new ArrayList<Opcion>();
+		Query query = em.createQuery( "SELECT o FROM Opcion o "
+									+ "WHERE o.opcion IS NULL ORDER BY o.orden " );
+		List l =  query.getResultList();
+		for ( int i=0; i < l.size(); i++ ) {
+			Opcion entidad = (Opcion)l.get(i);
+			listaOpcion.add(entidad);
+		}
+		em.close();
+		return listaOpcion;
 	}
 	
 	

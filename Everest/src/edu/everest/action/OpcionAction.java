@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import edu.everest.entity.Opcion;
 import edu.everest.entity.Rol;
+import edu.everest.entity.Tab;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.OpcionService;
 import edu.everest.service.RolService;
@@ -24,14 +25,15 @@ public class OpcionAction extends ActionSupport{
 	private Rol rol;
 	private List<Opcion> opcionLista;
 	private List<Opcion> opcionParentLista;
-	private String oper;
+	private List<Tab> 	 tipoLista;
+	private String oper, tipo;
 	
 	private static ApplicationBusinessDelegate abd = new ApplicationBusinessDelegate();
-	private static RolService rolService = abd.getRolService();
-	private static OpcionService opcionService = abd.getOpcionService();
+	private static RolService rolService 		= abd.getRolService();
+	private static OpcionService opcionService 	= abd.getOpcionService();
 	
 	@Action(value = "/showOpcionListaAction", 
-			results = { @Result(location = "/mantenimiento/opcion/opcionLista.jsp", name = "success") } )
+			results = { @Result(location = "opcionListaTile", name = "success", type="tiles") } )
 	public String showOpciones() throws Exception {
 		System.out.println("===== showOpcionListaAction =====");
 		
@@ -72,7 +74,7 @@ public class OpcionAction extends ActionSupport{
 		System.out.println("===== showRolFormAction =====");
 		
 		if (opcion != null && opcion.getIdOpcion() != 0) {	
-			opcionParentLista = opcionService.obtenerOpcionParentByRol(rol);
+			opcionParentLista = opcionService.obtenerOpcionParents();
 			System.out.println("opcionParentLista: "+opcionParentLista.size() );
 			
 			opcion = opcionService.obtenerOpcion(opcion);
@@ -82,19 +84,36 @@ public class OpcionAction extends ActionSupport{
 	}
 	
 	@Action(value = "/insertarOActualizarOpcion",
-			results = { @Result(location = "showOpcionLista", name = "success", type = "redirectAction")})
+			results = { @Result(location = "opcionListaTile", name = "success", type="tiles")})
 	public String insertarOActualizar() throws Exception {
 		System.out.println("===== insertarOActualizarOpcion =====");
-		System.out.println("cod:"+rol.getIdRol() );
-	
-		if (rol.getIdRol() == 0) {
-			rolService.insertarRol(rol);
+		
+		System.out.println("opcion:"+opcion.getIdOpcion() );
+		System.out.println("rol: "+rol.getIdRol() );
+		
+		if (opcion.getIdOpcion() == 0) {
+			opcionService.insertarOpcion(opcion);
 		} else {
-			rolService.actualizarRol(rol);
+			opcionService.actualizarOpcion(opcion);
 		}
+		
+		showOpciones();
 		
 		return SUCCESS;
 	}	
+	
+	@Action(value="/loadTipoJSON",
+			results={ @Result(name="success", type="json") })
+	public String loadTipo() throws Exception{
+		
+		System.out.println("===== loadTipoJSON =====");
+		
+		tipoLista = new ArrayList<Tab>();
+		tipoLista.add(new Tab("0", "Parent"));
+		tipoLista.add(new Tab("1", "Opcion"));
+		
+		return SUCCESS;
+	}
 	
 	public Opcion getOpcion() {
 		return opcion;
@@ -127,6 +146,22 @@ public class OpcionAction extends ActionSupport{
 
 	public void setOpcionParentLista(List<Opcion> opcionParentLista) {
 		this.opcionParentLista = opcionParentLista;
+	}
+
+	public List<Tab> getTipoLista() {
+		return tipoLista;
+	}
+
+	public void setTipoLista(List<Tab> tipoLista) {
+		this.tipoLista = tipoLista;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }

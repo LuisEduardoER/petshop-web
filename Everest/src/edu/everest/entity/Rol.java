@@ -13,8 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import edu.everest.util.Constants;
-
 
 /**
  * The persistent class for the rol database table.
@@ -74,24 +72,10 @@ public class Rol implements Serializable {
 	}
 
 	public String getEstado() {
-		
-		if(this.estado.equals(Constants.KV_STATE_COD_INACTIVE))
-			this.estado = Constants.KV_STATE_INACTIVE;
-		
-		else if(this.estado.equals(Constants.KV_STATE_COD_ACTIVE))
-			this.estado = Constants.KV_STATE_ACTIVE;
-		
 		return this.estado;
 	}
 
 	public void setEstado(String estado) {
-		
-		if(estado.equals(Constants.KV_STATE_INACTIVE))
-			this.estado = Constants.KV_STATE_COD_INACTIVE;
-		
-		else if(estado.equals(Constants.KV_STATE_ACTIVE))
-			this.estado = Constants.KV_STATE_COD_ACTIVE;
-		
 		this.estado = estado;
 	}
 
