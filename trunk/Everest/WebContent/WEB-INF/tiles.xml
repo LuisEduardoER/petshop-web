@@ -71,27 +71,37 @@
       <put-attribute name="body"   value="/mantenimiento/opcion/opcionLista.jsp"/>
   </definition>
   
+  <definition name="rolOpcionListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/rolOpcion/rolOpcionLista.jsp"/>
+  </definition>
+  
+  <definition name="usuarioListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/usuario/usuarioLista.jsp"/>
+  </definition>
+  
   <definition name="clienteRegistrarTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
-      <put-attribute name="body"   value="/cliente/clienteMantenimiento.jsp"/>
+      <put-attribute name="body"   value="/mantenimiento/cliente/clienteMantenimiento.jsp"/>
   </definition>
   
   <definition name="mascotaMantenimientoTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
-      <put-attribute name="body"   value="/mascota/mascotaMantenimiento.jsp"/>
+      <put-attribute name="body"   value="/mantenimiento/mascota/mascotaMantenimiento.jsp"/>
   </definition>
   <definition name="mascotaFormTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
-      <put-attribute name="body"   value="/mascota/mascotaForm.jsp"/>
+      <put-attribute name="body"   value="/mantenimiento/mascota/mascotaForm.jsp"/>
   </definition>
   
   <definition name="citaRegistrarTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
-      <put-attribute name="body"   value="/cita/citaRegistrar.jsp"/>
+      <put-attribute name="body"   value="/mantenimiento/cita/citaRegistrar.jsp"/>
   </definition>
   <definition name="citaRegistrarByClienteTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
-      <put-attribute name="body"   value="/cita/citaRegistrarByCliente.jsp"/>
+      <put-attribute name="body"   value="/mantenimiento/cita/citaRegistrarByCliente.jsp"/>
   </definition>
   
 </tiles-definitions>

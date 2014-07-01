@@ -442,3 +442,10 @@ width: 30px;
 .no-border{
 border: 0px solid black !important; 
 }
+.no-margin{
+margin-top: .01em !important;
+margin-bottom: 0px !important;
+border-width: 0px !important;
+padding: .05em !important;
+border-bottom-width: 0px !important; 
+}

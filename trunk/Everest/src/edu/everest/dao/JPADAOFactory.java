@@ -70,4 +70,11 @@ public class JPADAOFactory extends DAOFactory {
 		ed.setEntityManagerFactory(emf);
 		return (TipoDocumentoDAO)ed;
 	}
+
+	@Override
+	public RolOpcionDAO getRolOpcionDAO() {
+		RolOpcionJPADAO ed =  new RolOpcionJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (RolOpcionDAO)ed;
+	}
 }

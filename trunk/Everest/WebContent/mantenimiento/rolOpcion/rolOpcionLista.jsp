@@ -19,15 +19,20 @@ $(function() {
 });
 </script>
 
+<fieldset>
+	<legend>
+		<h1>Mantenimiento de Opciones por Rol</h1>
+	</legend>
+	<s:hidden name="rol.idRol"/>
+	<h2> Rol: <s:property value="rol.descripcion"/> </h2>
+</fieldset>
 
-
-<h1>Mantenimiento de Roles</h1>
-
-<s:url id="insert" action="showRolFormAction" escapeAmp="false">
+<s:url id="insert" action="showOpcionFormAction" escapeAmp="false">
+	<s:param name="rol.idRol" value="%{rol.idRol}"/>
     <s:param name="oper">add</s:param>
 </s:url>
 <sj:a 
-	openDialog="dlgForm"
+	openDialog="dlgOpcionForm"
 	href="%{insert}"
 	button="true" 
 	buttonIcon="ui-icon-plus"
@@ -36,21 +41,19 @@ $(function() {
 <table id="tableClientes" class="dls-table" cellspacing="0" cellpadding="0">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Id</th>
+            <th>Parent</th>
+            <th>Titulo</th>
             <th>Descripcion</th>
-            <th>Estado</th>
             <th class="ui-state-disabled tdButton">
-            	<sj:a button="true" buttonIcon="ui-icon-pencil" buttonText="false" disabled="false" cssClass="no-border">Editar</sj:a>
-            </th>
-            <th class="ui-state-disabled tdButton">
-<%--             	<sj:a button="true" buttonIcon="ui-icon-circlesmall-plus" buttonText="false" disabled="false" cssClass="no-border">Opciones	</sj:a> --%>
+<%--             	<sj:a button="true" buttonIcon="ui-icon-circle-close" buttonText="false" disabled="false" cssClass="no-border">Eliminar</sj:a> --%>
             	<sj:submit 
  						type="button"
  						cssClass="no-margin"
  						button="true"
- 						buttonIcon="ui-icon-circlesmall-plus" 
+ 						buttonIcon="ui-icon-circle-close" 
  						buttonText="false">
- 						Opciones
+ 						Eliminar
  					</sj:submit>
             </th>
         </tr>
@@ -58,37 +61,29 @@ $(function() {
     <tbody class="dls-table-body">
     	<s:if test="opcionLista.size==0">
 			<tr>
-				<td colspan="5" style="text-align: center;">
+				<td colspan="7" style="text-align: center;">
 					<h3>No hay Registros disponibles</h3>
 				</td>
 			</tr>
 		</s:if>
-    	<s:iterator value="rolLista" var="objRol" status="stat">
+    	<s:iterator value="opcionLista" var="objOpcion" status="stat">
 	        <tr>
-	            <td class="id"> <s:property value="idRol"/> </td>
+	            <td><s:property value="idOpcion"/></td>
+	            
+	            <s:if test="opcion.titulo!=''">
+		        	<td><s:property value="opcion.titulo"/></td>
+		        </s:if>
+		        <s:else>
+		        	<td style="background-color: #62B4C9; color: #FFF;">Parent</td>
+		        </s:else>
+		        <td> <s:property value="titulo"/> </td>
 	            <td> <s:property value="descripcion"/> </td>
-	            <td> <s:property value="estado"/> </td>
 	            
 	            <td class="tdButton">
-	            	
-		            <s:url id="update" action="showRolFormAction" escapeAmp="false">
-		       		    <s:param name="rol.idRol" value="idRol"/>
-		       		    <s:param name="oper">edit</s:param>
-		       		</s:url>
-					<sj:a openDialog="dlgForm"
-					  href="%{update}"
-					  targets="dlgForm" 
-					  button="true" 
-					  buttonText="false"
-					  cssClass="no-border"
-					  indicator="myLoadingBar"
-					  buttonIcon="ui-icon-pencil">
-						Editar
-					</sj:a>
-	            </td>
-	            <td class="tdButton">
-		       		<s:form id="formOpcion%{#stat.count}" action="showRolOpcionListaAction" method="post">
-				      <s:hidden name="rol.idRol" value="%{idRol}"/>
+					<s:form id="formOpcion%{#stat.count}" action="insertarOActualizarRolOpcion" method="post">
+				      <s:hidden name="rolOpcion.id.idOpcion" value="%{idOpcion}"/>
+				      <s:hidden name="rolOpcion.id.idRol" value="%{rol.idRol}"/>
+				      <s:hidden name="oper" value="del"/>
 				    
  					<sj:submit 
  						type="button"
@@ -96,36 +91,50 @@ $(function() {
  						indicator="myLoadingBar"
  						cssClass="no-margin"
  						button="true"
- 						buttonIcon="ui-icon-circlesmall-plus" 
+ 						buttonIcon="ui-icon-circle-close" 
  						buttonText="false">
- 						Opciones
+ 						Eliminar
  					</sj:submit>
  					</s:form>
 	            </td>
 	        </tr>
 		</s:iterator>
 			<tr>
-				<td colspan="5"></td>
+				<td colspan="7"></td>
 			</tr>
     </tbody>
 </table>
 
-<div id="divResult"></div>
-
-<br/>
-
+<!-- <a href="showRolLista">Volver</a> -->
+<s:form id="formBack" action="showRolLista" method="post">
+<table style="width: 100%;">
+	<tr>
+		<td style="width: 100%; text-align: right;">
+			<sj:submit
+				formIds="formBack"
+				indicator="myLoadingBar"
+				type="button"
+				button="true"
+				buttonIcon="ui-icon-circle-arrow-w">
+					Volver
+				</sj:submit>
+		</td>
+	</tr>
+</table>
+</s:form>
 
 <sj:dialog 
-    	id="dlgForm" 
+    	id="dlgOpcionForm" 
     	autoOpen="false"
     	width="450"
     	minHeight="250"
     	modal="true" 
-    	onCloseTopics="closeDialog"
+    	onCloseTopics="closeOpcionDialog"
     	showEffect="slide" 
     	hideEffect="explode"
-    	title="Rol">
-        
+    	resizable="true"
+    	title="Opcion">
+    	
         <table style="width: 100%;">
         	<tr>
         		<td style="width: 100%; text-align: center;">
