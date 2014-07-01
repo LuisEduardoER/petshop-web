@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import edu.everest.entity.Cliente;
 import edu.everest.entity.Opcion;
+import edu.everest.entity.Rol;
 import edu.everest.entity.Usuario;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.ClienteService;
@@ -29,6 +30,7 @@ public class UsuarioAction extends ActionSupport{
 	private Cliente cliente;
 	private List<Usuario> listaUsuario;
 	private List<Opcion> listaOpcion;
+	private List<Rol> listaRol;
 	private String strNameUsuario;
 	private String strMessage;
 	
@@ -163,6 +165,45 @@ public class UsuarioAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	@Action(value = "/showUsuarioListaAction", 
+			results = { @Result(location = "usuarioListaTile", name = "success", type="tiles") } )
+	public String showUsuarios() throws Exception {
+		System.out.println("===== showUsuarioListaAction =====");
+		listaUsuario = usuarioService.obtenerTodosUsuario();
+		
+		return SUCCESS;
+	}
+	
+	@Action(value = "/showUsuarioFormAction", 
+			results = { @Result(location="/mantenimiento/usuario/usuarioForm.jsp", name = "success") })
+	public String showInsertarOActualizar() throws Exception {
+		System.out.println("===== showUsuarioFormAction =====");
+		listaRol = rolService.obtenerTodosRol();
+		
+		if (usuario != null && usuario.getIdUsuario() != 0) {
+			usuario = usuarioService.obtenerUsuario(usuario);
+		}
+		
+		return SUCCESS;
+	}
+	
+	@Action(value = "/insertarOActualizarUsuario",  
+			results = { @Result(location = "showUsuarioLista", name = "success", type = "redirectAction")})
+	public String insertarOActualizar() throws Exception {
+		
+		System.out.println("usuario: "+usuario.getIdUsuario() );
+//		System.out.println("rol: "+rol.getIdRol() );
+	
+		if (usuario.getIdUsuario() == 0) {
+			usuarioService.insertarUsuario(usuario);
+			
+		} else {
+			usuarioService.actualizarUsuario(usuario);
+		}
+		
+		return SUCCESS;
+	}	
+	
 	public void syso(String str){
 		System.out.println("[UsuarioAction.getMenuByRol]["+str+"]");
 	}
@@ -206,6 +247,14 @@ public class UsuarioAction extends ActionSupport{
 	}
 	public void setListaOpcion(List<Opcion> listaOpcion) {
 		this.listaOpcion = listaOpcion;
+	}
+	
+	public List<Rol> getListaRol() {
+		return listaRol;
+	}
+
+	public void setListaRol(List<Rol> listaRol) {
+		this.listaRol = listaRol;
 	}
 	
 }

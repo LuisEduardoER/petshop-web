@@ -31,7 +31,8 @@ $(function() {
 
 <title>PetShop</title>
 
-<sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes" defaultIndicator="myLoadingBar"/>
+<sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes" />
+<%-- <sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes" defaultIndicator="myLoadingBar"/> --%>
 <%-- <sj:head locale="es" jqueryui="true" jquerytheme="cupertino" defaultIndicator="myLoadingBar"/> --%>
 
 </head>

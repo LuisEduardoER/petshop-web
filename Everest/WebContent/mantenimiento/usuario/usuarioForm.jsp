@@ -10,55 +10,48 @@
         </tr>
      </table>
      		 	
-    <s:form id="frmOpcion" action="insertarOActualizarOpcion">
-    	<s:hidden name="opcion.idOpcion"/>
+    <s:form id="frmUsuario" action="insertarOActualizarUsuario">
+    	<s:hidden name="rol.idRol" value="%{rol.idRol}"/>
+    	<s:hidden name="usuario.idUsuario"/>
 		<table align="center">
 		
-		<s:if test="opcion.idOpcion != 0">
+		<s:if test="usuario.idUsuario != 0">
 			<tr>
 		    	<td class="tdLabel"><s:text name="Id"/></td>
-		    	<td><s:text name="opcion.idOpcion"/></td>
+		    	<td><s:text name="usuario.idUsuario"/></td>
 		    </tr>
 		</s:if>
 		    
 		    <tr>
-		    	<td class="tdLabel"><s:text name="Parent"/></td>
+		    	<td class="tdLabel"><s:text name="Rol"/></td>
 		    	<td>
 		    		<s:select
-				       name="opcionParent.idOpcion"
-				       headerKey="0" headerValue="-- Parent --"
-				       list="opcionParentLista"
-				       listKey="idOpcion"
+				       name="usuario.rol.idRol"
+				       headerKey="0" headerValue="-- Seleccione --"
+				       list="listaRol"
+				       listKey="idRol"
 				       listValue="descripcion"
 				       required="true"
-				       value="opcionParent.idOpcion"
+				       value="usuario.rol.idRol"
 					/>
 		    	</td>
 		    </tr>
 		    <tr>
-		    	<td class="tdLabel"><s:text name="Descripcion"/></td>
-		    	<td><s:textfield name="opcion.descripcion" size="30"/></td>
+		    	<td class="tdLabel"><s:text name="User"/></td>
+		    	<td><s:textfield name="usuario.user" size="30"/></td>
 		    </tr>
 		    <tr>
-		    	<td class="tdLabel"><s:text name="Titulo"/></td>
-		    	<td><s:textfield name="opcion.titulo" size="30" required="true"/></td>
-		    </tr>
-		    <tr>
-		    	<td class="tdLabel"><s:text name="URL"/></td>
-		    	<td><s:textfield name="opcion.url" size="30" required="true"/></td>
-		    </tr>
-		    <tr>
-		    	<td class="tdLabel"><s:text name="orden"/></td>
-		    	<td><s:textfield name="opcion.orden" size="30" required="true" /></td>
+		    	<td class="tdLabel"><s:text name="Pass"/></td>
+		    	<td><s:textfield name="usuario.pass" size="30" required="true"/></td>
 		    </tr>
 		    <tr>
 		    	<td class="tdLabel"><s:text name="Estado"/></td>
 		    	<td>
 		    		<s:select 
-				       name="opcion.estado"			       
+				       name="usuario.estado"			       
 				       headerKey="" headerValue="-- Seleccione --"
 				       list="#{'Activo':'Activo', 'Inactivo':'Inactivo'}"
-				       value="opcion.estado"
+				       value="usuario.estado"
 				       required="true"
 					/>
 				</td>

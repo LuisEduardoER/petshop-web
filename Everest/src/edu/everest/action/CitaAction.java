@@ -71,7 +71,7 @@ public class CitaAction extends ActionSupport{
 	}
 	
 	@Action(value="/validarClienteAction",
-			results={ @Result(name="success",location="/cita/citaMascota.jsp") })
+			results={ @Result(name="success",location="/mantenimiento/cita/citaMascota.jsp") })
 	public String validarClient() throws Exception{
 		System.out.println("===== validarClienteActio =====");
 		System.out.println("Documento: "+cliente.getDocumento());
@@ -92,7 +92,7 @@ public class CitaAction extends ActionSupport{
 	}
 	
 	@Action(value="/loadDaysOfWeekAction",
-			results={ @Result(name="success",location="/cita/citaHorarios.jsp") })
+			results={ @Result(name="success",location="/mantenimiento/cita/citaHorarios.jsp") })
 	public String loadDays(){
 		System.out.println("===== loadDaysOfWeekAction =====");
 		
@@ -111,7 +111,7 @@ public class CitaAction extends ActionSupport{
 	}
 	
 	@Action(value="/reloadCalendarAction",
-	results={ @Result(name="success",location="/cita/citaCalendar.jsp") })
+	results={ @Result(name="success",location="/mantenimiento/cita/citaCalendar.jsp") })
 	public String reloadCalendar(){
 		System.out.println("===== reloadCalendarAction =====");
 		
@@ -134,7 +134,7 @@ public class CitaAction extends ActionSupport{
 	
 	@SuppressWarnings({ "unused" })
 	@Action(value="/loadCalendarAction",
-			results={ @Result(name="success",location="/cita/citaCalendar.jsp") })
+			results={ @Result(name="success",location="/mantenimiento/cita/citaCalendar.jsp") })
 	public String loadCalendar() {
 		System.out.println("===== loadCalendarAction =====");
 		

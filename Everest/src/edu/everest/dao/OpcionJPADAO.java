@@ -89,15 +89,9 @@ public class OpcionJPADAO implements OpcionDAO {
 
 		//1.inicia la transacción
 		em.getTransaction().begin();
-		
-		Opcion entidadOpcion=new Opcion();
-			
-		//FALTA IMPLEMENTAR ************************************
-		//entidadOpcion.setUser(opcion.getUser());
-		//entidadOpcion.setPass(opcion.getPass());
-		
+				
 		//2.ejecuta las operaciones
-		em.persist(entidadOpcion);
+		em.persist(opcion);
 		em.flush();
 		
 		//3.ejecuta commit a la transacción
@@ -111,9 +105,7 @@ public class OpcionJPADAO implements OpcionDAO {
 		em.getTransaction().begin();
 		
 		if(opcion.getOpcion().getIdOpcion() != 0){
-			
 			em.merge(opcion);
-			
 		}
 		else{
 			Query query = em.createQuery( "UPDATE Opcion o "
