@@ -1,23 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
-<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
-
-<script>
-$(function() {
-	$.subscribe('closeOpcionDialog', function(event,data) {
-		var html = "<table style='width: 100%;'>"+
-				    	"<tr>"+
-						"<td style='width: 100%; text-align: center;'>"+
-							"<img alt='Loading' src='img/loading.gif'>"+
-						"</td>"+
-					"</tr>"+
-				"</table>";
-        $("#dlgOpcionForm").empty();
-        $("#dlgOpcionForm").html(html);
-    });
-});
-</script>
 
 <fieldset>
 	<legend>
@@ -32,7 +15,7 @@ $(function() {
     <s:param name="oper">add</s:param>
 </s:url>
 <sj:a 
-	openDialog="dlgOpcionForm"
+	openDialog="dlgForm"
 	href="%{insert}"
 	button="true" 
 	buttonIcon="ui-icon-plus"
@@ -122,25 +105,3 @@ $(function() {
 	</tr>
 </table>
 </s:form>
-
-<sj:dialog 
-    	id="dlgOpcionForm" 
-    	autoOpen="false"
-    	width="450"
-    	minHeight="250"
-    	modal="true" 
-    	onCloseTopics="closeOpcionDialog"
-    	showEffect="slide" 
-    	hideEffect="explode"
-    	resizable="true"
-    	title="Opcion">
-    	
-        <table style="width: 100%;">
-        	<tr>
-        		<td style="width: 100%; text-align: center;">
-        			<img alt="Loading" src="img/loading.gif">
-        		</td>
-        	</tr>
-        </table>
-		 
-    </sj:dialog>

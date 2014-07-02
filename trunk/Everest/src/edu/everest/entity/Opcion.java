@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -49,7 +48,7 @@ public class Opcion implements Serializable {
 	private String userCreate;
 
 	//bi-directional many-to-one association to Opcion
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.REFRESH)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="parentOpcionId")
 	private Opcion opcion;
 

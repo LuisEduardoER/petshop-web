@@ -164,6 +164,31 @@ public class OpcionJPADAO implements OpcionDAO {
 		em.close();
 		return listaOpcion;
 	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List<Opcion> obtenerOpcionChildByRol(Opcion opcionParent, Rol rol)
+			throws Exception {
+		em=emf.createEntityManager();
+		
+		List<Opcion> listaOpcion = new ArrayList<Opcion>();
+		Query query = em.createQuery( "SELECT o FROM RolOpcion ro, Opcion o, Rol r "
+				+ "WHERE r.idRol = :idRol "
+				+ "AND o.opcion.idOpcion = :idOpcionParent "
+				+ "AND ro.id.idRol = r.idRol "
+				+ "AND ro.id.idOpcion = o.idOpcion "
+				+ "AND o.opcion IS NOT NULL ORDER BY o.orden " );
+		query.setParameter("idOpcionParent", opcionParent.getIdOpcion());
+		query.setParameter("idRol", rol.getIdRol());
+		
+		List l =  query.getResultList();
+		for ( int i=0; i < l.size(); i++ ) {
+			Opcion entidad = (Opcion)l.get(i);
+			listaOpcion.add(entidad);
+		}
+		em.close();
+		return listaOpcion;
+	}
 	
 	
 }
