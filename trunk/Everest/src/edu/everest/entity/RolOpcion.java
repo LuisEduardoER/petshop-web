@@ -24,12 +24,12 @@ public class RolOpcion implements Serializable {
 
 	//bi-directional many-to-one association to Opcion
 	@ManyToOne
-	@JoinColumn(name="idOpcion")
+	@JoinColumn(name="idOpcion",referencedColumnName="idOpcion")
 	private Opcion opcion;
 
 	//bi-directional many-to-one association to Rol
 	@ManyToOne
-	@JoinColumn(name="idRol")
+	@JoinColumn(name="idRol",referencedColumnName="idRol")
 	private Rol rol;
 
 	public RolOpcion() {

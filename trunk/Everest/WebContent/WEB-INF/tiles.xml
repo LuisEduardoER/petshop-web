@@ -104,4 +104,9 @@
       <put-attribute name="body"   value="/mantenimiento/cita/citaRegistrarByCliente.jsp"/>
   </definition>
   
+  <definition name="servicioDisponibilidadTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/servicio/servicioHorario.jsp"/>
+  </definition>
+  
 </tiles-definitions>

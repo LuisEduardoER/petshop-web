@@ -13,22 +13,6 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/reset2.css" type="text/css" />
 
-<script>
-$(function() {
-	$.subscribe('closeDialog', function(event,data) {
-		var html = "<table style='width: 100%;'>"+
-				    	"<tr>"+
-						"<td style='width: 100%; text-align: center;'>"+
-							"<img alt='Loading' src='img/loading.gif'>"+
-						"</td>"+
-					"</tr>"+
-				"</table>";
-        $("#dlgForm").empty();
-        $("#dlgForm").html(html);
-    });
-});
-</script>
-
 <title>PetShop</title>
 
 <sj:head locale="es" jqueryui="true" jquerytheme="ui-everest" customBasepath="template/themes" />
@@ -92,6 +76,27 @@ $(function() {
 		<div class="tm-main uk-width-medium-3-4" style="min-height: 512px;">                
 			<main id="mainContent" class="tm-content">
 				
+				<sj:dialog 
+		    	id="dlgForm" 
+		    	autoOpen="false"
+		    	width="450"
+		    	minHeight="250"
+		    	modal="true" 
+		    	onCloseTopics="closeDialog"
+		    	showEffect="slide" 
+		    	hideEffect="explode"
+		    	title="Titulo">
+		        
+		        <table style="width: 100%;">
+		        	<tr>
+		        		<td style="width: 100%; text-align: center;">
+		        			<img alt="Loading" src="img/loading.gif">
+		        		</td>
+		        	</tr>
+		        </table>
+				 
+		    </sj:dialog>
+    
 				<tiles:insertAttribute name="body" />
 				
 			</main>
@@ -105,4 +110,20 @@ $(function() {
 </div>
 
 </body>
+<script type="text/javascript">
+$(function() {
+	$.subscribe('closeDialog', function(event,data) {
+		var html = "<table style='width: 100%;'>"+
+				    	"<tr>"+
+						"<td style='width: 100%; text-align: center;'>"+
+							"<img alt='Loading' src='img/loading.gif'>"+
+						"</td>"+
+					"</tr>"+
+				"</table>";
+        $("#dlgForm").empty();
+        $("#dlgForm").html(html);
+    });
+});
+</script>
+
 </html>

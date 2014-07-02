@@ -53,32 +53,22 @@ public class RolAction extends ActionSupport{
 			results = { @Result(location = "showRolLista", name = "success", type = "redirectAction")})
 	public String insertarOActualizar() throws Exception {
 		
+	System.out.println("oper: "+oper);
 	System.out.println("cod:"+rol.getIdRol() );
 	
 	
-		if (rol.getIdRol() == 0) {
+		if (oper.equals("add")) {
 			rolService.insertarRol(rol);
 			
-		} else {
+		} else if (oper.equals("edit")) {
 			rolService.actualizarRol(rol);
 			
+		}else if (oper.equals("del")) {
+			rolService.eliminarRol(rol);
 		}
 		
 		return SUCCESS;
 	}	
-	
-	@Action(value = "/eliminaRol", 
-			results = { 
-						@Result(
-						location = "obtenerRoles",
-						name = "success", 
-						type = "redirectAction") 
-			}
-	)	
-	public String eliminarRol() throws Exception {
-		rolService.eliminarRol(rol);
-		return SUCCESS;
-	}
 	
 	@Action(value = "/detalleRol", 
 			results = { @Result(location = "rolDetailTile", name = "success", type="tiles") })

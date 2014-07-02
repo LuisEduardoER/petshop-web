@@ -30,6 +30,16 @@
             <th class="ui-state-disabled tdButton">
             	<sj:a button="true" buttonIcon="ui-icon-pencil" buttonText="false" disabled="false" cssClass="no-border">Editar</sj:a>
             </th>
+            <th class="ui-state-disabled tdButton">
+            	<sj:submit 
+ 						type="button"
+ 						cssClass="no-margin"
+ 						button="true"
+ 						buttonIcon="ui-icon-circle-close" 
+ 						buttonText="false">
+ 						Eliminar
+ 					</sj:submit>
+            </th>
         </tr>
     </thead>
     <tbody class="dls-table-body">
@@ -73,6 +83,24 @@
 						Editar
 					</sj:a>
 	            </td>
+	            <td class="tdButton">
+		       		<s:form id="formDel%{#stat.count}" action="insertarOActualizarOpcion" method="post">
+				      <s:hidden name="opcion.idOpcion" value="%{idOpcion}"/>
+				      <s:hidden name="rol.idRol" value="%{rol.idRol}"/>
+				      <s:hidden name="oper" value="del"/>
+				      
+ 					<sj:submit 
+ 						type="button"
+ 						formIds="formDel%{#stat.count}"
+ 						indicator="myLoadingBar"
+ 						cssClass="no-margin"
+ 						button="true"
+ 						buttonIcon="ui-icon-circle-close" 
+ 						buttonText="false">
+ 						Eliminar
+ 					</sj:submit>
+ 					</s:form>
+	            </td>
 	        </tr>
 		</s:iterator>
 			<tr>
@@ -80,25 +108,3 @@
 			</tr>
     </tbody>
 </table>
-
-<sj:dialog 
-    	id="dlgForm" 
-    	autoOpen="false"
-    	width="450"
-    	minHeight="250"
-    	modal="true" 
-    	onCloseTopics="closeDialog"
-    	showEffect="slide" 
-    	hideEffect="explode"
-    	resizable="true"
-    	title="Opcion">
-    	
-        <table style="width: 100%;">
-        	<tr>
-        		<td style="width: 100%; text-align: center;">
-        			<img alt="Loading" src="img/loading.gif">
-        		</td>
-        	</tr>
-        </table>
-		 
-    </sj:dialog>

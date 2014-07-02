@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
 
 import edu.everest.entity.RolOpcion;
 
@@ -47,14 +46,7 @@ public class RolOpcionJPADAO implements RolOpcionDAO {
 		em.getTransaction().begin();
 				
 		//2.ejecuta las operaciones
-//		em.persist( rolOpcion );
-		Query query = em.createQuery( "INSERT INTO RolOpcion o ( o.idRol, o.idOpcion ) "
-				+ "VALUES( :idRol, :idOpcion ) " );
-		
-		query.setParameter("idRol", 	rolOpcion.getId().getIdRol() );
-		query.setParameter("idOpcion", 	rolOpcion.getId().getIdOpcion() );
-		query.executeUpdate();
-		
+		em.persist( rolOpcion );
 		em.flush();
 		
 		//3.ejecuta commit a la transacción
@@ -67,17 +59,7 @@ public class RolOpcionJPADAO implements RolOpcionDAO {
 		em=emf.createEntityManager();
 		em.getTransaction().begin();
 		
-//		em.merge(rolOpcion);
-		Query query = em.createQuery( "UPDATE RolOpcion o "
-				+ "SET o.idOpcion = :idOpcion "
-				+ "WHERE o.idOpcion = :idOpcionPK "
-				+ "AND o.idRol = :idRolPK " );
-		
-		query.setParameter("idOpcion", 	rolOpcion.getOpcion().getIdOpcion() );
-		query.setParameter("idOpcionPK",rolOpcion.getId().getIdOpcion() );
-		query.setParameter("idRolPK", 	rolOpcion.getId().getIdRol() );
-		query.executeUpdate();
-		
+		em.merge(rolOpcion);
 		em.flush();
 		
 		em.getTransaction().commit();

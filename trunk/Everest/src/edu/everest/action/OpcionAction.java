@@ -86,14 +86,22 @@ public class OpcionAction extends ActionSupport{
 			results = { @Result(location = "opcionListaTile", name = "success", type="tiles")})
 	public String insertarOActualizar() throws Exception {
 		System.out.println("===== insertarOActualizarOpcion =====");
+		System.out.println("oper: "+oper );
 		System.out.println("opcion:"+opcion.getIdOpcion() );
+//		System.out.println("parent:"+opcionParent.getIdOpcion() );
 		
 		opcion.setOpcion( opcionParent );
 		
-		if (opcion.getIdOpcion() == 0) {
+		if (oper.equals("add")) {
+			
+			if(opcionParent.getIdOpcion() == 0)
+				opcion.setOpcion( null );
+			
 			opcionService.insertarOpcion(opcion);
-		} else {
+		} else if (oper.equals("edit")) {
 			opcionService.actualizarOpcion(opcion);
+		}else if (oper.equals("del")) {
+			opcionService.eliminarOpcion(opcion);
 		}
 		
 		showOpciones();

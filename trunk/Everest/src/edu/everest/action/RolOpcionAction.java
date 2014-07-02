@@ -93,11 +93,41 @@ public class RolOpcionAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	@SuppressWarnings("unused")
 	@Action(value = "/insertarOActualizarRolOpcion",
 			results = { @Result(location = "rolOpcionListaTile", name = "success", type="tiles")})
 	public String insertarOActualizar() throws Exception {
 		System.out.println("===== insertarOActualizarRolOpcion =====");
+		
+		try{
+			Rol objRol = new Rol();
+			objRol.setIdRol(2);
+			objRol = rolService.obtenerRol(objRol);
+			System.out.println("=== 1 ===");
+			
+			Opcion objOpcion = new Opcion();
+			objOpcion.setIdOpcion(2);
+			objOpcion = opcionService.obtenerOpcion(objOpcion);
+			System.out.println("=== 2 ===");
+			
+			RolOpcionPK objPK = new RolOpcionPK();
+			objPK.setIdOpcion(2);
+			objPK.setIdRol(2);
+			
+			RolOpcion objRolOpcion = new RolOpcion();
+			objRolOpcion.setOpcion( objOpcion );
+			objRolOpcion.setRol( objRol );
+			
+//			objRolOpcion.getId().setIdOpcion(2);
+//			objRolOpcion.getId().setIdRol(2);
+			objRolOpcion.setId(objPK);
+			rolOpcionService.insertarRolOpcion(objRolOpcion);
+			System.out.println("=== 3 ===");
+			
+		}catch(Exception ex){
+			System.out.println("main: "+ex);
+		}
+		
+		/*
 		
 //		System.out.println("opcion:"+opcion.getIdOpcion() );
 //		System.out.println("rol: "+rol.getIdRol() );
@@ -114,8 +144,8 @@ public class RolOpcionAction extends ActionSupport{
 //			objRolOpcionPK.setIdRol( rol.getIdRol() );			
 //			objRolOpcion.setId(objRolOpcionPK);
 			
-			objRolOpcion.setOpcion(opcion);
-			objRolOpcion.setRol(rol);
+			objRolOpcion.getRolOpcionPK().setOpcion(opcion);
+			objRolOpcion.getRolOpcionPK().setRol(rol);
 			
 			rolOpcionService.insertarRolOpcion(objRolOpcion);
 			
@@ -126,6 +156,7 @@ public class RolOpcionAction extends ActionSupport{
 			rolOpcionService.eliminarRolOpcion(rolOpcion);
 			
 		}
+		*/
 		
 		showRolOpciones();
 		
