@@ -75,13 +75,13 @@
 	<div class="tm-middle uk-grid" data-uk-grid-match="" data-uk-grid-margin="">
 		<div class="tm-main uk-width-medium-3-4" style="min-height: 512px;">                
 			<main id="mainContent" class="tm-content">
-				
-				<sj:dialog 
+		<s:form>
+			<sj:dialog 
 		    	id="dlgForm" 
 		    	autoOpen="false"
 		    	width="450"
 		    	minHeight="250"
-		    	modal="true" 
+		    	modal="true"
 		    	onCloseTopics="closeDialog"
 		    	showEffect="slide" 
 		    	hideEffect="explode"
@@ -96,7 +96,7 @@
 		        </table>
 				 
 		    </sj:dialog>
-    
+	    </s:form>
 				<tiles:insertAttribute name="body" />
 				
 			</main>
