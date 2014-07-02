@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+  <definition name="layoutMain" 	template="/layoutMain/baseLayout.jsp">
+      <put-attribute name="title"  		value="Template Main"/>
+      <put-attribute name="header"		value="/layout/header.jsp"/>
+      <put-attribute name="topMenu"		value="/layout/topMenu.jsp"/>
+      <put-attribute name="footer"		value="/layout/footer.jsp"/>
+      
+      <put-attribute name="topBody"		value="/layoutMain/topBody.jsp"/>
+      <put-attribute name="bottomBody"	value="/layoutMain/bottomBody.jsp"/>
+  </definition>
+  
+  <definition name="layoutSecond" 	template="/layoutSecond/baseLayout.jsp">
+      <put-attribute name="title"  		value="Template Second"/>
+      <put-attribute name="header"		value="/layout/header.jsp"/>
+      <put-attribute name="topMenu"		value="/layout/topMenu.jsp"/>
+      <put-attribute name="footer"		value="/layout/footer.jsp"/>
+      
+      <put-attribute name="rightMenu"	value="/layoutSecond/rightMenu.jsp"/>
+      <put-attribute name="body"		value="/layoutSecond/body.jsp"/>
+  </definition>
+  
+  <definition name="layoutIntranet" 	template="/layoutIntranet/baseLayout.jsp">
+      <put-attribute name="title"  		value="Template Intranet"/>
+      <put-attribute name="footer"		value="/layout/footer.jsp"/>
+      
+      <put-attribute name="topMenu"		value="/layoutIntranet/topMenu.jsp"/>
+      <put-attribute name="rightMenu"	value="/layoutIntranet/rightMenu.jsp"/>
+      <put-attribute name="body"		value="/layoutIntranet/body.jsp"/>
+  </definition>
+  
+  <definition name="indexTile" extends="layoutMain">
+      <put-attribute name="title"  value="PetShop"/>
+      <put-attribute name="topBody"   value="/index.jsp"/>
+  </definition>
+  <definition name="loginTile" extends="layoutSecond">
+      <put-attribute name="title"  value="Login"/>
+      <put-attribute name="body"   value="/login.jsp"/>
+  </definition>
+  <definition name="intranetBienvenidoTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/intranetBienvenido.jsp"/>
+  </definition>
+
+  <definition name="proveedorListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/proveedorLista.jsp"/>
+  </definition>
+  <definition name="proveedorFormTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/proveedorForm.jsp"/>
+  </definition>
+  <definition name="proveedorDetailTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/proveedorDetail.jsp"/>
+  </definition>
+  
+  <definition name="rolListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/rol/rolLista.jsp"/>
+  </definition>
+  
+  <definition name="opcionListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/opcion/opcionLista.jsp"/>
+  </definition>
+  
+  <definition name="rolOpcionListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/rolOpcion/rolOpcionLista.jsp"/>
+  </definition>
+  
+  <definition name="usuarioListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/usuario/usuarioLista.jsp"/>
+  </definition>
+  
+  <definition name="clienteRegistrarTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/cliente/clienteMantenimiento.jsp"/>
+  </definition>
+  
+  <definition name="mascotaMantenimientoTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/mascota/mascotaMantenimiento.jsp"/>
+  </definition>
+  <definition name="mascotaFormTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/mascota/mascotaForm.jsp"/>
+  </definition>
+  
+  <definition name="citaRegistrarTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/cita/citaRegistrar.jsp"/>
+  </definition>
+  <definition name="citaRegistrarByClienteTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/cita/citaRegistrarByCliente.jsp"/>
+  </definition>
+  
+  <definition name="servicioDisponibilidadTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/servicio/servicioHorario.jsp"/>
+  </definition>
+  
+</tiles-definitions>
