@@ -12,7 +12,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.everest.entity.Opcion;
 import edu.everest.entity.Rol;
 import edu.everest.entity.RolOpcion;
-import edu.everest.entity.RolOpcionPK;
 import edu.everest.entity.Tab;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.OpcionService;
@@ -32,6 +31,8 @@ public class RolOpcionAction extends ActionSupport{
 	private List<Opcion> opcionParentLista;
 	private List<Tab> 	 tipoLista;
 	private String oper, tipo;
+	
+//	private List<TreeNode> nodes = new ArrayList<TreeNode>();
 	
 	private static ApplicationBusinessDelegate abd = new ApplicationBusinessDelegate();
 	private static RolService rolService 				= abd.getRolService();
@@ -57,7 +58,7 @@ public class RolOpcionAction extends ActionSupport{
 				opcionLista.add(parentOpcion);
 				
 				listaChildOpcion = new ArrayList<Opcion>();
-				listaChildOpcion = opcionService.obtenerOpcionByParent(parentOpcion);
+				listaChildOpcion = opcionService.obtenerOpcionChildByRol(parentOpcion, rol);
 				
 				for (Opcion childOpcion : listaChildOpcion) {
 					opcionLista.add(childOpcion);
@@ -72,7 +73,61 @@ public class RolOpcionAction extends ActionSupport{
 		
 		return SUCCESS;
 	}
-	
+	/*
+	@Action(value = "/json-tree-data", 
+			results = { @Result(name = "success", type="json") } )
+	public String loadTree() throws Exception {
+		System.out.println("===== showRolOpcionListaAction =====");
+		
+		try{
+			System.out.println("rol: "+rol.getIdRol());
+			rol = rolService.obtenerRol(rol);
+			
+			List<Opcion> listaParentOpcion = new ArrayList<Opcion>();;
+			List<Opcion> listaChildOpcion;
+			listaParentOpcion = opcionService.obtenerOpcionParentByRol(rol);
+			opcionLista= new ArrayList<Opcion>();
+			
+			TreeNode nodeParent, nodeChild;
+			
+			for (Opcion parentOpcion : listaParentOpcion) {
+				
+				opcionLista.add(parentOpcion);
+				
+				//Parent Node
+				nodeParent = new TreeNode();
+				nodeParent.setId( ""+parentOpcion.getIdOpcion() );
+				nodeParent.setTitle( parentOpcion.getDescripcion() );
+				
+				listaChildOpcion = new ArrayList<Opcion>();
+				listaChildOpcion = opcionService.obtenerOpcionByParent(parentOpcion);
+				
+				for (Opcion childOpcion : listaChildOpcion) {
+					opcionLista.add(childOpcion);
+					
+					if(listaChildOpcion.get(0).getIdOpcion() == childOpcion.getIdOpcion())
+						nodeParent.setChildren(new LinkedList<TreeNode>());
+					
+					//Node Child
+					nodeChild = new TreeNode();
+					nodeChild.setId( ""+childOpcion.getIdOpcion() );
+					nodeChild.setTitle( childOpcion.getDescripcion() );
+					
+					nodeParent.getChildren().add(nodeChild);
+				}
+				
+				//--Agregando a la lista de nodos
+				nodes.add(nodeParent);
+			}
+		
+		}
+		catch (Exception e) {
+			System.out.println("showRolOpciones: "+e);
+		}
+		
+		return SUCCESS;
+	}
+	*/
 	@Action(value = "/showRolOpcionFormAction", 
 			results = { @Result(location="/mantenimiento/rolOpcion/rolOpcionForm.jsp", name = "success") })
 	public String showInsertarOActualizar() throws Exception {
@@ -97,31 +152,35 @@ public class RolOpcionAction extends ActionSupport{
 			results = { @Result(location = "rolOpcionListaTile", name = "success", type="tiles")})
 	public String insertarOActualizar() throws Exception {
 		System.out.println("===== insertarOActualizarRolOpcion =====");
+		System.out.println();
 		
 		try{
-			Rol objRol = new Rol();
-			objRol.setIdRol(2);
-			objRol = rolService.obtenerRol(objRol);
-			System.out.println("=== 1 ===");
 			
-			Opcion objOpcion = new Opcion();
-			objOpcion.setIdOpcion(2);
-			objOpcion = opcionService.obtenerOpcion(objOpcion);
-			System.out.println("=== 2 ===");
+			if(rolOpcion.getId() != null){
+				System.out.println("idOpcion: "+rolOpcion.getId().getIdOpcion() );
+				System.out.println("idRol: "+rolOpcion.getId().getIdRol() );
+			}
 			
-			RolOpcionPK objPK = new RolOpcionPK();
-			objPK.setIdOpcion(2);
-			objPK.setIdRol(2);
+			if( oper.equals("add") ){
+				rolOpcionService.insertarRolOpcion(rolOpcion);
+				
+			}else if( oper.equals("del") ){
+				Opcion objOpcion = new Opcion();
+				objOpcion.setIdOpcion( rolOpcion.getId().getIdOpcion() );
+				objOpcion = opcionService.obtenerOpcion(objOpcion);
+				
+				Rol objRol = new Rol();
+				objRol.setIdRol( rolOpcion.getId().getIdRol() );
+				objRol = rolService.obtenerRol(objRol);
+				
+				rolOpcion.setOpcion( objOpcion );
+				rolOpcion.setRol( objRol );
+				rolOpcionService.eliminarRolOpcion(rolOpcion);
+				
+			}
 			
-			RolOpcion objRolOpcion = new RolOpcion();
-			objRolOpcion.setOpcion( objOpcion );
-			objRolOpcion.setRol( objRol );
+			showRolOpciones();
 			
-//			objRolOpcion.getId().setIdOpcion(2);
-//			objRolOpcion.getId().setIdRol(2);
-			objRolOpcion.setId(objPK);
-			rolOpcionService.insertarRolOpcion(objRolOpcion);
-			System.out.println("=== 3 ===");
 			
 		}catch(Exception ex){
 			System.out.println("main: "+ex);

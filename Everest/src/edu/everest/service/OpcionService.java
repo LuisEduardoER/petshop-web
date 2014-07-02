@@ -9,6 +9,7 @@ public interface OpcionService {
 	
 	public List<Opcion> obtenerTodosOpcion() throws Exception;
 	public List<Opcion> obtenerOpcionParentByRol(Rol rol) throws Exception;
+	public List<Opcion> obtenerOpcionChildByRol(Opcion opcionParent, Rol rol) throws Exception;
 	public List<Opcion> obtenerOpcionParents() throws Exception;
 	public List<Opcion> obtenerOpcionByParent(Opcion opcion) throws Exception;
 	

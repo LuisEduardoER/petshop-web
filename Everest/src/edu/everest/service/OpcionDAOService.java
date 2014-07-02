@@ -57,4 +57,9 @@ public class OpcionDAOService implements OpcionService {
 		return dao.obtenerOpcionParents();
 	}
 
+	@Override
+	public List<Opcion> obtenerOpcionChildByRol(Opcion opcionParent, Rol rol) throws Exception {
+		return dao.obtenerOpcionChildByRol(opcionParent, rol);
+	}
+
 }
