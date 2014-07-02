@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class Opcion implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idOpcion")
 	private int idOpcion;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -46,7 +49,7 @@ public class Opcion implements Serializable {
 	private String userCreate;
 
 	//bi-directional many-to-one association to Opcion
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.REFRESH)
 	@JoinColumn(name="parentOpcionId")
 	private Opcion opcion;
 

@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.everest.entity.Cita;
 import edu.everest.entity.Cliente;
 import edu.everest.entity.Mascota;
+import edu.everest.entity.Medico;
 import edu.everest.entity.Tab;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.CitaService;
@@ -35,6 +36,7 @@ public class CitaAction extends ActionSupport{
 	
 	private Cita 			cita;
 	private Cliente 		cliente;
+	private Medico			medico;
 	private Mascota 		mascota;
 	private List<Mascota> 	mascotaLista = 			new ArrayList<Mascota>();
 	private String 			strMessage;
@@ -76,7 +78,9 @@ public class CitaAction extends ActionSupport{
 		System.out.println("===== validarClienteActio =====");
 		System.out.println("Documento: "+cliente.getDocumento());
 		
-		if(cliente.getDocumento() != null){
+		if(cliente.getDocumento() != null)
+			if( !cliente.getDocumento().equals("") )
+		{
 			
 			cliente = clienteService.obtenerCliente(cliente);
 			System.out.println("Cliente: "+cliente.getNombres()+" "+cliente.getApePat()+" "+cliente.getApeMat());
@@ -361,6 +365,14 @@ public class CitaAction extends ActionSupport{
 
 	public void setOper(String oper) {
 		this.oper = oper;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 	
 }

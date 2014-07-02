@@ -9,13 +9,13 @@ import javax.persistence.*;
  */
 @Embeddable
 public class RolOpcionPK implements Serializable {
-	//default serial version id, required for serializable classes.
+	//default serial version id, required for serializable classes.S
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=true, updatable=true)
+	@Column(insertable=false, updatable=true)
 	private int idRol;
 
-	@Column(insertable=true, updatable=true)
+	@Column(insertable=false, updatable=true)
 	private int idOpcion;
 
 	public RolOpcionPK() {

@@ -10,7 +10,7 @@
         </tr>
      </table>
      		 	
-    <s:form id="frmOpcion" action="insertarOActualizarOpcion">
+    <s:form id="frmOpcion" action="insertarOActualizarRolOpcion">
     	<s:hidden name="rol.idRol" value="%{rol.idRol}"/>
     	<s:hidden name="opcion.idOpcion"/>
 		<table align="center">

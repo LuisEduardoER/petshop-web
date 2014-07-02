@@ -32,11 +32,16 @@ public class OpcionJPADAO implements OpcionDAO {
 		em=emf.createEntityManager();
 		
 		List<Opcion> listaOpcion = new ArrayList<Opcion>();
-		Query query = em.createQuery( "SELECT o FROM RolOpcion ro "
-									+ "INNER JOIN ro.opcion o "
-									+ "INNER JOIN ro.rol r "
-									+ "where r.idRol = :idRol "
-									+ "AND o.opcion IS NULL ORDER BY o.orden " );
+//		Query query = em.createQuery( "SELECT o FROM RolOpcion ro "
+//									+ "INNER JOIN ro.opcion o "
+//									+ "INNER JOIN ro.rol r "
+//									+ "where r.idRol = :idRol "
+//									+ "AND o.opcion IS NULL ORDER BY o.orden " );
+		Query query = em.createQuery( "SELECT o FROM RolOpcion ro, Opcion o, Rol r "
+				+ "WHERE r.idRol = :idRol "
+				+ "AND ro.id.idRol = r.idRol "
+				+ "AND ro.id.idOpcion = o.idOpcion "
+				+ "AND o.opcion IS NULL ORDER BY o.orden " );
 		query.setParameter("idRol", rol.getIdRol());
 		List l =  query.getResultList();
 		for ( int i=0; i < l.size(); i++ ) {

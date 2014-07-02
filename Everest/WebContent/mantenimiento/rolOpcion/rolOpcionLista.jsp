@@ -27,7 +27,7 @@ $(function() {
 	<h2> Rol: <s:property value="rol.descripcion"/> </h2>
 </fieldset>
 
-<s:url id="insert" action="showOpcionFormAction" escapeAmp="false">
+<s:url id="insert" action="showRolOpcionFormAction" escapeAmp="false">
 	<s:param name="rol.idRol" value="%{rol.idRol}"/>
     <s:param name="oper">add</s:param>
 </s:url>

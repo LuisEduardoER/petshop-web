@@ -3,23 +3,11 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags" %>
 
-<script>
+<script type="text/javascript">
 $(function() {
-	$.subscribe('closeOpcionDialog', function(event,data) {
-		var html = "<table style='width: 100%;'>"+
-				    	"<tr>"+
-						"<td style='width: 100%; text-align: center;'>"+
-							"<img alt='Loading' src='img/loading.gif'>"+
-						"</td>"+
-					"</tr>"+
-				"</table>";
-        $("#dlgOpcionForm").empty();
-        $("#dlgOpcionForm").html(html);
-    });
+	$("#dlgForm").dialog('option', 'title', 'Rol');
 });
 </script>
-
-
 
 <h1>Mantenimiento de Roles</h1>
 
@@ -43,7 +31,16 @@ $(function() {
             	<sj:a button="true" buttonIcon="ui-icon-pencil" buttonText="false" disabled="false" cssClass="no-border">Editar</sj:a>
             </th>
             <th class="ui-state-disabled tdButton">
-<%--             	<sj:a button="true" buttonIcon="ui-icon-circlesmall-plus" buttonText="false" disabled="false" cssClass="no-border">Opciones	</sj:a> --%>
+            	<sj:submit 
+ 						type="button"
+ 						cssClass="no-margin"
+ 						button="true"
+ 						buttonIcon="ui-icon-circle-close" 
+ 						buttonText="false">
+ 						Eliminar
+ 					</sj:submit>
+            </th>
+            <th class="ui-state-disabled tdButton">
             	<sj:submit 
  						type="button"
  						cssClass="no-margin"
@@ -58,7 +55,7 @@ $(function() {
     <tbody class="dls-table-body">
     	<s:if test="opcionLista.size==0">
 			<tr>
-				<td colspan="5" style="text-align: center;">
+				<td colspan="6" style="text-align: center;">
 					<h3>No hay Registros disponibles</h3>
 				</td>
 			</tr>
@@ -87,6 +84,23 @@ $(function() {
 					</sj:a>
 	            </td>
 	            <td class="tdButton">
+		       		<s:form id="formDel%{#stat.count}" action="insertarOActualizarRol" method="post">
+				      <s:hidden name="rol.idRol" value="%{idRol}"/>
+				      <s:hidden name="oper" value="del"/>
+				      
+ 					<sj:submit 
+ 						type="button"
+ 						formIds="formDel%{#stat.count}"
+ 						indicator="myLoadingBar"
+ 						cssClass="no-margin"
+ 						button="true"
+ 						buttonIcon="ui-icon-circle-close" 
+ 						buttonText="false">
+ 						Eliminar
+ 					</sj:submit>
+ 					</s:form>
+	            </td>
+	            <td class="tdButton">
 		       		<s:form id="formOpcion%{#stat.count}" action="showRolOpcionListaAction" method="post">
 				      <s:hidden name="rol.idRol" value="%{idRol}"/>
 				    
@@ -105,7 +119,7 @@ $(function() {
 	        </tr>
 		</s:iterator>
 			<tr>
-				<td colspan="5"></td>
+				<td colspan="6"></td>
 			</tr>
     </tbody>
 </table>
@@ -115,23 +129,3 @@ $(function() {
 <br/>
 
 
-<sj:dialog 
-    	id="dlgForm" 
-    	autoOpen="false"
-    	width="450"
-    	minHeight="250"
-    	modal="true" 
-    	onCloseTopics="closeDialog"
-    	showEffect="slide" 
-    	hideEffect="explode"
-    	title="Rol">
-        
-        <table style="width: 100%;">
-        	<tr>
-        		<td style="width: 100%; text-align: center;">
-        			<img alt="Loading" src="img/loading.gif">
-        		</td>
-        	</tr>
-        </table>
-		 
-    </sj:dialog>
