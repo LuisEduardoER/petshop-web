@@ -10,7 +10,7 @@
 		<h1>Login</h1>
 	</div>
 	
-	<form action="" method="post" class="form-horizontal">
+	<form action="validarUsuario" method="post" class="form-horizontal">
 
 		<fieldset class="well">
 			<div class="control-group">
@@ -37,7 +37,7 @@
 			</div>
 			<div class="controls">
 				<!-- <button type="submit" class="btn btn-primary">Log in</button> -->
-				<s:submit action="validarUsuario" key="Log in" cssClass="btn btn-primary"/>
+				<s:submit key="Log in" cssClass="btn btn-primary"/>
 			</div>
 
 		</fieldset>
