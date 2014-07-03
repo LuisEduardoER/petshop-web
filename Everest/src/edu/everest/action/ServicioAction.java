@@ -37,6 +37,7 @@ public class ServicioAction extends ActionSupport{
 	private List<Tab> 		turnoLista = 			new ArrayList<Tab>();
 	private List<Servicio>  servicioLista = 		new ArrayList<Servicio>();
 	
+	private	List<Cita>		citaListaHoras =		new ArrayList<Cita>();
 	private List<Cita>		citaListaMonday =		new ArrayList<Cita>();
 	private List<Cita>		citaListaTuesday =		new ArrayList<Cita>();
 	private List<Cita>		citaListaWednesday =	new ArrayList<Cita>();
@@ -60,11 +61,29 @@ public class ServicioAction extends ActionSupport{
 		
 		Cita objCita;
 		List<Cita> objListCitaDAY;
-		Calendar calendar = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();		
 		calendar.set(Calendar.HOUR_OF_DAY, 8);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);
-			 
+		
+		objCita = new Cita();
+		objCita.setFecProg( calendar );
+		objCita.setDescripcion("Horas");
+		
+		citaListaHoras.add(objCita);
+		for(int i= 0;i<8;i++){
+			objCita = new Cita();
+			objCita.setFecProg( calendar );
+			objCita.setHourProg( calendar );
+			calendar.add(Calendar.MINUTE, 30);
+			
+			citaListaHoras.add(objCita);
+		}
+		
+		calendar.set(Calendar.HOUR_OF_DAY, 8);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		
 		objCita = new Cita();
 		objCita.setFecProg( calendar );
 		objCita.setDescripcion( "Lunes" );
@@ -365,6 +384,14 @@ public class ServicioAction extends ActionSupport{
 
 	public void setCitaListaSunday(List<Cita> citaListaSunday) {
 		this.citaListaSunday = citaListaSunday;
+	}
+
+	public List<Cita> getCitaListaHoras() {
+		return citaListaHoras;
+	}
+
+	public void setCitaListaHoras(List<Cita> citaListaHoras) {
+		this.citaListaHoras = citaListaHoras;
 	}
 	
 }
