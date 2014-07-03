@@ -45,6 +45,9 @@ public class Cita implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idMedico")
 	private Medico medico;
+	
+	@Transient
+	private String descripcion;
 
 	public Cita() {
 	}
@@ -121,4 +124,12 @@ public class Cita implements Serializable {
 		this.medico = medico;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
 }

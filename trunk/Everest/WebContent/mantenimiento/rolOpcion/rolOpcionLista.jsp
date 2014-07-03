@@ -2,6 +2,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
+<script type="text/javascript">
+$(function() {
+	$("#dlgForm").dialog('option', 'title', 'Opcion');
+});
+</script>
+
 <fieldset>
 	<legend>
 		<h1>Mantenimiento de Opciones por Rol</h1>
@@ -20,7 +26,7 @@
 	button="true" 
 	buttonIcon="ui-icon-plus"
 	>Agregar</sj:a>
-
+	
 <table id="tableClientes" class="dls-table" cellspacing="0" cellpadding="0">
     <thead>
         <tr>

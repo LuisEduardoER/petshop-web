@@ -30,9 +30,7 @@ public class RolOpcionAction extends ActionSupport{
 	private List<Opcion> opcionLista;
 	private List<Opcion> opcionParentLista;
 	private List<Tab> 	 tipoLista;
-	private String oper, tipo;
-	
-//	private List<TreeNode> nodes = new ArrayList<TreeNode>();
+	private String oper, tipo, idOpcionParent, idOpcion;
 	
 	private static ApplicationBusinessDelegate abd = new ApplicationBusinessDelegate();
 	private static RolService rolService 				= abd.getRolService();
@@ -58,66 +56,12 @@ public class RolOpcionAction extends ActionSupport{
 				opcionLista.add(parentOpcion);
 				
 				listaChildOpcion = new ArrayList<Opcion>();
-				listaChildOpcion = opcionService.obtenerOpcionChildByRol(parentOpcion, rol);
-				
-				for (Opcion childOpcion : listaChildOpcion) {
-					opcionLista.add(childOpcion);
-				}
-				
-			}
-		
-		}
-		catch (Exception e) {
-			System.out.println("showRolOpciones: "+e);
-		}
-		
-		return SUCCESS;
-	}
-	/*
-	@Action(value = "/json-tree-data", 
-			results = { @Result(name = "success", type="json") } )
-	public String loadTree() throws Exception {
-		System.out.println("===== showRolOpcionListaAction =====");
-		
-		try{
-			System.out.println("rol: "+rol.getIdRol());
-			rol = rolService.obtenerRol(rol);
-			
-			List<Opcion> listaParentOpcion = new ArrayList<Opcion>();;
-			List<Opcion> listaChildOpcion;
-			listaParentOpcion = opcionService.obtenerOpcionParentByRol(rol);
-			opcionLista= new ArrayList<Opcion>();
-			
-			TreeNode nodeParent, nodeChild;
-			
-			for (Opcion parentOpcion : listaParentOpcion) {
-				
-				opcionLista.add(parentOpcion);
-				
-				//Parent Node
-				nodeParent = new TreeNode();
-				nodeParent.setId( ""+parentOpcion.getIdOpcion() );
-				nodeParent.setTitle( parentOpcion.getDescripcion() );
-				
-				listaChildOpcion = new ArrayList<Opcion>();
 				listaChildOpcion = opcionService.obtenerOpcionByParent(parentOpcion);
 				
 				for (Opcion childOpcion : listaChildOpcion) {
 					opcionLista.add(childOpcion);
-					
-					if(listaChildOpcion.get(0).getIdOpcion() == childOpcion.getIdOpcion())
-						nodeParent.setChildren(new LinkedList<TreeNode>());
-					
-					//Node Child
-					nodeChild = new TreeNode();
-					nodeChild.setId( ""+childOpcion.getIdOpcion() );
-					nodeChild.setTitle( childOpcion.getDescripcion() );
-					
-					nodeParent.getChildren().add(nodeChild);
 				}
 				
-				//--Agregando a la lista de nodos
-				nodes.add(nodeParent);
 			}
 		
 		}
@@ -127,15 +71,54 @@ public class RolOpcionAction extends ActionSupport{
 		
 		return SUCCESS;
 	}
-	*/
+	
+	@Action(value = "/loadOpcionsJSON", 
+			results = { 
+				@Result(name = "success", type="json"),
+				@Result(name = "input", type="json")
+					} 
+			)
+	public String loadOpcionsJSON() throws Exception {
+		System.out.println("===== loadOpcionsJSON =====");
+		
+		if(idOpcionParent == null)
+			idOpcionParent = "";
+		
+		opcionParentLista = opcionService.obtenerOpcionParents();
+		System.out.println("opcionParentLista: "+opcionParentLista.size() );
+		
+		System.out.println("opcionParent: "+idOpcionParent);
+		if(!idOpcionParent.equals("")){
+			opcionParent = new Opcion();
+			opcionParent.setIdOpcion(Integer.parseInt(idOpcionParent));
+		
+			opcionLista = opcionService.obtenerOpcionByParent(opcionParent);
+//			List<Opcion> opcionListaAux = opcionService.obtenerOpcionChildByRol(opcionParent, rol);
+//			
+////			for(Opcion objOpcion : opcionLista)
+////				for(Opcion objOpcionAux: opcionListaAux)
+////					if(objOpcion.getIdOpcion() == objOpcionAux.getIdOpcion())
+////						opcionLista.remove(objOpcion);
+//			
+//			for(int c=0;c>opcionListaAux.size();c++)
+//				for(int p=0;p>opcionLista.size();p++)				
+//					if(opcionLista.get(p).getIdOpcion() == opcionListaAux.get(c).getIdOpcion() ){
+//						opcionLista.remove(p);
+//						p--;
+//					}
+			
+			System.out.println("opcionLista: "+opcionLista.size() );
+			
+		}
+		
+		return SUCCESS;
+	}
+	
 	@Action(value = "/showRolOpcionFormAction", 
 			results = { @Result(location="/mantenimiento/rolOpcion/rolOpcionForm.jsp", name = "success") })
 	public String showInsertarOActualizar() throws Exception {
 		System.out.println("===== showRolOpcionFormAction =====");
 		System.out.println("oper: " +oper);
-		
-		opcionParentLista = opcionService.obtenerOpcionParents();
-		System.out.println("opcionParentLista: "+opcionParentLista.size() );
 		
 		if (oper.equals("add")) {
 			opcion = new Opcion();
@@ -298,6 +281,22 @@ public class RolOpcionAction extends ActionSupport{
 
 	public void setRolOpcion(RolOpcion rolOpcion) {
 		this.rolOpcion = rolOpcion;
+	}
+	
+	public String getIdOpcionParent() {
+		return idOpcionParent;
+	}
+
+	public void setIdOpcionParent(String idOpcionParent) {
+		this.idOpcionParent = idOpcionParent;
+	}
+
+	public String getIdOpcion() {
+		return idOpcion;
+	}
+
+	public void setIdOpcion(String idOpcion) {
+		this.idOpcion = idOpcion;
 	}
 	
 }
