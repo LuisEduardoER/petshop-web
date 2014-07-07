@@ -4,6 +4,8 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		
 		<class>edu.everest.entity.Cita</class>
+		<class>edu.everest.entity.DetalleCita</class>
+		<class>edu.everest.entity.DetalleCitaPK</class>
 		<class>edu.everest.entity.Cliente</class>
 		<class>edu.everest.entity.Mascota</class>
 		<class>edu.everest.entity.Opcion</class>
@@ -19,7 +21,6 @@
 		<class>edu.everest.entity.HistoriaClinica</class>
 		<class>edu.everest.entity.Local</class>
 		<class>edu.everest.entity.Medico</class>
-		<class>edu.everest.entity.Pago</class>
 		<class>edu.everest.entity.Sexo</class>
 		<class>edu.everest.entity.TipoAnimal</class>
 		<class>edu.everest.entity.Turno</class>

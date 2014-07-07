@@ -18,110 +18,39 @@ Disponibilidad de Servicios
 
 <div style="width: 100%; height: 300px;">
 	
-	<sj:div selectable="true" cssClass="selecColumn">
-		<s:iterator value="citaListaHoras" status="stat">
-			<s:if test="#stat.count == 1">
-				<div class="selectable selectableHead"><s:property value="descripcion"/> </div>
-			</s:if>
-			<s:else>
-				<div class="selectable selectableReserved">
-					<p class="alignLeft"></p>
- 					<p class="alignRight"><s:date name="hourProg" format="hh:mm"/></p>
-				</div>
-			</s:else>
-		</s:iterator>
-	</sj:div>
-	<sj:div selectable="true" cssClass="selecColumn">
-		<s:iterator value="citaListaMonday" status="stat">
-			<s:if test="#stat.count == 1">
-				<div class="selectable selectableHead"><s:property value="descripcion"/> </div>
-			</s:if>
-			<s:else>
-				<div class="selectable selectableReserved">
-					<p class="alignLeft"></p>
- 					<p class="alignRight"><s:date name="hourProg" format="hh:mm"/></p>
-				</div>
-			</s:else>
-		</s:iterator>
-	</sj:div>
-	<sj:div selectable="true" cssClass="selecColumn">
-		<s:iterator value="citaListaTuesday" status="stat">
-			<s:if test="#stat.count == 1">
-				<div class="selectable selectableHead"><s:property value="descripcion"/> </div>
-			</s:if>
-			<s:else>
-				<div class="selectable selectableReserved">
-					<p class="alignLeft"><s:date name="hourProg" format="hh:mm"/></p>
- 					<p class="alignRight"><s:date name="hourProg" format="hh:mm"/></p>
-				</div>
-			</s:else>
-		</s:iterator>
-	</sj:div>
-	<sj:div selectable="true" cssClass="selecColumn">
-		<s:iterator value="citaListaWednesday" status="stat">
-			<s:if test="#stat.count == 1">
-				<div class="selectable selectableHead"><s:property value="descripcion"/> </div>
-			</s:if>
-			<s:else>
-				<div class="selectable selectableReserved">
-					<p class="alignLeft"><s:date name="hourProg" format="hh:mm"/></p>
- 					<p class="alignRight"><s:date name="hourProg" format="hh:mm"/></p>
-				</div>
-			</s:else>
-		</s:iterator>
-	</sj:div>
-	<sj:div selectable="true" cssClass="selecColumn">
-		<s:iterator value="citaListaThursday" status="stat">
-			<s:if test="#stat.count == 1">
-				<div class="selectable selectableHead"><s:property value="descripcion"/> </div>
-			</s:if>
-			<s:else>
-				<div class="selectable selectableReserved">
-					<p class="alignLeft"><s:date name="hourProg" format="hh:mm"/></p>
- 					<p class="alignRight"><s:date name="hourProg" format="hh:mm"/></p>
-				</div>
-			</s:else>
-		</s:iterator>
-	</sj:div>
-	<sj:div selectable="true" cssClass="selecColumn">
-		<s:iterator value="citaListaFriday" status="stat">
-			<s:if test="#stat.count == 1">
-				<div class="selectable selectableHead"><s:property value="descripcion"/> </div>
-			</s:if>
-			<s:else>
-				<div class="selectable selectableReserved">
-					<p class="alignLeft"><s:date name="hourProg" format="hh:mm"/></p>
- 					<p class="alignRight"><s:date name="hourProg" format="hh:mm"/></p>
-				</div>
-			</s:else>
-		</s:iterator>
-	</sj:div>
-	<sj:div selectable="true" cssClass="selecColumn">
-		<s:iterator value="citaListaSaturday" status="stat">
-			<s:if test="#stat.count == 1">
-				<div class="selectable selectableHead"><s:property value="descripcion"/> </div>
-			</s:if>
-			<s:else>
-				<div class="selectable selectableReserved">
-					<p class="alignLeft"><s:date name="hourProg" format="hh:mm"/></p>
- 					<p class="alignRight"><s:date name="hourProg" format="hh:mm"/></p>
-				</div>
-			</s:else>
-		</s:iterator>
-	</sj:div>
-	<sj:div selectable="true" cssClass="selecColumn">
-		<s:iterator value="citaListaSunday" status="stat">
-			<s:if test="#stat.count == 1">
-				<div class="selectable selectableHead"><s:property value="descripcion"/> </div>
-			</s:if>
-			<s:else>
-				<div class="selectable selectableReserved">
-					<p class="alignLeft"><s:date name="hourProg" format="hh:mm"/> </p>
- 					<p class="alignRight"><s:date name="hourProg" format="hh:mm"/></p>
-				</div>
-			</s:else>
-		</s:iterator>
-	</sj:div>
+	<s:iterator value="{citaListaHoras,
+						citaListaMonday,
+						citaListaTuesday,
+						citaListaWednesday,
+						citaListaThursday,
+						citaListaFriday,
+						citaListaSaturday,
+						citaListaSunday
+						}" var="semanas">
+	
+		<sj:div selectable="true" cssClass="selecColumn">
+			<s:iterator value="#semanas" status="stat">
+				<s:if test="#stat.count == 1">
+					<div class="selectable selectableHead">
+						<s:property value="descripcion"/>
+						<s:date name="houtrProg" format="hh"/>
+					</div>
+				</s:if>
+				<s:else>
+					<div class="selectable">
+						
+<%-- 						<sj:a openDialog="dlgForm" --%>
+<%-- 			  					button="true" --%>
+<%-- 			  					buttonIcon="ui-icon-plus" --%>
+<%-- 			  					buttonText="false"			  					 --%>
+<%-- 			  					>Horarios</sj:a> --%>
+			  					
+					</div>
+				</s:else>
+			</s:iterator>
+		</sj:div>
+		
+	</s:iterator>
 	
 	<br>
 	<sj:div cssStyle="width: 100%; float: left;">

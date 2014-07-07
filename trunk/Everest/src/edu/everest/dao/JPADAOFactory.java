@@ -77,4 +77,18 @@ public class JPADAOFactory extends DAOFactory {
 		ed.setEntityManagerFactory(emf);
 		return (RolOpcionDAO)ed;
 	}
+
+	@Override
+	public ServicioDAO getServicioDAO() {
+		ServicioJPADAO ed =  new ServicioJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (ServicioDAO)ed;
+	}
+
+	@Override
+	public DetalleCitaDAO getDetalleCitaDAO() {
+		DetalleCitaJPADAO ed =  new DetalleCitaJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (DetalleCitaDAO)ed;
+	}
 }

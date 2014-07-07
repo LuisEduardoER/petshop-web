@@ -18,7 +18,7 @@
 	buttonIcon="ui-icon-plus"
 	>Agregar</sj:a>
 
-<table id="tableClientes" class="dls-table" cellspacing="0" cellpadding="0">
+<table id="table" class="dls-table" cellspacing="0" cellpadding="0">
     <thead>
         <tr>
             <th>Id</th>

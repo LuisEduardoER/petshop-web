@@ -35,7 +35,11 @@
 	<nav class="tm-navbar uk-navbar">
 		
 		<ul class="topMenu">
-			<li><a href="welcome">Home</a></li>
+			<li>
+				<a href="intranetBienvenidoAction" style="float: left; padding: 0;">
+					<img alt="Home Intranet" src="img/PetShop_Only.png" style="height: 50px; float: left; margin: 10px 20px;">
+				</a>
+			</li>
 			<li><a href="#">Menu 1</a></li>
 			<li><a href="#">Menu 2</a></li>
 			<li><a href="#">Menu 3</a>

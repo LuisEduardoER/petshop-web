@@ -22,6 +22,8 @@ public abstract class DAOFactory {
     public abstract CitaDAO				getCitaDAO();
     public abstract TipoDocumentoDAO	getTipoDocumentoDAO();
     public abstract RolOpcionDAO		getRolOpcionDAO();
+    public abstract ServicioDAO			getServicioDAO();
+    public abstract DetalleCitaDAO		getDetalleCitaDAO();
        
     public static DAOFactory getDAOFactory(int whichFactory) {
        switch(whichFactory){
