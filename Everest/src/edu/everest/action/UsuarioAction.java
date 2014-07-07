@@ -134,14 +134,16 @@ public class UsuarioAction extends ActionSupport{
 				
 				for (Opcion parentOpcion : listaParentOpcion) {
 					
-					listaOpcion.add(parentOpcion);
-					
 					listaChildOpcion = new ArrayList<Opcion>();
 					listaChildOpcion = opcionService.obtenerOpcionByParent(parentOpcion);					
 					
-					for (Opcion childOpcion : listaChildOpcion) {
-						listaOpcion.add(childOpcion);
-					}
+					parentOpcion.setOpcions( listaChildOpcion );
+					
+//					for (Opcion childOpcion : listaChildOpcion) {
+//						listaOpcion.add(childOpcion);
+//					}
+					
+					listaOpcion.add(parentOpcion);
 					
 				}
 				

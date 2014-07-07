@@ -42,4 +42,13 @@ public class ApplicationBusinessDelegate {
 	public RolOpcionService getRolOpcionService() {
 		return new RolOpcionDAOService( DAOFactory.JPA );
 	}
+	
+	public ServicioService getServicioService() {
+		return new ServicioDAOService( DAOFactory.JPA );
+	}
+	
+	public DetalleCitaService getDetalleCitaDAOService() {
+		return new DetalleCitaDAOService( DAOFactory.JPA );
+	}
+	
 }

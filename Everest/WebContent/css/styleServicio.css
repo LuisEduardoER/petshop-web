@@ -1,6 +1,6 @@
 .selecColumn{
-	float: left;
-	width: 10.4%;
+float: left;
+width: 12.5%;
 }
 .selectable {
 border:1px solid #F1F1F1;
@@ -9,7 +9,7 @@ height:20px;
 margin:1px;
 padding:5px;
 /* width:10.4%; */
-width: 100%;
+width: 85%;
 }
 .selectable p{
 margin: 0px;

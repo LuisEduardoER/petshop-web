@@ -4,7 +4,7 @@
 
 <script>
 $(function() {
-	$.subscribe('closeDialog', function(event,data) {
+	$.subscribe('closeCalDialog', function(event,data) {
 		var html = "<table style='width: 100%;'>"+
 				    	"<tr>"+
 						"<td style='width: 100%; text-align: center;'>"+
@@ -18,77 +18,77 @@ $(function() {
 });
 </script>
 
-<s:form id="form1">
+<s:form id="frmCita">
 
 <h1>
 Registro de Citas
 </h1>
 
-<fieldset id="fsMascota">
-	
-	<legend> <h2>Mascota</h2> </legend>
-	
-	<s:include value="citaMascota.jsp"/>
-	
-</fieldset>
+<sj:accordion cssClass="accAccordion" autoHeight="true">
+	<sj:accordionItem title="Mascota">
+		<s:include value="citaMascota.jsp"/>
+	</sj:accordionItem>
+</sj:accordion>
 
-<br>
-
-<fieldset>
-	<legend> <h2>Cita </h2> </legend>
-
-	<table>
-		<tr>
-			<td>Local</td>
-			<td>
-				<select>
-					<option>Local 1</option>
-					<option>Local 2</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Fecha</td>
-			<td>Hora</td>
-		</tr>
-		<tr>
-			<td>
-				<s:label name="cita.fecProg" value="DD/MM/YYYY"/>
-			</td>
-			<td>
-				<s:label name="cita.hourProg" value="HH:MM"/>
-			</td>
-			<td>
-				<s:url var="urlLoadHorarios" value="loadDaysOfWeekAction"/>
-				<sj:a openDialog="dlgCalendar"
-  					button="true"
-  					buttonIcon="ui-icon-calendar"
-  					href="%{urlLoadHorarios}"
-  					>Horarios</sj:a>
- 					 
-			</td>
-		</tr>
-		<tr>
-			<td>Tipo Servicio</td>
-			<td>Costo</td>
-		</tr>
-		<tr>
-			<td>
-				<select>
-					<option>-- Seleccione --</option>
-				</select>
-			</td>
-			<td>S/ .20 </td>
-		</tr>
-	</table>
-
-</fieldset>
-
+<sj:accordion cssClass="accAccordion" autoHeight="true">
+	<sj:accordionItem title="Servicios">
+		<s:include value="citaServicioLista.jsp"/>
+		
+		<s:url />
+		<sj:div/>
+		
+	</sj:accordionItem>
+    <sj:accordionItem title="Cita">
+		<table>
+			<tr>
+				<td>Local</td>
+				<td>
+					<select>
+						<option>Local 1</option>
+						<option>Local 2</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Fecha</td>
+				<td>Hora</td>
+			</tr>
+			<tr>
+				<td>
+					<sj:datepicker name="cita.fecProg" showOn="focus" size="10px" displayFormat="dd/mm/yy" value="today"/>
+				</td>
+				<td>
+					<sj:datepicker name="cita.hourProg" showOn="focus" timepicker="true" timepickerOnly="true" size="10" value="today" displayFormat="hh:mm"/>
+				</td>
+				<td>
+					<s:url var="urlLoadHorarios" value="loadDaysOfWeekAction"/>
+					<sj:a openDialog="dlgCalendar"
+	  					button="true"
+	  					buttonIcon="ui-icon-calendar"
+	  					href="%{urlLoadHorarios}"
+	  					>Horarios</sj:a>
+	 					 
+				</td>
+			</tr>
+		</table>
+    </sj:accordionItem>
+   </sj:accordion>
 <br>
 
 <sj:a button="true" buttonIcon="ui-icon-disk">Registrar</sj:a>
 
 <br>
+<script type="text/javascript">
+$(function() {
+	var icons = {
+		header: "ui-icon-circle-arrow-e",
+		activeHeader: "ui-icon-circle-arrow-s"
+	};
+// 	$(".accAccordion").accordion("option","icons",null);
+// 	$("h3.accAccordion span").css("float","left");
+});
+</script>
+
 </s:form>
 
 <sj:dialog
@@ -99,7 +99,7 @@ Registro de Citas
 	hideEffect="explode"
 	width="830"
 	closeOnEscape="true"
-	onCloseTopics="closeDialog"
+	onCloseTopics="closeCalDialog"
 	title="Horarios">
  	
  	<table id="dlgLoading" style="width: 100%; ">
@@ -111,4 +111,3 @@ Registro de Citas
 	</table>
  	
 </sj:dialog>
-    

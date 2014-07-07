@@ -1,9 +1,18 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -19,7 +28,7 @@ public class Servicio implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idServicio;
 
-	private double costo;
+	private double costoRef;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreate;
@@ -27,12 +36,15 @@ public class Servicio implements Serializable {
 	private String descripcion;
 
 	private String estado;
+	
+	@Temporal(TemporalType.TIME)
+	private Calendar tiempoAprox;
 
 	private String userCreate;
 
-	//bi-directional many-to-one association to Cita
+	//bi-directional many-to-one association to DetalleCita
 	@OneToMany(mappedBy="servicio")
-	private List<Cita> citas;
+	private List<DetalleCita> detalleCitas;
 
 	public Servicio() {
 	}
@@ -45,12 +57,12 @@ public class Servicio implements Serializable {
 		this.idServicio = idServicio;
 	}
 
-	public double getCosto() {
-		return this.costo;
+	public double getCostoRef() {
+		return this.costoRef;
 	}
 
-	public void setCosto(double costo) {
-		this.costo = costo;
+	public void setCostoRef(double costoRef) {
+		this.costoRef = costoRef;
 	}
 
 	public Date getDateCreate() {
@@ -77,6 +89,14 @@ public class Servicio implements Serializable {
 		this.estado = estado;
 	}
 
+	public Calendar getTiempoAprox() {
+		return this.tiempoAprox;
+	}
+
+	public void setTiempoAprox(Calendar tiempoAprox) {
+		this.tiempoAprox = tiempoAprox;
+	}
+
 	public String getUserCreate() {
 		return this.userCreate;
 	}
@@ -85,26 +105,26 @@ public class Servicio implements Serializable {
 		this.userCreate = userCreate;
 	}
 
-	public List<Cita> getCitas() {
-		return this.citas;
+	public List<DetalleCita> getDetalleCitas() {
+		return this.detalleCitas;
 	}
 
-	public void setCitas(List<Cita> citas) {
-		this.citas = citas;
+	public void setDetalleCitas(List<DetalleCita> detalleCitas) {
+		this.detalleCitas = detalleCitas;
 	}
 
-	public Cita addCita(Cita cita) {
-		getCitas().add(cita);
-		cita.setServicio(this);
+	public DetalleCita addDetalleCita(DetalleCita detalleCita) {
+		getDetalleCitas().add(detalleCita);
+		detalleCita.setServicio(this);
 
-		return cita;
+		return detalleCita;
 	}
 
-	public Cita removeCita(Cita cita) {
-		getCitas().remove(cita);
-		cita.setServicio(null);
+	public DetalleCita removeDetalleCita(DetalleCita detalleCita) {
+		getDetalleCitas().remove(detalleCita);
+		detalleCita.setServicio(null);
 
-		return cita;
+		return detalleCita;
 	}
-
+	
 }
