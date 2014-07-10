@@ -26,8 +26,6 @@ public class HistoriaClinica implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechaNac;
 
-	private int idCliente;
-
 	private String observacion;
 
 	private String peso;
@@ -41,6 +39,11 @@ public class HistoriaClinica implements Serializable {
 	private String temperatura;
 
 	private String tratamiento;
+
+	//bi-directional many-to-one association to Cliente
+	@ManyToOne
+	@JoinColumn(name="idCliente")
+	private Cliente cliente;
 
 	//bi-directional many-to-one association to Mascota
 	@ManyToOne
@@ -80,14 +83,6 @@ public class HistoriaClinica implements Serializable {
 
 	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
-	}
-
-	public int getIdCliente() {
-		return this.idCliente;
-	}
-
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
 	}
 
 	public String getObservacion() {
@@ -144,6 +139,14 @@ public class HistoriaClinica implements Serializable {
 
 	public void setTratamiento(String tratamiento) {
 		this.tratamiento = tratamiento;
+	}
+
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Mascota getMascota() {
