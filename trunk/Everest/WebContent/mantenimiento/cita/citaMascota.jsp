@@ -14,7 +14,7 @@
 				<sj:a button="true"
 					href="validarClienteAction"
 					targets="tbMascota"
-					formIds="form1" 
+					formIds="frmCita" 
 					buttonIcon="ui-icon-circle-triangle-e" 
 					buttonText="false">Validar</sj:a>
 			</td>

@@ -121,26 +121,5 @@
 	</tr>
 </table>
 </s:form>
-    
-<sj:dialog 
-    	id="dlgForm" 
-    	autoOpen="false"
-    	width="450"
-    	minHeight="350"
-    	modal="true" 
-    	onCloseTopics="closeDialog"
-    	showEffect="slide" 
-    	hideEffect="explode"
-    	title="Mascota">
-        
-        <table style="width: 100%;">
-        	<tr>
-        		<td style="width: 100%; text-align: center;">
-        			<img alt="Loading" src="img/loading.gif">
-        		</td>
-        	</tr>
-        </table>
-		 
-    </sj:dialog>
 
     

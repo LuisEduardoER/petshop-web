@@ -8,9 +8,7 @@ $(function() {
 });
 </script>
 
-<s:url id="insert" action="showCitaDetalleFormAction" escapeAmp="false">
-    <s:param name="oper">add</s:param>
-</s:url>
+<s:url id="insert" action="showDetalleCitaLink"/>
 <sj:a 
 	openDialog="dlgForm"
 	href="%{insert}"
@@ -18,13 +16,19 @@ $(function() {
 	buttonIcon="ui-icon-plus"
 	>Agregar</sj:a>
 
+<s:fielderror/> 	 	
+<s:actionerror/>
+<s:actionmessage/>
+
 <table id="table" class="dls-table" cellspacing="0" cellpadding="0">
     <thead>
         <tr>
             <th>Nro.</th>
-            <th>Descripcion</th>
+            <th>Servicio</th>
             <th>Costo</th>
             <th>Tiempo Aprox</th>
+            <th>Pelo</th>
+            <th>Tamano</th>
             <th class="ui-state-disabled tdButton">
             	<sj:a button="true" buttonIcon="ui-icon-circle-close" buttonText="false" disabled="false" cssClass="no-border">Eliminar</sj:a>
             </th>
@@ -39,11 +43,14 @@ $(function() {
 			</tr>
 		</s:if>
     	<s:iterator value="detalleCitaLista" var="objDetalle" status="stat">
+    		
 	        <tr>
-	            <td><s:property value="idServicio"/></td>
-	            <td> <s:property value="descripcion"/> </td>
+	            <td><s:property value="idDetalleCita"/></td>
+	            <td> <s:property value="servicio.descripcion"/> </td>
 	            <td> <s:property value="costo"/> </td>
-	            <td> <s:property value="tiempoAprox"/> </td>
+				<td> <s:date name="tiempoAprox" format="mm:ss"/> </td>
+	            <td> <s:property value="pelo"/> </td>
+	            <td> <s:property value="tamano"/> </td>
 	            
 	            <td class="tdButton">
 	            	
