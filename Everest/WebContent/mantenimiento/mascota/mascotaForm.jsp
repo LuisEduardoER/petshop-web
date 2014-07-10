@@ -29,17 +29,40 @@
   }
 
   document.getElementById('fileFoto').addEventListener('change', handleFileSelect, false);
+	$(function() {
+		$("#dlgForm").dialog('option', 'width', 'auto');
+		$.subscribe('tabchange', function(event, data) {
+// 			alert("tone: "+$("#tone").css("display") +"\n"+
+// 				  "ttwo: "+$("#ttwo").css("display") );
+			
+			if( $("#tone").css("display") == "none"){
+				$("#tone").show();
+				$("#ttwo").hide();
+			}
+			else if( $("#ttwo").css("display") == "none"){
+				$("#tone").hide();
+				$("#ttwo").show();
+			}
+			return false;
+		});
+	});
 </script>
 
-<h1>
 	<s:if test="oper=='edit'">
-		<s:text name="Editar Mascota"/>
+		<script type="text/javascript">
+			$(function() {
+				$("#dlgForm").dialog('option', 'title', 'Editar Mascota');
+			});
+		</script>
 	</s:if>
 	<s:if test="oper=='add'">
-		<s:text name="Agregar Mascota"/> 
+		<script type="text/javascript">
+			$(function() {
+				$("#dlgForm").dialog('option', 'title', 'Agregar Mascota');
+			});
+		</script> 
 	</s:if>
 
-</h1>
 	 <table>
 		<tr><td align="left" style="font:bold;color:red"> 
 	            <s:fielderror/> 	 	
@@ -54,103 +77,140 @@
     <s:hidden name="cliente.idCliente"/>
 
     
-     <table align="center" class="borderAll">
-     	 
-     	 
-     	 <tr>
-         	<td class="tdLabel">&nbsp;</td>
-         	<td id="tdImg">
-         		<s:if test="oper=='add'">
-         			<img alt="Imagen no disponible" style="max-height: 200px; max-width: 200px;" 
-						src="img/PetShop_Gray.png">
-         		</s:if>
-         		<s:else>
-	         		<img alt="Imagen no disponible" style="max-height: 200px; max-width: 200px;" 
-						src="cargaImagenAction?idMascota=<s:property value="mascota.idMascota"/>">
-				</s:else>
-			</td>
-         </tr>
-	<s:if test="oper!='view'">
-		<tr>
-	       	<td class="tdLabel">&nbsp;</td>
-	       	<td>
-				<s:file id="fileFoto" name="mascota.foto"></s:file>
-			</td>
-         </tr>
-	</s:if>
-         <tr>
-         	<td class="tdLabel"><s:text name="Nombre"/></td>
-      <s:if test="oper=='view'">
-         	<td class="tdLabel"><s:text name="mascota.nombre"/></td>
-      </s:if>
-      <s:else>
-      		<td><s:textfield name="mascota.nombre" size="30"/></td>
-      </s:else>
-         </tr>
-         <tr>
-         	<td class="tdLabel"><s:text name="Edad"/></td>
-         	<td>
-        <s:if test="oper=='add'">
-        	<label style="float: left;" id="displayvaluespan" for="echo">0</label>
-        </s:if>
-        <s:else>
-        	<label style="float: left;" id="displayvaluespan" for="echo"><s:property value="mascota.edad"/></label>
-        </s:else>
-			
-		<s:if test="oper!='view'">
-        	<sj:slider 
-				id="echo" 
-				name="mascota.edad"
-				displayValueElement="displayvaluespan"
-				value="0"
-				label="5" 
-				min="0" 
-				max="10" 
-				step="1"
-				animate="true"
-				cssStyle="margin-left: 25px; margin-top: 5px;"
-			/>
+    <sj:tabbedpanel id="tab" onChangeTopics="tabchange">
+<%--       <sj:tab id="tab1" href="%{remoteurl1}" label="Tab One" /> --%>
+<%--       <sj:tab id="tab2" href="%{remoteurl2}" label="Tab Two"/> --%>
+      
+      <sj:tab id="tab1" target="tone" label="Imagen"/>
+      <sj:tab id="tab2" target="ttwo" label="Tomar Foto"/>
+      
+      <div id="tone">
+      
+      	<table cellspacing="0" cellpadding="0" style="width:100%; text-align: center;">
+      		<tr>
+	         	<td class="tdLabel">&nbsp;</td>
+	         	<td id="tdImg">
+	         		<s:if test="oper=='add'">
+	         			<img alt="Imagen no disponible" style="max-height: 200px; max-width: 200px;" 
+							src="img/PetShop_Gray.png">
+	         		</s:if>
+	         		<s:else>
+		         		<img alt="Imagen no disponible" style="max-height: 200px; max-width: 200px;" 
+							src="cargaImagenAction?idMascota=<s:property value="mascota.idMascota"/>">
+					</s:else>
+				</td>
+	         </tr>
+         <s:if test="oper!='view'">
+			<tr>
+		       	<td class="tdLabel">&nbsp;</td>
+		       	<td>
+					<s:file id="fileFoto" name="mascota.foto"></s:file>
+				</td>
+	         </tr>
 		</s:if>
-         	</td>
-         </tr>
+      	</table>
+      	
+      </div>
+      <div id="ttwo" style="display:none;">
+      	<table cellspacing="0" cellpadding="0" style="width:450px; text-align: center; height: 143px;">
+      		<tr>
+      			<td style="width: 120px;"></td>
+      			<td style="width: 210px; height: 100%; background-color: black;">
+      			</td>
+      			<td style="width: 120px;">
+   					<sj:a button="true" buttonIcon="ui-icon-image">Capturar</sj:a>
+   					<sj:a button="true" buttonIcon="ui-icon-image">Descartar</sj:a>
+      			</td>
+      		</tr>
+      	</table>
+      </div>
+      
+    </sj:tabbedpanel>
+    
+     <table align="center" class="borderAll">
+     	 <tr>
+     	 	<td class="tdLabel"><s:text name="Nombre"/></td>
+		 	<td class="tdLabel"><s:text name="Tipo Animal"/></td>
+		 	<td class="tdLabel"><s:text name="Raza"/></td>
+		 </tr>
          <tr>
-         	<td class="tdLabel"><s:text name="Raza"/></td>
-         <s:if test="oper=='view'">
-         	<td class="tdLabel"><s:text name="mascota.raza"/></td>
-         </s:if>
-         <s:else>
-         	<td><s:textfield name="mascota.raza" size="30"/></td>
-         </s:else>
+         	<td><s:textfield name="mascota.nombre" size="20"/></td>
+         	<td>
+		 		<s:select list="#{'':'-- Seleccione --','1':'Perro','2':'Gato'}">
+		 		</s:select>
+		 	</td>      
+      		<td><s:textfield name="mascota.raza" size="20"/></td>
          </tr>
          <tr>
          	<td class="tdLabel"><s:text name="Sexo"/></td>
-         <s:if test="oper=='view'">
-         	<td class="tdLabel"><s:text name="mascota.sexo"/></td>
-		</s:if>
-		<s:else>
-			<td>
+         	<td class="tdLabel"><s:text name="Fec. Nac."/></td>
+         	<td class="tdLabel"><s:text name="Edad"/></td>
+         </tr>
+         <tr>
+         	<td>
 	         	<s:select 
-			       name="mascota.sexo"			       
+			       name="mascota.sexo"
 			       headerKey="" headerValue="-- Seleccione --"
 			       list="#{'M':'Macho', 'H':'Hembra'}"
 			       value="mascota.sexo"
 			       required="true"
 				/>
 			</td>
-		</s:else>
+         	<td>
+         		<sj:datepicker size="20" showOn="focus" displayFormat="dd/MM/yy" changeMonth="true" changeYear="true"/>
+         	</td>
+         	<td>
+				<sj:spinner 
+					size="20"
+			    	name="mascota.edad" 
+			    	min="0" 
+			    	max="20" 
+			    	step="1" 
+			    	value="0"/>
+         	</td>
          </tr>
+         <tr>
+		 	<td class="tdLabel"><s:text name="Pedigree"/></td>
+		 	<td class="tdLabel"><s:text name="Esterilizacion"/></td>
+		 </tr>
+		 <tr>
+		 	<td>
+		 		<sj:radio name="pedigree" list="{'Si', 'No'}"/>
+		 	</td>
+		 	<td>
+		 		<sj:radio name="esterilizacion" list="{'Si', 'No'}"/>
+		 	</td>
+		 </tr>
+		 <tr>
+		 	<td class="tdLabel"><s:text name="Alergias"/></td>
+		 	<td class="tdLabel"><s:text name="Observaciones"/></td>
+		 </tr>
+		 <tr>
+		 	<td>
+		 		<s:textarea cols="20" rows="2"/>
+		 	</td>
+		 	<td>
+		 		<s:textarea cols="20" rows="2"/>
+		 	</td>
+		 </tr>
     </table>
-    <br/>
-    <s:if test="oper!='view'">
-    
-    		 
+    <s:if test="oper!='view'">    		 
     <table> 
     	     <tr>
-    		    <td><s:submit action="insertarOActualizarMascota" key="button.label.submit" cssClass="butStnd"/></td>
-    	        <td><s:reset key="button.label.cancel" cssClass="butStnd"/></td>
+    		    <td><sj:submit 
+    		    	action="insertarOActualizarMascota"
+    		    	type="button" 
+    		    	button="true" 
+    		    	buttonIcon="ui-icon-disk">Guardar</sj:submit>
+    		    </td>
     		 </tr>
     </table>
     </s:if>
      		  		 
-    	</s:form>
-
+</s:form>
+<script>
+$(function() {
+	$("#tone").show();
+	$("#ttwo").hide();
+});
+</script>

@@ -12,6 +12,7 @@
      		 	
     <s:form id="frmOpcion" action="insertarOActualizarOpcion">
     	<s:hidden name="opcion.idOpcion"/>
+    	<s:hidden name="oper" value="%{oper}"/>
 		<table align="center">
 		
 		<s:if test="opcion.idOpcion != 0">

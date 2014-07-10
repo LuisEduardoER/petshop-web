@@ -127,6 +127,9 @@ $(function() {
         $("#dlgForm").empty();
         $("#dlgForm").html(html);
     });
+	$.subscribe('successDlgForm', function(event,data) {
+		$("#dlgForm").dialog("close");
+    });
 });
 </script>
 

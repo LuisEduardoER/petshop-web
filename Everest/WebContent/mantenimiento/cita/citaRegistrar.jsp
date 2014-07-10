@@ -15,6 +15,15 @@ $(function() {
         $("#dlgCalendar").empty();
         $("#dlgCalendar").html(html);
     });
+	$.subscribe('tabchange', function(event, data) {
+		
+		if($("#Cita").html()==""){
+			$("#Servicios").html("");
+		}
+		if($("#Servicios").html()==""){
+			$("#Cita").html("");
+		}
+	});
 });
 </script>
 
@@ -30,49 +39,17 @@ Registro de Citas
 	</sj:accordionItem>
 </sj:accordion>
 
-<sj:accordion cssClass="accAccordion" autoHeight="true">
-	<sj:accordionItem title="Servicios">
-		<s:include value="citaServicioLista.jsp"/>
-		
-		<s:url />
-		<sj:div/>
-		
-	</sj:accordionItem>
-    <sj:accordionItem title="Cita">
-		<table>
-			<tr>
-				<td>Local</td>
-				<td>
-					<select>
-						<option>Local 1</option>
-						<option>Local 2</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Fecha</td>
-				<td>Hora</td>
-			</tr>
-			<tr>
-				<td>
-					<sj:datepicker name="cita.fecProg" showOn="focus" size="10px" displayFormat="dd/mm/yy" value="today"/>
-				</td>
-				<td>
-					<sj:datepicker name="cita.hourProg" showOn="focus" timepicker="true" timepickerOnly="true" size="10" value="today" displayFormat="hh:mm"/>
-				</td>
-				<td>
-					<s:url var="urlLoadHorarios" value="loadDaysOfWeekAction"/>
-					<sj:a openDialog="dlgCalendar"
-	  					button="true"
-	  					buttonIcon="ui-icon-calendar"
-	  					href="%{urlLoadHorarios}"
-	  					>Horarios</sj:a>
-	 					 
-				</td>
-			</tr>
-		</table>
-    </sj:accordionItem>
-   </sj:accordion>
+<s:url id="urlShowDetalleCita" action="showDetalleCitaLista" escapeAmp="true">
+	<s:param name="cita.idCita"/>
+</s:url>
+<s:url id="urlShowCitaDetail" action="showCitaDetailAction" >
+</s:url>
+
+<sj:tabbedpanel id="remotetabs" onChangeTopics="tabchange">
+  <sj:tab id="tab1" href="%{urlShowDetalleCita}" label="Servicios" effect="blind"/>
+  <sj:tab id="tab2" href="%{urlShowCitaDetail}" label="Cita" effect="blind"/>
+</sj:tabbedpanel>
+
 <br>
 
 <sj:a button="true" buttonIcon="ui-icon-disk">Registrar</sj:a>

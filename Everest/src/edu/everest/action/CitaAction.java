@@ -18,14 +18,11 @@ import edu.everest.entity.DetalleCita;
 import edu.everest.entity.Mascota;
 import edu.everest.entity.Medico;
 import edu.everest.entity.Servicio;
-import edu.everest.entity.Tab;
 import edu.everest.service.ApplicationBusinessDelegate;
-import edu.everest.service.CitaService;
 import edu.everest.service.ClienteService;
+import edu.everest.service.DetalleCitaService;
 import edu.everest.service.MascotaService;
 import edu.everest.service.ServicioService;
-import edu.everest.util.Constants;
-import edu.everest.util.MiUtil;
 
 @ParentPackage(value = "dawii")
 public class CitaAction extends ActionSupport{
@@ -33,49 +30,31 @@ public class CitaAction extends ActionSupport{
 	private static final long serialVersionUID = 2427618726975693997L;
 	
 	private static ApplicationBusinessDelegate abd 	= new ApplicationBusinessDelegate();
-	private static ClienteService 	clienteService 	= abd.getClienteService();
-	private static MascotaService 	mascotaService 	= abd.getMascotaService();
-	private static CitaService 		citaService 	= abd.getCitaService();
-	private static ServicioService	servicioService = abd.getServicioService();
+	private static ClienteService 		clienteService 		= abd.getClienteService();
+	private static MascotaService 		mascotaService 		= abd.getMascotaService();
+//	private static CitaService 			citaService 		= abd.getCitaService();
+	private static DetalleCitaService	detalleCitaService 	= abd.getDetalleCitaDAOService();
+	private static ServicioService		servicioService 	= abd.getServicioService();
 	
 	private Cita 				cita;
 	private DetalleCita			detalleCita;
+	private Servicio 			servicio;	
 	private Cliente 			cliente;
 	private Medico				medico;
 	private Mascota 			mascota;
 	private List<Mascota> 		mascotaLista = 			new ArrayList<Mascota>();
 	private String 				strMessage;
-	private String 				strHeadSchedule;
-	private String 				turno = "M";
-	private List<Tab> 			turnoLista = 			new ArrayList<Tab>();
-	private List<Tab> 			calendarioHeadLista = 	new ArrayList<Tab>();
-	private List<Tab> 			calendarioBodyLista = 	new ArrayList<Tab>();
 	private List<Servicio>		servicioLista		=	new ArrayList<Servicio>();
-	private List<DetalleCita>	detalleCitaLista	=	new ArrayList<DetalleCita>();
-	private static Calendar		calFirstDayOfWeek;
-	private static Calendar		calNow;
+	private static List<DetalleCita>	detalleCitaLista	=	new ArrayList<DetalleCita>();
 	private String 				oper;
+	private int idServicio;
 	
-	DateFormat hourFormat 		= new SimpleDateFormat ("HH:mm");
-	DateFormat dateFormatMin 	= new SimpleDateFormat ("dd/MM");
-	DateFormat dateFormat 		= new SimpleDateFormat ("dd/MM/yyyy");
-	DateFormat dateFormatFull 	= new SimpleDateFormat ("dd/MM/yyyy HH:mm");
+	DateFormat minuteFormat 	= new SimpleDateFormat ("mm");
+	DateFormat minuteFormat2 	= new SimpleDateFormat ("hh:mm");
 	
 	@Action(value="/showCitaRegistroAction",
 			results={ @Result(name="success", location="citaRegistrarTile",type="tiles") })
 	public String showClienteRegistrar() throws Exception{
-		return SUCCESS;
-	}
-	
-	@Action(value="/loadTurnoJSON",
-			results={ @Result(name="success", type="json") })
-	public String loadTurno() throws Exception{
-		
-		System.out.println("===== loadTurnoJSON =====");
-		
-		turnoLista.add(new Tab("M", "Manana"));
-		turnoLista.add(new Tab("T", "Tarde"));
-		
 		return SUCCESS;
 	}
 	
@@ -102,187 +81,97 @@ public class CitaAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	@Action(value="/loadDaysOfWeekAction",
-			results={ @Result(name="success",location="/mantenimiento/cita/citaHorarios.jsp") })
-	public String loadDays(){
-		System.out.println("===== loadDaysOfWeekAction =====");
+	@Action(value="/showDetalleCitaLista",
+			results={ @Result(name="success", location="/mantenimiento/cita/detalleCitaLista.jsp") })
+	public String showdetalleCitaLista(){
+		System.out.println("===== showDetalleCitaLista =====");
 		
-		calFirstDayOfWeek = Calendar.getInstance();
-		
-		//Obteniendo el primer dia de la semana (Lunes)
-		int nFirstDayOfWeek = MiUtil.getMondayOfWeek( Calendar.getInstance() );
-		
-		System.out.println("nFirstDayOfWeek:  "+nFirstDayOfWeek);
-		
-		calFirstDayOfWeek.set(Calendar.DAY_OF_WEEK, nFirstDayOfWeek);
-//		calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, 1);
-		System.out.println("calFirstDayOfWeek: "+dateFormatFull.format( calFirstDayOfWeek.getTime() ));
+		try {
+			detalleCitaLista = new ArrayList<DetalleCita>();
+			
+			if(cita.getIdCita()!= 0)
+				detalleCitaLista = detalleCitaService.obtenerTodos(cita);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return SUCCESS;
 	}
 	
-	@Action(value="/reloadCalendarAction",
-	results={ @Result(name="success",location="/mantenimiento/cita/citaCalendar.jsp") })
-	public String reloadCalendar(){
-		System.out.println("===== reloadCalendarAction =====");
-		
-		System.out.println("oper: "+oper);
-		if(oper != null || !oper.equals("")){
+	@Action(value="/showDetalleCitaLink",
+			results={ @Result(name="success", location="/mantenimiento/cita/detalleCitaLink.jsp") })
+	public String showdetalleCitaLink(){
+		return SUCCESS;
+	}
+	
+	@Action(value="/showDetalleCitaForm",
+			results={ @Result(name="success", location="/mantenimiento/cita/detalleCitaForm.jsp") })
+	public String showdetalleCitaForm(){
+		System.out.println("===== showDetalleCitaForm =====");
+		return SUCCESS;
+	}
+	
+	@Action(value="/loadServiciosJSON",
+			results={ @Result(name="success", type="json") })
+	public String loadServicios(){
+		System.out.println("===== loadServiciosJSON =====");
+		try {
+			servicioLista = servicioService.obtenerTodos();
 			
-			if(oper.equals("next"))
-				calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, 7);
-			else if(oper.equals("prev"))
-				if(!calNow.getTime().after(calFirstDayOfWeek.getTime()))
-					calFirstDayOfWeek.add(Calendar.DAY_OF_MONTH, -7);
+			System.out.println("idServicio: "+idServicio);
 			
-			turno = "M";
-			loadCalendar();
+			if(idServicio > 0){
+				System.out.println("dentro");
+				
+				servicio.setIdServicio(idServicio);
+				servicio = servicioService.obtenerServicio(servicio);
+				
+				detalleCita.setCosto( servicio.getCostoRef() );
+				detalleCita.setStrTiempoAprox( minuteFormat2.format(servicio.getTiempoAprox()) );
+			}
 			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return SUCCESS;
-	}	
+	}
 	
-	@SuppressWarnings({ "unused" })
-	@Action(value="/loadCalendarAction",
-			results={ @Result(name="success",location="/mantenimiento/cita/citaCalendar.jsp") })
-	public String loadCalendar() {
-		System.out.println("===== loadCalendarAction =====");
-		
-		calNow = Calendar.getInstance();
-		calNow.add(Calendar.HOUR_OF_DAY, 1);
+	@Action(value="/showCitaDetailAction",
+			results={ @Result(name="success", location="/mantenimiento/cita/citaDetail.jsp") })
+	public String showCitaDetail(){
+		return SUCCESS;
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Action(value="/editDetalleCitaListaAction",
+			results={ @Result(name="success", location="/mantenimiento/cita/detalleCitaLista.jsp"),
+					  @Result(name="input", location="/mantenimiento/cita/detalleCitaLista.jsp")})
+	public String editdetalleCitaLista(){
+		System.out.println("===== editDetalleCitaListaAction =====");
+		System.out.println("oper: "+oper);
 		
 		try {
-		
-			//Cargando Dias de la semana
-			calendarioHeadLista.add( new Tab("","") );
 			
-			for(int i=0; i<7; i++ ){
-				calendarioHeadLista.add( new Tab( ""+i, MiUtil.getDayES(i) + " "+ (calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH)+i) ) );
-			}
-			strHeadSchedule = MiUtil.getMonthES( calFirstDayOfWeek.get(Calendar.MONTH)+1 )+ " "+ calFirstDayOfWeek.get(Calendar.YEAR);		
-			
-			//--------------------------
-//			System.out.println("turno: "+turno);
-			
-			String strHourIni = "", strHourFin = "", strHourAux = "";
-			String strFecIni  = "", strFecFin  = "";
-			String strFecAux1 = "", strFecAux2 = "";
-			
-			Calendar cFecIni = Calendar.getInstance();
-			Calendar cFecAux = Calendar.getInstance();
-			Calendar cFecFin = Calendar.getInstance();
-			
-			cFecIni.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
-			cFecIni.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
-			cFecIni.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
-			
-			cFecAux.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
-			cFecAux.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
-			cFecAux.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
-			
-			cFecFin.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
-			cFecFin.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
-			cFecFin.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
-			
-			cFecIni.set(Calendar.MINUTE, 0);
-			cFecAux.set(Calendar.MINUTE, 0);
-			cFecFin.set(Calendar.MINUTE, 0);
-			
-			cFecIni.set(Calendar.SECOND, 0);
-			cFecAux.set(Calendar.SECOND, 0);
-			cFecFin.set(Calendar.SECOND, 0);
-			
-			cFecFin.add(Calendar.DATE, 7);
-			cFecAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
-			
-			//Cargando Values
-			if(turno.equals("M")){
-				cFecIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
-				cFecAux.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_INI);
-				cFecFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_MORNING_FIN);
+			if(oper.equals("add")){
+				detalleCita.setIdDetalleCita( detalleCitaLista.size()+1 );
 				
-			}else if(turno.equals("T")){
-				cFecIni.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
-				cFecAux.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_INI);
-				cFecFin.set(Calendar.HOUR_OF_DAY, Constants.KV_TURN_EVENING_FIN);
+				servicio = servicioService.obtenerServicio(servicio);
+				detalleCita.setServicio(servicio);
 				
+				detalleCita.setTiempoAprox( Calendar.getInstance() );
+				detalleCita.getTiempoAprox().set(Calendar.HOUR_OF_DAY, 0);				
+				detalleCita.getTiempoAprox().set(Calendar.MINUTE, minuteFormat.parse(detalleCita.getStrTiempoAprox()).getMinutes() );
+				detalleCita.getTiempoAprox().set(Calendar.SECOND, 0);
+				
+				detalleCitaLista.add(detalleCita);
+				
+			}else if(oper.equals("del")){
+				detalleCitaLista.remove(detalleCita);
 			}
 			
-//			System.out.println("["+dateFormat.format(cFecIni.getTime())+" - "+dateFormat.format(cFecFin.getTime())+"]");
-//			System.out.println("["+hourFormat.format(cFecIni.getTime())+" - "+hourFormat.format(cFecFin.getTime())+"]");
-			
-			//------------------------------------------------------------------------
-			
-			List<Cita> citaLista = citaService.obtenerTodosCliente(cFecIni, cFecFin);
-//			System.out.println( "citaLista: "+citaLista.size() );
-			Cita objCita = new Cita();
-			
-			int n=1;
-			int tipo = 0;
-			int d=1;
-			strHourIni = hourFormat.format(cFecIni.getTime());
-			strHourAux = hourFormat.format(cFecAux.getTime());
-			strHourFin = hourFormat.format(cFecFin.getTime());
-			
-//			System.out.println("");
-			
-			//Cargando Horas
-			while(!hourFormat.format(cFecIni.getTime()).equals(hourFormat.format(cFecFin.getTime()))){
-			
-				n=1;
-				strHourIni = hourFormat.format(cFecIni.getTime());
-				strHourAux = hourFormat.format(cFecAux.getTime());
-				
-				calendarioBodyLista.add( new Tab("0", strHourIni, 1) );
-				//Cargando Dias de la semana
-				while( n != 8 ){
-					
-					strFecIni = dateFormat.format(cFecIni.getTime());
-					strFecAux1 = dateFormatFull.format(cFecIni.getTime());
-					
-					for(int c=0; c<citaLista.size(); c++){
-						objCita = citaLista.get(c);
-						
-						objCita.getFecProg().set(Calendar.HOUR_OF_DAY, objCita.getHourProg().get(Calendar.HOUR_OF_DAY));
-						objCita.getFecProg().set(Calendar.MINUTE, objCita.getHourProg().get(Calendar.MINUTE));
-						strFecAux2 = dateFormatFull.format(objCita.getFecProg().getTime());
-						
-//						System.out.println("strFecAux1: "+strFecAux1 );
-//						System.out.println("Cita Prog : "+strFecAux2 );
-//						System.out.println("FechaAct  : "+ dateFormatFull.format(calNow.getTime()));
-						
-						if( strFecAux1.equals(strFecAux2) ){
-							tipo = 2;
-//							System.out.println("Reservado");
-							c=citaLista.size();
-						}else if(calNow.getTime().after(cFecIni.getTime())){
-							tipo = 3;
-//							System.out.println("Bloqueado");
-						}else 
-							tipo = 0;
-//						System.out.println("");
-						
-					}
-					
-					cFecIni.add(Calendar.DAY_OF_MONTH, 1);
-					calendarioBodyLista.add( new Tab(""+d, strFecIni, strHourIni+" - "+strHourAux, tipo) );
-					d++;
-					n++;
-					
-				};
-				
-				cFecIni.set(Calendar.DAY_OF_MONTH, calFirstDayOfWeek.get(Calendar.DAY_OF_MONTH));
-				cFecIni.set(Calendar.MONTH, calFirstDayOfWeek.get(Calendar.MONTH));
-				cFecIni.set(Calendar.YEAR, calFirstDayOfWeek.get(Calendar.YEAR));
-				
-				cFecIni.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
-				cFecAux.add(Calendar.MINUTE, Constants.KV_INTERVAL_TIME_CITA);
-				
-			}
-				
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -325,47 +214,7 @@ public class CitaAction extends ActionSupport{
 	public void setStrMessage(String strMessage) {
 		this.strMessage = strMessage;
 	}
-
-	public String getTurno() {
-		return turno;
-	}
-
-	public void setTurno(String turno) {
-		this.turno = turno;
-	}
-
-	public List<Tab> getTurnoLista() {
-		return turnoLista;
-	}
-
-	public void setTurnoLista(List<Tab> turnoLista) {
-		this.turnoLista = turnoLista;
-	}
-
-	public String getStrHeadSchedule() {
-		return strHeadSchedule;
-	}
-
-	public void setStrHeadSchedule(String strHeadSchedule) {
-		this.strHeadSchedule = strHeadSchedule;
-	}
-
-	public List<Tab> getCalendarioHeadLista() {
-		return calendarioHeadLista;
-	}
-
-	public void setCalendarioHeadLista(List<Tab> calendarioHeadLista) {
-		this.calendarioHeadLista = calendarioHeadLista;
-	}
-
-	public List<Tab> getCalendarioBodyLista() {
-		return calendarioBodyLista;
-	}
-
-	public void setCalendarioBodyLista(List<Tab> calendarioBodyLista) {
-		this.calendarioBodyLista = calendarioBodyLista;
-	}
-
+	
 	public String getOper() {
 		return oper;
 	}
@@ -404,6 +253,22 @@ public class CitaAction extends ActionSupport{
 
 	public void setDetalleCitaLista(List<DetalleCita> detalleCitaLista) {
 		this.detalleCitaLista = detalleCitaLista;
+	}
+
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
+	public int getIdServicio() {
+		return idServicio;
+	}
+
+	public void setIdServicio(int idServicio) {
+		this.idServicio = idServicio;
 	}
 	
 }
