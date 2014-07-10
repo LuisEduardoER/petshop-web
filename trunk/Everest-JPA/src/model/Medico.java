@@ -20,8 +20,6 @@ public class Medico implements Serializable {
 
 	private String apellidos;
 
-	private int idParentMedico;
-
 	private int idUsuario;
 
 	private String nombres;
@@ -31,11 +29,6 @@ public class Medico implements Serializable {
 	//bi-directional many-to-one association to Cita
 	@OneToMany(mappedBy="medico")
 	private List<Cita> citas;
-
-	//bi-directional many-to-one association to Especialidad
-	@ManyToOne
-	@JoinColumn(name="idEspecialidad")
-	private Especialidad especialidad;
 
 	//bi-directional many-to-one association to Local
 	@ManyToOne
@@ -64,14 +57,6 @@ public class Medico implements Serializable {
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
-	}
-
-	public int getIdParentMedico() {
-		return this.idParentMedico;
-	}
-
-	public void setIdParentMedico(int idParentMedico) {
-		this.idParentMedico = idParentMedico;
 	}
 
 	public int getIdUsuario() {
@@ -118,14 +103,6 @@ public class Medico implements Serializable {
 		cita.setMedico(null);
 
 		return cita;
-	}
-
-	public Especialidad getEspecialidad() {
-		return this.especialidad;
-	}
-
-	public void setEspecialidad(Especialidad especialidad) {
-		this.especialidad = especialidad;
 	}
 
 	public Local getLocal() {

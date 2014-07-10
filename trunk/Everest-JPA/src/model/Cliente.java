@@ -67,9 +67,17 @@ public class Cliente implements Serializable {
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 
+	//bi-directional many-to-one association to HistoriaClinica
+	@OneToMany(mappedBy="cliente")
+	private List<HistoriaClinica> historiaClinicas;
+
 	//bi-directional many-to-one association to Mascota
 	@OneToMany(mappedBy="cliente")
 	private List<Mascota> mascotas;
+
+	//bi-directional many-to-one association to Pago
+	@OneToMany(mappedBy="cliente")
+	private List<Pago> pagos;
 
 	public Cliente() {
 	}
@@ -246,6 +254,28 @@ public class Cliente implements Serializable {
 		this.usuario = usuario;
 	}
 
+	public List<HistoriaClinica> getHistoriaClinicas() {
+		return this.historiaClinicas;
+	}
+
+	public void setHistoriaClinicas(List<HistoriaClinica> historiaClinicas) {
+		this.historiaClinicas = historiaClinicas;
+	}
+
+	public HistoriaClinica addHistoriaClinica(HistoriaClinica historiaClinica) {
+		getHistoriaClinicas().add(historiaClinica);
+		historiaClinica.setCliente(this);
+
+		return historiaClinica;
+	}
+
+	public HistoriaClinica removeHistoriaClinica(HistoriaClinica historiaClinica) {
+		getHistoriaClinicas().remove(historiaClinica);
+		historiaClinica.setCliente(null);
+
+		return historiaClinica;
+	}
+
 	public List<Mascota> getMascotas() {
 		return this.mascotas;
 	}
@@ -266,6 +296,28 @@ public class Cliente implements Serializable {
 		mascota.setCliente(null);
 
 		return mascota;
+	}
+
+	public List<Pago> getPagos() {
+		return this.pagos;
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
+	}
+
+	public Pago addPago(Pago pago) {
+		getPagos().add(pago);
+		pago.setCliente(this);
+
+		return pago;
+	}
+
+	public Pago removePago(Pago pago) {
+		getPagos().remove(pago);
+		pago.setCliente(null);
+
+		return pago;
 	}
 
 }

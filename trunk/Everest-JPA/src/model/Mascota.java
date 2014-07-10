@@ -19,6 +19,10 @@ public class Mascota implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idMascota;
 
+	private String alergia;
+
+	private String codMascota;
+
 	private int edad;
 
 	private String esterilizacion;
@@ -43,14 +47,14 @@ public class Mascota implements Serializable {
 	@OneToMany(mappedBy="mascota")
 	private List<Cita> citas;
 
+	//bi-directional many-to-one association to HistoriaClinica
+	@OneToMany(mappedBy="mascota")
+	private List<HistoriaClinica> historiaClinicas;
+
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
-
-	//bi-directional many-to-one association to HistoriaClinica
-	@OneToMany(mappedBy="mascota")
-	private List<HistoriaClinica> historiaClinicas;
 
 	//bi-directional many-to-one association to TipoAnimal
 	@ManyToOne
@@ -66,6 +70,22 @@ public class Mascota implements Serializable {
 
 	public void setIdMascota(int idMascota) {
 		this.idMascota = idMascota;
+	}
+
+	public String getAlergia() {
+		return this.alergia;
+	}
+
+	public void setAlergia(String alergia) {
+		this.alergia = alergia;
+	}
+
+	public String getCodMascota() {
+		return this.codMascota;
+	}
+
+	public void setCodMascota(String codMascota) {
+		this.codMascota = codMascota;
 	}
 
 	public int getEdad() {
@@ -162,14 +182,6 @@ public class Mascota implements Serializable {
 		return cita;
 	}
 
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public List<HistoriaClinica> getHistoriaClinicas() {
 		return this.historiaClinicas;
 	}
@@ -190,6 +202,14 @@ public class Mascota implements Serializable {
 		historiaClinica.setMascota(null);
 
 		return historiaClinica;
+	}
+
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public TipoAnimal getTipoAnimal() {

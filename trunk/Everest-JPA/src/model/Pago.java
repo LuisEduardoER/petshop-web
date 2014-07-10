@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -17,9 +19,24 @@ public class Pago implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPago;
 
-	private double importe;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateCreate;
 
-	private String numCheque;
+	private String userCreate;
+
+	//bi-directional many-to-one association to Cita
+	@ManyToOne
+	@JoinColumn(name="idCita")
+	private Cita cita;
+
+	//bi-directional many-to-one association to Cliente
+	@ManyToOne
+	@JoinColumn(name="idCliente")
+	private Cliente cliente;
+
+	//bi-directional many-to-one association to DetallePago
+	@OneToMany(mappedBy="pago")
+	private List<DetallePago> detallePagos;
 
 	public Pago() {
 	}
@@ -32,20 +49,58 @@ public class Pago implements Serializable {
 		this.idPago = idPago;
 	}
 
-	public double getImporte() {
-		return this.importe;
+	public Date getDateCreate() {
+		return this.dateCreate;
 	}
 
-	public void setImporte(double importe) {
-		this.importe = importe;
+	public void setDateCreate(Date dateCreate) {
+		this.dateCreate = dateCreate;
 	}
 
-	public String getNumCheque() {
-		return this.numCheque;
+	public String getUserCreate() {
+		return this.userCreate;
 	}
 
-	public void setNumCheque(String numCheque) {
-		this.numCheque = numCheque;
+	public void setUserCreate(String userCreate) {
+		this.userCreate = userCreate;
+	}
+
+	public Cita getCita() {
+		return this.cita;
+	}
+
+	public void setCita(Cita cita) {
+		this.cita = cita;
+	}
+
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<DetallePago> getDetallePagos() {
+		return this.detallePagos;
+	}
+
+	public void setDetallePagos(List<DetallePago> detallePagos) {
+		this.detallePagos = detallePagos;
+	}
+
+	public DetallePago addDetallePago(DetallePago detallePago) {
+		getDetallePagos().add(detallePago);
+		detallePago.setPago(this);
+
+		return detallePago;
+	}
+
+	public DetallePago removeDetallePago(DetallePago detallePago) {
+		getDetallePagos().remove(detallePago);
+		detallePago.setPago(null);
+
+		return detallePago;
 	}
 
 }

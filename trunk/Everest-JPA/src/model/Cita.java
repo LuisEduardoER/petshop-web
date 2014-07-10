@@ -2,8 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -25,9 +26,10 @@ public class Cita implements Serializable {
 	private String estado;
 
 	@Temporal(TemporalType.DATE)
-	private Date fecProg;
+	private Calendar fecProg;
 
-	private Time hourProg;
+	@Temporal(TemporalType.TIME)
+	private Calendar hourProg;
 
 	private String userCreate;
 
@@ -41,15 +43,18 @@ public class Cita implements Serializable {
 	@JoinColumn(name="idMascota")
 	private Mascota mascota;
 
-	//bi-directional many-to-one association to Servicio
-	@ManyToOne
-	@JoinColumn(name="idServicio")
-	private Servicio servicio;
-
 	//bi-directional many-to-one association to Medico
 	@ManyToOne
 	@JoinColumn(name="idMedico")
 	private Medico medico;
+
+	//bi-directional many-to-one association to DetalleCita
+	@OneToMany(mappedBy="cita")
+	private List<DetalleCita> detalleCitas;
+
+	//bi-directional many-to-one association to Pago
+	@OneToMany(mappedBy="cita")
+	private List<Pago> pagos;
 
 	public Cita() {
 	}
@@ -78,19 +83,19 @@ public class Cita implements Serializable {
 		this.estado = estado;
 	}
 
-	public Date getFecProg() {
+	public Calendar getFecProg() {
 		return this.fecProg;
 	}
 
-	public void setFecProg(Date fecProg) {
+	public void setFecProg(Calendar fecProg) {
 		this.fecProg = fecProg;
 	}
 
-	public Time getHourProg() {
+	public Calendar getHourProg() {
 		return this.hourProg;
 	}
 
-	public void setHourProg(Time hourProg) {
+	public void setHourProg(Calendar hourProg) {
 		this.hourProg = hourProg;
 	}
 
@@ -118,20 +123,56 @@ public class Cita implements Serializable {
 		this.mascota = mascota;
 	}
 
-	public Servicio getServicio() {
-		return this.servicio;
-	}
-
-	public void setServicio(Servicio servicio) {
-		this.servicio = servicio;
-	}
-
 	public Medico getMedico() {
 		return this.medico;
 	}
 
 	public void setMedico(Medico medico) {
 		this.medico = medico;
+	}
+
+	public List<DetalleCita> getDetalleCitas() {
+		return this.detalleCitas;
+	}
+
+	public void setDetalleCitas(List<DetalleCita> detalleCitas) {
+		this.detalleCitas = detalleCitas;
+	}
+
+	public DetalleCita addDetalleCita(DetalleCita detalleCita) {
+		getDetalleCitas().add(detalleCita);
+		detalleCita.setCita(this);
+
+		return detalleCita;
+	}
+
+	public DetalleCita removeDetalleCita(DetalleCita detalleCita) {
+		getDetalleCitas().remove(detalleCita);
+		detalleCita.setCita(null);
+
+		return detalleCita;
+	}
+
+	public List<Pago> getPagos() {
+		return this.pagos;
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
+	}
+
+	public Pago addPago(Pago pago) {
+		getPagos().add(pago);
+		pago.setCita(this);
+
+		return pago;
+	}
+
+	public Pago removePago(Pago pago) {
+		getPagos().remove(pago);
+		pago.setCita(null);
+
+		return pago;
 	}
 
 }
