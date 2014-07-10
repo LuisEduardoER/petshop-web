@@ -109,13 +109,6 @@ public class CitaAction extends ActionSupport{
 			results={ @Result(name="success", location="/mantenimiento/cita/detalleCitaForm.jsp") })
 	public String showdetalleCitaForm(){
 		System.out.println("===== showDetalleCitaForm =====");
-		return SUCCESS;
-	}
-	
-	@Action(value="/loadServiciosJSON",
-			results={ @Result(name="success", type="json") })
-	public String loadServicios(){
-		System.out.println("===== loadServiciosJSON =====");
 		try {
 			servicioLista = servicioService.obtenerTodos();
 			
@@ -123,17 +116,25 @@ public class CitaAction extends ActionSupport{
 			
 			if(idServicio > 0){
 				System.out.println("dentro");
-				
+				servicio = new Servicio();				
 				servicio.setIdServicio(idServicio);
 				servicio = servicioService.obtenerServicio(servicio);
 				
 				detalleCita.setCosto( servicio.getCostoRef() );
-				detalleCita.setStrTiempoAprox( minuteFormat2.format(servicio.getTiempoAprox()) );
+				detalleCita.setStrTiempoAprox( minuteFormat2.format(servicio.getTiempoAprox().toString()) );
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return SUCCESS;
+	}
+	
+	@Action(value="/loadServiciosJSON",
+			results={ @Result(name="success", type="json") })
+	public String loadServicios(){
+		System.out.println("===== loadServiciosJSON =====");
 		
 		return SUCCESS;
 	}

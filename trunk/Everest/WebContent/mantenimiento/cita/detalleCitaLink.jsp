@@ -2,11 +2,28 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-<s:url id="showDetalleCitaForm" action="showDetalleCitaForm"></s:url>
-<sj:div 
-	id="divDetalleCitaForm" 
-	href="%{showDetalleCitaForm}"
-	reloadTopics="reloadDivForm" 
-	effect="blind" 
-	effectDuration="500"
-	effectMode="show"/>
+<table>
+		<tr><td align="left" style="font:bold;color:red"> 
+	            <s:fielderror/> 	 	
+                <s:actionerror/>
+                <s:actionmessage/>
+             </td>
+        </tr>
+     </table>
+     		 	
+    <s:form id="frmDetalleCita" >
+    
+    	<s:url id="showDetalleCitaForm" action="showDetalleCitaForm"></s:url>
+		<sj:div 
+			id="divDetalleCitaForm" 
+			href="%{showDetalleCitaForm}"
+			formIds="frmDetalleCita"
+			reloadTopics="reloadDivForm" 
+			effect="blind" 
+			effectDuration="500"
+			effectMode="show"/>
+	
+    </s:form>
+
+
+	

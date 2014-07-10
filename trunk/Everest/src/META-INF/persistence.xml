@@ -25,6 +25,12 @@
 		<class>edu.everest.entity.TipoAnimal</class>
 		<class>edu.everest.entity.Turno</class>
 		
+		<class>edu.everest.entity.Pago</class>
+		<class>edu.everest.entity.DetallePago</class>
+		<class>edu.everest.entity.DetallePagoPK</class>
+		<class>edu.everest.entity.Producto</class>
+		<class>edu.everest.entity.TipoProducto</class>
+		
 		<properties>
 		   <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 		   <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/petshop"/>

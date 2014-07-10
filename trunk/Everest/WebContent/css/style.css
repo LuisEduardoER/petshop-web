@@ -462,3 +462,10 @@ border-width: 0px !important;
 padding: .05em !important;
 border-bottom-width: 0px !important; 
 }
+
+.dls-table-form th{
+border-width: 0px;
+font-weight: normal;
+background: rgba(100,184,178,0.1);
+color: #64B9B4;
+}

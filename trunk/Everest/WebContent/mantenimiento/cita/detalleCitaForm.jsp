@@ -2,42 +2,43 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-<table>
-		<tr><td align="left" style="font:bold;color:red"> 
-	            <s:fielderror/> 	 	
-                <s:actionerror/>
-                <s:actionmessage/>
-             </td>
-        </tr>
-     </table>
-     		 	
-    <s:form id="frmDetalleCita" >
+
     	<s:hidden name="oper" value="add"></s:hidden>
     	
 		<table align="center">
 		    
 		    <tr>
 		    	<td class="tdLabel"><s:text name="Servicio"/></td>
-		    	<td>
-		    		<s:url id="urlLoadServiciosJSON" action="loadServiciosJSON"/> 
-					<sj:select 
-						href="%{urlLoadServiciosJSON}"
+		    	<td> 
+		    	
+		    		<sj:autocompleter
+						id="customers"
 						name="idServicio" 
 						list="servicioLista" 
 						listKey="idServicio" 
 						listValue="descripcion"
 						formIds="frmDetalleCita"
+						selectBox="true"
+						selectBoxIcon="true"
 						onChangeTopics="reloadDivForm" 
-						headerKey="-1" 
-						headerValue="-- Seleccione --"
 					/>
+<%-- 					<sj:select --%>
+<%-- 						name="idServicio"  --%>
+<%-- 						list="servicioLista"  --%>
+<%-- 						listKey="idServicio"  --%>
+<%-- 						listValue="descripcion" --%>
+<%-- 						formIds="frmDetalleCita" --%>
+<%-- 						onChangeTopics="reloadDivForm"  --%>
+<%-- 						headerKey="-1"  --%>
+<%-- 						headerValue="-- Seleccione --" --%>
+<%-- 					/> --%>
 <%-- 		    		<s:select --%>
 <%-- 		    			id="cboServicioLista" --%>
 <%-- 		    			name="servicio.idServicio"  --%>
 <%-- 		    			list="servicioLista" --%>
 <%-- 		    			listKey="idServicio" --%>
 <%-- 		    			listValue="descripcion" --%>
-<%-- 		    		/> --%>
+<%-- 		    		/> --%> 
 		    		<script type="text/javascript">
 					$("#cboServicioLista").change(function() {
 						cbo = $("#cboServicioLista").val();						
@@ -123,7 +124,7 @@
 							buttonIcon="ui-icon-disk"
 							effect="blind"
 							effectMode="show"
-							onSuccessTopics="successDlgForm"
+							onFocusTopics="successDlgForm"
 							>
 							Agregar
 						</sj:a>
@@ -133,4 +134,4 @@
 				    </td>
 				 </tr>
 		</table>
-    </s:form>
+    
