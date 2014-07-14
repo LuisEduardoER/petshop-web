@@ -28,13 +28,13 @@ public class PagoAction extends ActionSupport{
 	
 	private Map<String,String>  tipoComprobanteLista;
 	private String				tipoComprobante;
-	private String 				dynamicResult;
+	private String 				tipoPago;
 	
 	@Action(value="/showPagoPageAction",
 			results={ @Result(name="success", location="pagoPageTile",type="tiles") })
 	public String showClienteRegistrar() throws Exception{
 		tipoComprobante = "boleta";
-		
+		tipoPago		= "contado";
 		return SUCCESS;
 	}
 	
@@ -43,18 +43,39 @@ public class PagoAction extends ActionSupport{
 					  @Result(name="factura", location="/mantenimiento/pago/pagoFactura.jsp")
 					})
 	public String loadTipoComprobante() throws Exception{
-		System.out.println("===== loadTipoComprobante =====");
+		System.out.println("===== loadTipoComprobanteAction =====");
 		String strReturn="";
 		
 		System.out.println("tipoComprobante: "+tipoComprobante);
 		if(tipoComprobante == null){
-			tipoComprobante = "boleta";
+			tipoComprobante = "contado";
 		}
 		
 		if(tipoComprobante.equals("boleta"))
 			strReturn = SUCCESS;
 		else if(tipoComprobante.equals("factura"))
 			strReturn = tipoComprobante;
+		
+		return strReturn;
+	}
+	
+	@Action(value="/loadTipoPagoAction",
+			results={ @Result(name="success", location="/mantenimiento/pago/pagoContado.jsp"),
+					  @Result(name="tarjeta", location="/mantenimiento/pago/pagoTarjeta.jsp"),
+					  @Result(name="lineaCredito", location="/mantenimiento/pago/pagoLineaCredito.jsp")
+					})
+	public String loadTipoPago() throws Exception{
+		System.out.println("===== loadTipoPagoAction =====");
+		String strReturn="";
+		
+		System.out.println("tipoPago: "+tipoPago);
+		
+		if(tipoPago.equals("contado"))
+			strReturn = SUCCESS;
+		else if(tipoPago.equals("tarjeta"))
+			strReturn = tipoPago;
+		else if(tipoPago.equals("lineaCredito"))
+			strReturn = tipoPago;
 		
 		return strReturn;
 	}
@@ -107,12 +128,12 @@ public class PagoAction extends ActionSupport{
 		this.tipoComprobante = tipoComprobante;
 	}
 
-	public String getDynamicResult() {
-		return dynamicResult;
+	public String getTipoPago() {
+		return tipoPago;
 	}
 
-	public void setDynamicResult(String dynamicResult) {
-		this.dynamicResult = dynamicResult;
+	public void setTipoPago(String tipoPago) {
+		this.tipoPago = tipoPago;
 	}
 	
 }

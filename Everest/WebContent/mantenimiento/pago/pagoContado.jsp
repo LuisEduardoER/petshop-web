@@ -6,15 +6,18 @@
 	
 	<table style="width: 100%;">
 		<tr>
-			<td>RUC</td>
-			<td>Razon Social</td>
-			<td>Direccion</td>
+			<td>Total Bruto</td>
+			<td><s:textfield/> </td>
 		</tr>
 		<tr>
-			<td><s:textfield/> </td>
-			<td><s:textfield/> </td>
+			<td>IGV</td>
+			<td><s:textfield/> 19%</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Total</td>
 			<td><s:textfield/> </td>
 		</tr>
 	</table>
-
+	
 </fieldset>

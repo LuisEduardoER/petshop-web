@@ -2,4 +2,17 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-<h1>Boleta</h1>
+<fieldset>
+	
+	<table style="width: 100%;">
+		<tr>
+			<td>
+				Cliente
+			</td>
+			<td>
+				<s:textfield/>
+			</td>
+		</tr>
+	</table>
+	
+</fieldset>
