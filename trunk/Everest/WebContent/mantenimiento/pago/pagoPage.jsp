@@ -52,6 +52,25 @@
 			</tr>
 		</table>
 
+<s:form id="frmComprobante">
+	
+	<sj:radio
+		id="radiobuttonset"
+		list="#{'boleta':'Boleta', 'factura':'Factura'}"
+		name="tipoComprobante"
+		formIds="frmComprobante"
+		onChangeTopics="reloadTipoComprobante"
+ 		/>
+ 	
+ 	<s:url id="urlTipoComprobante" action="loadTipoComprobanteAction"/>
+	<sj:div href="%{urlTipoComprobante}" 
+		reloadTopics="reloadTipoComprobante" 
+		formIds="frmComprobante" 
+		effect="blind" 
+		effectMode="show" 
+		effectDuration="300"/>
+	
+</s:form>
 
 <sj:accordion collapsible="true">
 	<sj:accordionItem title="Detalle">
@@ -112,42 +131,22 @@
 		
 	</sj:accordionItem>
 </sj:accordion>
-
-<s:form id="frmComprobante">
-	
-	<sj:radio
-		id="radiobuttonset"
-		list="#{'boleta':'Boleta', 'factura':'Factura'}"
-		name="tipoComprobante"
-		formIds="frmComprobante"
-		onChangeTopics="reloadTipoComprobante"
- 		/>
- 	
- 	<s:url id="urlTipoComprobante" action="loadTipoComprobanteAction"/>
-	<sj:div href="%{urlTipoComprobante}" 
-		reloadTopics="reloadTipoComprobante" 
-		formIds="frmComprobante" 
-		effect="blind" 
-		effectMode="show" 
-		effectDuration="500"/>
-	
-</s:form>
-
+<br/>
 <s:form id="frmTipoPago">
 
 	<sj:radio
 		id="radioTipoPago"
-		list="#{'1':'Tarjeta de Credito', '2':'Contado', '3':'Linea de Credito'}"
+		list="#{'contado':'Contado', 'tarjeta':'Tarjeta', 'lineaCredito':'Linea de Credito'}"
 		name="tipoPago"
 		formIds="frmTipoPago"
-		onChangeTopics=""
+		onChangeTopics="reloadTipoPago"
  		/>
-	<s:url id="urlTipoComprobante" action="loadTipoComprobanteAction"/>
-	<sj:div href="%{urlTipoComprobante}" 
-		reloadTopics="reloadTipoComprobante" 
+	<s:url id="urlTipoPago" action="loadTipoPagoAction"/>
+	<sj:div href="%{urlTipoPago}" 
+		reloadTopics="reloadTipoPago" 
 		formIds="frmTipoPago" 
 		effect="blind" 
 		effectMode="show" 
-		effectDuration="500"/>
+		effectDuration="300"/>
 		
 </s:form>

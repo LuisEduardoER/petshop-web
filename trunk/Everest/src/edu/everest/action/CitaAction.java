@@ -108,6 +108,7 @@ public class CitaAction extends ActionSupport{
 	@Action(value="/showDetalleCitaForm",
 			results={ @Result(name="success", location="/mantenimiento/cita/detalleCitaForm.jsp") })
 	public String showdetalleCitaForm(){
+		String strFecha = "";
 		System.out.println("===== showDetalleCitaForm =====");
 		try {
 			servicioLista = servicioService.obtenerTodos();
@@ -121,7 +122,9 @@ public class CitaAction extends ActionSupport{
 				servicio = servicioService.obtenerServicio(servicio);
 				
 				detalleCita.setCosto( servicio.getCostoRef() );
-				detalleCita.setStrTiempoAprox( minuteFormat2.format(servicio.getTiempoAprox().toString()) );
+				strFecha = servicio.getTiempoAprox().get(Calendar.MINUTE)+":"+servicio.getTiempoAprox().get(Calendar.SECOND);
+				System.out.println("strFecha: "+strFecha);
+				detalleCita.setStrTiempoAprox( strFecha );
 			}
 			
 		} catch (Exception e) {
@@ -158,6 +161,8 @@ public class CitaAction extends ActionSupport{
 			if(oper.equals("add")){
 				detalleCita.setIdDetalleCita( detalleCitaLista.size()+1 );
 				
+				servicio = new Servicio();
+				servicio.setIdServicio(idServicio);
 				servicio = servicioService.obtenerServicio(servicio);
 				detalleCita.setServicio(servicio);
 				

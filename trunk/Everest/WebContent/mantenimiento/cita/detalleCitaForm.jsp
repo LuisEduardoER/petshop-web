@@ -8,11 +8,11 @@
 		<table align="center">
 		    
 		    <tr>
-		    	<td class="tdLabel"><s:text name="Servicio"/></td>
+		    	<td class="tdLabel">Servicio</td>
 		    	<td> 
 		    	
 		    		<sj:autocompleter
-						id="customers"
+						id="cboServicioLista"
 						name="idServicio" 
 						list="servicioLista" 
 						listKey="idServicio" 
@@ -22,55 +22,28 @@
 						selectBoxIcon="true"
 						onChangeTopics="reloadDivForm" 
 					/>
-<%-- 					<sj:select --%>
-<%-- 						name="idServicio"  --%>
-<%-- 						list="servicioLista"  --%>
-<%-- 						listKey="idServicio"  --%>
-<%-- 						listValue="descripcion" --%>
-<%-- 						formIds="frmDetalleCita" --%>
-<%-- 						onChangeTopics="reloadDivForm"  --%>
-<%-- 						headerKey="-1"  --%>
-<%-- 						headerValue="-- Seleccione --" --%>
-<%-- 					/> --%>
-<%-- 		    		<s:select --%>
-<%-- 		    			id="cboServicioLista" --%>
-<%-- 		    			name="servicio.idServicio"  --%>
-<%-- 		    			list="servicioLista" --%>
-<%-- 		    			listKey="idServicio" --%>
-<%-- 		    			listValue="descripcion" --%>
-<%-- 		    		/> --%> 
-		    		<script type="text/javascript">
-					$("#cboServicioLista").change(function() {
-						cbo = $("#cboServicioLista").val();						
-						if(cbo == "2"){
-							$("#trPelo").show();
-							$("#trTamano").show();
-						}else{
-							$("#trPelo").hide();
-							$("#trTamano").hide();
-						}
-					});
-					</script>
-		    	</td>
-		    </tr>		    
-		    <tr id="trPelo" style="display: none;">
-		    	<td class="tdLabel"><s:text name="Pelo"/></td>
-		    	<td>
-		    		<sj:radio
-			            name="detalleCita.pelo"
-			            list="{'Corto','Largo'}"
-		    		/>
 		    	</td>
 		    </tr>
-		    <tr id="trTamano" style="display: none;">
-		    	<td class="tdLabel"><s:text name="Tamano"/></td>
-		    	<td>
-		    		<sj:radio
-			            name="detalleCita.tamano"
-			            list="{'Pequeno','Mediano','Grande'}"
-		    		/>
-		    	</td>
-		    </tr>
+		    <s:if test="idServicio==2">
+		    	<tr>
+			    	<td class="tdLabel"><s:text name="Pelo"/></td>
+			    	<td>
+			    		<sj:radio
+				            name="detalleCita.pelo"
+				            list="{'Corto','Largo'}"
+			    		/>
+			    	</td>
+			    </tr>
+			    <tr>
+			    	<td class="tdLabel"><s:text name="Tamano"/></td>
+			    	<td>
+			    		<sj:radio
+				            name="detalleCita.tamano"
+				            list="{'Pequeno','Mediano','Grande'}"
+			    		/>
+			    	</td>
+			    </tr>
+		    </s:if>
 		    <tr>
 		    	<td class="tdLabel"><s:text name="Tiempo"/></td>
 		    	<td>
@@ -94,12 +67,11 @@
 <%-- 		    		<s:textfield id="displayvaluespan" name="detalleCita.strCosto" size="30" required="true"/> --%>
 		    		<sj:spinner
 		    			formIds="frmDetalleCita"
-		    			reloadTopics=""
 				    	name="detalleCita.costo"
 				    	min="000.00"
 				    	max="200.00"
 				    	step="000.10" 
-				    	value="000.00" 
+				    	value="%{detalleCita.costo}" 
 				    	size="10"
 				    	mouseWheel="true"/>
 		    	</td>
@@ -124,7 +96,7 @@
 							buttonIcon="ui-icon-disk"
 							effect="blind"
 							effectMode="show"
-							onFocusTopics="successDlgForm"
+							onSuccessTopics="successDlgForm"
 							>
 							Agregar
 						</sj:a>
