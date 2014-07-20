@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
-<h1>Registrar Pago</h1>
+<h1>Cobro a Clientes</h1>
 
 <table style="width: 100%;" cellspacing="0" cellpadding="0">
 			<tr>
