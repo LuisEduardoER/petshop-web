@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `petshop` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `petshop`;
--- MySQL dump 10.13  Distrib 5.6.18, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: localhost    Database: petshop
 -- ------------------------------------------------------
--- Server version	5.6.18-enterprise-commercial-advanced
+-- Server version	5.5.37
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -41,7 +41,7 @@ CREATE TABLE `cita` (
   CONSTRAINT `fk_cita_cliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cita_mascota` FOREIGN KEY (`idMascota`) REFERENCES `mascota` (`idMascota`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cita_medico` FOREIGN KEY (`idMedico`) REFERENCES `medico` (`idMedico`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,9 +148,9 @@ CREATE TABLE `detallepago` (
   PRIMARY KEY (`idPago`,`idTipo`,`idDetalle`),
   KEY `fk_detalle_pago_servicio_idx` (`idServicio`),
   KEY `fk_detalle_pago_producto_idx` (`idProducto`),
+  CONSTRAINT `fk_detalle_pago` FOREIGN KEY (`idPago`) REFERENCES `pago` (`idPago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_detalle_pago_producto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_detalle_pago_servicio` FOREIGN KEY (`idServicio`) REFERENCES `servicio` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_detalle_pago` FOREIGN KEY (`idPago`) REFERENCES `pago` (`idPago`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_detalle_pago_servicio` FOREIGN KEY (`idServicio`) REFERENCES `servicio` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -161,6 +161,31 @@ CREATE TABLE `detallepago` (
 LOCK TABLES `detallepago` WRITE;
 /*!40000 ALTER TABLE `detallepago` DISABLE KEYS */;
 /*!40000 ALTER TABLE `detallepago` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `especialidad`
+--
+
+DROP TABLE IF EXISTS `especialidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `especialidad` (
+  `idEspecialidad` int(11) NOT NULL,
+  `descripcion` varchar(45) DEFAULT NULL,
+  `estado` char(1) DEFAULT NULL,
+  PRIMARY KEY (`idEspecialidad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `especialidad`
+--
+
+LOCK TABLES `especialidad` WRITE;
+/*!40000 ALTER TABLE `especialidad` DISABLE KEYS */;
+INSERT INTO `especialidad` VALUES (1,'Especialidad 1',NULL);
+/*!40000 ALTER TABLE `especialidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -318,7 +343,7 @@ CREATE TABLE `opcion` (
   PRIMARY KEY (`idOpcion`),
   KEY `fk_opcion_parent_idx` (`parentOpcionId`),
   CONSTRAINT `fk_opcion_parent` FOREIGN KEY (`parentOpcionId`) REFERENCES `opcion` (`idOpcion`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,7 +352,7 @@ CREATE TABLE `opcion` (
 
 LOCK TABLES `opcion` WRITE;
 /*!40000 ALTER TABLE `opcion` DISABLE KEYS */;
-INSERT INTO `opcion` VALUES (1,NULL,'Mantenimientos','Mantenimientos','#',1,'Activo',NULL,NULL),(2,1,'Mant. Usuarios','Usuarios','showUsuarioListaAction',1,'Activo',NULL,NULL),(3,1,'Mant. Citas','Citas','#',2,'Activo',NULL,NULL),(4,NULL,'Citas','Cita','#',2,'Activo',NULL,NULL),(5,4,'Registro de Cita','Registro de Cita','showCitaRegistroAction',1,'Activo',NULL,NULL),(6,NULL,'Cliente','Cliente','#',3,'Activo',NULL,NULL),(7,1,'Mant. Clientes','Clientes','showClienteRegistroAction',1,'Activo',NULL,NULL),(8,1,'Mant. Proveedores','Proveedores','obtenerProveedores',3,'Activo',NULL,NULL),(9,1,'Mant. Roles','Roles','showRolLista',4,'Activo',NULL,NULL),(16,1,'Mant. Opciones','Opciones','showOpcionListaAction',5,'Activo',NULL,NULL),(18,4,'Disponiblidad Servicio','Disponibilidad Servicios','showServicioDisponiblidadAction',2,'Activo',NULL,NULL);
+INSERT INTO `opcion` VALUES (1,NULL,'Mantenimientos','Mantenimientos','#',2,'Activo',NULL,NULL),(2,1,'Mant. Usuarios','Usuarios','showUsuarioListaAction',1,'Activo',NULL,NULL),(3,1,'Mant. Citas','Citas','#',2,'Activo',NULL,NULL),(4,NULL,'Secretaria','Secretaria','#',1,'Activo',NULL,NULL),(5,4,'Registro de Cita','Registro de Cita','showCitaRegistroAction',1,'Activo',NULL,NULL),(6,NULL,'Cliente','Cliente','#',3,'Activo',NULL,NULL),(7,1,'Mant. Clientes','Clientes','showClienteRegistroAction',1,'Activo',NULL,NULL),(8,1,'Mant. Proveedores','Proveedores','obtenerProveedores',3,'Activo',NULL,NULL),(9,1,'Mant. Roles','Roles','showRolLista',4,'Activo',NULL,NULL),(16,1,'Mant. Opciones','Opciones','showOpcionListaAction',5,'Activo',NULL,NULL),(18,4,'Disponiblidad Servicio','Disponibilidad Servicios','showServicioDisponiblidadAction',3,'Activo',NULL,NULL),(19,4,'Registrar Pagos','Registrar Pagos','showPagoPageAction',2,'Activo',NULL,NULL);
 /*!40000 ALTER TABLE `opcion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -645,4 +670,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-07  3:47:48
+-- Dump completed on 2014-07-10 18:26:24
