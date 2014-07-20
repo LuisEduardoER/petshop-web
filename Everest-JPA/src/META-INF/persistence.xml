@@ -1,28 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="Everest-JPA">
-		<class>model.Cita</class>
-		<class>model.Cliente</class>
-		<class>model.DetalleCita</class>
-		<class>model.DetalleCitaPK</class>
-		<class>model.DetallePago</class>
-		<class>model.DetallePagoPK</class>
-		<class>model.HistoriaClinica</class>
-		<class>model.Local</class>
-		<class>model.Mascota</class>
-		<class>model.Medico</class>
-		<class>model.Opcion</class>
-		<class>model.Pago</class>
-		<class>model.Producto</class>
-		<class>model.Proveedor</class>
-		<class>model.Rol</class>
-		<class>model.RolOpcion</class>
-		<class>model.RolOpcionPK</class>
-		<class>model.Servicio</class>
-		<class>model.TipoAnimal</class>
-		<class>model.TipoDocumento</class>
-		<class>model.TipoProducto</class>
-		<class>model.Turno</class>
-		<class>model.Usuario</class>
 	</persistence-unit>
 </persistence>
