@@ -30,6 +30,10 @@ public class Proveedor implements Serializable {
 	@OneToMany(mappedBy="proveedor")
 	private List<Producto> productos;
 
+	//bi-directional many-to-one association to Deuda
+	@OneToMany(mappedBy="proveedor")
+	private List<Deuda> deudas;
+
 	public Proveedor() {
 	}
 
@@ -93,6 +97,28 @@ public class Proveedor implements Serializable {
 		producto.setProveedor(null);
 
 		return producto;
+	}
+
+	public List<Deuda> getDeudas() {
+		return this.deudas;
+	}
+
+	public void setDeudas(List<Deuda> deudas) {
+		this.deudas = deudas;
+	}
+
+	public Deuda addDeuda(Deuda deuda) {
+		getDeudas().add(deuda);
+		deuda.setProveedor(this);
+
+		return deuda;
+	}
+
+	public Deuda removeDeuda(Deuda deuda) {
+		getDeudas().remove(deuda);
+		deuda.setProveedor(null);
+
+		return deuda;
 	}
 
 }

@@ -2,7 +2,6 @@ package edu.everest.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -16,7 +15,7 @@ public class Producto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idProducto;
+	private String idProducto;
 
 	private int cantidad;
 
@@ -29,10 +28,6 @@ public class Producto implements Serializable {
 	private String nombre;
 
 	private String precio;
-
-	//bi-directional many-to-one association to DetallePago
-	@OneToMany(mappedBy="producto")
-	private List<DetallePago> detallePagos;
 
 	//bi-directional many-to-one association to Proveedor
 	@ManyToOne
@@ -47,11 +42,11 @@ public class Producto implements Serializable {
 	public Producto() {
 	}
 
-	public int getIdProducto() {
+	public String getIdProducto() {
 		return this.idProducto;
 	}
 
-	public void setIdProducto(int idProducto) {
+	public void setIdProducto(String idProducto) {
 		this.idProducto = idProducto;
 	}
 
@@ -101,28 +96,6 @@ public class Producto implements Serializable {
 
 	public void setPrecio(String precio) {
 		this.precio = precio;
-	}
-
-	public List<DetallePago> getDetallePagos() {
-		return this.detallePagos;
-	}
-
-	public void setDetallePagos(List<DetallePago> detallePagos) {
-		this.detallePagos = detallePagos;
-	}
-
-	public DetallePago addDetallePago(DetallePago detallePago) {
-		getDetallePagos().add(detallePago);
-		detallePago.setProducto(this);
-
-		return detallePago;
-	}
-
-	public DetallePago removeDetallePago(DetallePago detallePago) {
-		getDetallePagos().remove(detallePago);
-		detallePago.setProducto(null);
-
-		return detallePago;
 	}
 
 	public Proveedor getProveedor() {

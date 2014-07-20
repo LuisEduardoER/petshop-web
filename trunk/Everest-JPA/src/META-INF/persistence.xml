@@ -3,17 +3,17 @@
 	<persistence-unit name="Everest-JPA">
 		<class>edu.everest.entity.Cita</class>
 		<class>edu.everest.entity.Cliente</class>
+		<class>edu.everest.entity.Correlativo</class>
+		<class>edu.everest.entity.Cuenta</class>
 		<class>edu.everest.entity.DetalleCita</class>
 		<class>edu.everest.entity.DetalleCitaPK</class>
-		<class>edu.everest.entity.DetallePago</class>
-		<class>edu.everest.entity.DetallePagoPK</class>
-		<class>edu.everest.entity.Especialidad</class>
+		<class>edu.everest.entity.Deuda</class>
+		<class>edu.everest.entity.FormaPago</class>
 		<class>edu.everest.entity.HistoriaClinica</class>
 		<class>edu.everest.entity.Local</class>
 		<class>edu.everest.entity.Mascota</class>
 		<class>edu.everest.entity.Medico</class>
 		<class>edu.everest.entity.Opcion</class>
-		<class>edu.everest.entity.Pago</class>
 		<class>edu.everest.entity.Producto</class>
 		<class>edu.everest.entity.Proveedor</class>
 		<class>edu.everest.entity.Rol</class>
@@ -21,7 +21,6 @@
 		<class>edu.everest.entity.RolOpcionPK</class>
 		<class>edu.everest.entity.Servicio</class>
 		<class>edu.everest.entity.TipoAnimal</class>
-		<class>edu.everest.entity.TipoDocumento</class>
 		<class>edu.everest.entity.TipoProducto</class>
 		<class>edu.everest.entity.Turno</class>
 		<class>edu.everest.entity.Usuario</class>

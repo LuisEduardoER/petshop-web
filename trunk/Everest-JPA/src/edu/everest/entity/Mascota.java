@@ -17,11 +17,9 @@ public class Mascota implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idMascota;
+	private String idMascota;
 
 	private String alergia;
-
-	private String codMascota;
 
 	private int edad;
 
@@ -64,11 +62,11 @@ public class Mascota implements Serializable {
 	public Mascota() {
 	}
 
-	public int getIdMascota() {
+	public String getIdMascota() {
 		return this.idMascota;
 	}
 
-	public void setIdMascota(int idMascota) {
+	public void setIdMascota(String idMascota) {
 		this.idMascota = idMascota;
 	}
 
@@ -78,14 +76,6 @@ public class Mascota implements Serializable {
 
 	public void setAlergia(String alergia) {
 		this.alergia = alergia;
-	}
-
-	public String getCodMascota() {
-		return this.codMascota;
-	}
-
-	public void setCodMascota(String codMascota) {
-		this.codMascota = codMascota;
 	}
 
 	public int getEdad() {
