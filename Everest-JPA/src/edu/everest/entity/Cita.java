@@ -18,7 +18,7 @@ public class Cita implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idCita;
+	private String idCita;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreate;
@@ -52,18 +52,14 @@ public class Cita implements Serializable {
 	@OneToMany(mappedBy="cita")
 	private List<DetalleCita> detalleCitas;
 
-	//bi-directional many-to-one association to Pago
-	@OneToMany(mappedBy="cita")
-	private List<Pago> pagos;
-
 	public Cita() {
 	}
 
-	public int getIdCita() {
+	public String getIdCita() {
 		return this.idCita;
 	}
 
-	public void setIdCita(int idCita) {
+	public void setIdCita(String idCita) {
 		this.idCita = idCita;
 	}
 
@@ -151,28 +147,6 @@ public class Cita implements Serializable {
 		detalleCita.setCita(null);
 
 		return detalleCita;
-	}
-
-	public List<Pago> getPagos() {
-		return this.pagos;
-	}
-
-	public void setPagos(List<Pago> pagos) {
-		this.pagos = pagos;
-	}
-
-	public Pago addPago(Pago pago) {
-		getPagos().add(pago);
-		pago.setCita(this);
-
-		return pago;
-	}
-
-	public Pago removePago(Pago pago) {
-		getPagos().remove(pago);
-		pago.setCita(null);
-
-		return pago;
 	}
 
 }

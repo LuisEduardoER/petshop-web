@@ -13,17 +13,17 @@ public class DetalleCitaPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(insertable=false, updatable=false)
-	private int idCita;
+	private String idCita;
 
 	@Column(insertable=false, updatable=false)
 	private int idServicio;
 
 	public DetalleCitaPK() {
 	}
-	public int getIdCita() {
+	public String getIdCita() {
 		return this.idCita;
 	}
-	public void setIdCita(int idCita) {
+	public void setIdCita(String idCita) {
 		this.idCita = idCita;
 	}
 	public int getIdServicio() {
@@ -42,14 +42,14 @@ public class DetalleCitaPK implements Serializable {
 		}
 		DetalleCitaPK castOther = (DetalleCitaPK)other;
 		return 
-			(this.idCita == castOther.idCita)
+			this.idCita.equals(castOther.idCita)
 			&& (this.idServicio == castOther.idServicio);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.idCita;
+		hash = hash * prime + this.idCita.hashCode();
 		hash = hash * prime + this.idServicio;
 		
 		return hash;

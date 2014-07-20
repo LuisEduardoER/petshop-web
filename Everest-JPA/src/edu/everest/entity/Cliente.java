@@ -27,7 +27,7 @@ public class Cliente implements Serializable {
 
 	private String direccion;
 
-	private String documento;
+	private String dni;
 
 	private String email;
 
@@ -38,11 +38,19 @@ public class Cliente implements Serializable {
 
 	private int idDIstrito;
 
+	private double lineaCredito;
+
+	private String lineaCreditoBool;
+
+	private double lineaDisponible;
+
 	private String nombres;
 
 	private String sexo;
 
 	private int telefono;
+
+	private String tipoCliente;
 
 	//bi-directional many-to-one association to Cita
 	@OneToMany(mappedBy="cliente")
@@ -57,11 +65,6 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="cliente")
 	private List<Cliente> clientes;
 
-	//bi-directional many-to-one association to TipoDocumento
-	@ManyToOne
-	@JoinColumn(name="idTipoDocumento")
-	private TipoDocumento tipoDocumento;
-
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="idUsuario")
@@ -74,10 +77,6 @@ public class Cliente implements Serializable {
 	//bi-directional many-to-one association to Mascota
 	@OneToMany(mappedBy="cliente")
 	private List<Mascota> mascotas;
-
-	//bi-directional many-to-one association to Pago
-	@OneToMany(mappedBy="cliente")
-	private List<Pago> pagos;
 
 	public Cliente() {
 	}
@@ -122,12 +121,12 @@ public class Cliente implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public String getDocumento() {
-		return this.documento;
+	public String getDni() {
+		return this.dni;
 	}
 
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getEmail() {
@@ -162,6 +161,30 @@ public class Cliente implements Serializable {
 		this.idDIstrito = idDIstrito;
 	}
 
+	public double getLineaCredito() {
+		return this.lineaCredito;
+	}
+
+	public void setLineaCredito(double lineaCredito) {
+		this.lineaCredito = lineaCredito;
+	}
+
+	public String getLineaCreditoBool() {
+		return this.lineaCreditoBool;
+	}
+
+	public void setLineaCreditoBool(String lineaCreditoBool) {
+		this.lineaCreditoBool = lineaCreditoBool;
+	}
+
+	public double getLineaDisponible() {
+		return this.lineaDisponible;
+	}
+
+	public void setLineaDisponible(double lineaDisponible) {
+		this.lineaDisponible = lineaDisponible;
+	}
+
 	public String getNombres() {
 		return this.nombres;
 	}
@@ -184,6 +207,14 @@ public class Cliente implements Serializable {
 
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
+	}
+
+	public String getTipoCliente() {
+		return this.tipoCliente;
+	}
+
+	public void setTipoCliente(String tipoCliente) {
+		this.tipoCliente = tipoCliente;
 	}
 
 	public List<Cita> getCitas() {
@@ -238,14 +269,6 @@ public class Cliente implements Serializable {
 		return cliente;
 	}
 
-	public TipoDocumento getTipoDocumento() {
-		return this.tipoDocumento;
-	}
-
-	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
-
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
@@ -296,28 +319,6 @@ public class Cliente implements Serializable {
 		mascota.setCliente(null);
 
 		return mascota;
-	}
-
-	public List<Pago> getPagos() {
-		return this.pagos;
-	}
-
-	public void setPagos(List<Pago> pagos) {
-		this.pagos = pagos;
-	}
-
-	public Pago addPago(Pago pago) {
-		getPagos().add(pago);
-		pago.setCliente(this);
-
-		return pago;
-	}
-
-	public Pago removePago(Pago pago) {
-		getPagos().remove(pago);
-		pago.setCliente(null);
-
-		return pago;
 	}
 
 }

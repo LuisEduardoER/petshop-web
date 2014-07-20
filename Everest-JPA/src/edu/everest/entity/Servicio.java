@@ -38,10 +38,6 @@ public class Servicio implements Serializable {
 	@OneToMany(mappedBy="servicio")
 	private List<DetalleCita> detalleCitas;
 
-	//bi-directional many-to-one association to DetallePago
-	@OneToMany(mappedBy="servicio")
-	private List<DetallePago> detallePagos;
-
 	public Servicio() {
 	}
 
@@ -121,28 +117,6 @@ public class Servicio implements Serializable {
 		detalleCita.setServicio(null);
 
 		return detalleCita;
-	}
-
-	public List<DetallePago> getDetallePagos() {
-		return this.detallePagos;
-	}
-
-	public void setDetallePagos(List<DetallePago> detallePagos) {
-		this.detallePagos = detallePagos;
-	}
-
-	public DetallePago addDetallePago(DetallePago detallePago) {
-		getDetallePagos().add(detallePago);
-		detallePago.setServicio(this);
-
-		return detallePago;
-	}
-
-	public DetallePago removeDetallePago(DetallePago detallePago) {
-		getDetallePagos().remove(detallePago);
-		detallePago.setServicio(null);
-
-		return detallePago;
 	}
 
 }
