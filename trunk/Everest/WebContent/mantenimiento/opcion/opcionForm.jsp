@@ -56,8 +56,7 @@
 		    	<td class="tdLabel"><s:text name="Estado"/></td>
 		    	<td>
 		    		<s:select 
-				       name="opcion.estado"			       
-				       headerKey="" headerValue="-- Seleccione --"
+				       name="opcion.estado"
 				       list="#{'Activo':'Activo', 'Inactivo':'Inactivo'}"
 				       value="opcion.estado"
 				       required="true"
