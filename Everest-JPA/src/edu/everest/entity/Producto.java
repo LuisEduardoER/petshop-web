@@ -2,6 +2,7 @@ package edu.everest.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -38,6 +39,10 @@ public class Producto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idTipoProducto")
 	private TipoProducto tipoProducto;
+
+	//bi-directional many-to-one association to DetalleCobro
+	@OneToMany(mappedBy="producto")
+	private List<DetalleCobro> detalleCobros;
 
 	public Producto() {
 	}
@@ -112,6 +117,28 @@ public class Producto implements Serializable {
 
 	public void setTipoProducto(TipoProducto tipoProducto) {
 		this.tipoProducto = tipoProducto;
+	}
+
+	public List<DetalleCobro> getDetalleCobros() {
+		return this.detalleCobros;
+	}
+
+	public void setDetalleCobros(List<DetalleCobro> detalleCobros) {
+		this.detalleCobros = detalleCobros;
+	}
+
+	public DetalleCobro addDetalleCobro(DetalleCobro detalleCobro) {
+		getDetalleCobros().add(detalleCobro);
+		detalleCobro.setProducto(this);
+
+		return detalleCobro;
+	}
+
+	public DetalleCobro removeDetalleCobro(DetalleCobro detalleCobro) {
+		getDetalleCobros().remove(detalleCobro);
+		detalleCobro.setProducto(null);
+
+		return detalleCobro;
 	}
 
 }

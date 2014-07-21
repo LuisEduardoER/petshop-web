@@ -2,6 +2,7 @@ package edu.everest.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -20,6 +21,10 @@ public class Cuenta implements Serializable {
 
 	private String descripcion;
 
+	//bi-directional many-to-one association to DetallePago
+	@OneToMany(mappedBy="cuenta")
+	private List<DetallePago> detallePagos;
+
 	public Cuenta() {
 	}
 
@@ -37,6 +42,28 @@ public class Cuenta implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public List<DetallePago> getDetallePagos() {
+		return this.detallePagos;
+	}
+
+	public void setDetallePagos(List<DetallePago> detallePagos) {
+		this.detallePagos = detallePagos;
+	}
+
+	public DetallePago addDetallePago(DetallePago detallePago) {
+		getDetallePagos().add(detallePago);
+		detallePago.setCuenta(this);
+
+		return detallePago;
+	}
+
+	public DetallePago removeDetallePago(DetallePago detallePago) {
+		getDetallePagos().remove(detallePago);
+		detallePago.setCuenta(null);
+
+		return detallePago;
 	}
 
 }

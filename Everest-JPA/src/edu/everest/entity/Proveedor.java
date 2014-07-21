@@ -26,13 +26,17 @@ public class Proveedor implements Serializable {
 
 	private String ruc;
 
+	//bi-directional many-to-one association to Deuda
+	@OneToMany(mappedBy="proveedor")
+	private List<Deuda> deudas;
+
 	//bi-directional many-to-one association to Producto
 	@OneToMany(mappedBy="proveedor")
 	private List<Producto> productos;
 
-	//bi-directional many-to-one association to Deuda
+	//bi-directional many-to-one association to Pago
 	@OneToMany(mappedBy="proveedor")
-	private List<Deuda> deudas;
+	private List<Pago> pagos;
 
 	public Proveedor() {
 	}
@@ -77,6 +81,28 @@ public class Proveedor implements Serializable {
 		this.ruc = ruc;
 	}
 
+	public List<Deuda> getDeudas() {
+		return this.deudas;
+	}
+
+	public void setDeudas(List<Deuda> deudas) {
+		this.deudas = deudas;
+	}
+
+	public Deuda addDeuda(Deuda deuda) {
+		getDeudas().add(deuda);
+		deuda.setProveedor(this);
+
+		return deuda;
+	}
+
+	public Deuda removeDeuda(Deuda deuda) {
+		getDeudas().remove(deuda);
+		deuda.setProveedor(null);
+
+		return deuda;
+	}
+
 	public List<Producto> getProductos() {
 		return this.productos;
 	}
@@ -99,26 +125,26 @@ public class Proveedor implements Serializable {
 		return producto;
 	}
 
-	public List<Deuda> getDeudas() {
-		return this.deudas;
+	public List<Pago> getPagos() {
+		return this.pagos;
 	}
 
-	public void setDeudas(List<Deuda> deudas) {
-		this.deudas = deudas;
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
 	}
 
-	public Deuda addDeuda(Deuda deuda) {
-		getDeudas().add(deuda);
-		deuda.setProveedor(this);
+	public Pago addPago(Pago pago) {
+		getPagos().add(pago);
+		pago.setProveedor(this);
 
-		return deuda;
+		return pago;
 	}
 
-	public Deuda removeDeuda(Deuda deuda) {
-		getDeudas().remove(deuda);
-		deuda.setProveedor(null);
+	public Pago removePago(Pago pago) {
+		getPagos().remove(pago);
+		pago.setProveedor(null);
 
-		return deuda;
+		return pago;
 	}
 
 }
