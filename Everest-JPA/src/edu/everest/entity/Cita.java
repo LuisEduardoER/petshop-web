@@ -2,7 +2,6 @@ package edu.everest.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +25,10 @@ public class Cita implements Serializable {
 	private String estado;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar fecProg;
+	private Date fecAtencion;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecProg;
 
 	private String userCreate;
 
@@ -45,13 +47,13 @@ public class Cita implements Serializable {
 	@JoinColumn(name="idMedico")
 	private Medico medico;
 
-	//bi-directional many-to-one association to DetalleCita
-	@OneToMany(mappedBy="cita")
-	private List<DetalleCita> detalleCitas;
-
 	//bi-directional many-to-one association to Cobro
 	@OneToMany(mappedBy="cita")
 	private List<Cobro> cobros;
+
+	//bi-directional many-to-one association to DetalleCita
+	@OneToMany(mappedBy="cita")
+	private List<DetalleCita> detalleCitas;
 
 	public Cita() {
 	}
@@ -80,11 +82,19 @@ public class Cita implements Serializable {
 		this.estado = estado;
 	}
 
-	public Calendar getFecProg() {
+	public Date getFecAtencion() {
+		return this.fecAtencion;
+	}
+
+	public void setFecAtencion(Date fecAtencion) {
+		this.fecAtencion = fecAtencion;
+	}
+
+	public Date getFecProg() {
 		return this.fecProg;
 	}
 
-	public void setFecProg(Calendar fecProg) {
+	public void setFecProg(Date fecProg) {
 		this.fecProg = fecProg;
 	}
 
@@ -120,28 +130,6 @@ public class Cita implements Serializable {
 		this.medico = medico;
 	}
 
-	public List<DetalleCita> getDetalleCitas() {
-		return this.detalleCitas;
-	}
-
-	public void setDetalleCitas(List<DetalleCita> detalleCitas) {
-		this.detalleCitas = detalleCitas;
-	}
-
-	public DetalleCita addDetalleCita(DetalleCita detalleCita) {
-		getDetalleCitas().add(detalleCita);
-		detalleCita.setCita(this);
-
-		return detalleCita;
-	}
-
-	public DetalleCita removeDetalleCita(DetalleCita detalleCita) {
-		getDetalleCitas().remove(detalleCita);
-		detalleCita.setCita(null);
-
-		return detalleCita;
-	}
-
 	public List<Cobro> getCobros() {
 		return this.cobros;
 	}
@@ -162,6 +150,28 @@ public class Cita implements Serializable {
 		cobro.setCita(null);
 
 		return cobro;
+	}
+
+	public List<DetalleCita> getDetalleCitas() {
+		return this.detalleCitas;
+	}
+
+	public void setDetalleCitas(List<DetalleCita> detalleCitas) {
+		this.detalleCitas = detalleCitas;
+	}
+
+	public DetalleCita addDetalleCita(DetalleCita detalleCita) {
+		getDetalleCitas().add(detalleCita);
+		detalleCita.setCita(this);
+
+		return detalleCita;
+	}
+
+	public DetalleCita removeDetalleCita(DetalleCita detalleCita) {
+		getDetalleCitas().remove(detalleCita);
+		detalleCita.setCita(null);
+
+		return detalleCita;
 	}
 
 }

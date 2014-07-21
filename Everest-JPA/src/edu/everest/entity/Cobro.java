@@ -24,15 +24,15 @@ public class Cobro implements Serializable {
 
 	private String userCreate;
 
-	//bi-directional many-to-one association to Cliente
-	@ManyToOne
-	@JoinColumn(name="idCliente")
-	private Cliente cliente;
-
 	//bi-directional many-to-one association to Cita
 	@ManyToOne
 	@JoinColumn(name="idCita")
 	private Cita cita;
+
+	//bi-directional many-to-one association to Cliente
+	@ManyToOne
+	@JoinColumn(name="idCliente")
+	private Cliente cliente;
 
 	//bi-directional many-to-one association to DetalleCobro
 	@OneToMany(mappedBy="cobro")
@@ -65,20 +65,20 @@ public class Cobro implements Serializable {
 		this.userCreate = userCreate;
 	}
 
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public Cita getCita() {
 		return this.cita;
 	}
 
 	public void setCita(Cita cita) {
 		this.cita = cita;
+	}
+
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public List<DetalleCobro> getDetalleCobros() {
