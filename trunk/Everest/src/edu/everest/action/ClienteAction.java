@@ -12,7 +12,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import edu.everest.entity.Cliente;
 import edu.everest.entity.Rol;
-import edu.everest.entity.TipoDocumento;
 import edu.everest.entity.Usuario;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.ClienteService;
@@ -34,12 +33,11 @@ public class ClienteAction extends ActionSupport{
 	private Cliente familiar;
 	private List<Cliente> familiarLista;
 	
-	private TipoDocumento tipoDocumento;
 	private Usuario usuario;
 	
 	private String oper;
 	private int id, idCliente, idTipoDocumento, idUsuario, idDIstrito, telefono, celular;
-	private String documento, nombres, apePat, apeMat, sexo, fecNac, email, direccion, estado;
+	private String dni, nombres, apePat, apeMat, sexo, fecNac, email, direccion, estado;
 	
 	DateFormat dateFormat = new SimpleDateFormat ("dd/MM/yyyy");
 		
@@ -91,22 +89,13 @@ public class ClienteAction extends ActionSupport{
 				
 			}else{
 				cliente.setIdCliente( idCliente );
-				cliente.setTipoDocumento(tipoDocumento);
 //				cliente.setIdDIstrito(idDIstrito);
-				cliente.setDocumento(documento);
+				cliente.setDni(dni);
 				cliente.setNombres(nombres);
 				cliente.setApePat(apePat);
 				cliente.setApeMat(apeMat);
 				cliente.setSexo(sexo);
-				
-				if(tipoDocumento != null){
-					syso("[tipoDocumento.getDescripcion()]["+tipoDocumento.getDescripcion()+"]");
-					TipoDocumento auxTipoDocumento = new TipoDocumento();
-					auxTipoDocumento.setIdTipoDocumento( Integer.parseInt(tipoDocumento.getDescripcion()) );
-					
-					cliente.setTipoDocumento(auxTipoDocumento);
-				}
-				
+								
 				if(!fecNac.equals(""))
 					cliente.setFecNac( dateFormat.parse(fecNac) );
 				
@@ -122,7 +111,7 @@ public class ClienteAction extends ActionSupport{
 					syso("Registrando Usuario...");
 					objUsuario = new Usuario();
 					objUsuario.setUser( cliente.getEmail() );
-					objUsuario.setPass( cliente.getDocumento() );
+					objUsuario.setPass( cliente.getDni() );
 					
 					objRol = new Rol();
 					objRol.setIdRol( Constants.KV_ROL_CLIENTE );
@@ -227,15 +216,13 @@ public class ClienteAction extends ActionSupport{
 	public void setIdDIstrito(int idDIstrito) {
 		this.idDIstrito = idDIstrito;
 	}
-
-	public String getDocumento() {
-		return documento;
+	
+	public String getDni() {
+		return dni;
 	}
-
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
-
 	public String getNombres() {
 		return nombres;
 	}
@@ -323,15 +310,7 @@ public class ClienteAction extends ActionSupport{
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public TipoDocumento getTipoDocumento() {
-		return tipoDocumento;
-	}
-
-	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
-
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}

@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +30,9 @@ public class Mascota implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idMascota;
+	private String idMascota;
+
+	private String alergia;
 
 	private int edad;
 
@@ -44,12 +45,12 @@ public class Mascota implements Serializable {
 	private byte[] fotobin;
 	
 	//Para trabajar con struts file	
-	@Transient
-	private File foto;	
-	@Transient
-	private String fotoContentType;	
-	@Transient
-	private String fotoFileName;
+		@Transient
+		private File foto;	
+		@Transient
+		private String fotoContentType;	
+		@Transient
+		private String fotoFileName;
 	
 	private String nombre;
 
@@ -62,31 +63,40 @@ public class Mascota implements Serializable {
 	private String sexo;
 
 	//bi-directional many-to-one association to Cita
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="mascota")
+	@OneToMany(mappedBy="mascota")
 	private List<Cita> citas;
+
+	//bi-directional many-to-one association to HistoriaClinica
+	@OneToMany(mappedBy="mascota")
+	private List<HistoriaClinica> historiaClinicas;
 
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
 
-	//bi-directional many-to-one association to HistoriaClinica
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="mascota")
-	private List<HistoriaClinica> historiaClinicas;
-	
+	//bi-directional many-to-one association to TipoAnimal
 	@ManyToOne
 	@JoinColumn(name="idTipoAnimal")
 	private TipoAnimal tipoAnimal;
-	
+
 	public Mascota() {
 	}
 
-	public int getIdMascota() {
+	public String getIdMascota() {
 		return this.idMascota;
 	}
 
-	public void setIdMascota(int idMascota) {
+	public void setIdMascota(String idMascota) {
 		this.idMascota = idMascota;
+	}
+
+	public String getAlergia() {
+		return this.alergia;
+	}
+
+	public void setAlergia(String alergia) {
+		this.alergia = alergia;
 	}
 
 	public int getEdad() {
@@ -183,14 +193,6 @@ public class Mascota implements Serializable {
 		return cita;
 	}
 
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public List<HistoriaClinica> getHistoriaClinicas() {
 		return this.historiaClinicas;
 	}
@@ -211,6 +213,22 @@ public class Mascota implements Serializable {
 		historiaClinica.setMascota(null);
 
 		return historiaClinica;
+	}
+
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public TipoAnimal getTipoAnimal() {
+		return this.tipoAnimal;
+	}
+
+	public void setTipoAnimal(TipoAnimal tipoAnimal) {
+		this.tipoAnimal = tipoAnimal;
 	}
 
 	public File getFoto() {
@@ -235,14 +253,6 @@ public class Mascota implements Serializable {
 
 	public void setFotoFileName(String fotoFileName) {
 		this.fotoFileName = fotoFileName;
-	}
-
-	public TipoAnimal getTipoAnimal() {
-		return tipoAnimal;
-	}
-
-	public void setTipoAnimal(TipoAnimal tipoAnimal) {
-		this.tipoAnimal = tipoAnimal;
 	}
 	
 }

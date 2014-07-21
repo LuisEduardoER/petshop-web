@@ -67,14 +67,14 @@ public class ServicioAction extends ActionSupport{
 		calendar.set(Calendar.SECOND, 0);
 		
 		objCita = new Cita();
-		objCita.setFecProg( calendar );
-		objCita.setDescripcion("Horas");
+//		objCita.setFecProg( calendar );
+//		objCita.setDescripcion("Horas");
 		
 		citaListaHoras.add(objCita);
 		for(int i= 0;i<8;i++){
 			objCita = new Cita();
-			objCita.setFecProg( calendar );
-			objCita.setHourProg( calendar );
+//			objCita.setFecProg( calendar );
+//			objCita.setHourProg( calendar );
 			calendar.add(Calendar.MINUTE, 30);
 			
 			citaListaHoras.add(objCita);
@@ -85,15 +85,15 @@ public class ServicioAction extends ActionSupport{
 		calendar.set(Calendar.SECOND, 0);
 		
 		objCita = new Cita();
-		objCita.setFecProg( calendar );
-		objCita.setDescripcion( "Lunes" );
+//		objCita.setFecProg( calendar );
+//		objCita.setDescripcion( "Lunes" );
 		
 		
 		citaListaMonday.add(objCita);
 		for(int i= 0;i<8;i++){
 			objCita = new Cita();
-			objCita.setFecProg( calendar );
-			objCita.setHourProg( calendar );
+//			objCita.setFecProg( calendar );
+//			objCita.setHourProg( calendar );
 			calendar.add(Calendar.MINUTE, 30);
 			
 			citaListaMonday.add(objCita);
@@ -105,14 +105,14 @@ public class ServicioAction extends ActionSupport{
 		calendar.set(Calendar.SECOND, 0);
 		
 		objCita = new Cita();
-		objCita.setFecProg( calendar );
-		objCita.setDescripcion("Martes");
+//		objCita.setFecProg( calendar );
+//		objCita.setDescripcion("Martes");
 		
 		citaListaTuesday.add(objCita);
 		for(int i= 0;i<8;i++){
 			objCita = new Cita();
-			objCita.setFecProg( calendar );
-			objCita.setHourProg( calendar );
+//			objCita.setFecProg( calendar );
+//			objCita.setHourProg( calendar );
 			calendar.add(Calendar.MINUTE, 30);
 			
 			citaListaTuesday.add(objCita);
@@ -124,14 +124,14 @@ public class ServicioAction extends ActionSupport{
 		calendar.set(Calendar.SECOND, 0);
 		
 		objCita = new Cita();
-		objCita.setFecProg( calendar );
-		objCita.setDescripcion("Miercoles");
+//		objCita.setFecProg( calendar );
+//		objCita.setDescripcion("Miercoles");
 		
 		citaListaWednesday.add(objCita);
 		for(int i= 0;i<8;i++){
 			objCita = new Cita();
-			objCita.setFecProg( calendar );
-			objCita.setHourProg( calendar );
+//			objCita.setFecProg( calendar );
+//			objCita.setHourProg( calendar );
 			calendar.add(Calendar.MINUTE, 30);
 			
 			citaListaWednesday.add(objCita);
@@ -143,14 +143,14 @@ public class ServicioAction extends ActionSupport{
 		calendar.set(Calendar.SECOND, 0);
 		
 		objCita = new Cita();
-		objCita.setFecProg( calendar );
-		objCita.setDescripcion("Jueves");
+//		objCita.setFecProg( calendar );
+//		objCita.setDescripcion("Jueves");
 		
 		citaListaThursday.add(objCita);
 		for(int i= 0;i<8;i++){
 			objCita = new Cita();
-			objCita.setFecProg( calendar );
-			objCita.setHourProg( calendar );
+//			objCita.setFecProg( calendar );
+//			objCita.setHourProg( calendar );
 			calendar.add(Calendar.MINUTE, 30);
 			
 			citaListaThursday.add(objCita);
@@ -162,14 +162,14 @@ public class ServicioAction extends ActionSupport{
 		calendar.set(Calendar.SECOND, 0);
 		
 		objCita = new Cita();
-		objCita.setFecProg( calendar );
-		objCita.setDescripcion("Viernes");
+//		objCita.setFecProg( calendar );
+//		objCita.setDescripcion("Viernes");
 		
 		citaListaFriday.add(objCita);
 		for(int i= 0;i<8;i++){
 			objCita = new Cita();
-			objCita.setFecProg( calendar );
-			objCita.setHourProg( calendar );
+//			objCita.setFecProg( calendar );
+//			objCita.setHourProg( calendar );
 			calendar.add(Calendar.MINUTE, 30);
 			
 			citaListaFriday.add(objCita);
@@ -181,14 +181,14 @@ public class ServicioAction extends ActionSupport{
 		calendar.set(Calendar.SECOND, 0);
 		
 		objCita = new Cita();
-		objCita.setFecProg( calendar );
-		objCita.setDescripcion("Sabado");
+//		objCita.setFecProg( calendar );
+//		objCita.setDescripcion("Sabado");
 		
 		citaListaSaturday.add(objCita);
 		for(int i= 0;i<8;i++){
 			objCita = new Cita();
-			objCita.setFecProg( calendar );
-			objCita.setHourProg( calendar );
+//			objCita.setFecProg( calendar );
+//			objCita.setHourProg( calendar );
 			calendar.add(Calendar.MINUTE, 30);
 			
 			citaListaSaturday.add(objCita);
@@ -200,14 +200,14 @@ public class ServicioAction extends ActionSupport{
 		calendar.set(Calendar.SECOND, 0);
 		
 		objCita = new Cita();
-		objCita.setFecProg( calendar );
-		objCita.setDescripcion("Martes");
+//		objCita.setFecProg( calendar );
+//		objCita.setDescripcion("Martes");
 		
 		citaListaSunday.add(objCita);
 		for(int i= 0;i<8;i++){
 			objCita = new Cita();
-			objCita.setFecProg( calendar );
-			objCita.setHourProg( calendar );
+//			objCita.setFecProg( calendar );
+//			objCita.setHourProg( calendar );
 			calendar.add(Calendar.MINUTE, 30);
 			
 			citaListaSunday.add(objCita);

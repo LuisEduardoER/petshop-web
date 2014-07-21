@@ -4,53 +4,13 @@
 
 <h1>Cobro a Clientes</h1>
 
-<table style="width: 100%;" cellspacing="0" cellpadding="0">
-			<tr>
-				<td style="width: 50%,">
-					<fieldset style="height: 90px;">
-						<legend><h2>Cliente</h2></legend>
-						
-						<table class="dls-table-form" style="width: 100%;" cellspacing="0" cellpadding="0">
-							<tr>
-								<th>DNI</th>
-								<th>
-									Cliente
-								</th>
-							</tr>
-							<tr>
-								<td>
-									<s:textfield name="cliente.dni" size="10"/>
-									<sj:a button="true" buttonIcon="ui-icon-circle-triangle-e" buttonText="false">
-										Validar
-									</sj:a>
-								</td>
-								<td>[Nombres] [ApePat]</td>
-							</tr>
-						</table>
-					</fieldset>
-				</td>
-				<td style="width: 50%,">
-					<fieldset style="height: 90px;">
-						<legend><h2>Cita</h2></legend>
-						
-						<table class="dls-table-form" style="width: 100%;" cellspacing="0" cellpadding="0">
-							<tr>
-								<th>ID</th>
-								<th>Fecha</th>
-								<th>Mascota</th>
-								<th>Medico</th>
-							</tr>
-							<tr>
-								<td>[IdCita]</td>
-								<td>[FecAtencion]</td>
-								<td>[Nombre]</td>
-								<td>[Nombres] [ApePat]</td>
-							</tr>
-						</table>
-					</fieldset>
-				</td>
-			</tr>
-		</table>
+<s:url id="urlShowCobroCliente" action="showCobroClienteAction"/>
+<sj:div
+	id="divCobroFormCliente"
+	href="%{urlShowCobroCliente}"
+	effectMode="show"
+	effect="blind"
+/>
 
 <s:form id="frmComprobante">
 	
@@ -132,19 +92,19 @@
 	</sj:accordionItem>
 </sj:accordion>
 <br/>
-<s:form id="frmTipoPago">
+<s:form id="frmTipoCobro">
 
 	<sj:radio
-		id="radioTipoPago"
+		id="radioTipoCobro"
 		list="#{'contado':'Contado', 'tarjeta':'Tarjeta', 'lineaCredito':'Linea de Credito'}"
-		name="tipoPago"
-		formIds="frmTipoPago"
-		onChangeTopics="reloadTipoPago"
+		name="tipoCobro"
+		formIds="frmTipoCobro"
+		onChangeTopics="reloadTipoCobro"
  		/>
-	<s:url id="urlTipoPago" action="loadTipoPagoAction"/>
-	<sj:div href="%{urlTipoPago}" 
-		reloadTopics="reloadTipoPago" 
-		formIds="frmTipoPago" 
+	<s:url id="urlTipoCobro" action="loadTipoCobroAction"/>
+	<sj:div href="%{urlTipoCobro}" 
+		reloadTopics="reloadTipoCobro" 
+		formIds="frmTipoCobro" 
 		effect="blind" 
 		effectMode="show" 
 		effectDuration="300"/>

@@ -62,10 +62,10 @@ public class CitaAction extends ActionSupport{
 			results={ @Result(name="success",location="/mantenimiento/cita/citaMascota.jsp") })
 	public String validarClient() throws Exception{
 		System.out.println("===== validarClienteActio =====");
-		System.out.println("Documento: "+cliente.getDocumento());
+		System.out.println("Documento: "+cliente.getDni());
 		
-		if(cliente.getDocumento() != null)
-			if( !cliente.getDocumento().equals("") )
+		if(cliente.getDni() != null)
+			if( !cliente.getDni().equals("") )
 		{
 			
 			cliente = clienteService.obtenerCliente(cliente);
@@ -89,7 +89,7 @@ public class CitaAction extends ActionSupport{
 		try {
 			detalleCitaLista = new ArrayList<DetalleCita>();
 			
-			if(cita.getIdCita()!= 0)
+			if(cita.getIdCita()!= null)
 				detalleCitaLista = detalleCitaService.obtenerTodos(cita);
 			
 		} catch (Exception e) {
@@ -159,7 +159,7 @@ public class CitaAction extends ActionSupport{
 		try {
 			
 			if(oper.equals("add")){
-				detalleCita.setIdDetalleCita( detalleCitaLista.size()+1 );
+//				detalleCita.setIdDetalleCita( detalleCitaLista.size()+1 );
 				
 				servicio = new Servicio();
 				servicio.setIdServicio(idServicio);

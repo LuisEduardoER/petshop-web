@@ -1,21 +1,9 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 
 /**
@@ -29,23 +17,20 @@ public class Cita implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idCita;
+	private String idCita;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreate;
 
 	private String estado;
 
-	@Temporal(TemporalType.DATE)
-	private Calendar fecProg;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecAtencion;
 
-	@Temporal(TemporalType.TIME)
-	private Calendar hourProg;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecProg;
 
 	private String userCreate;
-	
-	@Transient
-	private String descripcion;
 
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
@@ -62,6 +47,10 @@ public class Cita implements Serializable {
 	@JoinColumn(name="idMedico")
 	private Medico medico;
 
+	//bi-directional many-to-one association to Cobro
+	@OneToMany(mappedBy="cita")
+	private List<Cobro> cobros;
+
 	//bi-directional many-to-one association to DetalleCita
 	@OneToMany(mappedBy="cita")
 	private List<DetalleCita> detalleCitas;
@@ -69,11 +58,11 @@ public class Cita implements Serializable {
 	public Cita() {
 	}
 
-	public int getIdCita() {
+	public String getIdCita() {
 		return this.idCita;
 	}
 
-	public void setIdCita(int idCita) {
+	public void setIdCita(String idCita) {
 		this.idCita = idCita;
 	}
 
@@ -93,20 +82,20 @@ public class Cita implements Serializable {
 		this.estado = estado;
 	}
 
-	public Calendar getFecProg() {
+	public Date getFecAtencion() {
+		return this.fecAtencion;
+	}
+
+	public void setFecAtencion(Date fecAtencion) {
+		this.fecAtencion = fecAtencion;
+	}
+
+	public Date getFecProg() {
 		return this.fecProg;
 	}
 
-	public void setFecProg(Calendar fecProg) {
+	public void setFecProg(Date fecProg) {
 		this.fecProg = fecProg;
-	}
-
-	public Calendar getHourProg() {
-		return this.hourProg;
-	}
-
-	public void setHourProg(Calendar hourProg) {
-		this.hourProg = hourProg;
 	}
 
 	public String getUserCreate() {
@@ -141,6 +130,28 @@ public class Cita implements Serializable {
 		this.medico = medico;
 	}
 
+	public List<Cobro> getCobros() {
+		return this.cobros;
+	}
+
+	public void setCobros(List<Cobro> cobros) {
+		this.cobros = cobros;
+	}
+
+	public Cobro addCobro(Cobro cobro) {
+		getCobros().add(cobro);
+		cobro.setCita(this);
+
+		return cobro;
+	}
+
+	public Cobro removeCobro(Cobro cobro) {
+		getCobros().remove(cobro);
+		cobro.setCita(null);
+
+		return cobro;
+	}
+
 	public List<DetalleCita> getDetalleCitas() {
 		return this.detalleCitas;
 	}
@@ -163,12 +174,4 @@ public class Cita implements Serializable {
 		return detalleCita;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
 }

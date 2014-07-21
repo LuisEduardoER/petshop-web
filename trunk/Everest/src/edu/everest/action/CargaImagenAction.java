@@ -39,7 +39,7 @@ public class CargaImagenAction extends ActionSupport{
 		
 		try{
 			Mascota mascota = new Mascota();
-			mascota.setIdMascota(Integer.parseInt(idMascota));
+			mascota.setIdMascota(idMascota);
 			
 			mascota = mascotaService.obtenerMascota(mascota);
 			

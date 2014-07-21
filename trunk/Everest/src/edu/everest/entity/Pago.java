@@ -2,7 +2,6 @@ package edu.everest.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 
@@ -19,24 +18,19 @@ public class Pago implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPago;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateCreate;
-
-	private String userCreate;
-
-	//bi-directional many-to-one association to Cita
-	@ManyToOne
-	@JoinColumn(name="idCita")
-	private Cita cita;
-
-	//bi-directional many-to-one association to Cliente
-	@ManyToOne
-	@JoinColumn(name="idCliente")
-	private Cliente cliente;
-
 	//bi-directional many-to-one association to DetallePago
 	@OneToMany(mappedBy="pago")
 	private List<DetallePago> detallePagos;
+
+	//bi-directional many-to-one association to Proveedor
+	@ManyToOne
+	@JoinColumn(name="idProveedor")
+	private Proveedor proveedor;
+
+	//bi-directional many-to-one association to Deuda
+	@ManyToOne
+	@JoinColumn(name="idDeuda")
+	private Deuda deuda;
 
 	public Pago() {
 	}
@@ -47,38 +41,6 @@ public class Pago implements Serializable {
 
 	public void setIdPago(int idPago) {
 		this.idPago = idPago;
-	}
-
-	public Date getDateCreate() {
-		return this.dateCreate;
-	}
-
-	public void setDateCreate(Date dateCreate) {
-		this.dateCreate = dateCreate;
-	}
-
-	public String getUserCreate() {
-		return this.userCreate;
-	}
-
-	public void setUserCreate(String userCreate) {
-		this.userCreate = userCreate;
-	}
-
-	public Cita getCita() {
-		return this.cita;
-	}
-
-	public void setCita(Cita cita) {
-		this.cita = cita;
-	}
-
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public List<DetallePago> getDetallePagos() {
@@ -101,6 +63,22 @@ public class Pago implements Serializable {
 		detallePago.setPago(null);
 
 		return detallePago;
+	}
+
+	public Proveedor getProveedor() {
+		return this.proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	public Deuda getDeuda() {
+		return this.deuda;
+	}
+
+	public void setDeuda(Deuda deuda) {
+		this.deuda = deuda;
 	}
 
 }

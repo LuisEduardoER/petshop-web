@@ -16,7 +16,7 @@ public class Producto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idProducto;
+	private String idProducto;
 
 	private int cantidad;
 
@@ -30,10 +30,6 @@ public class Producto implements Serializable {
 
 	private String precio;
 
-	//bi-directional many-to-one association to DetallePago
-	@OneToMany(mappedBy="producto")
-	private List<DetallePago> detallePagos;
-
 	//bi-directional many-to-one association to Proveedor
 	@ManyToOne
 	@JoinColumn(name="idProveedor")
@@ -44,14 +40,18 @@ public class Producto implements Serializable {
 	@JoinColumn(name="idTipoProducto")
 	private TipoProducto tipoProducto;
 
+	//bi-directional many-to-one association to DetalleCobro
+	@OneToMany(mappedBy="producto")
+	private List<DetalleCobro> detalleCobros;
+
 	public Producto() {
 	}
 
-	public int getIdProducto() {
+	public String getIdProducto() {
 		return this.idProducto;
 	}
 
-	public void setIdProducto(int idProducto) {
+	public void setIdProducto(String idProducto) {
 		this.idProducto = idProducto;
 	}
 
@@ -103,28 +103,6 @@ public class Producto implements Serializable {
 		this.precio = precio;
 	}
 
-	public List<DetallePago> getDetallePagos() {
-		return this.detallePagos;
-	}
-
-	public void setDetallePagos(List<DetallePago> detallePagos) {
-		this.detallePagos = detallePagos;
-	}
-
-	public DetallePago addDetallePago(DetallePago detallePago) {
-		getDetallePagos().add(detallePago);
-		detallePago.setProducto(this);
-
-		return detallePago;
-	}
-
-	public DetallePago removeDetallePago(DetallePago detallePago) {
-		getDetallePagos().remove(detallePago);
-		detallePago.setProducto(null);
-
-		return detallePago;
-	}
-
 	public Proveedor getProveedor() {
 		return this.proveedor;
 	}
@@ -139,6 +117,28 @@ public class Producto implements Serializable {
 
 	public void setTipoProducto(TipoProducto tipoProducto) {
 		this.tipoProducto = tipoProducto;
+	}
+
+	public List<DetalleCobro> getDetalleCobros() {
+		return this.detalleCobros;
+	}
+
+	public void setDetalleCobros(List<DetalleCobro> detalleCobros) {
+		this.detalleCobros = detalleCobros;
+	}
+
+	public DetalleCobro addDetalleCobro(DetalleCobro detalleCobro) {
+		getDetalleCobros().add(detalleCobro);
+		detalleCobro.setProducto(this);
+
+		return detalleCobro;
+	}
+
+	public DetalleCobro removeDetalleCobro(DetalleCobro detalleCobro) {
+		getDetalleCobros().remove(detalleCobro);
+		detalleCobro.setProducto(null);
+
+		return detalleCobro;
 	}
 
 }

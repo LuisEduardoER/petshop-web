@@ -20,7 +20,6 @@ public abstract class DAOFactory {
     public abstract OpcionDAO			getOpcionDAO();
     public abstract MascotaDAO			getMascotaDAO();
     public abstract CitaDAO				getCitaDAO();
-    public abstract TipoDocumentoDAO	getTipoDocumentoDAO();
     public abstract RolOpcionDAO		getRolOpcionDAO();
     public abstract ServicioDAO			getServicioDAO();
     public abstract DetalleCitaDAO		getDetalleCitaDAO();

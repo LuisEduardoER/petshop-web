@@ -35,10 +35,6 @@ public class ApplicationBusinessDelegate {
 		return new CitaDAOService( DAOFactory.JPA );
 	}
 	
-	public TipoDocumentoService getTipoDocumentoService() {
-		return new TipoDocumentoDAOService( DAOFactory.JPA );
-	}
-	
 	public RolOpcionService getRolOpcionService() {
 		return new RolOpcionDAOService( DAOFactory.JPA );
 	}

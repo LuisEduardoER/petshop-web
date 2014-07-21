@@ -54,7 +54,7 @@ public class MascotaAction extends ActionSupport{
 			System.out.println( "idMascota: "+mascota.getIdMascota() );
 			System.out.println( "idCliente(): "+cliente.getIdCliente() );
 			
-			if( mascota.getIdMascota() != 0 )
+			if( mascota.getIdMascota() != null )
 				mascota = mascotaService.obtenerMascota(mascota);
 			
 		}catch(Exception ex){
@@ -80,7 +80,7 @@ public class MascotaAction extends ActionSupport{
 		
 	}
 	
-		if (mascota.getIdMascota() == 0) {
+		if (mascota.getIdMascota() == null) {
 			mascotaService.insertarMascota(mascota);
 			System.out.println("insertarMascota");
 		} else {

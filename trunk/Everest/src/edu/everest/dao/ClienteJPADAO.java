@@ -26,11 +26,11 @@ public class ClienteJPADAO implements ClienteDAO {
 		
 		if(cliente.getIdCliente() != 0)
 			obj=(Cliente)em.find(Cliente.class,cliente.getIdCliente());
-		else if(cliente.getDocumento() != null){
+		else if(cliente.getDni() != null){
 			
 			Query query = em.createQuery( "SELECT c FROM Cliente c WHERE c.documento = :documento" );
 			
-			query.setParameter("documento", cliente.getDocumento());
+			query.setParameter("documento", cliente.getDni());
 			
 			obj=(Cliente) query.getSingleResult();
 			
@@ -80,11 +80,10 @@ public class ClienteJPADAO implements ClienteDAO {
 		
 		Cliente entidadCliente=new Cliente();
 		
-		entidadCliente.setTipoDocumento(cliente.getTipoDocumento());
 		entidadCliente.setUsuario(cliente.getUsuario());
 		
 		entidadCliente.setIdDIstrito(cliente.getIdDIstrito());
-		entidadCliente.setDocumento(cliente.getDocumento());
+		entidadCliente.setDni(cliente.getDni());
 		entidadCliente.setNombres(cliente.getNombres());
 		entidadCliente.setApePat(cliente.getApePat());
 		entidadCliente.setApeMat(cliente.getApeMat());
