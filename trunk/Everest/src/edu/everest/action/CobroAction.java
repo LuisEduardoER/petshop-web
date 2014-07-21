@@ -1,6 +1,7 @@
 package edu.everest.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -47,16 +48,23 @@ public class CobroAction extends ActionSupport{
 	@Action(value="/showCobroClienteAction",
 			results={ @Result(name="success", location="/mantenimiento/cobro/cobroFormCliente.jsp") })
 	public String showCobroCliente() throws Exception{
+		System.out.println("===== showCobroClienteAction =====");		
 		
+		System.out.println("oper: "+oper);
 		if(oper != null){
+			Date fecAtencion = new Date();
+//			cliente = new Cliente();
+			cliente.setNombres("Carlos Hubi");
+			cliente.setApePat("De los santos");
+			cliente.setApeMat("Garcia");
+			cliente.setDireccion("Puente Piedra");
 			
-			cliente = new Cliente();
 			Cita cita;
-			for(int i=1; i<=5; i++){
+			for(int i=1; i<=4; i++){
 				cita = new Cita();
 				
 				cita.setIdCita("CIT0000"+i);
-//				cita.setFecProg();
+				cita.setFecAtencion(fecAtencion);
 				
 				citaLista.add(cita);
 			}

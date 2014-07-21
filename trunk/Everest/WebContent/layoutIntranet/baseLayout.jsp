@@ -111,8 +111,25 @@
 		
 	</div>
 	
+	<div id="footer" style="background: rgba(0, 0, 0, 0.35);
+							color: #ffffff;
+							background-image: none;
+							box-shadow: 0 1px 6px rgba(50, 90, 90, 0.12), inset 0 0 1px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(0,0,0,0);
+							width: 97%;
+							content: ' ';
+							display: table;
+							clear: both;
+							margin-top: 15px;
+							margin-bottom: 15px;
+							text-align: center;
+							padding: 10px 15px;
+							"
+						
+							>
+		© 2014 Grupo DLS Todos los derechos reservados
+	</div>
+	
 </div>
-
 </body>
 <script type="text/javascript">
 $(function() {
