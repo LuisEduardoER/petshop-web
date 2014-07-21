@@ -5,9 +5,9 @@ import java.util.Calendar;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -18,15 +18,12 @@ import javax.persistence.Transient;
  * 
  */
 @Entity
-//@NamedQuery(name="DetalleCita.findAll", query="SELECT d FROM DetalleCita d")
+@NamedQuery(name="DetalleCita.findAll", query="SELECT d FROM DetalleCita d")
 public class DetalleCita implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private DetalleCitaPK id;
-	
-	@Transient
-	private int idDetalleCita;
 
 	private double costo;
 
@@ -40,7 +37,7 @@ public class DetalleCita implements Serializable {
 	private Calendar tiempoAprox;
 	
 	@Transient
-	private String strTiempoAprox;
+		private String strTiempoAprox;
 	
 	//bi-directional many-to-one association to Cita
 	@ManyToOne
@@ -48,7 +45,7 @@ public class DetalleCita implements Serializable {
 	private Cita cita;
 
 	//bi-directional many-to-one association to Servicio
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="idServicio", referencedColumnName="idServicio")
 	private Servicio servicio;
 
@@ -118,7 +115,7 @@ public class DetalleCita implements Serializable {
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
 	}
-	
+
 	public String getStrTiempoAprox() {
 		return strTiempoAprox;
 	}
@@ -126,13 +123,5 @@ public class DetalleCita implements Serializable {
 	public void setStrTiempoAprox(String strTiempoAprox) {
 		this.strTiempoAprox = strTiempoAprox;
 	}
-	
-	public int getIdDetalleCita() {
-		return idDetalleCita;
-	}
 
-	public void setIdDetalleCita(int idDetalleCita) {
-		this.idDetalleCita = idDetalleCita;
-	}
-	
 }

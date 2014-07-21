@@ -196,8 +196,8 @@ public class CitaDisponibilidadAction extends ActionSupport{
 					for(int c=0; c<citaLista.size(); c++){
 						objCita = citaLista.get(c);
 						
-						objCita.getFecProg().set(Calendar.HOUR_OF_DAY, objCita.getHourProg().get(Calendar.HOUR_OF_DAY));
-						objCita.getFecProg().set(Calendar.MINUTE, objCita.getHourProg().get(Calendar.MINUTE));
+//						objCita.getFecProg().set(Calendar.HOUR_OF_DAY, objCita.getHourProg().get(Calendar.HOUR_OF_DAY));
+//						objCita.getFecProg().set(Calendar.MINUTE, objCita.getHourProg().get(Calendar.MINUTE));
 						strFecAux2 = dateFormatFull.format(objCita.getFecProg().getTime());
 						
 //						System.out.println("strFecAux1: "+strFecAux1 );

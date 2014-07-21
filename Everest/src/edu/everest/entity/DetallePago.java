@@ -2,7 +2,6 @@ package edu.everest.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
 
 
 /**
@@ -14,80 +13,43 @@ import java.util.Date;
 public class DetallePago implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetallePagoPK id;
+	@Id
+	private int idPago;
 
-	private double costo;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateCreate;
-
-	private String userCreate;
-
-	//bi-directional many-to-one association to Producto
-	@ManyToOne
-	@JoinColumn(name="idProducto")
-	private Producto producto;
-
-	//bi-directional many-to-one association to Servicio
-	@ManyToOne
-	@JoinColumn(name="idServicio")
-	private Servicio servicio;
+	private double monto;
 
 	//bi-directional many-to-one association to Pago
 	@ManyToOne
-	@JoinColumn(name="idPago", referencedColumnName="idPago")
+	@JoinColumn(name="idPago")
 	private Pago pago;
+
+	//bi-directional many-to-one association to FormaPago
+	@ManyToOne
+	@JoinColumn(name="idFormaPago")
+	private FormaPago formaPago;
+
+	//bi-directional many-to-one association to Cuenta
+	@ManyToOne
+	@JoinColumn(name="idCuenta")
+	private Cuenta cuenta;
 
 	public DetallePago() {
 	}
 
-	public DetallePagoPK getId() {
-		return this.id;
+	public int getIdPago() {
+		return this.idPago;
 	}
 
-	public void setId(DetallePagoPK id) {
-		this.id = id;
+	public void setIdPago(int idPago) {
+		this.idPago = idPago;
 	}
 
-	public double getCosto() {
-		return this.costo;
+	public double getMonto() {
+		return this.monto;
 	}
 
-	public void setCosto(double costo) {
-		this.costo = costo;
-	}
-
-	public Date getDateCreate() {
-		return this.dateCreate;
-	}
-
-	public void setDateCreate(Date dateCreate) {
-		this.dateCreate = dateCreate;
-	}
-
-	public String getUserCreate() {
-		return this.userCreate;
-	}
-
-	public void setUserCreate(String userCreate) {
-		this.userCreate = userCreate;
-	}
-
-	public Producto getProducto() {
-		return this.producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-
-	public Servicio getServicio() {
-		return this.servicio;
-	}
-
-	public void setServicio(Servicio servicio) {
-		this.servicio = servicio;
+	public void setMonto(double monto) {
+		this.monto = monto;
 	}
 
 	public Pago getPago() {
@@ -96,6 +58,22 @@ public class DetallePago implements Serializable {
 
 	public void setPago(Pago pago) {
 		this.pago = pago;
+	}
+
+	public FormaPago getFormaPago() {
+		return this.formaPago;
+	}
+
+	public void setFormaPago(FormaPago formaPago) {
+		this.formaPago = formaPago;
+	}
+
+	public Cuenta getCuenta() {
+		return this.cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
 	}
 
 }

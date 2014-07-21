@@ -108,9 +108,9 @@
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mantenimiento/servicio/servicioDisponibilidad.jsp"/>
   </definition>
-  <definition name="pagoPageTile" extends="layoutIntranet">
+  <definition name="cobroFormTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
-      <put-attribute name="body"   value="/mantenimiento/pago/pagoPage.jsp"/>
+      <put-attribute name="body"   value="/mantenimiento/cobro/cobroForm.jsp"/>
   </definition>
   
 </tiles-definitions>

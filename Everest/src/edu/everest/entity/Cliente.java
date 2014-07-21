@@ -27,7 +27,7 @@ public class Cliente implements Serializable {
 
 	private String direccion;
 
-	private String documento;
+	private String dni;
 
 	private String email;
 
@@ -38,34 +38,49 @@ public class Cliente implements Serializable {
 
 	private int idDIstrito;
 
+	private double lineaCredito;
+
+	private String lineaCreditoBool;
+
+	private double lineaDisponible;
+
 	private String nombres;
 
 	private String sexo;
 
 	private int telefono;
 
+	private String tipoCliente;
+
+	//bi-directional many-to-one association to Cita
+	@OneToMany(mappedBy="cliente")
+	private List<Cita> citas;
+
 	//bi-directional many-to-one association to Cliente
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="idParentCliente")
 	private Cliente cliente;
 
 	//bi-directional many-to-one association to Cliente
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+	@OneToMany(mappedBy="cliente")
 	private List<Cliente> clientes;
 
-	//bi-directional many-to-one association to TipoDocumento
-	@ManyToOne
-	@JoinColumn(name="idTipoDocumento")
-	private TipoDocumento tipoDocumento;
-
 	//bi-directional many-to-one association to Usuario
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 
+	//bi-directional many-to-one association to HistoriaClinica
+	@OneToMany(mappedBy="cliente")
+	private List<HistoriaClinica> historiaClinicas;
+
 	//bi-directional many-to-one association to Mascota
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+	@OneToMany(mappedBy="cliente")
 	private List<Mascota> mascotas;
+
+	//bi-directional many-to-one association to Cobro
+	@OneToMany(mappedBy="cliente")
+	private List<Cobro> cobros;
 
 	public Cliente() {
 	}
@@ -110,12 +125,12 @@ public class Cliente implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public String getDocumento() {
-		return this.documento;
+	public String getDni() {
+		return this.dni;
 	}
 
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getEmail() {
@@ -150,6 +165,30 @@ public class Cliente implements Serializable {
 		this.idDIstrito = idDIstrito;
 	}
 
+	public double getLineaCredito() {
+		return this.lineaCredito;
+	}
+
+	public void setLineaCredito(double lineaCredito) {
+		this.lineaCredito = lineaCredito;
+	}
+
+	public String getLineaCreditoBool() {
+		return this.lineaCreditoBool;
+	}
+
+	public void setLineaCreditoBool(String lineaCreditoBool) {
+		this.lineaCreditoBool = lineaCreditoBool;
+	}
+
+	public double getLineaDisponible() {
+		return this.lineaDisponible;
+	}
+
+	public void setLineaDisponible(double lineaDisponible) {
+		this.lineaDisponible = lineaDisponible;
+	}
+
 	public String getNombres() {
 		return this.nombres;
 	}
@@ -172,6 +211,36 @@ public class Cliente implements Serializable {
 
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
+	}
+
+	public String getTipoCliente() {
+		return this.tipoCliente;
+	}
+
+	public void setTipoCliente(String tipoCliente) {
+		this.tipoCliente = tipoCliente;
+	}
+
+	public List<Cita> getCitas() {
+		return this.citas;
+	}
+
+	public void setCitas(List<Cita> citas) {
+		this.citas = citas;
+	}
+
+	public Cita addCita(Cita cita) {
+		getCitas().add(cita);
+		cita.setCliente(this);
+
+		return cita;
+	}
+
+	public Cita removeCita(Cita cita) {
+		getCitas().remove(cita);
+		cita.setCliente(null);
+
+		return cita;
 	}
 
 	public Cliente getCliente() {
@@ -204,20 +273,34 @@ public class Cliente implements Serializable {
 		return cliente;
 	}
 
-	public TipoDocumento getTipoDocumento() {
-		return this.tipoDocumento;
-	}
-
-	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
-
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<HistoriaClinica> getHistoriaClinicas() {
+		return this.historiaClinicas;
+	}
+
+	public void setHistoriaClinicas(List<HistoriaClinica> historiaClinicas) {
+		this.historiaClinicas = historiaClinicas;
+	}
+
+	public HistoriaClinica addHistoriaClinica(HistoriaClinica historiaClinica) {
+		getHistoriaClinicas().add(historiaClinica);
+		historiaClinica.setCliente(this);
+
+		return historiaClinica;
+	}
+
+	public HistoriaClinica removeHistoriaClinica(HistoriaClinica historiaClinica) {
+		getHistoriaClinicas().remove(historiaClinica);
+		historiaClinica.setCliente(null);
+
+		return historiaClinica;
 	}
 
 	public List<Mascota> getMascotas() {
@@ -240,6 +323,28 @@ public class Cliente implements Serializable {
 		mascota.setCliente(null);
 
 		return mascota;
+	}
+
+	public List<Cobro> getCobros() {
+		return this.cobros;
+	}
+
+	public void setCobros(List<Cobro> cobros) {
+		this.cobros = cobros;
+	}
+
+	public Cobro addCobro(Cobro cobro) {
+		getCobros().add(cobro);
+		cobro.setCliente(this);
+
+		return cobro;
+	}
+
+	public Cobro removeCobro(Cobro cobro) {
+		getCobros().remove(cobro);
+		cobro.setCliente(null);
+
+		return cobro;
 	}
 
 }

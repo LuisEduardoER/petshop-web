@@ -65,13 +65,6 @@ public class JPADAOFactory extends DAOFactory {
 	}
 
 	@Override
-	public TipoDocumentoDAO getTipoDocumentoDAO() {
-		TipoDocumentoJPADAO ed =  new TipoDocumentoJPADAO();
-		ed.setEntityManagerFactory(emf);
-		return (TipoDocumentoDAO)ed;
-	}
-
-	@Override
 	public RolOpcionDAO getRolOpcionDAO() {
 		RolOpcionJPADAO ed =  new RolOpcionJPADAO();
 		ed.setEntityManagerFactory(emf);

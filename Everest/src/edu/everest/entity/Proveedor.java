@@ -2,6 +2,7 @@ package edu.everest.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -24,6 +25,18 @@ public class Proveedor implements Serializable {
 	private String razonSocial;
 
 	private String ruc;
+
+	//bi-directional many-to-one association to Deuda
+	@OneToMany(mappedBy="proveedor")
+	private List<Deuda> deudas;
+
+	//bi-directional many-to-one association to Producto
+	@OneToMany(mappedBy="proveedor")
+	private List<Producto> productos;
+
+	//bi-directional many-to-one association to Pago
+	@OneToMany(mappedBy="proveedor")
+	private List<Pago> pagos;
 
 	public Proveedor() {
 	}
@@ -66,6 +79,72 @@ public class Proveedor implements Serializable {
 
 	public void setRuc(String ruc) {
 		this.ruc = ruc;
+	}
+
+	public List<Deuda> getDeudas() {
+		return this.deudas;
+	}
+
+	public void setDeudas(List<Deuda> deudas) {
+		this.deudas = deudas;
+	}
+
+	public Deuda addDeuda(Deuda deuda) {
+		getDeudas().add(deuda);
+		deuda.setProveedor(this);
+
+		return deuda;
+	}
+
+	public Deuda removeDeuda(Deuda deuda) {
+		getDeudas().remove(deuda);
+		deuda.setProveedor(null);
+
+		return deuda;
+	}
+
+	public List<Producto> getProductos() {
+		return this.productos;
+	}
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
+
+	public Producto addProducto(Producto producto) {
+		getProductos().add(producto);
+		producto.setProveedor(this);
+
+		return producto;
+	}
+
+	public Producto removeProducto(Producto producto) {
+		getProductos().remove(producto);
+		producto.setProveedor(null);
+
+		return producto;
+	}
+
+	public List<Pago> getPagos() {
+		return this.pagos;
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
+	}
+
+	public Pago addPago(Pago pago) {
+		getPagos().add(pago);
+		pago.setProveedor(this);
+
+		return pago;
+	}
+
+	public Pago removePago(Pago pago) {
+		getPagos().remove(pago);
+		pago.setProveedor(null);
+
+		return pago;
 	}
 
 }

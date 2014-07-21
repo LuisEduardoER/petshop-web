@@ -19,9 +19,8 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Tipo</th>
-            <th>Documento</th>
-            <th>Nombres</th>
+            <th>DNI/RUC</th>
+            <th>Nombres/Razon Social</th>
             <th>Ape. Pat.</th>
             <th>Ape. Mat.</th>
             <th class="ui-state-disabled tdButton">
@@ -50,8 +49,7 @@
     	<s:iterator value="clienteLista" var="objCliente" status="stat">
 	        <tr>
 	            <td class="id"> <s:property value="idCliente"/> </td>
-	            <td> <s:property value="tipoDocumento.descripcion"/> </td>
-	            <td> <s:property value="documento"/> </td>
+	            <td> <s:property value="dni"/> </td>
 	            <td> <s:property value="nombres"/> </td>
 	            <td> <s:property value="apePat"/> </td>
 	            <td> <s:property value="apeMat"/> </td>
