@@ -25,11 +25,8 @@ public class Cita implements Serializable {
 
 	private String estado;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar fecProg;
-
-	@Temporal(TemporalType.TIME)
-	private Calendar hourProg;
 
 	private String userCreate;
 
@@ -51,6 +48,10 @@ public class Cita implements Serializable {
 	//bi-directional many-to-one association to DetalleCita
 	@OneToMany(mappedBy="cita")
 	private List<DetalleCita> detalleCitas;
+
+	//bi-directional many-to-one association to Cobro
+	@OneToMany(mappedBy="cita")
+	private List<Cobro> cobros;
 
 	public Cita() {
 	}
@@ -85,14 +86,6 @@ public class Cita implements Serializable {
 
 	public void setFecProg(Calendar fecProg) {
 		this.fecProg = fecProg;
-	}
-
-	public Calendar getHourProg() {
-		return this.hourProg;
-	}
-
-	public void setHourProg(Calendar hourProg) {
-		this.hourProg = hourProg;
 	}
 
 	public String getUserCreate() {
@@ -147,6 +140,28 @@ public class Cita implements Serializable {
 		detalleCita.setCita(null);
 
 		return detalleCita;
+	}
+
+	public List<Cobro> getCobros() {
+		return this.cobros;
+	}
+
+	public void setCobros(List<Cobro> cobros) {
+		this.cobros = cobros;
+	}
+
+	public Cobro addCobro(Cobro cobro) {
+		getCobros().add(cobro);
+		cobro.setCita(this);
+
+		return cobro;
+	}
+
+	public Cobro removeCobro(Cobro cobro) {
+		getCobros().remove(cobro);
+		cobro.setCita(null);
+
+		return cobro;
 	}
 
 }

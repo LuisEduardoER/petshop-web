@@ -2,6 +2,7 @@ package edu.everest.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -26,6 +27,10 @@ public class Deuda implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idProveedor")
 	private Proveedor proveedor;
+
+	//bi-directional many-to-one association to Pago
+	@OneToMany(mappedBy="deuda")
+	private List<Pago> pagos;
 
 	public Deuda() {
 	}
@@ -60,6 +65,28 @@ public class Deuda implements Serializable {
 
 	public void setProveedor(Proveedor proveedor) {
 		this.proveedor = proveedor;
+	}
+
+	public List<Pago> getPagos() {
+		return this.pagos;
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
+	}
+
+	public Pago addPago(Pago pago) {
+		getPagos().add(pago);
+		pago.setDeuda(this);
+
+		return pago;
+	}
+
+	public Pago removePago(Pago pago) {
+		getPagos().remove(pago);
+		pago.setDeuda(null);
+
+		return pago;
 	}
 
 }

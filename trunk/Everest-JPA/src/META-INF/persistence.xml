@@ -24,5 +24,10 @@
 		<class>edu.everest.entity.TipoProducto</class>
 		<class>edu.everest.entity.Turno</class>
 		<class>edu.everest.entity.Usuario</class>
+		<class>edu.everest.entity.Cobro</class>
+		<class>edu.everest.entity.DetalleCobro</class>
+		<class>edu.everest.entity.DetalleCobroPK</class>
+		<class>edu.everest.entity.DetallePago</class>
+		<class>edu.everest.entity.Pago</class>
 	</persistence-unit>
 </persistence>

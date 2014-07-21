@@ -78,6 +78,10 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="cliente")
 	private List<Mascota> mascotas;
 
+	//bi-directional many-to-one association to Cobro
+	@OneToMany(mappedBy="cliente")
+	private List<Cobro> cobros;
+
 	public Cliente() {
 	}
 
@@ -319,6 +323,28 @@ public class Cliente implements Serializable {
 		mascota.setCliente(null);
 
 		return mascota;
+	}
+
+	public List<Cobro> getCobros() {
+		return this.cobros;
+	}
+
+	public void setCobros(List<Cobro> cobros) {
+		this.cobros = cobros;
+	}
+
+	public Cobro addCobro(Cobro cobro) {
+		getCobros().add(cobro);
+		cobro.setCliente(this);
+
+		return cobro;
+	}
+
+	public Cobro removeCobro(Cobro cobro) {
+		getCobros().remove(cobro);
+		cobro.setCliente(null);
+
+		return cobro;
 	}
 
 }
