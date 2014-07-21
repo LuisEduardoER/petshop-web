@@ -80,41 +80,101 @@
 	</sj:accordionItem>
 </sj:accordion>
 <br/>
-<s:form id="frmComprobante">
+	<s:form id="frmComprobante">
 	
-	<sj:radio
-		id="radiobuttonset"
-		list="#{'boleta':'Boleta', 'factura':'Factura'}"
-		name="tipoComprobante"
-		formIds="frmComprobante"
-		onChangeTopics="reloadTipoComprobante"
- 		/>
- 	
- 	<s:url id="urlTipoComprobante" action="loadTipoComprobanteAction"/>
-	<sj:div href="%{urlTipoComprobante}" 
-		reloadTopics="reloadTipoComprobante" 
-		formIds="frmComprobante" 
-		effect="blind" 
-		effectMode="show" 
-		effectDuration="300"/>
+		<sj:radio
+			id="radiobuttonset"
+			list="#{'boleta':'Boleta', 'factura':'Factura'}"
+			name="tipoComprobante"
+			formIds="frmComprobante"
+			onChangeTopics="reloadTipoComprobante"
+	 		/>
+	 	<s:hidden name="tipoCobro" value="%{tipoCobro}"/>
+	 <fieldset>
+	 	<s:url id="urlTipoComprobante" action="loadTipoComprobanteAction" />
+		<sj:div href="%{urlTipoComprobante}" 
+			reloadTopics="reloadTipoComprobante" 
+			formIds="frmComprobante" 
+			effect="blind" 
+			effectMode="show" 
+			effectDuration="300"/>
+	</fieldset>
+	</s:form>
+	<table style="width: 100%;" cellspacing="0" cellpadding="0">
+		<tr>
+			<td style="vertical-align: top; width: 271px;">
+				
+				<s:form id="frmTipoCobro">
+					<sj:radio
+						id="radioTipoCobro"
+						list="#{'contado':'Contado', 'tarjeta':'Tarjeta', 'lineaCredito':'Linea de Credito'}"
+						name="tipoCobro"
+						formIds="frmTipoCobro"
+						onChangeTopics="reloadTipoCobro"
+				 		/>
+				 		
+				 <fieldset>
+					<s:url id="urlTipoCobro" action="loadTipoCobroAction"/>
+					<sj:div href="%{urlTipoCobro}" 
+						reloadTopics="reloadTipoCobro" 
+						formIds="frmTipoCobro" 
+						effect="slide" 
+						effectMode="show" 
+						effectDuration="300"/>
+				 </fieldset>
+				</s:form>
+				
+			</td>
+			<td style="vertical-align: top;">
+				<fieldset>
+				<table style="width: 100%;">
+					<tr>
+						<td></td>
+						<td>Total a Pagar</td>
+						<td style="text-align: right;">S/. 300.00&nbsp;</td>
+					</tr>
+					<tr>
+						<td>Tarjeta </td>
+						<td>1234 5678 4321 8765 </td>						
+						<td style="text-align: right;">S/. 50.00- </td>
+					</tr>
+					<tr>
+						<td>Efectivo </td>
+						<td></td>
+						<td style="text-align: right;">S/. 50.00- </td>
+						<td>
+							<s:a href="#">
+								<span class="ui-icon ui-icon-circle-close"></span>
+							</s:a> 
+						</td>
+					</tr>
+					<tr>
+						<td>Tarjeta </td>
+						<td>4321 8765 1234 5678</td>						
+						<td style="text-align: right;">S/. 100.00- </td>
+					</tr>
+					<tr>
+						<td>Linea de Credito </td>
+						<td></td>
+						<td style="text-align: right;">S/. 100.00- </td>
+						<td>
+							<s:a href="#">
+								<span class="ui-icon ui-icon-circle-close"></span>
+							</s:a> 
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td> <b>Saldo</b></td>
+						<td style="text-align: right;">S/. 00.00&nbsp;</td>
+					</tr>
+				</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			
+		</tr>
+	</table>
 	
-</s:form>
-
-<s:form id="frmTipoCobro">
-
-	<sj:radio
-		id="radioTipoCobro"
-		list="#{'contado':'Contado', 'tarjeta':'Tarjeta', 'lineaCredito':'Linea de Credito'}"
-		name="tipoCobro"
-		formIds="frmTipoCobro"
-		onChangeTopics="reloadTipoCobro"
- 		/>
-	<s:url id="urlTipoCobro" action="loadTipoCobroAction"/>
-	<sj:div href="%{urlTipoCobro}" 
-		reloadTopics="reloadTipoCobro" 
-		formIds="frmTipoCobro" 
-		effect="blind" 
-		effectMode="show" 
-		effectDuration="300"/>
-		
-</s:form>
+</fieldset>
