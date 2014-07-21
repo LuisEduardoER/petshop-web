@@ -22,15 +22,15 @@ public class Pago implements Serializable {
 	@OneToMany(mappedBy="pago")
 	private List<DetallePago> detallePagos;
 
-	//bi-directional many-to-one association to Proveedor
-	@ManyToOne
-	@JoinColumn(name="idProveedor")
-	private Proveedor proveedor;
-
 	//bi-directional many-to-one association to Deuda
 	@ManyToOne
 	@JoinColumn(name="idDeuda")
 	private Deuda deuda;
+
+	//bi-directional many-to-one association to Proveedor
+	@ManyToOne
+	@JoinColumn(name="idProveedor")
+	private Proveedor proveedor;
 
 	public Pago() {
 	}
@@ -65,20 +65,20 @@ public class Pago implements Serializable {
 		return detallePago;
 	}
 
-	public Proveedor getProveedor() {
-		return this.proveedor;
-	}
-
-	public void setProveedor(Proveedor proveedor) {
-		this.proveedor = proveedor;
-	}
-
 	public Deuda getDeuda() {
 		return this.deuda;
 	}
 
 	public void setDeuda(Deuda deuda) {
 		this.deuda = deuda;
+	}
+
+	public Proveedor getProveedor() {
+		return this.proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
 	}
 
 }

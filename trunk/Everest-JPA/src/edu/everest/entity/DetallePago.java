@@ -18,20 +18,20 @@ public class DetallePago implements Serializable {
 
 	private double monto;
 
-	//bi-directional many-to-one association to Pago
+	//bi-directional many-to-one association to Cuenta
 	@ManyToOne
-	@JoinColumn(name="idPago")
-	private Pago pago;
+	@JoinColumn(name="idCuenta")
+	private Cuenta cuenta;
 
 	//bi-directional many-to-one association to FormaPago
 	@ManyToOne
 	@JoinColumn(name="idFormaPago")
 	private FormaPago formaPago;
 
-	//bi-directional many-to-one association to Cuenta
+	//bi-directional many-to-one association to Pago
 	@ManyToOne
-	@JoinColumn(name="idCuenta")
-	private Cuenta cuenta;
+	@JoinColumn(name="idPago")
+	private Pago pago;
 
 	public DetallePago() {
 	}
@@ -52,12 +52,12 @@ public class DetallePago implements Serializable {
 		this.monto = monto;
 	}
 
-	public Pago getPago() {
-		return this.pago;
+	public Cuenta getCuenta() {
+		return this.cuenta;
 	}
 
-	public void setPago(Pago pago) {
-		this.pago = pago;
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
 	}
 
 	public FormaPago getFormaPago() {
@@ -68,12 +68,12 @@ public class DetallePago implements Serializable {
 		this.formaPago = formaPago;
 	}
 
-	public Cuenta getCuenta() {
-		return this.cuenta;
+	public Pago getPago() {
+		return this.pago;
 	}
 
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
+	public void setPago(Pago pago) {
+		this.pago = pago;
 	}
 
 }

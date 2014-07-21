@@ -30,13 +30,13 @@ public class Proveedor implements Serializable {
 	@OneToMany(mappedBy="proveedor")
 	private List<Deuda> deudas;
 
-	//bi-directional many-to-one association to Producto
-	@OneToMany(mappedBy="proveedor")
-	private List<Producto> productos;
-
 	//bi-directional many-to-one association to Pago
 	@OneToMany(mappedBy="proveedor")
 	private List<Pago> pagos;
+
+	//bi-directional many-to-one association to Producto
+	@OneToMany(mappedBy="proveedor")
+	private List<Producto> productos;
 
 	public Proveedor() {
 	}
@@ -103,28 +103,6 @@ public class Proveedor implements Serializable {
 		return deuda;
 	}
 
-	public List<Producto> getProductos() {
-		return this.productos;
-	}
-
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
-	}
-
-	public Producto addProducto(Producto producto) {
-		getProductos().add(producto);
-		producto.setProveedor(this);
-
-		return producto;
-	}
-
-	public Producto removeProducto(Producto producto) {
-		getProductos().remove(producto);
-		producto.setProveedor(null);
-
-		return producto;
-	}
-
 	public List<Pago> getPagos() {
 		return this.pagos;
 	}
@@ -145,6 +123,28 @@ public class Proveedor implements Serializable {
 		pago.setProveedor(null);
 
 		return pago;
+	}
+
+	public List<Producto> getProductos() {
+		return this.productos;
+	}
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
+
+	public Producto addProducto(Producto producto) {
+		getProductos().add(producto);
+		producto.setProveedor(this);
+
+		return producto;
+	}
+
+	public Producto removeProducto(Producto producto) {
+		getProductos().remove(producto);
+		producto.setProveedor(null);
+
+		return producto;
 	}
 
 }

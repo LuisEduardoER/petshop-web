@@ -30,6 +30,10 @@ public class Producto implements Serializable {
 
 	private String precio;
 
+	//bi-directional many-to-one association to DetalleCobro
+	@OneToMany(mappedBy="producto")
+	private List<DetalleCobro> detalleCobros;
+
 	//bi-directional many-to-one association to Proveedor
 	@ManyToOne
 	@JoinColumn(name="idProveedor")
@@ -39,10 +43,6 @@ public class Producto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idTipoProducto")
 	private TipoProducto tipoProducto;
-
-	//bi-directional many-to-one association to DetalleCobro
-	@OneToMany(mappedBy="producto")
-	private List<DetalleCobro> detalleCobros;
 
 	public Producto() {
 	}
@@ -103,22 +103,6 @@ public class Producto implements Serializable {
 		this.precio = precio;
 	}
 
-	public Proveedor getProveedor() {
-		return this.proveedor;
-	}
-
-	public void setProveedor(Proveedor proveedor) {
-		this.proveedor = proveedor;
-	}
-
-	public TipoProducto getTipoProducto() {
-		return this.tipoProducto;
-	}
-
-	public void setTipoProducto(TipoProducto tipoProducto) {
-		this.tipoProducto = tipoProducto;
-	}
-
 	public List<DetalleCobro> getDetalleCobros() {
 		return this.detalleCobros;
 	}
@@ -139,6 +123,22 @@ public class Producto implements Serializable {
 		detalleCobro.setProducto(null);
 
 		return detalleCobro;
+	}
+
+	public Proveedor getProveedor() {
+		return this.proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	public TipoProducto getTipoProducto() {
+		return this.tipoProducto;
+	}
+
+	public void setTipoProducto(TipoProducto tipoProducto) {
+		this.tipoProducto = tipoProducto;
 	}
 
 }
