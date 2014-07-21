@@ -4,32 +4,18 @@
 
 <h1>Cobro a Clientes</h1>
 
-<s:url id="urlShowCobroCliente" action="showCobroClienteAction"/>
-<sj:div
-	id="divCobroFormCliente"
-	href="%{urlShowCobroCliente}"
-	effectMode="show"
-	effect="blind"
-/>
+<s:form id="frmCobroCliente">
 
-<s:form id="frmComprobante">
-	
-	<sj:radio
-		id="radiobuttonset"
-		list="#{'boleta':'Boleta', 'factura':'Factura'}"
-		name="tipoComprobante"
-		formIds="frmComprobante"
-		onChangeTopics="reloadTipoComprobante"
- 		/>
- 	
- 	<s:url id="urlTipoComprobante" action="loadTipoComprobanteAction"/>
-	<sj:div href="%{urlTipoComprobante}" 
-		reloadTopics="reloadTipoComprobante" 
-		formIds="frmComprobante" 
-		effect="blind" 
-		effectMode="show" 
-		effectDuration="300"/>
-	
+	<s:url id="urlShowCobroCliente" action="showCobroClienteAction"/>
+	<sj:div
+		id="divCobroFormCliente"
+		href="%{urlShowCobroCliente}"
+		formIds="frmCobroCliente"
+		effectMode="show"
+		effect="blind"
+		effectDuration="500"
+	/>
+
 </s:form>
 
 <sj:accordion collapsible="true">
@@ -43,7 +29,8 @@
 		<table id="table" class="dls-table" cellspacing="0" cellpadding="0">
 		    <thead>
 		        <tr>
-		            <th>Id</th>
+		            <th>Nro</th>
+		            <th>ID</th>
 		            <th>Producto/Servicio</th>
 		            <th>Cantidad</th>
 		            <th>Precio</th>
@@ -62,6 +49,7 @@
 		    <tbody class="dls-table-body">
 		    	<s:iterator value="{1,2,3,4,5}" var="objOpcion" status="stat">
 			        <tr>
+			            <td> <s:property/> </td>
 			            <td> <s:property/> </td>
 			            <td> [Producto/Servicio] </td>
 			            <td> [Cantidad] </td>
@@ -92,6 +80,26 @@
 	</sj:accordionItem>
 </sj:accordion>
 <br/>
+<s:form id="frmComprobante">
+	
+	<sj:radio
+		id="radiobuttonset"
+		list="#{'boleta':'Boleta', 'factura':'Factura'}"
+		name="tipoComprobante"
+		formIds="frmComprobante"
+		onChangeTopics="reloadTipoComprobante"
+ 		/>
+ 	
+ 	<s:url id="urlTipoComprobante" action="loadTipoComprobanteAction"/>
+	<sj:div href="%{urlTipoComprobante}" 
+		reloadTopics="reloadTipoComprobante" 
+		formIds="frmComprobante" 
+		effect="blind" 
+		effectMode="show" 
+		effectDuration="300"/>
+	
+</s:form>
+
 <s:form id="frmTipoCobro">
 
 	<sj:radio
