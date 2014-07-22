@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `petshop` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `petshop`;
--- MySQL dump 10.13  Distrib 5.6.18, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: localhost    Database: petshop
 -- ------------------------------------------------------
--- Server version	5.6.18-enterprise-commercial-advanced
+-- Server version	5.5.37
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -137,11 +137,11 @@ DROP TABLE IF EXISTS `correlativo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `correlativo` (
-  `idCorrelativo` int(11) NOT NULL,
+  `idCorrelativo` int(11) NOT NULL AUTO_INCREMENT,
   `tabla` varchar(200) NOT NULL,
   `valor` varchar(10) NOT NULL,
   PRIMARY KEY (`idCorrelativo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,6 +150,7 @@ CREATE TABLE `correlativo` (
 
 LOCK TABLES `correlativo` WRITE;
 /*!40000 ALTER TABLE `correlativo` DISABLE KEYS */;
+INSERT INTO `correlativo` VALUES (1,'Tabla','V0001');
 /*!40000 ALTER TABLE `correlativo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,7 +477,7 @@ CREATE TABLE `opcion` (
   PRIMARY KEY (`idOpcion`),
   KEY `fk_opcion_parent_idx` (`parentOpcionId`),
   CONSTRAINT `fk_opcion_parent` FOREIGN KEY (`parentOpcionId`) REFERENCES `opcion` (`idOpcion`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -485,7 +486,7 @@ CREATE TABLE `opcion` (
 
 LOCK TABLES `opcion` WRITE;
 /*!40000 ALTER TABLE `opcion` DISABLE KEYS */;
-INSERT INTO `opcion` VALUES (1,NULL,'Mantenimientos','Mantenimientos','#',2,'Activo',NULL,NULL),(2,1,'Mant. Usuarios','Usuarios','showUsuarioListaAction',1,'Activo',NULL,NULL),(3,1,'Mant. Citas','Citas','#',2,'Activo',NULL,NULL),(4,NULL,'Secretaria','Secretaria','#',1,'Activo',NULL,NULL),(5,4,'Registro de Cita','Registro de Cita','showCitaRegistroAction',1,'Activo',NULL,NULL),(6,NULL,'Cliente','Cliente','#',3,'Activo',NULL,NULL),(7,1,'Mant. Clientes','Clientes','showClienteRegistroAction',1,'Activo',NULL,NULL),(8,1,'Mant. Proveedores','Proveedores','obtenerProveedores',3,'Activo',NULL,NULL),(9,1,'Mant. Roles','Roles','showRolLista',4,'Activo',NULL,NULL),(16,1,'Mant. Opciones','Opciones','showOpcionListaAction',5,'Activo',NULL,NULL),(18,4,'Disponiblidad Servicio','Disponibilidad Servicios','showServicioDisponiblidadAction',3,'Inactivo',NULL,NULL),(19,4,'Cobro a Clientes','Cobro a Clientes','showCobroPageAction',2,'Activo',NULL,NULL);
+INSERT INTO `opcion` VALUES (1,NULL,'Mantenimientos','Mantenimientos','#',2,'Activo',NULL,NULL),(2,1,'Mant. Usuarios','Usuarios','showUsuarioListaAction',1,'Activo',NULL,NULL),(3,1,'Mant. Citas','Citas','#',2,'Activo',NULL,NULL),(4,NULL,'Secretaria','Secretaria','#',1,'Activo',NULL,NULL),(5,4,'Registro de Cita','Registro de Cita','showCitaRegistroAction',1,'Activo',NULL,NULL),(6,NULL,'Cliente','Cliente','#',3,'Activo',NULL,NULL),(7,1,'Mant. Clientes','Clientes','showClienteRegistroAction',1,'Activo',NULL,NULL),(8,1,'Mant. Proveedores','Proveedores','obtenerProveedores',3,'Activo',NULL,NULL),(9,1,'Mant. Roles','Roles','showRolLista',4,'Activo',NULL,NULL),(16,1,'Mant. Opciones','Opciones','showOpcionListaAction',5,'Activo',NULL,NULL),(18,4,'Disponiblidad Servicio','Disponibilidad Servicios','showServicioDisponiblidadAction',3,'Inactivo',NULL,NULL),(19,4,'Cobro a Clientes','Cobro a Clientes','showCobroPageAction',2,'Activo',NULL,NULL),(20,1,'Correlativo','Correlativo','showCorrelativoLista',6,'Activo',NULL,NULL),(21,1,'Local','Local','showLocalLista',7,'Activo',NULL,NULL),(23,1,'Tipo de Animal','Tipo de Animal','showTipoAnimalLista',8,'Activo',NULL,NULL),(24,1,'Tipo de Producto','Tipo de Producto','showTipoProductoLista',9,'Activo',NULL,NULL),(25,1,'Turno','Turno','showTurnoLista',10,'Activo',NULL,NULL);
 /*!40000 ALTER TABLE `opcion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -777,4 +778,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-21  7:01:49
+-- Dump completed on 2014-07-22 18:25:14
