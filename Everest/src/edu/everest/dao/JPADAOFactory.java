@@ -87,7 +87,6 @@ public class JPADAOFactory extends DAOFactory {
 
 
 	@Override
-
 	public TurnoDAO getTurnoDAO() {
 		TurnoJPADAO ed =  new TurnoJPADAO();
 		ed.setEntityManagerFactory(emf);
