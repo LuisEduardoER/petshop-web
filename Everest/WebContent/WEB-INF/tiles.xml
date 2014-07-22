@@ -113,4 +113,14 @@
       <put-attribute name="body"   value="/mantenimiento/cobro/cobroForm.jsp"/>
   </definition>
   
+  <definition name="tipoAnimalListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/tipoAnimal/tipoAnimalLista.jsp"/>
+  </definition>
+  
+  <definition name="CorrelativoListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/correlativo/correlativoLista.jsp"/>
+  </definition>
+  
 </tiles-definitions>
