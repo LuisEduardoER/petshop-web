@@ -84,4 +84,18 @@ public class JPADAOFactory extends DAOFactory {
 		ed.setEntityManagerFactory(emf);
 		return (DetalleCitaDAO)ed;
 	}
+
+	@Override
+	public TipoAnimalDAO getTipoAnimalDAO() {
+		TipoAnimalJPADAO ed =  new TipoAnimalJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (TipoAnimalDAO)ed;
+	}
+
+	@Override
+	public CorrelativoDAO getCorrelativoDAO() {
+		CorrelativoJPADAO ed =  new CorrelativoJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (CorrelativoDAO)ed;
+	}
 }
