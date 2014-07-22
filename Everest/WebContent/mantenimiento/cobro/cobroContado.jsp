@@ -9,7 +9,7 @@
 		</tr>
 		<tr>
 			<td>IGV</td>
-			<td><s:textfield/> 19%</td>
+			<td><s:textfield size="15"/> 19%</td>
 			<td></td>
 		</tr>
 		<tr>

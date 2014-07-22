@@ -5,6 +5,22 @@
 
 <h1>Mantenimiento de Clientes</h1>
 
+<fieldset>
+	<table class="dls-table-form" style="width: 100%;" cellspacing="0" cellpadding="0">
+		<tr>
+			<th>Tipo Cliente</th>
+			<th>DNI/RUC</th>
+			<th>Nombre/Razon Social</th>			
+		</tr>
+		<tr>
+			<td><s:select list="#{'N':'Persona Natural', 'J':'Persona Juridica'}"/>
+			<td><s:textfield/></td>
+			<td><s:textfield/></td>
+			<td><sj:a button="true" buttonIcon="ui-icon-circle-zoomout">Buscar</sj:a> </td>
+		</tr>
+	</table>
+</fieldset>
+
 <s:url id="insert" action="showClienteFormAction" escapeAmp="false">
     <s:param name="oper">add</s:param>
 </s:url>
