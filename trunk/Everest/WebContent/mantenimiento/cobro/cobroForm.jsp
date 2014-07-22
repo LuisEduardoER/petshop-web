@@ -102,7 +102,7 @@
 	</s:form>
 	<table style="width: 100%;" cellspacing="0" cellpadding="0">
 		<tr>
-			<td style="vertical-align: top; width: 271px;">
+			<td style="vertical-align: top; width: 277px;">
 				
 				<s:form id="frmTipoCobro">
 					<sj:radio
