@@ -85,7 +85,24 @@ public class JPADAOFactory extends DAOFactory {
 		return (DetalleCitaDAO)ed;
 	}
 
+
 	@Override
+
+	public TurnoDAO getTurnoDAO() {
+		TurnoJPADAO ed =  new TurnoJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (TurnoDAO)ed;
+	}
+
+	@Override
+	public LocalDAO getLocalDAO() {
+		LocalJPADAO ed =  new LocalJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (LocalDAO)ed;
+	}
+
+	@Override
+
 	public TipoProductoDAO getTipoProductoDAO() {
 		TipoProductoJPADAO ed =  new TipoProductoJPADAO();
 		ed.setEntityManagerFactory(emf);
@@ -93,6 +110,7 @@ public class JPADAOFactory extends DAOFactory {
 	}
 
 	@Override
+
 	public TipoAnimalDAO getTipoAnimalDAO() {
 		TipoAnimalJPADAO ed =  new TipoAnimalJPADAO();
 		ed.setEntityManagerFactory(emf);
@@ -105,4 +123,5 @@ public class JPADAOFactory extends DAOFactory {
 		ed.setEntityManagerFactory(emf);
 		return (CorrelativoDAO)ed;
 	}
+
 }

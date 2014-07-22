@@ -12,6 +12,7 @@
      		 	
     <s:form id="frmRol" action="insertarOActualizarRol">
     	<s:hidden name="rol.idRol"/>
+    	<s:hidden name="oper"/>
 		<table align="center">
 		    <tr>
 		    	<td class="tdLabel"><s:text name="Descripcion"/></td>

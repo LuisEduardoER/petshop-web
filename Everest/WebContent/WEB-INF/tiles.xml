@@ -112,6 +112,14 @@
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mantenimiento/cobro/cobroForm.jsp"/>
   </definition>
+  <definition name="localListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/local/localLista.jsp"/>
+  </definition>
+  <definition name="turnoListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/turno/turnoLista.jsp"/>
+  </definition>
   
     <definition name="tipoProductoListaTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
