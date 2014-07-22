@@ -47,6 +47,24 @@ public class ClienteAction extends ActionSupport{
 		clienteLista = clienteService.obtenerTodosCliente();
 		return SUCCESS;
 	}
+	
+	@Action(value="/showClienteFormAction",
+		results={ @Result(name="success", location="/mantenimiento/cliente/clienteForm.jsp") })
+	public String showClienteForm() throws Exception{
+		System.out.println("===== showClienteFormAction =====");
+		System.out.println("oper: "+oper);
+		
+		if(oper != null)
+			if(oper.equals("add")){
+				cliente = new Cliente();
+			}else if(oper.equals("edit")){
+				System.out.println("idCliente: "+cliente.getIdCliente());
+				cliente = clienteService.obtenerCliente(cliente);
+			}
+		
+		return SUCCESS;
+	}
+	
 	@Action(value="/showFamiliaresAction",
 			results={ @Result(name="success", location="/mantenimiento/cliente/familiarMantenimiento.jsp") })
 	public String showFamiliares() throws Exception{

@@ -147,7 +147,7 @@
 								<span class="ui-icon ui-icon-circle-close"></span>
 							</s:a> 
 						</td>
-					</tr>
+					</tr> 
 					<tr>
 						<td>Tarjeta </td>
 						<td>4321 8765 1234 5678</td>						
