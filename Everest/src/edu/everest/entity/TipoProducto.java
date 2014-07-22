@@ -1,7 +1,9 @@
 package edu.everest.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -17,7 +19,6 @@ public class TipoProducto implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idTipoProducto;
-
 	private String descripcion;
 
 	//bi-directional many-to-one association to Producto
@@ -64,5 +65,7 @@ public class TipoProducto implements Serializable {
 
 		return producto;
 	}
+
+	
 
 }

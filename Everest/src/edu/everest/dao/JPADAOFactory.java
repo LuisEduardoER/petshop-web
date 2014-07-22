@@ -86,6 +86,13 @@ public class JPADAOFactory extends DAOFactory {
 	}
 
 	@Override
+	public TipoProductoDAO getTipoProductoDAO() {
+		TipoProductoJPADAO ed =  new TipoProductoJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (TipoProductoDAO)ed;
+	}
+
+	@Override
 	public TipoAnimalDAO getTipoAnimalDAO() {
 		TipoAnimalJPADAO ed =  new TipoAnimalJPADAO();
 		ed.setEntityManagerFactory(emf);

@@ -47,6 +47,10 @@ public class ApplicationBusinessDelegate {
 		return new DetalleCitaDAOService( DAOFactory.JPA );
 	}
 	
+	public TipoProductoService getTipoProductoDAOService() {
+		return new TipoProductoDAOService( DAOFactory.JPA );
+	}
+	
 	public TipoAnimalService getTipoAnimalDAOService() {
 		return new TipoAnimalDAOService( DAOFactory.JPA );
 	}
