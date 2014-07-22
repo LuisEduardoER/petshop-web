@@ -47,10 +47,21 @@ public class ApplicationBusinessDelegate {
 		return new DetalleCitaDAOService( DAOFactory.JPA );
 	}
 	
+
+
+	public LocalService getLocalService() {
+		return new LocalDAOService( DAOFactory.JPA );
+	}
+	
+	public TurnoService getTurnoService() {
+		return new TurnoDAOService( DAOFactory.JPA );
+	}
+
 	public TipoProductoService getTipoProductoDAOService() {
 		return new TipoProductoDAOService( DAOFactory.JPA );
 	}
 	
+
 	public TipoAnimalService getTipoAnimalDAOService() {
 		return new TipoAnimalDAOService( DAOFactory.JPA );
 	}
@@ -61,4 +72,5 @@ public class ApplicationBusinessDelegate {
 		return new CorrelativoDAOService( DAOFactory.JPA );
 	}
 	
+
 }
