@@ -136,4 +136,9 @@
       <put-attribute name="body"   value="/mantenimiento/correlativo/correlativoLista.jsp"/>
   </definition>
   
+  <definition name="medicoListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/medico/medicoLista.jsp"/>
+  </definition>
+  
 </tiles-definitions>
