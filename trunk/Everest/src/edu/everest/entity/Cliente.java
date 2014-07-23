@@ -46,6 +46,8 @@ public class Cliente implements Serializable {
 
 	private String nombres;
 
+	private String ruc;
+
 	private String sexo;
 
 	private int telefono;
@@ -70,6 +72,10 @@ public class Cliente implements Serializable {
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 
+	//bi-directional many-to-one association to Cobro
+	@OneToMany(mappedBy="cliente")
+	private List<Cobro> cobros;
+
 	//bi-directional many-to-one association to HistoriaClinica
 	@OneToMany(mappedBy="cliente")
 	private List<HistoriaClinica> historiaClinicas;
@@ -77,10 +83,6 @@ public class Cliente implements Serializable {
 	//bi-directional many-to-one association to Mascota
 	@OneToMany(mappedBy="cliente")
 	private List<Mascota> mascotas;
-
-	//bi-directional many-to-one association to Cobro
-	@OneToMany(mappedBy="cliente")
-	private List<Cobro> cobros;
 
 	public Cliente() {
 	}
@@ -197,6 +199,14 @@ public class Cliente implements Serializable {
 		this.nombres = nombres;
 	}
 
+	public String getRuc() {
+		return this.ruc;
+	}
+
+	public void setRuc(String ruc) {
+		this.ruc = ruc;
+	}
+
 	public String getSexo() {
 		return this.sexo;
 	}
@@ -281,6 +291,28 @@ public class Cliente implements Serializable {
 		this.usuario = usuario;
 	}
 
+	public List<Cobro> getCobros() {
+		return this.cobros;
+	}
+
+	public void setCobros(List<Cobro> cobros) {
+		this.cobros = cobros;
+	}
+
+	public Cobro addCobro(Cobro cobro) {
+		getCobros().add(cobro);
+		cobro.setCliente(this);
+
+		return cobro;
+	}
+
+	public Cobro removeCobro(Cobro cobro) {
+		getCobros().remove(cobro);
+		cobro.setCliente(null);
+
+		return cobro;
+	}
+
 	public List<HistoriaClinica> getHistoriaClinicas() {
 		return this.historiaClinicas;
 	}
@@ -323,28 +355,6 @@ public class Cliente implements Serializable {
 		mascota.setCliente(null);
 
 		return mascota;
-	}
-
-	public List<Cobro> getCobros() {
-		return this.cobros;
-	}
-
-	public void setCobros(List<Cobro> cobros) {
-		this.cobros = cobros;
-	}
-
-	public Cobro addCobro(Cobro cobro) {
-		getCobros().add(cobro);
-		cobro.setCliente(this);
-
-		return cobro;
-	}
-
-	public Cobro removeCobro(Cobro cobro) {
-		getCobros().remove(cobro);
-		cobro.setCliente(null);
-
-		return cobro;
 	}
 
 }
