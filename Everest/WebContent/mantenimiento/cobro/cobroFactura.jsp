@@ -7,16 +7,15 @@
 		<tr>
 			<td>RUC</td>
 			<td>Razon Social</td>
+			<td>Direccion</td>
 		</tr>
 		<tr>
+			<td>
+				<s:textfield/>
+				<sj:a button="true" buttonIcon="ui-icon-circle-triangle-e" buttonText="false">search</sj:a> 
+			</td>
 			<td><s:textfield/> </td>
 			<td><s:textfield/> </td>
-		</tr>
-		<tr>
-			<td colspan="2">Direccion</td>
-		</tr>
-		<tr>
-			<td colspan="2"><s:textfield/> </td>
 		</tr>
 	</table>
 
