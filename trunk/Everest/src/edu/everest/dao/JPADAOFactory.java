@@ -123,4 +123,11 @@ public class JPADAOFactory extends DAOFactory {
 		return (CorrelativoDAO)ed;
 	}
 
+	@Override
+	public MedicoDAO getMedicoDAO() {
+		MedicoJPADAO ed =  new MedicoJPADAO();
+		ed.setEntityManagerFactory(emf);
+		return (MedicoDAO)ed;
+	}
+
 }
