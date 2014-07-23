@@ -46,6 +46,8 @@ public class Cliente implements Serializable {
 
 	private String nombres;
 
+	private String ruc;
+
 	private String sexo;
 
 	private int telefono;
@@ -195,6 +197,14 @@ public class Cliente implements Serializable {
 
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
+	}
+
+	public String getRuc() {
+		return this.ruc;
+	}
+
+	public void setRuc(String ruc) {
+		this.ruc = ruc;
 	}
 
 	public String getSexo() {
