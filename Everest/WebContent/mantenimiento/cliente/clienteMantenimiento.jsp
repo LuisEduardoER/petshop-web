@@ -13,7 +13,7 @@
 			<th>Nombre/Razon Social</th>			
 		</tr>
 		<tr>
-			<td><s:select list="#{'N':'Persona Natural', 'J':'Persona Juridica'}"/>
+			<td><s:select list="#{'P':'Persona', 'N':'Persona Natural', 'J':'Persona Juridica'}"/>
 			<td><s:textfield/></td>
 			<td><s:textfield/></td>
 			<td><sj:a button="true" buttonIcon="ui-icon-circle-zoomout">Buscar</sj:a> </td>
@@ -36,9 +36,8 @@
         <tr>
             <th>ID</th>
             <th>DNI/RUC</th>
-            <th>Nombres/Razon Social</th>
-            <th>Ape. Pat.</th>
-            <th>Ape. Mat.</th>
+            <th colspan="3">Nombres/Razon Social</th>
+            <th>Estado</th>
             <th class="ui-state-disabled tdButton">
             	<sj:a button="true" buttonIcon="ui-icon-pencil" buttonText="false" disabled="false" cssClass="no-border">Editar</sj:a>
             </th>
@@ -69,6 +68,7 @@
 	            <td> <s:property value="nombres"/> </td>
 	            <td> <s:property value="apePat"/> </td>
 	            <td> <s:property value="apeMat"/> </td>
+	            <td> <s:property value="estado"/> </td>
 	            <td class="tdButton">
 	            	
 		            <s:url id="update" action="showClienteFormAction" escapeAmp="false">

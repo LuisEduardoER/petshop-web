@@ -2,7 +2,9 @@ package edu.everest.action;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -33,9 +35,11 @@ public class ClienteAction extends ActionSupport{
 	private Cliente familiar;
 	private List<Cliente> familiarLista;
 	
+	private Map<String, String> tipoPersonaMap = new HashMap<String, String>();
+	
 	private Usuario usuario;
 	
-	private String oper;
+	private String oper, tipoCliente;
 	private int id, idCliente, idTipoDocumento, idUsuario, idDIstrito, telefono, celular;
 	private String dni, nombres, apePat, apeMat, sexo, fecNac, email, direccion, estado;
 	
@@ -54,13 +58,34 @@ public class ClienteAction extends ActionSupport{
 		System.out.println("===== showClienteFormAction =====");
 		System.out.println("oper: "+oper);
 		
-		if(oper != null)
-			if(oper.equals("add")){
-				cliente = new Cliente();
-			}else if(oper.equals("edit")){
-				System.out.println("idCliente: "+cliente.getIdCliente());
-				cliente = clienteService.obtenerCliente(cliente);
-			}
+		
+		
+		return SUCCESS;
+	}
+	
+	@Action(value="/showClienteFormAjax",
+			results={ @Result(name="success", location="/mantenimiento/cliente/clienteFormAjax.jsp") })
+	public String showClienteFormAjax() throws Exception{
+			System.out.println("===== showClienteFormAjax =====");
+			System.out.println("oper: "+oper);
+			System.out.println("tipoCliente: "+tipoCliente);
+			
+			if(oper != null)
+				if(oper.equals("add")){
+					cliente = new Cliente();
+				}else if(oper.equals("edit")){
+					System.out.println("idCliente: "+cliente.getIdCliente());
+					cliente = clienteService.obtenerCliente(cliente);
+				}
+			
+			return SUCCESS;
+	}
+	
+	@Action(value="loadTipoClienteJSON",
+			results={ @Result(name="success",type="json") })
+	public String loadTipoClienteJSON() throws Exception{
+		tipoPersonaMap.put("P", "Persona");
+		tipoPersonaMap.put("E", "Empresa");
 		
 		return SUCCESS;
 	}
@@ -351,6 +376,22 @@ public class ClienteAction extends ActionSupport{
 
 	public void setFamiliarLista(List<Cliente> familiarLista) {
 		this.familiarLista = familiarLista;
+	}
+
+	public Map<String, String> getTipoPersonaMap() {
+		return tipoPersonaMap;
+	}
+
+	public void setTipoPersonaMap(Map<String, String> tipoPersonaMap) {
+		this.tipoPersonaMap = tipoPersonaMap;
+	}
+
+	public String getTipoCliente() {
+		return tipoCliente;
+	}
+
+	public void setTipoCliente(String tipoCliente) {
+		this.tipoCliente = tipoCliente;
 	}
 	
 }
