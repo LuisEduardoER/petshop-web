@@ -8,23 +8,20 @@ import javax.persistence.EntityManagerFactory;
 
 import edu.everest.entity.TipoProducto;
 
-
 public class TipoProductoJPADAO implements TipoProductoDAO {
-
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	
 	public void setEntityManagerFactory(EntityManagerFactory emf ) {
 		this.emf = emf;
 	}
-
 	@Override
-	public TipoProducto obtenerTipoProducto(TipoProducto tipoProducto){
-			em=emf.createEntityManager();
-			TipoProducto obj=(TipoProducto)em.find(TipoProducto.class,tipoProducto.getIdTipoProducto());
-			return obj;
+	public TipoProducto obtenerTipoProducto(TipoProducto tipoProducto) throws Exception {
+	em=emf.createEntityManager();
+	TipoProducto obj=(TipoProducto)em.find(TipoProducto.class,tipoProducto.getIdTipoProducto());
+	return obj;
 	}
-	@SuppressWarnings("rawtypes")
+
 	@Override
 	public List<TipoProducto> obtenerTodos() throws Exception {
 		em=emf.createEntityManager();
@@ -46,31 +43,27 @@ public class TipoProductoJPADAO implements TipoProductoDAO {
 		//1.inicia la transacción
 		em.getTransaction().begin();
 		
-		TipoProducto entidadTipoProducto=new TipoProducto();
-		
-		entidadTipoProducto.setDescripcion(tipoProducto.getDescripcion());
-
-				
 		//2.ejecuta las operaciones
-		em.persist(entidadTipoProducto);
+		em.persist(tipoProducto);
 		em.flush();
 		
 		//3.ejecuta commit a la transacción
 		em.getTransaction().commit();
 		em.close();
-
 	}
+
+	
 
 	@Override
 	public void actualizar(TipoProducto tipoProducto) throws Exception {
 		em=emf.createEntityManager();
 		em.getTransaction().begin();
-
 		
 		em.merge(tipoProducto);
 		em.flush();
 		em.getTransaction().commit();
 		em.close();
+
 	}
 
 	@Override

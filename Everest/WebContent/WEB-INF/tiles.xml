@@ -121,7 +121,7 @@
       <put-attribute name="body"   value="/mantenimiento/turno/turnoLista.jsp"/>
   </definition>
   
-    <definition name="tipoProductoListaTile" extends="layoutIntranet">
+  <definition name="tipoProductoListaTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mantenimiento/tipoProducto/tipoProductoLista.jsp"/>
   </definition>
@@ -139,6 +139,11 @@
   <definition name="medicoListaTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mantenimiento/medico/medicoLista.jsp"/>
+  </definition>
+  
+    <definition name="formaPagoListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/formaPago/formaPagoLista.jsp"/>
   </definition>
   
 </tiles-definitions>

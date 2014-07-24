@@ -12,27 +12,25 @@ import edu.everest.entity.TipoProducto;
 import edu.everest.service.ApplicationBusinessDelegate;
 import edu.everest.service.TipoProductoService;
 
-@ParentPackage(value = "dawii")
 
-public class TipoProductoAction extends ActionSupport{
+@ParentPackage(value = "dawii")
+public class TipoProductoAction extends ActionSupport {
+
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -134066766107486779L;
-	/**
-	 * 
-	 */
-	
+	private static final long serialVersionUID = -3962011184249276547L;
 	private TipoProducto tipoProducto;
 	private List<TipoProducto> tipoProductoLista;
 	private String oper;
 	
 	private static ApplicationBusinessDelegate abd = new ApplicationBusinessDelegate();
 	private static TipoProductoService tipoProductoService = abd.getTipoProductoDAOService();
-
+	
 	@Action(value = "/showTipoProductoLista", 
 			results = { @Result(location = "tipoProductoListaTile", name = "success", type="tiles") } )
-	public String showTipoProductoes() throws Exception {
+	public String showTipoProductos() throws Exception {
 		tipoProductoLista = tipoProductoService.obtenerTodosTipoProducto();
 		return SUCCESS;
 	}
@@ -110,5 +108,4 @@ public class TipoProductoAction extends ActionSupport{
 	
 	
 	
-
 }
