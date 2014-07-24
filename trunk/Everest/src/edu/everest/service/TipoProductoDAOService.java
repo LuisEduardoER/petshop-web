@@ -7,14 +7,15 @@ import edu.everest.dao.TipoProductoDAO;
 import edu.everest.entity.TipoProducto;
 
 public class TipoProductoDAOService implements TipoProductoService {
+
 	private TipoProductoDAO dao;
 	private DAOFactory fabrica = null;
-	
 	
 	public TipoProductoDAOService(int whichFactory) {
 		fabrica = DAOFactory.getDAOFactory(whichFactory);
 		this.dao = fabrica.getTipoProductoDAO();
 	}
+	
 	
 	@Override
 	public List<TipoProducto> obtenerTodosTipoProducto() throws Exception {
@@ -22,22 +23,19 @@ public class TipoProductoDAOService implements TipoProductoService {
 	}
 
 	@Override
-	public void insertarTipoProducto(TipoProducto tipoProducto)
-			throws Exception {
-		dao.insertar(tipoProducto);
+	public void insertarTipoProducto(TipoProducto tipoProducto) throws Exception {
+	dao.insertar(tipoProducto);
 
 	}
 
 	@Override
-	public void actualizarTipoProducto(TipoProducto tipoProducto)
-			throws Exception {
-		dao.actualizar(tipoProducto);
+	public void actualizarTipoProducto(TipoProducto tipoProducto) throws Exception {
+	dao.actualizar(tipoProducto);
 
 	}
 
 	@Override
-	public void eliminarTipoProducto(TipoProducto tipoProducto)
-			throws Exception {
+	public void eliminarTipoProducto(TipoProducto tipoProducto)	throws Exception {
 		dao.eliminar(tipoProducto);
 
 	}
