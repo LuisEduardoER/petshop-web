@@ -6,6 +6,7 @@
 	<s:url id="urlClienteForm" action="showClienteFormAjax" escapeAmp="false">
 		<s:param name="cliente.idCliente" value="cliente.idCliente"/>
 		<s:param name="oper" value="oper"/>
+		<s:param name="tipoCliente" value="tipoCliente"/>
 	</s:url>
 	<sj:div id="divClienteForm"
 			href="%{urlClienteForm}"

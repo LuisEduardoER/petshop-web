@@ -20,10 +20,12 @@
 		    	<td>
 		    		<s:url id="urlLoadTipoClienteJSON" action="loadTipoClienteJSON"/> 
 		    		<sj:select 
+		    			id="cboTipoCliente"
 						href="%{urlLoadTipoClienteJSON}" 
 						name="tipoCliente"
-						value="cliente.tipoCliente"
+						value="tipoCliente"
 						list="tipoPersonaMap"
+						formIds="frmCliente"
 						onChangeTopics="reloadDivClienteForm" 
 					/>
 				</td>
