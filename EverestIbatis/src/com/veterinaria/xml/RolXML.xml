@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="rolXML">		
+
+     <select id="listarRol"
+             resultType="rolAlias">
+     	SELECT * FROM Rol
+     </select>  
+     
+     <select id="obtenerRol"
+             resultType="rolAlias"
+             parameterType="rolAlias">
+     	SELECT * FROM Rol where idRol=#{idRol}
+     </select>
+     
+     <select id="obtenerMaxRol"
+             resultType="String">
+     	SELECT MAX(cod_rol)+1 FROM Rol
+     </select>
+     
+     <insert id="grabarrol"
+             parameterType="rolAlias">
+     insert into rol (descripcion, estado)
+     				 values (#{descripcion},#{estado})
+     
+     </insert>
+     
+     <update id="modificarrol"
+                 parameterType="rolAlias">
+     
+       update rol
+       set descripcion=#{descripcion}, estado=#{estado}
+       where idRol=#{idRol}
+     </update>
+     
+     <delete id="eliminarrol"
+              parameterType="rolAlias">
+     delete from rol where idRol=#{idRol}
+     
+     </delete>
+</mapper>

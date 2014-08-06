@@ -28,6 +28,8 @@ public class Cliente{
 	private String tipoCliente;
 	
 	private String nombreCompleto;
+	
+	private Usuario usuario;
 
 	//bi-directional many-to-one association to Cita
 //	private List<Cita> citas;
@@ -249,6 +251,14 @@ public class Cliente{
 
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="opcionXML">		
+
+     <select id="listarOpcion"
+             resultType="opcionAlias">
+     	SELECT * FROM Opcion
+     </select>  
+     
+     <select id="obtenerOpcion"
+             resultType="opcionAlias"
+             parameterType="opcionAlias">
+     	SELECT * FROM Opcion where idOpcion=#{idOpcion}
+     </select>
+     
+     <select id="obtenerMaxOpcion"
+             resultType="String">
+     	SELECT MAX(cod_opcion)+1 FROM Opcion
+     </select>
+     
+     <insert id="grabaropcion"
+             parameterType="opcionAlias">
+     insert into opcion (parentOpcionId, Descripcion, Titulo, url, orden, estado)
+     		     values (#{parentOpcionId}, #{Descripcion}, #{Titulo}, #{url}, #{orden}, #{estado})
+     
+     </insert>
+     
+     <update id="modificaropcion"
+                 parameterType="opcionAlias">
+     
+       update Opcion
+       set parentOpcionId=#{parentOpcionId}, 
+       	   Descripcion=#{Descripcion},
+       	   Titulo=#{Titulo},
+       	   url=#{url},
+       	   orden=#{orden},
+       	   estado=#{estado}
+       where idOpcion=#{idOpcion}
+     </update>
+     
+     <delete id="eliminaropcion"
+              parameterType="opcionAlias">
+     delete from Opcion where idOpcion=#{idOpcion}
+     
+     </delete>
+     
+     <select id="obtenerOpcionParentByRol"
+     		 parameterType="rolAlias"
+             resultType="opcionAlias">
+     	SELECT o.* 
+     	  FROM RolOpcion ro, Opcion o, Rol r
+     	 WHERE r.idRol = #{idRol}
+		   AND ro.idRol = r.idRol 
+		   AND ro.idOpcion = o.idOpcion 
+		   AND o.opcion IS NULL ORDER BY o.orden 
+     </select>
+     
+     <select id="obtenerOpcionByParent"
+     		 parameterType="opcionAlias"
+             resultType="opcionAlias">
+     	SELECT * 
+     	  FROM Opcion
+		 WHERE opcion = #{idOpcion}
+	  ORDER BY orden
+     </select>
+</mapper>

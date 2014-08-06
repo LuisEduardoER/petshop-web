@@ -2,9 +2,10 @@ package com.veterinaria.services;
 
 import java.util.ArrayList;
 
-import com.veterinaria.Interfaces.ICliente;
 import com.veterinaria.beans.Cliente;
+import com.veterinaria.beans.Usuario;
 import com.veterinaria.factory.DAOFactory;
+import com.veterinaria.interfaces.ICliente;
 import com.veterinaria.utils.Constantes;
 
 public class ClienteService implements ICliente {
@@ -40,6 +41,11 @@ public class ClienteService implements ICliente {
 	@Override
 	public String EliminarCliente(Cliente obj) throws Exception {
 		return dao.EliminarCliente(obj);
+	}
+
+	@Override
+	public Cliente obtenerClienteByUsuario(Usuario obj) throws Exception {
+		return dao.obtenerClienteByUsuario(obj);
 	}
 
 }

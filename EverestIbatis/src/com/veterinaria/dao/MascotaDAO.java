@@ -10,9 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.veterinaria.Interfaces.IMascota;
 import com.veterinaria.beans.Cliente;
 import com.veterinaria.beans.Mascota;
+import com.veterinaria.interfaces.IMascota;
 
 public class MascotaDAO implements IMascota{
 

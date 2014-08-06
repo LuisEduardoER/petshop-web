@@ -2,9 +2,9 @@ package com.veterinaria.services;
 
 import java.util.ArrayList;
 
-import com.veterinaria.Interfaces.IUsuario;
 import com.veterinaria.beans.Usuario;
 import com.veterinaria.factory.DAOFactory;
+import com.veterinaria.interfaces.IUsuario;
 import com.veterinaria.utils.Constantes;
 
 public class UsuarioService implements IUsuario {
@@ -40,6 +40,11 @@ public class UsuarioService implements IUsuario {
 	@Override
 	public String EliminarUsuario(Usuario obj) throws Exception {
 		return dao.EliminarUsuario(obj);
+	}
+
+	@Override
+	public int validarUsuario(Usuario obj) throws Exception {
+		return dao.validarUsuario(obj);
 	}
 
 }

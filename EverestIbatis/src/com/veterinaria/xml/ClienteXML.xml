@@ -66,4 +66,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      delete from Cliente where idCliente=#{idCliente}
      
      </delete>
+     
+     <select id="obteneClienteByUsuario"
+             resultType="clienteAlias"
+             parameterType="usuarioAlias">
+     	SELECT * FROM Cliente where idUsuario=#{idUsuario}
+     </select>
 </mapper>

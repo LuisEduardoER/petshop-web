@@ -9,8 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.veterinaria.Interfaces.ICliente;
 import com.veterinaria.beans.Cliente;
+import com.veterinaria.beans.Usuario;
+import com.veterinaria.interfaces.ICliente;
 
 public class ClienteDAO implements ICliente {
 	
@@ -119,6 +120,20 @@ public class ClienteDAO implements ICliente {
 		}
 		
 		return msg;
+	}
+
+	@Override
+	public Cliente obtenerClienteByUsuario(Usuario obj) throws Exception {
+		Cliente cliente= null;
+		SqlSession session=sqlmapper.openSession();
+		try {
+			cliente= (Cliente)session.selectOne("clienteXML.obteneClienteByUsuario",obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return cliente;
 	}
 
 }

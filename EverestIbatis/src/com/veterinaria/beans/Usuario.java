@@ -9,6 +9,8 @@ public class Usuario {
 	private String rePass;
 	private String estado;
 	
+	private Rol rol;
+	
 	public int getIdUsuario() {
 		return idUsuario;
 	}
@@ -44,6 +46,12 @@ public class Usuario {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public Rol getRol() {
+		return rol;
+	}
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 	
 	

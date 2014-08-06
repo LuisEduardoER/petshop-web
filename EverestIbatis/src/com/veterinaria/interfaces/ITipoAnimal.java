@@ -1,4 +1,4 @@
-package com.veterinaria.Interfaces;
+package com.veterinaria.interfaces;
 
 import java.util.ArrayList;
 

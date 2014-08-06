@@ -2,9 +2,9 @@ package com.veterinaria.services;
 
 import java.util.ArrayList;
 
-import com.veterinaria.Interfaces.ITipoAnimal;
 import com.veterinaria.beans.TipoAnimal;
 import com.veterinaria.factory.DAOFactory;
+import com.veterinaria.interfaces.ITipoAnimal;
 import com.veterinaria.utils.Constantes;
 
 public class TipoAnimalService implements ITipoAnimal {

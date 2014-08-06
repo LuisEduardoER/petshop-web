@@ -9,10 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.veterinaria.beans.TipoAnimal;
-import com.veterinaria.interfaces.ITipoAnimal;
+import com.veterinaria.beans.Rol;
+import com.veterinaria.interfaces.IRol;
 
-public class TipoAnimalDAO implements ITipoAnimal {
+public class RolDAO implements IRol {
 	
 	SqlSessionFactory sqlmapper=null;{
 		try {
@@ -26,11 +26,11 @@ public class TipoAnimalDAO implements ITipoAnimal {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<TipoAnimal> listarTipoAnimal() throws Exception {
-		ArrayList<TipoAnimal> lista= null;
+	public ArrayList<Rol> listarRol() throws Exception {
+		ArrayList<Rol> lista= null;
 		SqlSession session=sqlmapper.openSession();
 		try {
-			lista= (ArrayList<TipoAnimal>)session.selectList("tipoAnimalXML.listarTipoAnimal");
+			lista= (ArrayList<Rol>)session.selectList("rolXML.listarRol");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -40,26 +40,26 @@ public class TipoAnimalDAO implements ITipoAnimal {
 	}
 
 	@Override
-	public TipoAnimal obtenerTipoAnimal(TipoAnimal obj) throws Exception {
-		TipoAnimal tipoAnimal= null;
+	public Rol obtenerRol(Rol obj) throws Exception {
+		Rol rol= null;
 		SqlSession session=sqlmapper.openSession();
 		try {
-			tipoAnimal= (TipoAnimal)session.selectOne("tipoAnimalXML.obtenerTipoAnimal",obj);
+			rol= (Rol)session.selectOne("rolXML.obtenerRol",obj);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		return tipoAnimal;
+		return rol;
 	}
 
 	@Override
-	public String GrabarTipoAnimal(TipoAnimal obj) throws Exception {
+	public String GrabarRol(Rol obj) throws Exception {
 		String msg="";
 	    SqlSession session=sqlmapper.openSession();
 		try {
 			
-			msg = ""+session.insert("tipoAnimalXML.grabarTipoAnimal",obj);
+			msg = ""+session.insert("rolXML.grabarRol",obj);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,12 +71,12 @@ public class TipoAnimalDAO implements ITipoAnimal {
 	}
 
 	@Override
-	public String ModificarTipoAnimal(TipoAnimal obj) throws Exception {
+	public String ModificarRol(Rol obj) throws Exception {
 		SqlSession session=sqlmapper.openSession();
 		String msg="";
 		try {
 		
-			msg=""+session.update("tipoAnimalXML.modificarTipoAnimal",obj);
+			msg=""+session.update("rolXML.modificarRol",obj);
 			session.commit();
 		} catch (Exception e) {
 			msg=e.getMessage();
@@ -88,12 +88,12 @@ public class TipoAnimalDAO implements ITipoAnimal {
 	}
 
 	@Override
-	public String EliminarTipoAnimal(TipoAnimal obj) throws Exception {
+	public String EliminarRol(Rol obj) throws Exception {
 		SqlSession session=sqlmapper.openSession();
 		String msg="";
 		try {
 		
-			msg=""+session.delete("tipoAnimalXML.eliminarTipoAnimal",obj);
+			msg=""+session.delete("rolXML.eliminarRol",obj);
 			session.commit();
 		} catch (Exception e) {
 			msg=e.getMessage();
