@@ -1,9 +1,11 @@
 package com.veterinaria.factory;
 
-import com.veterinaria.Interfaces.ICliente;
-import com.veterinaria.Interfaces.IMascota;
-import com.veterinaria.Interfaces.ITipoAnimal;
-import com.veterinaria.Interfaces.IUsuario;
+import com.veterinaria.interfaces.ICliente;
+import com.veterinaria.interfaces.IMascota;
+import com.veterinaria.interfaces.IOpcion;
+import com.veterinaria.interfaces.IRol;
+import com.veterinaria.interfaces.ITipoAnimal;
+import com.veterinaria.interfaces.IUsuario;
 
 public abstract class DAOFactory {
 
@@ -16,6 +18,8 @@ public abstract class DAOFactory {
 	public abstract ICliente getCliente();
 	public abstract IUsuario getUsuario();
 	public abstract ITipoAnimal getTipoAnimal();
+	public abstract IRol getRol();
+	public abstract IOpcion getOpcion();
 	
 	public static DAOFactory getDAOFactory(int factory){
 		switch(factory){

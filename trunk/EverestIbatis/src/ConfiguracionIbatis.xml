@@ -11,6 +11,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="correlativoAlias" type="com.veterinaria.beans.Correlativo" />
 		<typeAlias alias="mascotaAlias" 	type="com.veterinaria.beans.Mascota" />
 		<typeAlias alias="tipoAnimalAlias" 	type="com.veterinaria.beans.TipoAnimal" />
+		<typeAlias alias="rolAlias" 		type="com.veterinaria.beans.Rol" />
+		<typeAlias alias="opcionAlias" 		type="com.veterinaria.beans.Opcion" />
 		 	           	
 	</typeAliases>
 	
@@ -33,6 +35,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	    <mapper resource="com/veterinaria/xml/CorrelativoXML.xml" />
 	    <mapper resource="com/veterinaria/xml/MascotaXML.xml" />
 	    <mapper resource="com/veterinaria/xml/TipoAnimalXML.xml" />
+	    <mapper resource="com/veterinaria/xml/RolXML.xml" />
+	    <mapper resource="com/veterinaria/xml/OpcionXML.xml" />
 	    
 	</mappers>
 </configuration>

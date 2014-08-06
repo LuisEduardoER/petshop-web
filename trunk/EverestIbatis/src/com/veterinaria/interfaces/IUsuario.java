@@ -1,4 +1,4 @@
-package com.veterinaria.Interfaces;
+package com.veterinaria.interfaces;
 
 import java.util.ArrayList;
 
@@ -12,5 +12,7 @@ public interface IUsuario {
 	public abstract String GrabarUsuario(Usuario obj) throws Exception;
 	public abstract String ModificarUsuario(Usuario obj)throws Exception;
 	public abstract String EliminarUsuario(Usuario obj)throws Exception;
+	
+	public int validarUsuario(Usuario obj) throws Exception;
 	
 }

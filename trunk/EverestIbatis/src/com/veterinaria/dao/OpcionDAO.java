@@ -3,16 +3,18 @@ package com.veterinaria.dao;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.veterinaria.beans.Usuario;
-import com.veterinaria.interfaces.IUsuario;
+import com.veterinaria.beans.Opcion;
+import com.veterinaria.beans.Rol;
+import com.veterinaria.interfaces.IOpcion;
 
-public class UsuarioDAO implements IUsuario {
+public class OpcionDAO implements IOpcion {
 	
 	SqlSessionFactory sqlmapper=null;{
 		try {
@@ -26,13 +28,12 @@ public class UsuarioDAO implements IUsuario {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<Usuario> listarUsuario() throws Exception {
-		ArrayList<Usuario> lista= null;
+	public ArrayList<Opcion> listarOpcion() throws Exception {
+		ArrayList<Opcion> lista= null;
 		SqlSession session=sqlmapper.openSession();
 		try {
-			lista= (ArrayList<Usuario>)session.selectList("usuarioXML.listarUsuario");
+			lista= (ArrayList<Opcion>)session.selectList("opcionXML.listarOpcion");
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}finally{
 			session.close();
@@ -41,101 +42,98 @@ public class UsuarioDAO implements IUsuario {
 	}
 
 	@Override
-	public Usuario obtenerUsuario(Usuario obj) throws Exception {
-		Usuario usuario= null;
+	public Opcion obtenerOpcion(Opcion obj) throws Exception {
+		Opcion opcion= null;
 		SqlSession session=sqlmapper.openSession();
 		try {
-			usuario= (Usuario)session.selectOne("usuarioXML.obtenerUsuario",obj);
+			opcion= (Opcion)session.selectOne("opcionXML.obtenerOpcion",obj);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		return usuario;
+		return opcion;
 	}
 
 	@Override
-	public String obtenerMaxUsuario() throws Exception {
-		String usuario= null;
-		SqlSession session=sqlmapper.openSession();
-		try {
-			usuario= (String)session.selectOne("usuarioXML.obtenerMaxUsuario");
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-		return usuario;
-	}
-
-	@Override
-	public String GrabarUsuario(Usuario obj) throws Exception {
+	public String GrabarOpcion(Opcion obj) throws Exception {
 		String msg="";
 	    SqlSession session=sqlmapper.openSession();
 		try {
 			
-			msg="Exito"+session.insert("usuarioXML.grabarUsuario",obj);
+			msg = ""+session.insert("opcionXML.grabarOpcion",obj);
 			session.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
-		msg=e.getMessage();
-		}finally{
-			
-		}session.close();
-		return msg;
-	}
-
-	@Override
-	public String ModificarUsuario(Usuario obj) throws Exception {
-		SqlSession session=sqlmapper.openSession();
-		String msg="";
-		try {
-		
-			msg="Resultado"+session.update("usuarioXML.modificarUsuario",obj);
-			session.commit();
-		} catch (Exception e) {
-			// TODO: handle exception
-			msg=e.getMessage();
-		}finally{
-			session.close();
-		}
-		
-		return msg;
-	}
-
-	@Override
-	public String EliminarUsuario(Usuario obj) throws Exception {
-		SqlSession session=sqlmapper.openSession();
-		String msg="";
-		try {
-		
-			msg="Resultado"+session.delete("usuarioXML.eliminarUsuario",obj);
-			session.commit();
-		} catch (Exception e) {
-			// TODO: handle exception
-			msg=e.getMessage();
-		}finally{
-			session.close();
-		}
-		
-		return msg;
-	}
-
-	@Override
-	public int validarUsuario(Usuario obj) throws Exception {
-		int result= 0;
-		SqlSession session=sqlmapper.openSession();
-		try {
-			result= (int) session.selectOne("usuarioXML.validarUsuario",obj);
-		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		return result;
+		
+		return msg;
+	}
+
+	@Override
+	public String ModificarOpcion(Opcion obj) throws Exception {
+		SqlSession session=sqlmapper.openSession();
+		String msg="";
+		try {
+		
+			msg=""+session.update("opcionXML.modificarOpcion",obj);
+			session.commit();
+		} catch (Exception e) {
+			msg=e.getMessage();
+		}finally{
+			session.close();
+		}
+		
+		return msg;
+	}
+
+	@Override
+	public String EliminarOpcion(Opcion obj) throws Exception {
+		SqlSession session=sqlmapper.openSession();
+		String msg="";
+		try {
+		
+			msg=""+session.delete("opcionXML.eliminarOpcion",obj);
+			session.commit();
+		} catch (Exception e) {
+			msg=e.getMessage();
+		}finally{
+			session.close();
+		}
+		
+		return msg;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Opcion> obtenerOpcionParentByRol(Rol obj) throws Exception {
+		ArrayList<Opcion> lista= null;
+		SqlSession session=sqlmapper.openSession();
+		try {
+			lista= (ArrayList<Opcion>)session.selectList("opcionXML.obtenerOpcionParentByRol", obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return lista;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Opcion> obtenerOpcionByParent(Opcion obj) throws Exception {
+		ArrayList<Opcion> lista= null;
+		SqlSession session=sqlmapper.openSession();
+		try {
+			lista= (ArrayList<Opcion>)session.selectList("opcionXML.obtenerOpcionByParent", obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return lista;
 	}
 
 }

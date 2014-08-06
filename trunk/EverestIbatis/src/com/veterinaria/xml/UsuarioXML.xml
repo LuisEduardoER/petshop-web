@@ -46,4 +46,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      delete from Usuario where idUsuario=#{idUsuario}
      
      </delete>
+     
+     <select id="validarUsuario"
+     		 parameterType="usuarioAlias"
+             resultType="String">
+     	SELECT COUNT(idUsuario) 
+     	  FROM Usuario
+     	 WHERE user = #{user} AND pass = #{pass}
+     </select>
 </mapper>

@@ -2,10 +2,10 @@ package com.veterinaria.services;
 
 import java.util.ArrayList;
 
-import com.veterinaria.Interfaces.IMascota;
 import com.veterinaria.beans.Cliente;
 import com.veterinaria.beans.Mascota;
 import com.veterinaria.factory.DAOFactory;
+import com.veterinaria.interfaces.IMascota;
 import com.veterinaria.utils.Constantes;
 
 public class MascotaService implements IMascota {
