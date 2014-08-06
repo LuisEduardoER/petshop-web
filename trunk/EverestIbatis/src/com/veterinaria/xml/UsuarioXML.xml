@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="usuarioXML">		
+
+     <select id="listarUsuario"
+             resultType="usuarioAlias">
+     	SELECT * FROM Usuario
+     </select>  
+     
+     <select id="obtenerUsuario"
+             resultType="usuarioAlias"
+             parameterType="usuarioAlias">
+     	SELECT * FROM Usuario where idUsuario=#{idUsuario}
+     </select>
+     
+     <select id="obtenerMaxUsuario"
+             resultType="String">
+     	SELECT MAX(idUsuario)+1 FROM Usuario
+     </select>
+     
+     <insert id="grabarUsuario"
+             parameterType="usuarioAlias">
+     insert into Usuario (idRol, user, pass, estado)
+     			  values (#{idRol}, #{user}, #{pass}, #{estado})
+     
+     </insert>
+     
+     <update id="modificarUsuario"
+                 parameterType="usuarioAlias">
+     
+       update Usuario
+       set idRol=#{idRol},
+       		user=#{user},
+       		pass=#{pass},
+       		estado=#{estado}
+       where idUsuario=#{idUsuario}
+     </update>
+     
+     <delete id="eliminarUsuario"
+              parameterType="usuarioAlias">
+     delete from Usuario where idUsuario=#{idUsuario}
+     
+     </delete>
+</mapper>

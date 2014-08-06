@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="correlativoXML">		
+
+     <select id="listarCorrelativo"
+             resultType="correlativoAlias">
+     	SELECT * FROM Correlativo
+     </select>  
+     
+     <select id="obtenerCorrelativo"
+             resultType="correlativoAlias"
+             parameterType="correlativoAlias">
+     	SELECT * FROM Correlativo where idCorrelativo=#{idCorrelativo}
+     </select>
+     
+     <select id="obtenerMaxCorrelativo"
+             resultType="String">
+     	SELECT MAX(idCorrelativo)+1 FROM Correlativo
+     </select>
+     
+     <insert id="grabarCorrelativo"
+             parameterType="correlativoAlias">
+     insert into Correlativo (tabla, prefijo, valor, tamano, descripcion)
+     			  values (#{tabla}, #{prefijo}, #{valor}, #{tamano}, #{descripcion})
+     
+     </insert>
+     
+     <update id="modificarCorrelativo"
+                 parameterType="correlativoAlias">
+     
+       update Correlativo
+       set tabla=#{tabla},
+       		prefijo=#{prefijo},
+       		valor=#{valor},
+       		tamano=#{tamano},
+       		descripcion=#{descripcion}
+       where idCorrelativo=#{idCorrelativo}
+     </update>
+     
+     <delete id="eliminarCorrelativo"
+              parameterType="correlativoAlias">
+     delete from Correlativo where idCorrelativo=#{idCorrelativo}
+     
+     </delete>
+</mapper>

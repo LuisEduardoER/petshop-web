@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<typeAliases>	
+	
+		<typeAlias alias="clienteAlias" 	type="com.veterinaria.beans.Cliente" />
+		<typeAlias alias="usuarioAlias" 	type="com.veterinaria.beans.Usuario" />
+		<typeAlias alias="correlativoAlias" type="com.veterinaria.beans.Correlativo" />
+		<typeAlias alias="mascotaAlias" 	type="com.veterinaria.beans.Mascota" />
+		<typeAlias alias="tipoAnimalAlias" 	type="com.veterinaria.beans.TipoAnimal" />
+		 	           	
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">		
+			<transactionManager type="JDBC" />			
+			<dataSource type="UNPOOLED">
+						<property name="driver" value="com.mysql.jdbc.Driver" />
+						<property name="url" value="jdbc:mysql://localhost:3306/petshop" />
+						<property name="username" value="root" />
+						<property name="password" value="mysql" />
+			</dataSource>
+		</environment>
+	</environments>	
+	
+	<mappers>
+	    
+	    <mapper resource="com/veterinaria/xml/ClienteXML.xml" />
+	    <mapper resource="com/veterinaria/xml/UsuarioXML.xml" />
+	    <mapper resource="com/veterinaria/xml/CorrelativoXML.xml" />
+	    <mapper resource="com/veterinaria/xml/MascotaXML.xml" />
+	    <mapper resource="com/veterinaria/xml/TipoAnimalXML.xml" />
+	    
+	</mappers>
+</configuration>
+
