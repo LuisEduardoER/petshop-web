@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="tipoAnimalXML">		
+
+     <select id="listarTipoAnimal"
+             resultType="tipoAnimalAlias">
+     	SELECT * FROM TipoAnimal
+     </select>  
+     
+     <select id="obtenerTipoAnimal"
+             resultType="tipoAnimalAlias"
+             parameterType="tipoAnimalAlias">
+     	SELECT * FROM TipoAnimal where idTipoAnimal=#{idTipoAnimal}
+     </select>
+     
+     <select id="obtenerMaxTipoAnimal"
+             resultType="String">
+     	SELECT MAX(cod_tipoAnimal)+1 FROM TipoAnimal
+     </select>
+     
+     <insert id="grabartipoAnimal"
+             parameterType="tipoAnimalAlias">
+     insert into tipoAnimal (descripcion, estado)
+     				 values (#{descripcion},#{estado})
+     
+     </insert>
+     
+     <update id="modificartipoAnimal"
+                 parameterType="tipoAnimalAlias">
+     
+       update tipoAnimal
+       set descripcion=#{descripcion}, estado=#{estado}
+       where idTipoAnimal=#{idTipoAnimal}
+     </update>
+     
+     <delete id="eliminartipoAnimal"
+              parameterType="tipoAnimalAlias">
+     delete from tipoAnimal where idTipoAnimal=#{idTipoAnimal}
+     
+     </delete>
+</mapper>

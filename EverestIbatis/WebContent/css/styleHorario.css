@@ -1,0 +1,67 @@
+.selectable {
+border:1px solid #F1F1F1;
+float:left;
+height:20px;
+margin:1px;
+padding:5px;
+width:85px;
+}
+.selectable p{
+margin: 0px;
+}
+.selectableHead{
+height: 20px;
+background: #61B4C8 !important;
+color: white !important;
+}
+.alignRight{
+width: 100%;
+text-align: right;
+}
+.alignLeft{
+width: 100%;
+text-align: left;
+}
+.selectableBody{
+color: white;
+font-size: 11px;
+line-height: 11px;
+}
+.selectableBody:HOVER{
+color: #64B9B4;
+background: #F0F9F0;
+}
+.selectableReserved{
+background: #DC716E !important;
+color: white !important;
+font-size: 11px;
+line-height: 11px;
+}
+.selectableLocked{
+background: #656b6b !important;
+color: #fff !important;
+font-size: 11px;
+line-height: 11px;
+}
+.divHour{
+background: white !important;
+color: black !important;
+}
+
+.selectablelist {
+border:1px solid #000;
+height:25px;
+margin:5px;
+padding:10px;
+list-style-type: none;
+}
+
+.ui-selected {
+background:#47A7BF;
+color:#FFF;
+}
+
+.ui-selecting {
+background:#61B4C8;
+color: white;
+}

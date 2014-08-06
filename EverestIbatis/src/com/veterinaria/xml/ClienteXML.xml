@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="clienteXML">		
+
+     <select id="listarCliente"
+             resultType="clienteAlias"
+             parameterType="clienteAlias">
+     	SELECT * 
+     	  FROM Cliente
+     	 WHERE ( IFNULL(#{tipoCliente},'') = '' OR tipoCliente = #{idCliente} )
+     	    AND ( IFNULL(#{dni},'') = '' OR dni =#{dni} )
+     	    AND ( IFNULL(#{nombreCompleto},'') = '' OR UPPER( CONCAT(nombres, ' ', apePat, ' ', apeMat) ) LIKE UPPER(#{nombreCompleto}) )
+     </select>
+     
+     <select id="obtenerCliente"
+             resultType="clienteAlias"
+             parameterType="clienteAlias">
+     	SELECT * FROM Cliente where idCliente=#{idCliente}
+     </select>
+     
+     <select id="obtenerMaxCliente"
+             resultType="String">
+     	SELECT MAX(idCliente)+1 FROM Cliente
+     </select>
+     
+     <insert id="grabarCliente"
+             parameterType="clienteAlias">
+     insert into Cliente (idParentCliente, idUsuario, idDistrito, dni, ruc, nombres, apePat, apeMat, sexo, fecNac, email, telefono, celular, Direccion, estado, lineaCreditoBool, lineaCredito, lineaDisponible, tipoCliente)
+     			  values (#{idParentCliente}, #{idUsuario}, #{idDistrito}, #{dni}, #{ruc}, #{nombres}, #{apePat}, #{apeMat}, #{sexo}, #{fecNac}, #{email}, #{telefono}, #{celular}, #{Direccion}, #{estado}, #{lineaCreditoBool}, #{lineaCredito}, #{lineaDisponible}, #{tipoCliente})
+     
+     </insert>
+     
+     <update id="modificarCliente"
+                 parameterType="clienteAlias">
+     
+       update Cliente
+       set idParentCliente=#{idParentCliente},
+       		idUsuario=#{idUsuario},
+       		idDistrito=#{idDistrito},
+       		dni=#{dni},
+       		ruc=#{ruc},
+       		nombres=#{nombres},
+       		apePat=#{apePat},
+       		apeMat=#{apeMat},
+       		sexo=#{sexo},
+       		fecNac=#{fecNac},
+       		email=#{email},
+       		telefono=#{telefono},
+       		celular=#{celular},
+       		Direccion=#{Direccion},
+       		estado=#{estado},
+       		lineaCreditoBool=#{lineaCreditoBool},
+       		lineaCredito=#{lineaCredito},
+       		lineaDisponible=#{lineaDisponible},
+       		tipoCliente=#{tipoCliente}
+       where idCliente=#{idCliente}
+     </update>
+     
+     <delete id="eliminarCliente"
+              parameterType="clienteAlias">
+     delete from Cliente where idCliente=#{idCliente}
+     
+     </delete>
+</mapper>
