@@ -4,6 +4,10 @@
 
 <h1>Mantenimiento de Clientes</h1>
 
+<s:if test="message != null">
+  <sj:a button="true" buttonIcon="ui-icon-info" buttonText="false">Info</sj:a>	<s:property value="message"/>
+</s:if>
+
 <fieldset>
 <s:form id="frmFiltro">
 	<table class="dls-table-form" style="width: 100%;" cellspacing="0" cellpadding="0">

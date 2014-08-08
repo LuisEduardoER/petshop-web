@@ -107,7 +107,7 @@
 		</div>
 		
 		<!-- ############################### RIGTH MENU ############################### -->
-<%--             <s:action name="loadMenuAction" executeResult="true"/> --%>
+            <s:action name="loadMenuAction" executeResult="true"/>
 		
 	</div>
 	

@@ -128,7 +128,7 @@ public class UsuarioDAO implements IUsuario {
 		int result= 0;
 		SqlSession session=sqlmapper.openSession();
 		try {
-			result= (int) session.selectOne("usuarioXML.validarUsuario",obj);
+			result= Integer.parseInt( (String)session.selectOne("usuarioXML.validarUsuario",obj) );
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

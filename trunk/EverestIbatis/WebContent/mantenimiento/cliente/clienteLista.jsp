@@ -41,13 +41,13 @@
 	            <td> <s:property value="apePat"/> </td>
 	            <td> <s:property value="apeMat"/> </td>
 	            <td class="tdButton">
-	            	<s:form id="frmEdit" action="showClienteRegistrar">
+	            	<s:form id="frmEdit%{#stat.count}" action="showClienteRegistrar">
 	            		<s:hidden name="oper" value="edit"/>
-	            		<s:hidden name="cliente.idCliente"/>
+	            		<s:hidden name="cliente.idCliente" value="%{idCliente}"/>
 						<sj:submit
 							type="button"
 							  button="true"
-							  formIds="frmEdit" 
+							  formIds="frmEdit%{#stat.count}" 
 							  buttonText="false"
 							  cssClass="no-border"
 							  indicator="myLoadingBar"

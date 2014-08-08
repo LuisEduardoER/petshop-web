@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="localXML">		
+
+     <select id="listarLocal"
+             resultType="localAlias">
+     	SELECT * FROM Local
+     </select>  
+     
+     <select id="obtenerLocal"
+             resultType="localAlias"
+             parameterType="localAlias">
+     	SELECT * FROM Local where idLocal=#{idLocal}
+     </select>
+     
+     <select id="obtenerMaxLocal"
+             resultType="String">
+     	SELECT MAX(idLocal)+1 FROM Local
+     </select>
+     
+     <insert id="grabarLocal"
+             parameterType="localAlias">
+     insert into local (nomLocal)
+     				 values (#{nomLocal})
+     
+     </insert>
+     
+     <update id="modificarLocal"
+                 parameterType="localAlias">
+     
+       update local
+       set nomLocal=#{nomLocal}
+       where idLocal=#{idLocal}
+     </update>
+     
+     <delete id="eliminarLocal"
+              parameterType="localAlias">
+     delete from local where idLocal=#{idLocal}
+     
+     </delete>
+</mapper>

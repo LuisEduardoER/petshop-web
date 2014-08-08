@@ -23,27 +23,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	SELECT MAX(cod_opcion)+1 FROM Opcion
      </select>
      
-     <insert id="grabaropcion"
+     <insert id="grabarOpcion"
              parameterType="opcionAlias">
-     insert into opcion (parentOpcionId, Descripcion, Titulo, url, orden, estado)
-     		     values (#{parentOpcionId}, #{Descripcion}, #{Titulo}, #{url}, #{orden}, #{estado})
+     insert into opcion (parentOpcionId, descripcion, titulo, url, orden, estado)
+     		     values ( if(#{parentOpcionId}=0, null, #{parentOpcionId}) , #{descripcion}, #{titulo}, #{url}, #{orden}, #{estado})
      
      </insert>
      
-     <update id="modificaropcion"
+     <update id="modificarOpcion"
                  parameterType="opcionAlias">
      
        update Opcion
-       set parentOpcionId=#{parentOpcionId}, 
-       	   Descripcion=#{Descripcion},
-       	   Titulo=#{Titulo},
+       set parentOpcionId=if(#{parentOpcionId}=0, null, #{parentOpcionId}), 
+       	   descripcion=#{descripcion},
+       	   titulo=#{titulo},
        	   url=#{url},
        	   orden=#{orden},
        	   estado=#{estado}
        where idOpcion=#{idOpcion}
      </update>
      
-     <delete id="eliminaropcion"
+     <delete id="eliminarOpcion"
               parameterType="opcionAlias">
      delete from Opcion where idOpcion=#{idOpcion}
      
@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	 WHERE r.idRol = #{idRol}
 		   AND ro.idRol = r.idRol 
 		   AND ro.idOpcion = o.idOpcion 
-		   AND o.opcion IS NULL ORDER BY o.orden 
+		   AND o.parentOpcionId IS NULL ORDER BY o.orden 
      </select>
      
      <select id="obtenerOpcionByParent"
@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              resultType="opcionAlias">
      	SELECT * 
      	  FROM Opcion
-		 WHERE opcion = #{idOpcion}
+		 WHERE parentOpcionId = #{idOpcion}
 	  ORDER BY orden
      </select>
 </mapper>

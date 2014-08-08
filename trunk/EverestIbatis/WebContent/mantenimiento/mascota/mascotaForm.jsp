@@ -137,20 +137,25 @@
          	<td>
          		<sj:datepicker
          			name="mascota.fecNac" 
-         			size="20" 
-         			showOn="focus" 
+         			size="20"  
          			displayFormat="dd/mm/yy" 
          			changeMonth="true" 
-         			changeYear="true"/>
+         			changeYear="true"
+         			maxDate="today"
+         			buttonImageOnly="true"
+         			required="true"/>
+         		<div style="position: absolute; width: 154px; height: 22px; z-index: 1000; margin-top: -25px; margin-left: 1px;"></div>
          	</td>
          	<td>
 				<sj:spinner 
 					size="20"
 			    	name="mascota.edad"
-			    	value="mascota.edad"  
+			    	value="%{mascota.edad}"  
 			    	min="0" 
 			    	max="20" 
-			    	step="1" />
+			    	step="1"
+			    	required="true" 
+			    	/>
          	</td>
          </tr>
          <tr>
@@ -159,10 +164,10 @@
 		 </tr>
 		 <tr>
 		 	<td>
-		 		<sj:radio name="mascota.pedigree" list="#{'1':'Si', '2':'No'}"/>
+		 		<sj:radio name="mascota.pedigree" list="#{'1':'Si', '2':'No'}" required="true"/>
 		 	</td>
 		 	<td>
-		 		<sj:radio name="mascota.esterilizacion" list="#{'1':'Si', '2':'No'}"/>
+		 		<sj:radio name="mascota.esterilizacion" list="#{'1':'Si', '2':'No'}" required="true"/>
 		 	</td>
 		 </tr>
 		 <tr>
@@ -186,6 +191,11 @@
     		    	button="true"
     		    	formIds="frm01"
     		    	buttonIcon="ui-icon-disk">Guardar</sj:submit>
+    		    </td>
+    		    <td>
+    		    	<sj:a button="true" buttonIcon="ui-icon-circle-arrow-w" onclick="javascript:history.back(-1);">
+    		    		Volver
+    		    	</sj:a>
     		    </td>
     		 </tr>
     </table>

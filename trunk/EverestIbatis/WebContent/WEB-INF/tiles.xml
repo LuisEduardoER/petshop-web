@@ -56,4 +56,31 @@
       <put-attribute name="body"   value="/mantenimiento/mascota/mascotaForm.jsp"/>
   </definition>
   
+  <definition name="citaCalendarTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Cita"/>
+      <put-attribute name="body"   value="/transaccional/cita/citaCalendar.jsp"/>
+  </definition>
+  <definition name="citaIniTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Cita"/>
+      <put-attribute name="body"   value="/transaccional/cita/citaIni.jsp"/>
+  </definition>
+  
+  <definition name="localListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/local/localLista.jsp"/>
+  </definition>
+  <definition name="rolListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/rol/rolLista.jsp"/>
+  </definition>
+  <definition name="opcionListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/opcion/opcionLista.jsp"/>
+  </definition>
+  <definition name="rolOpcionListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/rolOpcion/rolOpcionLista.jsp"/>
+  </definition>
+  
+  
 </tiles-definitions>

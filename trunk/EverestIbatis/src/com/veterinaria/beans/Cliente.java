@@ -29,7 +29,7 @@ public class Cliente{
 	
 	private String nombreCompleto;
 	
-	private Usuario usuario;
+	private Usuario usuario = new Usuario();
 
 	//bi-directional many-to-one association to Cita
 //	private List<Cita> citas;

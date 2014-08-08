@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="proveedorXML">		
+
+     <select id="listarProveedor"
+             resultType="proveedorAlias">
+     	SELECT * FROM Proveedor
+     </select>  
+     
+     <select id="obtenerProveedor"
+             resultType="proveedorAlias"
+             parameterType="proveedorAlias">
+     	SELECT * FROM Proveedor where idProveedor=#{idProveedor}
+     </select>
+     
+     <select id="obtenerMaxProveedor"
+             resultType="String">
+     	SELECT MAX(idProveedor)+1 FROM Proveedor
+     </select>
+     
+     <insert id="grabarProveedor"
+             parameterType="proveedorAlias">
+     insert into proveedor (RUC, razonSocial, direccion, estado)
+     				 values (#{RUC},#{razonSocial},#{direccion},#{estado})
+     
+     </insert>
+     
+     <update id="modificarProveedor"
+                 parameterType="proveedorAlias">
+     
+       update proveedor
+       set RUC=#{RUC}, razonSocial=#{razonSocial}, direccion=#{direccion}, estado=#{estado}
+       where idProveedor=#{idProveedor}
+     </update>
+     
+     <delete id="eliminarProveedor"
+              parameterType="proveedorAlias">
+     delete from proveedor where idProveedor=#{idProveedor}
+     
+     </delete>
+</mapper>

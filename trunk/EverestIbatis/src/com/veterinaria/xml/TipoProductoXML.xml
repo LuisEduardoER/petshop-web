@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tipoProductoXML">		
+
+     <select id="listarTipoProducto"
+             resultType="tipoProductoAlias">
+     	SELECT * FROM TipoProducto
+     </select>  
+     
+     <select id="obtenerTipoProducto"
+             resultType="tipoProductoAlias"
+             parameterType="tipoProductoAlias">
+     	SELECT * FROM TipoProducto where idTipoProducto=#{idTipoProducto}
+     </select>
+     
+     <select id="obtenerMaxTipoProducto"
+             resultType="String">
+     	SELECT MAX(idTipoProducto)+1 FROM TipoProducto
+     </select>
+     
+     <insert id="grabarTipoProducto"
+             parameterType="tipoProductoAlias">
+     insert into tipoProducto (Descripcion)
+     				 values (#{Descripcion})
+     
+     </insert>
+     
+     <update id="modificarTipoProducto"
+                 parameterType="tipoProductoAlias">
+     
+       update tipoProducto
+       set Descripcion=#{Descripcion}
+       where idTipoProducto=#{idTipoProducto}
+     </update>
+     
+     <delete id="eliminarTipoProducto"
+              parameterType="tipoProductoAlias">
+     delete from tipoProducto where idTipoProducto=#{idTipoProducto}
+     
+     </delete>
+</mapper>

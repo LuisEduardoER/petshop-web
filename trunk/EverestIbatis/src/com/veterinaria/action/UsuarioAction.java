@@ -14,10 +14,10 @@ import com.veterinaria.beans.Cliente;
 import com.veterinaria.beans.Opcion;
 import com.veterinaria.beans.Rol;
 import com.veterinaria.beans.Usuario;
-import com.veterinaria.services.ClienteService;
-import com.veterinaria.services.OpcionService;
-import com.veterinaria.services.RolService;
-import com.veterinaria.services.UsuarioService;
+import com.veterinaria.service.ClienteService;
+import com.veterinaria.service.OpcionService;
+import com.veterinaria.service.RolService;
+import com.veterinaria.service.UsuarioService;
 
 @ParentPackage(value = "Veterinaria")
 public class UsuarioAction extends ActionSupport{
@@ -48,6 +48,7 @@ public class UsuarioAction extends ActionSupport{
 			}
 		)
 	public String validarUsuario() throws Exception {
+		System.out.println("===== validarUsuario =====");
 		int nValid = 0;
 		logOut();
 		
@@ -86,6 +87,7 @@ public class UsuarioAction extends ActionSupport{
 			}
 		)
 	public String logOut(){
+		System.out.println("===== logOut =====");
 		
 		session.remove("objCliente");
 		session.remove("objOpciones");
@@ -96,10 +98,15 @@ public class UsuarioAction extends ActionSupport{
 	//Obteniendo Datos de Usuario
 	@SuppressWarnings("unchecked")
 	public void getDatosUsuario(){
+		System.out.println("===== getDatosUsuario =====");
+		
+		rol = new Rol();
+		cliente = new Cliente();
 		
 		try {
 			usuario = usuarioService.obtenerUsuario(usuario);
-			rol = new Rol();
+			
+			
 			rol.setIdRol( usuario.getIdRol() );
 			
 			usuario.setRol( rolService.obtenerRol( rol ));
@@ -122,6 +129,7 @@ public class UsuarioAction extends ActionSupport{
 		)
 	@SuppressWarnings({ "unchecked" })
 	public String getMenuByRol(){
+		System.out.println("===== getMenuByRol =====");
 		
 		try {
 			if(session.get("objOpciones") != null)
@@ -131,14 +139,17 @@ public class UsuarioAction extends ActionSupport{
 				List<Opcion> listaParentOpcion = new ArrayList<Opcion>();;
 				List<Opcion> listaChildOpcion;
 				listaParentOpcion = opcionService.obtenerOpcionParentByRol(cliente.getUsuario().getRol());
+				System.out.println("listaParentOpcion: "+listaParentOpcion.size());
+				
 				listaOpcion= new ArrayList<Opcion>();
 				
 				for (Opcion parentOpcion : listaParentOpcion) {
 					
 					listaChildOpcion = new ArrayList<Opcion>();
 					listaChildOpcion = opcionService.obtenerOpcionByParent(parentOpcion);					
+					System.out.println("listaChildOpcion: "+listaChildOpcion.size());
 					
-//					parentOpcion.setOpcions( listaChildOpcion );
+					parentOpcion.setOpcions( listaChildOpcion );
 					
 //					for (Opcion childOpcion : listaChildOpcion) {
 //						listaOpcion.add(childOpcion);
@@ -172,6 +183,7 @@ public class UsuarioAction extends ActionSupport{
 			results = { @Result(location = "usuarioListaTile", name = "success", type="tiles") } )
 	public String showUsuarios() throws Exception {
 		System.out.println("===== showUsuarioListaAction =====");
+		
 		listaUsuario = usuarioService.listarUsuario();
 		
 		return SUCCESS;
@@ -181,6 +193,7 @@ public class UsuarioAction extends ActionSupport{
 			results = { @Result(location="/mantenimiento/usuario/usuarioForm.jsp", name = "success") })
 	public String showInsertarOActualizar() throws Exception {
 		System.out.println("===== showUsuarioFormAction =====");
+		
 		listaRol = rolService.listarRol();
 		
 		if (usuario != null && usuario.getIdUsuario() != 0) {
@@ -193,7 +206,7 @@ public class UsuarioAction extends ActionSupport{
 	@Action(value = "/insertarOActualizarUsuario",  
 			results = { @Result(location = "showUsuarioLista", name = "success", type = "redirectAction")})
 	public String insertarOActualizar() throws Exception {
-		
+		System.out.println("===== insertarOActualizarUsuario =====");
 		System.out.println("usuario: "+usuario.getIdUsuario() );
 //		System.out.println("rol: "+rol.getIdRol() );
 	
