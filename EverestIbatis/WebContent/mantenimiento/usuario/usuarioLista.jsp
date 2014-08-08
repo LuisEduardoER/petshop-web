@@ -9,16 +9,18 @@
 	</legend>
 </fieldset>
 
-<s:url id="insert" action="showUsuarioFormAction" escapeAmp="false">
-	<s:param name="usuario.idUsuario" value="%{usuario.idUsuario}"/>
-    <s:param name="oper">add</s:param>
-</s:url>
-<sj:a 
-	openDialog="dlgForm"
-	href="%{insert}"
+<s:form action="showUsuarioForm">
+
+	<s:hidden name="usuario.idUsuario" value="%{usuario.idUsuario}"/>
+    <s:hidden name="oper" value="add"/>
+
+<sj:submit 
+	type="button"
 	button="true" 
 	buttonIcon="ui-icon-plus"
-	>Agregar</sj:a>
+	>Agregar</sj:submit>
+
+</s:form>
 
 <table id="tableClientes" class="dls-table" cellspacing="0" cellpadding="0">
     <thead>
@@ -40,28 +42,37 @@
 				</td>
 			</tr>
 		</s:if>
-    	<s:iterator value="listaUsuario" var="obj" status="stat">
+    	<s:iterator value="usuarioLista" var="obj" status="stat">
 	        <tr>
 	            <td><s:property value="idUsuario"/></td>
-	            <td> <s:property value="rol.descripcion"/> </td>
+	            <td>
+	            	<s:select list="rolLista"
+	            			listKey="idRol"
+	            			listValue="descripcion"
+	            			name="idRol"
+	            			value="idRol"
+	            			disabled="true"
+	            	/>
+	            </td>
 	            <td> <s:property value="user"/> </td>
 	            <td> <s:property value="estado"/> </td>
 	            
 	            <td class="tdButton">
-	            	
-		            <s:url id="update" action="showUsuarioFormAction" escapeAmp="false">
-		       		    <s:param name="usuario.idUsuario" value="idUsuario"/>
-		       		    <s:param name="oper">edit</s:param>
-		       		</s:url>
-					<sj:a openDialog="dlgForm"
-					  href="%{update}"
+	            <s:form id="frmEdit%{#stat.count}" action="showUsuarioForm">
+		       		    <s:hidden name="usuario.idUsuario" value="%{idUsuario}"/>
+		       		    <s:hidden name="oper" value="edit"/>
+		       		
+					<sj:submit 
+					  type="button"
 					  button="true" 
 					  buttonText="false"
 					  cssClass="no-border"
+					  formIds="frmEdit%{#stat.count}"
 					  indicator="myLoadingBar"
 					  buttonIcon="ui-icon-pencil">
 						Editar
-					</sj:a>
+					</sj:submit>
+				</s:form>
 	            </td>
 	        </tr>
 		</s:iterator>

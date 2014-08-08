@@ -1,6 +1,16 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-		 
+
+<h1>
+	<s:if test="oper=='add'">
+		Agregar 
+	</s:if>
+	<s:if test="oper=='edit'">
+		Editar
+	</s:if>
+	 Usuario
+	</h1>
+
 	 <table>
 		<tr><td align="left" style="font:bold;color:red"> 
 	            <s:fielderror/> 	 	
@@ -10,7 +20,7 @@
         </tr>
      </table>
      		 	
-    <s:form id="frmUsuario" action="insertarOActualizarUsuario">
+    <s:form id="frmUsuario" action="saveUsuarioForm">
     	<s:hidden name="rol.idRol" value="%{rol.idRol}"/>
     	<s:hidden name="usuario.idUsuario"/>
 		<table align="center">
@@ -26,13 +36,13 @@
 		    	<td class="tdLabel"><s:text name="Rol"/></td>
 		    	<td>
 		    		<s:select
-				       name="usuario.rol.idRol"
+				       name="usuario.idRol"
 				       headerKey="0" headerValue="-- Seleccione --"
-				       list="listaRol"
+				       list="rolLista"
 				       listKey="idRol"
 				       listValue="descripcion"
 				       required="true"
-				       value="usuario.rol.idRol"
+				       value="usuario.idRol"
 					/>
 		    	</td>
 		    </tr>
@@ -63,7 +73,11 @@
 				    <td>
 				    	<sj:submit button="true" value="Guardar"/>
 				    </td>
-		        	<td><s:reset key="button.label.cancel" cssClass="butStnd"/></td>
+		        	<td>
+    		    	<sj:a button="true" buttonIcon="ui-icon-circle-arrow-w" onclick="javascript:history.back(-1);">
+    		    		Volver
+    		    	</sj:a>
+    		    </td>
 				 </tr>
 		</table>
     </s:form>

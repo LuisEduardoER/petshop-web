@@ -66,7 +66,7 @@ public class LoginAction extends ActionSupport{
 			}
 			
 			System.out.println("nvalid: "+nValid);
-			syso("validarUsuario");
+//			syso("validarUsuario");
 			
 			if(nValid == 0){
 				strMessage = "Usuario y/o Contraseña incorrectas.";
@@ -177,51 +177,6 @@ public class LoginAction extends ActionSupport{
 		}
 		
 		return SUCCESS;
-	}
-	
-	@Action(value = "/showUsuarioListaAction", 
-			results = { @Result(location = "usuarioListaTile", name = "success", type="tiles") } )
-	public String showUsuarios() throws Exception {
-		System.out.println("===== showUsuarioListaAction =====");
-		
-		listaUsuario = usuarioService.listarUsuario();
-		
-		return SUCCESS;
-	}
-	
-	@Action(value = "/showUsuarioFormAction", 
-			results = { @Result(location="/mantenimiento/usuario/usuarioForm.jsp", name = "success") })
-	public String showInsertarOActualizar() throws Exception {
-		System.out.println("===== showUsuarioFormAction =====");
-		
-		listaRol = rolService.listarRol();
-		
-		if (usuario != null && usuario.getIdUsuario() != 0) {
-			usuario = usuarioService.obtenerUsuario(usuario);
-		}
-		
-		return SUCCESS;
-	}
-	
-	@Action(value = "/insertarOActualizarUsuario",  
-			results = { @Result(location = "showUsuarioLista", name = "success", type = "redirectAction")})
-	public String insertarOActualizar() throws Exception {
-		System.out.println("===== insertarOActualizarUsuario =====");
-		System.out.println("usuario: "+usuario.getIdUsuario() );
-//		System.out.println("rol: "+rol.getIdRol() );
-	
-		if (usuario.getIdUsuario() == 0) {
-			usuarioService.GrabarUsuario(usuario);
-			
-		} else {
-			usuarioService.ModificarUsuario(usuario);
-		}
-		
-		return SUCCESS;
-	}	
-	
-	public void syso(String str){
-		System.out.println("[UsuarioAction.getMenuByRol]["+str+"]");
 	}
 	
 	public Usuario getUsuario() {
