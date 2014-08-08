@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="turnoXML">		
+
+     <select id="listarTurno"
+             resultType="turnoAlias">
+     	SELECT * FROM Turno
+     </select>  
+     
+     <select id="obtenerTurno"
+             resultType="turnoAlias"
+             parameterType="turnoAlias">
+     	SELECT * FROM Turno where idTurno=#{idTurno}
+     </select>
+     
+     <select id="obtenerMaxTurno"
+             resultType="String">
+     	SELECT MAX(idTurno)+1 FROM Turno
+     </select>
+     
+     <insert id="grabarTurno"
+             parameterType="turnoAlias">
+     insert into turno (nomTurno)
+     				 values (#{nomTurno})
+     
+     </insert>
+     
+     <update id="modificarTurno"
+                 parameterType="turnoAlias">
+     
+       update turno
+       set nomTurno=#{nomTurno}
+       where idTurno=#{idTurno}
+     </update>
+     
+     <delete id="eliminarTurno"
+              parameterType="turnoAlias">
+     delete from turno where idTurno=#{idTurno}
+     
+     </delete>
+</mapper>

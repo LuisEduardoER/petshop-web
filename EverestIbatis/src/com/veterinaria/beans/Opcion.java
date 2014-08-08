@@ -1,6 +1,7 @@
 package com.veterinaria.beans;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -11,6 +12,7 @@ import java.util.Date;
 public class Opcion{
 
 	private int idOpcion;
+	private int parentOpcionId;
 	private Date dateCreate;
 	private String descripcion;
 	private String estado;
@@ -23,7 +25,7 @@ public class Opcion{
 	private Opcion opcion;
 
 	//bi-directional many-to-one association to Opcion
-//	private List<Opcion> opcions;
+	private List<Opcion> opcions;
 
 	//bi-directional many-to-one association to RolOpcion
 //	private List<RolOpcion> rolopcions;
@@ -101,6 +103,22 @@ public class Opcion{
 
 	public void setOpcion(Opcion opcion) {
 		this.opcion = opcion;
+	}
+
+	public List<Opcion> getOpcions() {
+		return opcions;
+	}
+
+	public void setOpcions(List<Opcion> opcions) {
+		this.opcions = opcions;
+	}
+
+	public int getParentOpcionId() {
+		return parentOpcionId;
+	}
+
+	public void setParentOpcionId(int parentOpcionId) {
+		this.parentOpcionId = parentOpcionId;
 	}
 
 }

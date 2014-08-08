@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="medicoXML">		
+
+     <select id="listarMedico"
+             resultType="medicoAlias">
+     	SELECT * FROM Medico
+     </select>  
+     
+     <select id="obtenerMedico"
+             resultType="medicoAlias"
+             parameterType="medicoAlias">
+     	SELECT * FROM Medico
+     	 WHERE ( IFNULL(#{idMedico},0) = 0 OR idMedico =#{idMedico} )
+     	   AND ( IFNULL(#{idTurno},0) = 0 OR idTurno =#{idTurno} )
+     	   AND ( IFNULL(#{idLocal},0) = 0 OR idLocal =#{idLocal} )
+     </select>
+     
+     <select id="obtenerMaxMedico"
+             resultType="String">
+     	SELECT MAX(cod_medico)+1 FROM Medico
+     </select>
+     
+     <insert id="grabarMedico"
+             parameterType="medicoAlias">
+     insert into medico (descripcion, estado)
+     				 values (#{descripcion},#{estado})
+     
+     </insert>
+     
+     <update id="modificarMedico"
+                 parameterType="medicoAlias">
+     
+       update medico
+       set descripcion=#{descripcion}, estado=#{estado}
+       where idMedico=#{idMedico}
+     </update>
+     
+     <delete id="eliminarMedico"
+              parameterType="medicoAlias">
+     delete from medico where idMedico=#{idMedico}
+     
+     </delete>
+</mapper>

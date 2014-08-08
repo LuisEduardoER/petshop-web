@@ -52,9 +52,9 @@
 		</s:if>
     	<s:iterator value="opcionLista" var="objOpcion" status="stat">
 	        <tr>
-	            <td><s:property value="idOpcion"/></td>
+	            <td><s:property value="idOpcion"/> </td>
 	            
-	            <s:if test="opcion.titulo!=''">
+	            <s:if test="parentOpcionId!=0">
 		        	<td><s:property value="opcion.descripcion"/></td>
 		        </s:if>
 		        <s:else>
@@ -85,7 +85,7 @@
 	            </td>
 	            <td class="tdButton">
 		       		<s:form id="formDel%{#stat.count}" action="insertarOActualizarOpcion" method="post">
-				      <s:hidden name="opcion.idOpcion" value="%{idOpcion}"/>
+				      <s:hidden name="parentOpcionId" value="%{idOpcion}"/>
 				      <s:hidden name="rol.idRol" value="%{rol.idRol}"/>
 				      <s:hidden name="oper" value="del"/>
 				      

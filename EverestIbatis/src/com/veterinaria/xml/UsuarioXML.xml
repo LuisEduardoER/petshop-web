@@ -15,7 +15,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="obtenerUsuario"
              resultType="usuarioAlias"
              parameterType="usuarioAlias">
-     	SELECT * FROM Usuario where idUsuario=#{idUsuario}
+     	SELECT * FROM Usuario 
+     	 WHERE ( IFNULL(#{idUsuario},0) = 0 OR idUsuario =#{idUsuario} )
+     	   AND ( IFNULL(#{user},'') = '' OR user =#{user} )
      </select>
      
      <select id="obtenerMaxUsuario"
@@ -36,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        update Usuario
        set idRol=#{idRol},
        		user=#{user},
-       		pass=#{pass},
+       		pass=if(#{pass} is null, pass, #{pass}),
        		estado=#{estado}
        where idUsuario=#{idUsuario}
      </update>

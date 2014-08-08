@@ -9,7 +9,7 @@
        		<result type="tiles" name="success">T_Index</result>
       	   </action>
 	   </package>
-      	
+
 </struts>
 
 

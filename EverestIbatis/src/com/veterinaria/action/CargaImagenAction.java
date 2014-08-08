@@ -9,7 +9,7 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.veterinaria.beans.Mascota;
-import com.veterinaria.services.MascotaService;
+import com.veterinaria.service.MascotaService;
 
 @ParentPackage(value = "Veterinaria")
 public class CargaImagenAction extends ActionSupport{

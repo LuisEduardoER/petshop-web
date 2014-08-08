@@ -40,10 +40,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			pedigree=#{pedigree},
 			esterilizacion=#{esterilizacion},
 			observaciones=#{observaciones},
-			fotobin1=#{fotobin1},
-			fotobin2=#{fotobin2},
-			fotobin3=#{fotobin3},
-			fotobin4=#{fotobin4},
+			fotobin1=if(#{fotobin1} is null, fotobin1, #{fotobin1}),
+			fotobin2=if(#{fotobin2} is null, fotobin2, #{fotobin2}),
+			fotobin3=if(#{fotobin3} is null, fotobin3, #{fotobin3}),
+			fotobin4=if(#{fotobin4} is null, fotobin4, #{fotobin4}),
 			alergia=#{alergia}
 		WHERE idMascota=#{idMascota}
 	</update>

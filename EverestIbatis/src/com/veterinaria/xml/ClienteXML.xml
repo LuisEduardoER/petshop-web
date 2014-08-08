@@ -20,7 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="obtenerCliente"
              resultType="clienteAlias"
              parameterType="clienteAlias">
-     	SELECT * FROM Cliente where idCliente=#{idCliente}
+     	SELECT * 
+     	  FROM Cliente 
+     	 WHERE ( IFNULL(#{idCliente},0) = 0 OR idCliente =#{idCliente} )
+     	   AND ( IFNULL(#{dni},'') = '' OR dni =#{dni} )
      </select>
      
      <select id="obtenerMaxCliente"
@@ -31,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <insert id="grabarCliente"
              parameterType="clienteAlias">
      insert into Cliente (idParentCliente, idUsuario, idDistrito, dni, ruc, nombres, apePat, apeMat, sexo, fecNac, email, telefono, celular, Direccion, estado, lineaCreditoBool, lineaCredito, lineaDisponible, tipoCliente)
-     			  values (#{idParentCliente}, #{idUsuario}, #{idDistrito}, #{dni}, #{ruc}, #{nombres}, #{apePat}, #{apeMat}, #{sexo}, #{fecNac}, #{email}, #{telefono}, #{celular}, #{Direccion}, #{estado}, #{lineaCreditoBool}, #{lineaCredito}, #{lineaDisponible}, #{tipoCliente})
+     			  values (#{idParentCliente},IF( #{idUsuario}=0,null,#{idUsuario} ), #{idDistrito}, #{dni}, IF( #{ruc}=0,null,#{ruc} ), #{nombres}, #{apePat}, #{apeMat}, #{sexo}, #{fecNac}, #{email}, #{telefono}, #{celular}, #{Direccion}, #{estado}, #{lineaCreditoBool}, #{lineaCredito}, #{lineaDisponible}, #{tipoCliente})
      
      </insert>
      
@@ -40,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      
        update Cliente
        set idParentCliente=#{idParentCliente},
-       		idUsuario=#{idUsuario},
+       		idUsuario=if(#{idUsuario} = 0, null, #{idUsuario}),
        		idDistrito=#{idDistrito},
        		dni=#{dni},
        		ruc=#{ruc},

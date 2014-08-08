@@ -3,8 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
-
 <mapper namespace="tipoAnimalXML">		
 
      <select id="listarTipoAnimal"
@@ -23,14 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	SELECT MAX(cod_tipoAnimal)+1 FROM TipoAnimal
      </select>
      
-     <insert id="grabartipoAnimal"
+     <insert id="grabarTipoAnimal"
              parameterType="tipoAnimalAlias">
      insert into tipoAnimal (descripcion, estado)
      				 values (#{descripcion},#{estado})
      
      </insert>
      
-     <update id="modificartipoAnimal"
+     <update id="modificarTipoAnimal"
                  parameterType="tipoAnimalAlias">
      
        update tipoAnimal
@@ -38,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        where idTipoAnimal=#{idTipoAnimal}
      </update>
      
-     <delete id="eliminartipoAnimal"
+     <delete id="eliminarTipoAnimal"
               parameterType="tipoAnimalAlias">
      delete from tipoAnimal where idTipoAnimal=#{idTipoAnimal}
      

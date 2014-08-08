@@ -12,6 +12,7 @@
      		 	
     <s:form id="frmOpcion" action="insertarOActualizarOpcion">
     	<s:hidden name="opcion.idOpcion"/>
+<%--     	<s:hidden name="opcion.parentOpcionId" value="%{opcion.idOpcion}"/> --%>
     	<s:hidden name="oper" value="%{oper}"/>
 		<table align="center">
 		
@@ -26,13 +27,13 @@
 		    	<td class="tdLabel"><s:text name="Parent"/></td>
 		    	<td>
 		    		<s:select
-				       name="opcionParent.idOpcion"
+				       name="opcion.parentOpcionId"
 				       headerKey="0" headerValue="-- Parent --"
 				       list="opcionParentLista"
 				       listKey="idOpcion"
 				       listValue="descripcion"
 				       required="true"
-				       value="opcionParent.idOpcion"
+				       value="opcion.parentOpcionId"
 					/>
 		    	</td>
 		    </tr>
@@ -70,7 +71,7 @@
 				    <td>
 				    	<sj:submit button="true" value="Guardar"/>
 				    </td>
-		        	<td><s:reset key="button.label.cancel" cssClass="butStnd"/></td>
+		        	<td><s:reset value="Cancelar" cssClass="butStnd"/></td>
 				 </tr>
 		</table>
     </s:form>

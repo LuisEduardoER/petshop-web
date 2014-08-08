@@ -32,12 +32,12 @@
 				</div>
 			</div>
 			<div class="controls">
-				<!-- <button type="submit" class="btn btn-primary">Log in</button> -->
+				
 				<s:label cssStyle="color: red;" name="strMessage"/>
 			</div>
 			<div class="controls">
-				<!-- <button type="submit" class="btn btn-primary">Log in</button> -->
-				<s:submit key="Log in" cssClass="btn btn-primary"/>
+				
+				<s:submit value="Log in" cssClass="btn btn-primary"/>
 			</div>
 
 		</fieldset>

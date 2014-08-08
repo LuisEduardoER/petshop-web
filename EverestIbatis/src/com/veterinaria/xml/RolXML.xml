@@ -23,14 +23,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	SELECT MAX(cod_rol)+1 FROM Rol
      </select>
      
-     <insert id="grabarrol"
+     <insert id="grabarRol"
              parameterType="rolAlias">
      insert into rol (descripcion, estado)
      				 values (#{descripcion},#{estado})
      
      </insert>
      
-     <update id="modificarrol"
+     <update id="modificarRol"
                  parameterType="rolAlias">
      
        update rol
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        where idRol=#{idRol}
      </update>
      
-     <delete id="eliminarrol"
+     <delete id="eliminaRrol"
               parameterType="rolAlias">
      delete from rol where idRol=#{idRol}
      

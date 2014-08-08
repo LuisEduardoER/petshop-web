@@ -9,11 +9,13 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.veterinaria.beans.Cliente;
+import com.veterinaria.beans.Correlativo;
 import com.veterinaria.beans.Mascota;
 import com.veterinaria.beans.TipoAnimal;
-import com.veterinaria.services.ClienteService;
-import com.veterinaria.services.MascotaService;
-import com.veterinaria.services.TipoAnimalService;
+import com.veterinaria.service.ClienteService;
+import com.veterinaria.service.CorrelativoService;
+import com.veterinaria.service.MascotaService;
+import com.veterinaria.service.TipoAnimalService;
 import com.veterinaria.utils.MiUtil;
 
 
@@ -21,13 +23,15 @@ import com.veterinaria.utils.MiUtil;
 public class MascotaAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private MascotaService mascotaService = new MascotaService();
-	private ClienteService clienteService = new ClienteService();
-	private TipoAnimalService tipoAnimalService = new TipoAnimalService();
+	private MascotaService 		mascotaService = 		new MascotaService();
+	private ClienteService 		clienteService = 		new ClienteService();
+	private TipoAnimalService 	tipoAnimalService = 	new TipoAnimalService();
+	private CorrelativoService 	correlativoService = 	new CorrelativoService();
 	
 	private Cliente cliente;
 	private Mascota mascota;
 	private TipoAnimal tipoAnimal;
+	private Correlativo correlativo;
 	
 	private List<Mascota> mascotaLista = new ArrayList<Mascota>();
 	private List<TipoAnimal> tipoAnimalLista = new ArrayList<TipoAnimal>();
@@ -78,6 +82,7 @@ public class MascotaAction extends ActionSupport {
 		System.out.println("oper: "+oper);
 		System.out.println("idCliente: "+cliente.getIdCliente());
 		
+		correlativo = new Correlativo();
 		String imageDataString;
 		
 		if(oper != null){
@@ -107,7 +112,17 @@ public class MascotaAction extends ActionSupport {
 			mascota.setIdCliente( ""+cliente.getIdCliente() );
 			
 			if(oper.equals("add")){
+				//Obteniendo el correlativo
+				correlativo.setTabla("Mascota");
+				correlativo = correlativoService.obtenerSigCorrelativo(correlativo);
+				
+				//insertando cliente
+				mascota.setIdMascota(correlativo.getDescripcion());
 				result = mascotaService.GrabarMascota(mascota)+"";
+				
+				//Actualizando correlativo
+				correlativoService.ModificarCorrelativo(correlativo);
+				
 			}else if(oper.equals("edit"))
 				result = mascotaService.ModificarMascota(mascota)+"";
 			
@@ -178,6 +193,14 @@ public class MascotaAction extends ActionSupport {
 
 	public void setTipoAnimalLista(List<TipoAnimal> tipoAnimalLista) {
 		this.tipoAnimalLista = tipoAnimalLista;
+	}
+
+	public Correlativo getCorrelativo() {
+		return correlativo;
+	}
+
+	public void setCorrelativo(Correlativo correlativo) {
+		this.correlativo = correlativo;
 	}
 	
 }

@@ -3,8 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
-
 <mapper namespace="correlativoXML">		
 
      <select id="listarCorrelativo"
@@ -18,33 +16,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	SELECT * FROM Correlativo where idCorrelativo=#{idCorrelativo}
      </select>
      
-     <select id="obtenerMaxCorrelativo"
-             resultType="String">
-     	SELECT MAX(idCorrelativo)+1 FROM Correlativo
-     </select>
-     
      <insert id="grabarCorrelativo"
              parameterType="correlativoAlias">
-     insert into Correlativo (tabla, prefijo, valor, tamano, descripcion)
-     			  values (#{tabla}, #{prefijo}, #{valor}, #{tamano}, #{descripcion})
+     insert into correlativo (tabla, prefijo, tamano, valor, descripcion)
+     				 values (#{tabla}, #{prefijo}, #{tamano}, #{valor}, #{descripcion})
      
      </insert>
      
      <update id="modificarCorrelativo"
                  parameterType="correlativoAlias">
      
-       update Correlativo
-       set tabla=#{tabla},
-       		prefijo=#{prefijo},
-       		valor=#{valor},
-       		tamano=#{tamano},
-       		descripcion=#{descripcion}
+       update correlativo
+       set tabla=#{tabla}, 
+       	   prefijo=#{prefijo},
+       	   tamano=#{tamano},
+       	   valor=#{valor},
+       	   descripcion=#{descripcion}
        where idCorrelativo=#{idCorrelativo}
      </update>
      
      <delete id="eliminarCorrelativo"
               parameterType="correlativoAlias">
-     delete from Correlativo where idCorrelativo=#{idCorrelativo}
+     delete from correlativo where idCorrelativo=#{idCorrelativo}
      
      </delete>
+     
+     <select id="obtenerSigCorrelativo"
+             resultType="correlativoAlias"
+             parameterType="correlativoAlias">
+     	select idCorrelativo, tabla, prefijo, tamano, valor+1, 
+     		   concat( prefijo, lpad(valor+1,tamano-length(prefijo),'0') ) as descripcion
+		  FROM correlativo
+		 WHERE tabla = #{tabla};
+     </select>
 </mapper>

@@ -59,7 +59,7 @@ $(function() {
 	        <tr>
 	            <td><s:property value="idOpcion"/></td>
 	            
-	            <s:if test="opcion.titulo!=''">
+	            <s:if test="parentOpcionId!=0">
 		        	<td><s:property value="opcion.titulo"/></td>
 		        </s:if>
 		        <s:else>

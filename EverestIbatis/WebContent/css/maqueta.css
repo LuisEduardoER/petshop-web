@@ -1,0 +1,830 @@
+/**********************************
+ div principales
+***********************************/   
+#idPrincipal{	position: absolute;	top: 0px;	left: 0px;	width: 1366px;	height: 643px;padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	background-color: #EBFCE4;}
+#idCabecera{	position: absolute;	top: 0px;	left: 0px;	width: 1366px;	height: 100px;  padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	background-color: #EBFCE4;}
+#idCuerpo{	position: absolute;	top: 101px;	left: 0px;	width: 1349px;	height: 542px; padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;background-color: #EBFCE4;	}
+#idMenu{	position: absolute;	top: 0px;	left: 0px;	width: 200px;	height: 542px;  padding: 0px;margin:0;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;background-color:  #BCF5A9;	}
+#idCentralConMenu{	position: absolute;	top: 0px;	left: 200px;	width: 1080px;	height: 542px; padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;background-color: #EBFCE4;	}
+#idCentralSinMenu{	position: absolute;	top: 0px;	left: 0px;	width: 1366px;	height: 450px;  padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;background-color:#EBFCE4;	}
+
+/**********************************  
+login  
+***********************************/   
+#idLoginCentrar{	position: absolute;	top:50%;left:50%;width:400px;	margin-left:-200px;	height:300px;margin-top:-150px;	border:1px solid green;padding:5px; color: green; background-color: white;}  
+
+#idUsuario { position: absolute;	top: 80px;	left: 80px;	width: 150px;	height: 15px;	font-size: 16px;}
+#idTextUsuario {	 position: absolute;	top: 80px;	left: 240px;	width: 100px;	height: 15px;	}
+
+#idClave { position: absolute;	top: 120px;	left: 80px;	width: 150px;	height: 15px;font-size: 16px;	}
+#idTextClave {	  position: absolute;	top: 120px;	left: 240px;	width: 100px;	height: 15px;	}  
+  
+  
+#idImgCapcha { position: absolute;	top: 160px;	left: 80px;	width: 150px;	height: 40px;	}
+#idCode {	  position: absolute;	top: 160px;	left: 240px;	width: 100px;	height: 15px;	}
+
+#idLoginSubmit{	  position: absolute;	top: 230px;	left: 150px;	width: 100px;	height: 30px;	font-size: 14px;}
+
+/**********************************
+ Registra seleccion de colmena    
+***********************************/
+#idDivCrud13{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 520px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloRegistraSelecion {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorSel{	position: absolute;	top: 40px;	left: 50px;	width: 1030px;	height: 160px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idCrud13Label_1 {	position: absolute;	top: 10px;	left: 10px;	width: 100px;	height: 15px; }
+#idCrud13_1 {	 position: absolute;	top: 10px;	left: 135px; width: 200px;	height: 25px; 	}
+
+#idCrud13Label_2 { position: absolute;	top: 50px;	left: 10px;	width: 130px;	height: 15px;	}  
+#idCrud13_2 {	  position: absolute;	top: 50px;	left: 135px;	width: 200px;	height: 25px;	}
+
+#idCrud13Label_3 { position: absolute;	top: 50px;	left: 360px;	width: 120px;	height: 15px;	}
+#idCrud13_3 {	  position: absolute;	top: 50px;	left: 480px;	width: 200px;	height: 25px;	}
+
+#idCrud13Label_4 { position: absolute;	top: 50px;	left: 700px;	width: 100px;	height: 15px;	}
+#idCrud13_4 {	  position: absolute;	top: 50px;	left: 820px;	width: 200px;	height: 25px;	}
+
+#idCrud13Label_5 { position: absolute;	top: 90px;	left: 10px;	width: 120px;	height: 15px;	}
+#idCrud13_5 {	  position: absolute;	top: 90px;	left: 135px;	width: 200px;	height: 25px;	}  
+ 
+#idCrud13Label_6 { position: absolute;	top: 90px;	left: 360px;	width: 130px;	height: 15px;	}
+#idCrud13_6 {	  position: absolute;	top: 90px;	left: 480px;	width: 200px;	height: 25px;	}
+
+#idCrud13Label_7 { position: absolute;	top: 90px;	left: 700px;	width: 130px;	height: 15px;	}
+#idCrud13_7 {	  position: absolute;	top: 90px;	left: 820px;	width: 200px;	height: 25px;	}
+
+#idCrud13Label_8 { position: absolute;	top:130px;	left: 10px;	width: 130px;	height: 15px;	}
+#idCrud13_8 {	  position: absolute;	top: 130px;	left: 135px;	width: 545px;	height: 15px;	}
+  
+#idCrud13Label_X { position: absolute;	top: 130px;	left: 700px;	width: 130px;	height: 15px;	}
+#idCrud13_X {	  position: absolute;	top: 130px;	left: 820px;	width: 200px;	height: 20px;	}
+
+#idTabsSeleccion{	position: absolute;	top: 220px;	left: 50px;	width: 1030px;	height: 300px; font-size: 13px;}
+
+
+#idDivTabAlzas{	position: absolute;	top: 50px;	left: 10px;	width: 1010px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeAlza { position: absolute;	top: 10px;	left: 200px;	width: 400px;	height: 20px;	}
+#idCrud13Label_9 { position: absolute;	top: 40px;	left: 200px;	width: 180px;	height: 15px;	}
+#idCrud13_9 {	  position: absolute;	top: 60px;	left: 200px;	width: 150px;	height: 170px;	}
+#idCrud13Label_12_1 { position: absolute;	top: 40px;	left: 400px;	width: 200px;	height: 15px;	}
+#idCrud13_12_1 {	  position: absolute;	top: 60px;	left: 400px;	width: 200px;	height: 25px;	}  
+#idCrud13Label_13_1 { position: absolute;	top: 90px;	left: 400px;	width: 200px;	height: 15px;	}  
+#idCrud13_13_1 {	  position: absolute;	top: 110px;	left: 400px;	width: 200px;	height: 25px;	}
+#idCrud13AgregarAlza {	  position: absolute;	top:160px;	left: 400px;	width: 200px;	height: 30px;	}
+
+#idDivTabMiel{	position: absolute;	top: 50px;	left: 10px;	width: 1010px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeMiel { position: absolute;	top: 10px;	left: 200px;	width: 400px;	height: 20px;	}
+#idCrud13Label_10 { position: absolute;	top: 40px;	left: 200px;	width: 180px;	height: 15px;	}
+#idCrud13_10 {	   position: absolute;	top: 60px;	left: 200px;	width: 150px;	height: 170px;	}
+#idCrud13Label_12_2 { position: absolute;	top: 40px;	left: 400px;	width: 200px;	height: 15px;	}
+#idCrud13_12_2 {	  position: absolute;	top: 60px;	left: 400px;	width: 200px;	height: 25px;	}  
+#idCrud13Label_13_2 { position: absolute;	top: 90px;	left: 400px;	width: 200px;	height: 15px;	}  
+#idCrud13_13_2 {	  position: absolute;	top: 110px;	left: 400px;	width: 200px;	height: 25px;	}
+#idCrud13AgregarEquipoDeMiel {	  position: absolute;	top:160px;	left: 400px;	width: 200px;	height: 30px;	}
+
+
+#idDivTabNomiel{	position: absolute;	top: 50px;	left: 10px;	width: 1010px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeNoMiel { position: absolute;	top: 10px;	left: 200px;	width: 400px;	height: 20px;	}
+#idCrud13Label_11 { position: absolute;	top: 40px;	left: 200px;	width: 200px;	height: 15px;	}
+#idCrud13_11 {	   position: absolute;	top: 60px;	left: 200px;	width: 150px;	height: 170px;	}
+#idCrud13Label_12_3 { position: absolute;	top: 40px;	left: 400px;	width: 200px;	height: 15px;	}
+#idCrud13_12_3 {	  position: absolute;	top: 60px;	left: 400px;	width: 200px;	height: 25px;	}  
+#idCrud13Label_13_3 { position: absolute;	top: 90px;	left: 400px;	width: 200px;	height: 15px;	}  
+#idCrud13_13_3 {	  position: absolute;	top: 110px;	left: 400px;	width: 200px;	height: 25px;	}
+#idCrud13AgregarEquipoDiferenteDeMiel {	   position: absolute;	top:160px;	left: 400px;	width: 200px;	height: 30px;	}
+
+
+#idDivTabSeleccioandos{	position: absolute;	top: 50px;	left: 10px;	width: 1010px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivCrud13Resultado{	position: absolute;	top: 20px;	left: 20px;	width: 540px;	height: 240px;	}
+#idCrud13Listar {	  position: absolute;	top: 70px;	left: 580px;	width: 200px;	height: 30px;	}
+#idCrud13Eliminar {	  position: absolute;	top: 100px;	left: 580px;	width: 200px;	height: 30px;	}
+#idCrud13Registrar {	  position: absolute;	top: 130px;	left: 580px;	width: 200px;	height: 30px;	}
+  
+
+/**********************************
+ asignar rol en operario
+***********************************/
+#idLabelTituloAsignarRolOPerario {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivAgregarRolEnOperario{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivResultadoRolEnOperarios { position: absolute;	top: 30px;	left: 20px;	width: 300px;	height: 20px; font-size: 13px;	}
+  
+#idSegLabelOperarios { position: absolute;	top: 50px;	left: 20px;	width: 150px;	height: 20px;	}
+#idSegOperarios { position: absolute;	top: 50px;	left: 180px; width: 340px;	height: 20px;	}  
+#idSegRoles { position: absolute;	top: 90px;	left: 20px;	width: 200px;	height: 300px;	}
+#idSegRolesEnOperario {	  position: absolute;	top: 90px;	left: 320px;	width: 200px;	height: 300px;	}  
+
+#idSegEnviarTodos {	  position: absolute;	top: 130px;	left: 250px;	width: 40px;	height: 30px;	}  
+#idSegEnviarUno {	  position: absolute;	top: 180px;	left: 250px;	width: 40px;	height: 30px;	}  
+#idSegTraerUno {	  position: absolute;	top: 230px;	left: 250px;	width: 40px;	height: 30px;	}  
+#idSegTraerTodos {	  position: absolute;	top: 280px;	left: 250px;	width: 40px;	height: 30px;	}  
+
+/**********************************
+ asignar enlaces en rol
+***********************************/
+#idLabelTituloAsignarEnlaceRol {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivAgregarEnlaceEnRol{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivResultadoEnlaceEnRol { position: absolute;	top: 30px;	left: 20px;	width: 300px;	height: 20px; font-size: 13px;	}
+  
+#idSegLabelRoles { position: absolute;	top: 50px;	left: 20px;	width: 150px;	height: 20px;	}
+#idSegRolesAsignar { position: absolute;	top: 50px;	left: 180px; width: 640px;	height: 20px;	}  
+#idSegEnlaces { position: absolute;	top: 90px;	left: 20px;	width: 350px;	height: 300px;	}
+#idSegEnlacesEnRol {	  position: absolute;	top: 90px;	left: 470px;	width: 350px;	height: 300px;	}  
+
+#idSeg2EnviarTodos {	  position: absolute;	top: 130px;	left: 400px;	width: 40px;	height: 30px;	}  
+#idSeg2EnviarUno {	  position: absolute;	top: 180px;	left: 400px;	width: 40px;	height: 30px;	}  
+#idSeg2TraerUno {	  position: absolute;	top: 230px;	left: 400px;	width: 40px;	height: 30px;	}  
+#idSeg2TraerTodos {	  position: absolute;	top: 280px;	left: 400px;	width: 40px;	height: 30px;	}  
+
+
+/**********************************
+Consulta de cosecha
+***********************************/ 
+#idLabelTituloConsultaCosecha {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivForm04{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeForm04 { position: absolute;	top: 10px;	left: 20px;	width: 300px;	height: 20px; font-size: 13px;	}
+  
+#idForm04LabelFechaInicio{	position: absolute;	top: 30px;	left: 50px;	width: 150px;	height: 15px; 	}
+#idForm04FechaInicio{	 position: absolute;	top: 30px;	left: 210px; width: 250px;	height: 20px;	}
+
+#idForm04labelFechaFin{	position: absolute;	top: 65px;	left: 50px;	width: 150px;	height: 15px; 	}  
+#idForm04FechaFin{	 position: absolute;	top: 65px;	left: 210px; width: 250px;	height: 20px;	}
+
+#idForm04LabelFlora{	position: absolute;	top: 100px;	left: 50px;	width: 150px;	height: 15px; 	}
+#idForm04Flora{	 position: absolute;	top: 100px;	left: 210px; width: 200px;	height: 25px;	}
+
+#idForm04LabelColmenar{	position: absolute;	top: 135px;	left: 50px;	width: 150px;	height: 15px; 	}
+#idForm04Colmenar{	 position: absolute;	top: 135px;	left: 210px; width: 200px;	height: 25px;	}
+
+#idForm04LabelProductoApicola{	position: absolute;	top: 170px;	left: 50px;	width: 150px;	height: 15px; 	}
+#idForm04ProductoApicola{	 position: absolute;	top: 170px;	left: 210px; width: 200px;	height: 25px;	}
+
+#idForm04Consultar{	  position: absolute;	top: 210px;	left: 50px;	width: 90px;	height: 30px;	}
+#idForm04Salir{	  position: absolute;	top: 210px;	left: 175px;	width: 90px;	height: 30px;	}
+
+#idDivResultadoForm04{	position: absolute;	top: 280px;	left: 50px;	width: 1010px;	height: 160px;padding: 0px;	font-size: 12px; 	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+/**********************************
+Consulta extracción de equipos
+***********************************/ 
+#idLabelTituloConsultaExtraccionEquipos {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivForm01{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeForm01 { position: absolute;	top: 10px;	left: 20px;	width: 300px;	height: 20px; font-size: 13px;	}
+  
+#idForm01LabelFechaInicio{	position: absolute;	top: 60px;	left: 50px;	width: 100px;	height: 15px; 	}
+#idForm01FechaInicio{	 position: absolute;	top: 60px;	left: 175px; width: 250px;	height: 20px;	}
+
+#idForm01labelFechaFin{	position: absolute;	top: 95px;	left: 50px;	width: 100px;	height: 15px; 	}  
+#idForm01FechaFin{	 position: absolute;	top: 95px;	left: 175px; width: 250px;	height: 20px;	}
+
+#idForm01LabelColmenar{	position: absolute;	top: 130px;	left: 50px;	width: 100px;	height: 15px; 	}
+#idForm01Colmenar{	 position: absolute;	top: 130px;	left: 175px; width: 200px;	height: 25px;	}
+
+#idForm01Consultar{	  position: absolute;	top: 170px;	left: 50px;	width: 90px;	height: 30px;	}
+#idForm01Salir{	  position: absolute;	top: 170px;	left: 175px;	width: 90px;	height: 30px;	}
+
+#idDivResultadoForm01{	position: absolute;	top: 220px;	left: 50px;	width: 1010px;	height: 160px;padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+/****************************************************
+Registro  de cosecha
+*****************************************************/   
+#idLabelTituloRegistroCosecha {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivForm02{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivContenedorCos{	position: absolute;	top: 40px;	left: 250px;	width: 580px;	height: 480px; background-color: white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivMensajeForm02 { position: absolute;	top: 15px;	left: 30px;	width: 500px;	height: 20px; font-size: 13px;	}
+
+#idForm02LabelProductoApicola{	position: absolute;	top: 40px;	left: 30px;	width: 200px;	height: 15px; 	}
+#idForm02ProductoApicola{	 position: absolute;	top: 40px;	left: 320px; width: 200px;	height: 25px;	}
+
+#idForm02LabelEquipos{	position: absolute;	top: 70px;	left: 30px;	width: 200px;	height: 15px; 	}  
+#idForm02Equipos{	 position: absolute;	top: 70px;	left: 320px; width: 200px;	height: 25px;	}
+
+
+#idForm02Label_8 { position: absolute;	top: 120px;	left: 30px;	width: 200px;	height: 15px;	}
+#idForm02_8 {	  position: absolute;	top: 140px;	left: 30px;	width: 180px;	height: 140px;	}   
+#idForm02_9 {	 position: absolute;	top:140px;	left: 250px;	width: 50px;	height: 30px;	}
+#idForm02_10 {	  position: absolute;	top:210px;	left: 250px;	width: 50px;	height: 30px;	}
+#idForm02Label_11 {  position: absolute;	top: 120px;	left: 340px;	width: 180px;	height: 15px;	}  
+#idForm02_11 {	  position: absolute;	top: 140px;	left: 340px;	width: 180px;	height: 140px;	}
+
+
+#idForm02LabelContenedor{	position: absolute;	top: 300px;	left: 30px;	width: 200px;	height: 15px; 	}
+#idForm02Contenedor{	 position: absolute;	top: 325px;	left: 30px; width: 500px;	height: 25px;	}
+
+#idForm02LabelCantidad{	position: absolute;	top: 370px;	left: 30px;	width: 200px;	height: 15px; 	}
+#idForm02Cantidad{	 position: absolute;	top: 370px;	left: 330px; width: 195px;	height: 15px;	}
+
+
+#idForm02Agregar{	  position: absolute;	top: 430px;	left: 30px;	width: 90px;	height: 30px;	}
+
+
+
+/****************************************************
+Consulta de Orden de envasado
+*****************************************************/ 
+#idLabelTituloConsultaOrdenAvansado {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivForm27{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeForm27 { position: absolute;	top: 10px;	left: 20px;	width: 300px;	height: 20px; font-size: 13px;	}
+  
+#idForm27LabelFechaInicio{	position: absolute;	top: 50px;	left: 50px;	width: 100px;	height: 15px; 	}
+#idForm27FechaInicio{	 position: absolute;	top: 50px;	left: 175px; width: 250px;	height: 20px;	}
+
+#idForm27LabelFechaFin{	position: absolute;	top: 50px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idForm27FechaFin{	 position: absolute;	top: 50px;	left: 510px; width: 250px;	height: 20px;	}
+
+#idForm27LabelEstado{	position: absolute;	top: 85px;	left: 50px;	width: 100px;	height: 15px; 	}  
+#idForm27Estado{	 position: absolute;	top: 85px;	left: 175px; width: 200px;	height: 25px;	}
+
+#idForm27Consultar{	  position: absolute;	top: 125px;	left: 50px;	width: 90px;	height: 30px;	}
+#idForm27Aprobar{	  position: absolute;	top: 125px;	left: 175px;	width: 90px;	height: 30px;	}
+
+#idDivResultadoForm27{	position: absolute;	top: 190px;	left: 50px;	width: 1010px;	height: 160px;padding: 0px; font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+
+
+/****************************************************
+Registro de extraccion de equipos
+*****************************************************/ 
+
+#idDivCrud14{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 520px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloRegistraExtraccion {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorExt{	position: absolute;	top: 40px;	left: 50px;	width: 1030px;	height: 160px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idCrud14Label_1 {	position: absolute;	top: 10px;	left: 50px;	width: 100px;	height: 15px; 	}
+#idCrud14_1 {	 position: absolute;	top: 10px;	left: 175px; width: 200px;	height: 25px;	}
+
+#idCrud14Label_2 { position: absolute;	top: 50px;	left: 50px;	width: 130px;	height: 15px;	}
+#idCrud14_2 {	  position: absolute;	top: 50px;	left: 175px;	width: 200px;	height: 25px;	}
+
+#idCrud14Label_3 { position: absolute;	top: 90px;	left: 50px;	width: 120px;	height: 15px;	}
+#idCrud14_3 {	  position: absolute;	top: 90px;	left: 175px;	width: 200px;	height: 25px;	}  
+
+#idCrud14Label_4 { position: absolute;	top: 130px;	left: 50px;	width: 130px;	height: 15px;	}
+#idCrud14_4 {	  position: absolute;	top: 130px;	left: 175px;	width: 480px;	height: 15px;	}
+
+#idCrud14Label_X { position: absolute;	top: 130px;	left: 700px;	width: 130px;	height: 15px;	}
+#idCrud14_X {	  position: absolute;	top: 130px;	left: 820px;	width: 200px;	height: 20px;	}
+
+#idTabsExtraccion{	position: absolute;	top: 220px;	left: 50px;	width: 1030px;	height: 300px; }
+
+#idDivTabAlzas_1{	position: absolute;	top: 50px;	left: 10px;	width: 1010px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeAlza_1 { position: absolute;	top: 10px;	left: 200px;	width: 400px;	height: 20px;	}
+#idCrud14Label_8_1 { position: absolute;	top: 40px;	left: 60px;	width: 180px;	height: 15px;	}
+#idCrud14_8_1 {	  position: absolute;	top: 60px;	left: 60px;	width: 180px;	height: 170px;	}   
+#idCrud14Label_11_1 {  position: absolute;	top: 40px;	left: 340px;	width: 180px;	height: 15px;	}  
+#idCrud14_11_1 {	  position: absolute;	top: 60px;	left: 340px;	width: 180px;	height: 170px;	}
+#idCrud14AgregarAlza {	   position: absolute;	top:60px;	left: 560px;	width: 100px;	height: 30px;	}
+
+#idDivTabMiel_1{	position: absolute;	top: 50px;	left: 10px;	width: 1010px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeMiel_1 { position: absolute;	top: 10px;	left: 200px;	width: 400px;	height: 20px;	}
+#idCrud14Label_8_2 { position: absolute;	top: 40px;	left: 60px;	width: 180px;	height: 15px;	}
+#idCrud14_8_2 {	  position: absolute;	top: 60px;	left: 60px;	width: 180px;	height: 170px;	}   
+#idCrud14Label_11_2 {  position: absolute;	top: 40px;	left: 340px;	width: 180px;	height: 15px;	}  
+#idCrud14_11_2 {	  position: absolute;	top: 60px;	left: 340px;	width: 180px;	height: 170px;	}
+#idCrud14AgregarEquipoDeMiel {	  position: absolute;	top:60px;	left: 560px;	width: 100px;	height: 30px;	}
+
+
+#idDivTabNomiel_1{	position: absolute;	top: 50px;	left: 10px;	width: 1010px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeNoMiel_1 { position: absolute;	top: 10px;	left: 200px;	width: 400px;	height: 20px;	}
+#idCrud14Label_8_3 { position: absolute;	top: 40px;	left: 60px;	width: 250px;	height: 15px;	}
+#idCrud14_8_3 {	  position: absolute;	top: 60px;	left: 60px;	width: 180px;	height: 170px;	}     
+#idCrud14Label_11_3 {  position: absolute;	top: 40px;	left: 340px;	width: 250px;	height: 15px;	}  
+#idCrud14_11_3{	  position: absolute;	top: 60px;	left: 340px;	width: 180px;	height: 170px;	}
+#idCrud14AgregarEquipoDiferenteDeMiel {	   position: absolute;	top:60px;	left: 560px;	width: 100px;	height: 30px;	}
+
+
+#idDivTabSeleccioandos_1{	position: absolute;	top: 50px;	left: 10px;	width: 1010px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivCrud14Resultado_1{	position: absolute;	top: 20px;	left: 20px;	width: 540px;	height: 240px;	}
+#idCrud14Listar {	  position: absolute;	top: 70px;	left: 580px;	width: 200px;	height: 30px;	}
+#idCrud14Eliminar {	  position: absolute;	top: 100px;	left: 580px;	width: 200px;	height: 30px;	}
+#idCrud14Registrar {	  position: absolute;	top: 130px;	left: 580px;	width: 200px;	height: 30px;	}
+
+/*********************
+Registro de envasados 
+**********************/ 
+#idLabelTituloRegistroEnvasado {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorEnv{	position: absolute;	top: 40px;	left: 220px;	width: 700px;	height: 480px; background-color: white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+#idDivForm05{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeForm05 { position: absolute;	top: 40px;	left: 30px;	width: 600px;	height: 20px; font-size: 13px;}
+  
+#idForm05LabelProductoApicola{	position: absolute;	top: 80px;	left: 30px;	width: 200px;	height: 15px; 	}
+#idForm05ProductoApicola{	 position: absolute;	top: 80px;	left: 300px; width: 200px;	height: 25px;	}
+
+#idForm05LabelEquipo{	position: absolute;	top: 120px;	left: 30px;	width: 200px;	height: 15px; 	}
+#idForm05Equipo{	 position: absolute;	top: 120px;	left: 300px; width: 200px;	height: 25px;	}
+
+#idForm05LabelContenedor{	position: absolute;	top: 160px;	left: 30px;	width: 200px;	height: 15px; 	}  
+#idForm05Contenedor{	 position: absolute;	top: 160px;	left: 300px; width: 350px;	height: 25px;	}
+
+#idForm05LabelProducto{	position: absolute;	top: 200px;	left: 30px;	width: 250px;	height: 15px; 	}
+#idForm05Producto{	 position: absolute;	top: 200px;	left: 300px; width: 200px;	height: 	20px;	}
+
+#idForm05LabelEnvase{	position: absolute;	top: 240px;	left: 30px;	width: 200px;	height: 15px; 	}
+#idForm05Envase{	 position: absolute;	top: 240px;	left: 300px; width: 200px;	height: 25px;	}
+
+#idForm05LabelCantidad{	position: absolute;	top: 280px;	left: 30px;	width: 200px;	height: 15px; 	}
+#idForm05Cantidad{	 position: absolute;	top: 280px;	left: 300px; width: 195px;	height: 20px;	}
+
+
+#idForm05Agregar{	  position: absolute;	top: 320px;	left: 30px;	width: 90px;	height: 30px;	}
+
+
+
+/****************************************************
+Consulta ruta de seleccion
+*****************************************************/ 
+#idLabelTituloConsultaRutaSeleccion {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+  
+#idDivForm07{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeForm07 { position: absolute;	top: 10px;	left: 20px;	width: 300px;	height: 20px; font-size: 13px;	}
+  
+#idForm07LabelFechaInicio{	position: absolute;	top: 50px;	left: 50px;	width: 100px;	height: 15px; 	}
+#idForm07FechaInicio{	 position: absolute;	top: 50px;	left: 175px; width: 250px;	height: 20px;	}
+
+#idForm07LabelFechaFin{	position: absolute;	top: 50px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idForm07FechaFin{	 position: absolute;	top: 50px;	left: 510px; width: 250px;	height: 20px;	}
+
+#idForm07LabelEstado{	position: absolute;	top: 85px;	left: 50px;	width: 100px;	height: 15px; 	}  
+#idForm07Estado{	 position: absolute;	top: 85px;	left: 175px; width: 200px;	height: 25px;	}
+
+#idForm07Consultar{	  position: absolute;	top: 125px;	left: 50px;	width: 90px;	height: 30px;	}
+#idForm07Aprobar{	  position: absolute;	top: 125px;	left: 175px;	width: 90px;	height: 30px;	}
+
+#idDivResultadoForm07{	position: absolute;	top: 190px;	left: 50px;	width: 1010px;	height: 160px;padding: 0px; font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+/****************************************************
+Registro de orden de seleccion
+*****************************************************/ 
+#idLabelTituloRegistroProgramacion {	position: absolute;	top: 5px;	left: 50px;	width: 100%;	height: 25px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivForm08{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+  
+
+#idForm08Operario { position: absolute;	top: 60px;	left: 20px;	width: 150px;	height: 20px;	}
+#idForm08SegOperario { position: absolute;	top: 60px;	left: 180px; width: 340px;	height: 25px;	}  
+
+
+/****************************************************
+Registro de orden de envasado
+*****************************************************/ 
+#idLabelTituloRegistroProgramacionEnvasado {	position: absolute;	top: 5px;	left: 50px;	width: 100%;	height: 25px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivForm28{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+  
+
+#idForm28Operario { position: absolute;	top: 60px;	left: 20px;	width: 150px;	height: 20px;	}
+#idForm28SegOperario { position: absolute;	top: 60px;	left: 180px; width: 340px;	height: 25px;	}
+
+/****************************************************
+Mantenimiento de Zona
+*****************************************************/ 
+  
+#idDivCrud01{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivCrud01Resultado{	position: absolute;	top: 240px;	left: 320px;	width: 800px;	height: 250px; 	}
+    
+#idTituloCrud01 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idCrud01LabelNombre {	position: absolute;	top: 50px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud01Nombre {	 		position: absolute;	top: 50px;	left: 520px; width: 200px;	height: 15px;	}
+  
+#idCrud01Agregar {	  position: absolute;	top: 150px;	left: 380px;	width: 90px;	height: 30px;	}  
+#idCrud01Actualizar {	  position: absolute;	top: 150px;	left: 480px;	width: 90px;	height: 30px;	}  
+#idCrud01Eliminar {	  position: absolute;	top: 150px;	left: 580px;	width: 90px;	height: 30px;	}  
+#idCrud01Listar {	  position: absolute;	top: 150px;	left: 680px;	width: 90px;	height: 30px;	}  
+  
+/****************************************************
+Mantenimiento de Flora
+*****************************************************/ 
+  
+#idDivCrud02{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivCrud02Resultado{	position: absolute;	top: 240px;	left: 320px;	width: 800px;	height: 250px; 	}
+    
+#idTituloCrud02 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idCrud02LabelNombre {	position: absolute;	top: 50px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud02Nombre {	 		position: absolute;	top: 50px;	left: 520px; width: 200px;	height: 15px;	}
+  
+#idCrud02Agregar {	  position: absolute;	top: 150px;	left: 380px;	width: 90px;	height: 30px;	}  
+#idCrud02Actualizar {	  position: absolute;	top: 150px;	left: 480px;	width: 90px;	height: 30px;	}  
+#idCrud02Eliminar {	  position: absolute;	top: 150px;	left: 580px;	width: 90px;	height: 30px;	}  
+#idCrud02Listar {	  position: absolute;	top: 150px;	left: 680px;	width: 90px;	height: 30px;	}  
+  
+/****************************************************
+Mantenimiento de producto apicola
+*****************************************************/ 
+  
+#idDivCrud03{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivCrud03Resultado{	position: absolute;	top: 240px;	left: 320px;	width: 800px;	height: 250px; 	}
+    
+#idTituloCrud03 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idCrud03LabelNombre {	position: absolute;	top: 80px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud03Nombre {	 		position: absolute;	top: 80px;	left: 520px; width: 200px;	height: 15px;	}
+  
+#idCrud03Agregar {	  position: absolute;	top: 150px;	left: 380px;	width: 90px;	height: 30px;	}  
+#idCrud03Actualizar {	  position: absolute;	top: 150px;	left: 480px;	width: 90px;	height: 30px;	}  
+#idCrud03Eliminar {	  position: absolute;	top: 150px;	left: 580px;	width: 90px;	height: 30px;	}  
+#idCrud03Listar {	  position: absolute;	top: 150px;	left: 680px;	width: 90px;	height: 30px;	}  
+  
+  
+/****************************************************
+Mantenimiento de producto terminado
+*****************************************************/ 
+  
+#idDivCrud04{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivCrud04Resultado{	position: absolute;	top: 240px;	left: 320px;	width: 800px;	height: 250px; 	}
+    
+#idTituloCrud04 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idCrud04LabelNombre {	position: absolute;	top: 80px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud04Nombre {	 		position: absolute;	top: 80px;	left: 520px; width: 200px;	height: 15px;	}
+  
+#idCrud04Agregar {	  position: absolute;	top: 150px;	left: 380px;	width: 90px;	height: 30px;	}  
+#idCrud04Actualizar {	  position: absolute;	top: 150px;	left: 480px;	width: 90px;	height: 30px;	}  
+#idCrud04Eliminar {	  position: absolute;	top: 150px;	left: 580px;	width: 90px;	height: 30px;	}  
+#idCrud04Listar {	  position: absolute;	top: 150px;	left: 680px;	width: 90px;	height: 30px;	}  
+  
+  
+/****************************************************
+Mantenimiento de Envase
+*****************************************************/ 
+  
+#idDivCrud05{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idTituloCrud05 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorManteEnvase{	position: absolute;	top: 40px;	left: 200px;	width: 750px;	height: 490px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivCrud05Resultado{	position: absolute;	top: 240px;	left: 100px;	width: 690px;	height: 250px;  	}
+
+#idCrud05LabelNombre {	position: absolute;	top: 40px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud05Nombre {	 		position: absolute;	top: 40px;	left: 320px; width: 200px;	height: 15px;	}
+
+#idCrud05LabelProductoApicola {	position: absolute;	top: 80px;	left: 150px;	width: 150px;	height: 15px; 	}   
+#idCrud05ProductoApicola {	 		position: absolute;	top: 80px;	left: 320px; width: 205px;	height: 25px;	}
+      
+
+#idCrud05Agregar {	  position: absolute;	top: 170px;	left: 140px;	width: 90px;	height: 30px;	}  
+#idCrud05Actualizar {	  position: absolute;	top: 170px;	left: 240px;	width: 90px;	height: 30px;	}  
+#idCrud05Eliminar {	  position: absolute;	top: 170px;	left: 340px;	width: 90px;	height: 30px;	}  
+#idCrud05Listar {	  position: absolute;	top: 170px;	left: 440px;	width: 90px;	height: 30px;	}
+  
+ /****************************************************
+Mantenimiento de Operario
+*****************************************************/ 
+  
+#idDivCrud06{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivCrud06Resultado{	position: absolute;	top: 270px;	left: 220px;	width: 800px;	height: 220px; 	}
+      
+#idTituloCrud06 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idCrud06LabelNombres {	position: absolute;	top: 50px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud06Nombres {	 		position: absolute;	top: 50px;	left: 520px; width: 200px;	height: 15px;	}
+
+#idCrud06LabelApellidos {	position: absolute;	top: 80px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud06Apellidos {	 		position: absolute;	top: 80px;	left: 520px; width: 200px;	height: 15px;	}
+  
+#idCrud06LabelDni {	position: absolute;	top: 110px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud06Dni {	 		position: absolute;	top: 110px;	left: 520px; width: 200px;	height: 15px;	}
+  
+#idCrud06LabelCorreo {	position: absolute;	top: 140px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud06Correo {	 		position: absolute;	top: 140px;	left: 520px; width: 200px;	height: 15px;	}
+  
+#idCrud06LabelLogin {	position: absolute;	top: 170px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idCrud06Login {	 		position: absolute;	top: 170px;	left: 520px; width: 200px;	height: 15px;	}
+
+#idCrud06Agregar {	  position: absolute;	top: 220px;	left: 380px;	width: 90px;	height: 30px;	}  
+#idCrud06Actualizar {	  position: absolute;	top: 220px;	left: 480px;	width: 90px;	height: 30px;	}  
+#idCrud06Eliminar {	  position: absolute;	top: 220px;	left: 580px;	width: 90px;	height: 30px;	}  
+#idCrud06Listar {	  position: absolute;	top: 220px;	left: 680px;	width: 90px;	height: 30px;	}  
+  
+/****************************************************
+Cambio de contrasena
+*****************************************************/
+#idDivCrud07{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal; 	font-family: Lucida Grande,Verdana, Geneva, sans-serif;	}
+
+#idTituloCrud07 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family: Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:yellow;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorCambio{	position: absolute;	top: 40px;	left: 290px;	width: 500px;	height: 230px; background-color: white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivCrud07Resultado{	position: absolute;	top: 10px;	left: 40px;	width: 600px;	height: 20px; 	}
+
+#idCrud07LabelContra01 {	position: absolute;	top: 40px;	left: 40px;	width: 200px;	height: 15px; font-size: 14px	}  
+#idCrud07Contra01 {	 		position: absolute;	top: 40px;	left: 260px; width: 200px;	height: 20px;	}
+
+#idCrud07LabelContra02 {	position: absolute;	top: 80px;	left: 40px;	width: 200px;	height: 15px; font-size: 14px		}  
+#idCrud07Contra02 {	 		position: absolute;	top: 80px;	left: 260px; width: 200px;	height: 20px;	}
+  
+#idCrud07LabelContra03 {	position: absolute;	top: 120px;	left: 40px;	width: 200px;	height: 15px; 	font-size: 14px	}
+#idCrud07Contra03 {	 		position: absolute;	top: 120px;	left: 260px; width: 200px;	height: 20px;	}
+
+#idCrud07Agregar {	  position: absolute;	top: 160px;	left: 80px;	width: 170px;	height: 30px;	}  
+#idCrud07Limpiar {	  position: absolute;	top: 160px;	left: 270px;	width: 170px;	height: 30px;	}  
+
+
+ /****************************************************
+Mantenimiento de Reina
+*****************************************************/ 
+  
+#idDivCrud08{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idTituloCrud08 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorManteReina{	position: absolute;	top: 40px;	left: 200px;	width: 750px;	height: 490px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivCrud08Resultado{	position: absolute;	top: 240px;	left: 20px;	width: 850px;	height: 250px; 	}
+
+#idCrud08LabelDescripcion {	position: absolute;	top: 20px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud08Descripcion {	 		position: absolute;	top: 20px;	left: 320px; width: 200px;	height: 15px;	}
+
+#idCrud08LabelRaza {	position: absolute;	top: 50px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud08Raza {	 		position: absolute;	top: 50px;	left: 320px; width: 205px;	height: 25px;	}
+    
+#idCrud08LabelFechaNacimiento {	position: absolute;	top: 80px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud08FechaNacimiento {	 		position: absolute;	top: 80px;	left: 320px; width: 205px;	height: 15px;	}
+  
+#idCrud08LabelEstado {	position: absolute;	top: 110px;	left: 150px;	width: 150px;	height: 15px; 	}   
+#idCrud08Estado {	 		position: absolute;	top: 110px;	left: 320px; width: 205px;	height: 25px;	}
+    
+
+#idCrud08Agregar {	  position: absolute;	top: 170px;	left: 140px;	width: 90px;	height: 30px;	}  
+#idCrud08Actualizar {	  position: absolute;	top: 170px;	left: 240px;	width: 90px;	height: 30px;	}  
+#idCrud08Eliminar {	  position: absolute;	top: 170px;	left: 340px;	width: 90px;	height: 30px;	}  
+#idCrud08Listar {	  position: absolute;	top: 170px;	left: 440px;	width: 90px;	height: 30px;	}  
+  
+
+   /****************************************************
+Mantenimiento de Colmena
+*****************************************************/ 
+  
+#idDivCrud09{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idTituloCrud09 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorManteColmena{	position: absolute;	top: 35px;	left: 130px;	width: 900px;	height: 490px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivCrud09Resultado{	position: absolute;	top: 280px;	left: 30px;	width: 800px;	height: 200px; 	}
+      
+#idCrud09LabelCodigo {	position: absolute;	top: 20px;	left: 200px;	width: 150px;	height: 15px; 	}
+#idCrud09Codigo {	 		position: absolute;	top: 20px;	left: 370px; width: 195px;	height: 15px;	}
+
+#idCrud09LabelColmenar {	position: absolute;	top: 50px;	left: 200px;	width: 150px;	height: 15px; 	}
+#idCrud09Colmenar {	 		position: absolute;	top: 50px;	left: 370px; width: 200px;	height: 25px;	}
+  
+#idCrud09LabelReina {	position: absolute;	top: 80px;	left: 200px;	width: 150px;	height: 15px; 	}
+#idCrud09Reina {	 		position: absolute;	top: 80px;	left: 370px; width: 200px;	height: 25px;	}
+  
+#idCrud09LabelEstado1 {	position: absolute;	top: 110px;	left: 200px;	width: 150px;	height: 15px; 	}
+#idCrud09Estado1 {	 		position: absolute;	top: 110px;	left: 370px; width: 200px;	height: 25px;	}
+    
+#idCrud09LabelEstado2 {	position: absolute;	top: 140px;	left: 200px;	width: 150px;	height: 15px; 	}
+#idCrud09Estado2 {	 		position: absolute;	top: 140px;	left: 370px; width: 200px;	height: 25px;	}
+
+#idCrud09LabelEstado3 {	position: absolute;	top: 170px;	left: 200px;	width: 150px;	height: 15px; 	}
+#idCrud09Estado3 {	 		position: absolute;	top: 170px;	left: 370px; width: 200px;	height: 25px;	}
+
+#idCrud09LabelEstado4 {	position: absolute;	top: 200px;	left: 200px;	width: 150px;	height: 15px; 	}
+#idCrud09Estado4 {	 		position: absolute;	top: 200px;	left: 370px; width: 200px;	height: 25px;	}
+
+	
+#idCrud09Agregar {	  position: absolute;	top: 240px;	left: 200px;	width: 90px;	height: 30px;	}  
+#idCrud09Actualizar {	  position: absolute;	top: 240px;	left: 300px;	width: 90px;	height: 30px;	}  
+#idCrud09Eliminar {	  position: absolute;	top: 240px;	left: 400px;	width: 90px;	height: 30px;	}  
+#idCrud09Listar {	  position: absolute;	top: 240px;	left: 500px;	width: 90px;	height: 30px;	}  
+  
+    /****************************************************
+Mantenimiento de alza
+*****************************************************/ 
+  
+#idDivCrud10{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idTituloCrud10 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+
+#idDivContenedorManteAlza{	position: absolute;	top: 40px;	left: 200px;	width: 750px;	height: 490px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivCrud10Resultado{	position: absolute;	top: 210px;	left: 20px;	width: 800px;	height: 250px; 	}
+
+
+#idCrud10Label_1 {	position: absolute;	top: 20px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud10_1 {	 		position: absolute;	top: 20px;	left: 320px; width: 200px;	height: 15px;	}
+
+#idCrud10Label_2 {	position: absolute;	top: 50px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud10_2 {	 		position: absolute;	top: 50px;	left: 320px; width: 200px;	height: 15px;	}
+
+#idCrud10Label_3 {	position: absolute;	top: 80px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud10_3 {	 		position: absolute;	top: 80px;	left: 320px; width: 205px;	height: 25px;	}
+    
+#idCrud10Label_4 {	position: absolute;	top: 110px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud10_4 {	 		position: absolute;	top: 110px;	left: 320px; width: 205px;	height: 25px;	}
+
+#idCrud10Agregar {	  position: absolute;	top: 160px;	left: 150px;	width: 90px;	height: 30px;	}  
+#idCrud10Actualizar {	  position: absolute;	top: 160px;	left: 250px;	width: 90px;	height: 30px;	}  
+#idCrud10Eliminar {	  position: absolute;	top: 160px;	left: 350px;	width: 90px;	height: 30px;	}  
+#idCrud10Listar {	  position: absolute;	top: 160px;	left: 450px;	width: 90px;	height: 30px;	}  
+  
+  
+     /****************************************************
+Mantenimiento de equipo de colmena
+*****************************************************/ 
+  
+#idDivCrud11{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idTituloCrud11 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorManteEqColmena{	position: absolute;	top: 40px;	left: 200px;	width: 750px;	height: 490px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivCrud11Resultado{	position: absolute;	top: 240px;	left: 20px;	width: 800px;	height: 240px; 	}
+
+#idCrud11Label_1 {	position: absolute;	top: 20px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud11_1 {	 		position: absolute;	top: 20px;	left: 320px; width: 200px;	height: 15px;	}
+
+#idCrud11Label_2 {	position: absolute;	top: 50px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud11_2 {	 		position: absolute;	top: 50px;	left: 320px; width: 200px;	height: 15px;	}
+
+#idCrud11Label_3 {	position: absolute;	top: 80px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud11_3 {	 		position: absolute;	top: 80px;	left: 320px; width: 205px;	height: 25px;	}
+    
+#idCrud11Label_4 {	position: absolute;	top: 110px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud11_4 {	 		position: absolute;	top: 110px;	left: 320px; width: 205px;	height: 25px;	}
+
+#idCrud11Label_5 {	position: absolute;	top: 140px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud11_5 {	 		position: absolute;	top: 140px;	left: 320px; width: 205px;	height: 25px;	}
+
+
+#idCrud11Agregar {	  position: absolute;	top: 190px;	left: 150px;	width: 90px;	height: 30px;	}  
+#idCrud11Actualizar {	  position: absolute;	top: 190px;	left: 250px;	width: 90px;	height: 30px;	}  
+#idCrud11Eliminar {	  position: absolute;	top: 190px;	left: 350px;	width: 90px;	height: 30px;	}  
+#idCrud11Listar {	  position: absolute;	top: 190px;	left: 450px;	width: 90px;	height: 30px;	}  
+  
+  
+ /****************************************************
+Registro de configuracion
+*****************************************************/ 
+   
+#idDivCrud12{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idTituloCrud12 {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+#idDivContenedorRegConfi{	position: absolute;	top: 40px;	left: 200px;	width: 700px;	height: 500px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeCrud12 { position: absolute;	top: 130px;	left: 70px;	width: 650px; 	height: 20px; font-size: 13px; 	}
+
+
+#idCrud12LabelExcel { position: absolute;	top: 20px;	left: 70px;	width: 150px;	height: 20px;	}
+#idCrud12Excel { position: absolute;	top: 20px;	left: 200px; width: 350px;	height: 20px;	}  
+#idCrud12SubmitExcel {	  position: absolute;	top: 20px;	left: 570px;	width: 100px;	height: 30px;	}  
+
+#idCrud12Colmenar { position: absolute;	top: 50px;	left: 70px;	width: 150px;	height: 20px;	}
+#idCrud12SegColmenar { position: absolute;	top: 50px;	left: 200px; width: 250px;	height: 20px;	}  
+
+#idCrud12Colmena { position: absolute;	top: 80px;	left: 70px;	width: 150px;	height: 20px;	}
+#idCrud12SegColmena { position: absolute;	top: 80px;	left: 200px; width: 250px;	height: 20px;	}  
+
+#idCrud12Label1 { position: absolute;	top: 150px;	left: 70px;	width: 500px;	height: 20px;	}
+#idCrud12SelTotalAlza { position: absolute;	top: 170px;	left: 70px;	width: 170px;	height: ;	}
+#idCrud12SelAlza {	  position: absolute;	top: 170px;	left: 330px;	width: 170px;	height: 70px;	}  
+#idCrud12AlzaEnviarUno {	  position: absolute;	top: 170px;	left: 265px;	width: 50px;	height: 30px;	}  
+#idCrud12AlzaTraerUno {	  position: absolute;	top: 210px;	left: 265px;	width: 50px;	height: 30px;	}  
+
+#idCrud12Label2 { position: absolute;	top: 270px;	left: 70px;	width: 500px;	height: 20px;	}
+#idCrud12SelTotalEquipo { position: absolute;	top: 290px;	left: 70px;	width: 170px;	height: 70px;	}
+#idCrud12SelEquipo {	  position: absolute;	top: 290px;	left: 330px;	width: 170px;	height: 70px;	}  
+#idCrud12EquipoEnviarUno {	  position: absolute;	top: 290px;	left: 265px;	width: 50px;	height: 30px;	}  
+#idCrud12EquipoTraerUno {	  position: absolute;	top: 330px;	left: 265px;	width: 50px;	height: 30px;	}  
+
+#idCrud12Label3 { position: absolute;	top: 390px;	left: 70px;	width: 500px;	height: 20px;	}
+#idCrud12SelTotalEquipoDeColmena { position: absolute;	top: 410px;	left: 70px;	width: 170px;	height: 70px;	}
+#idCrud12SelEquipoDeColmena {	  position: absolute;	top: 410px;	left: 330px;	width: 170px;	height: 70px;	}  
+#idCrud12EquipoDeColmenaEnviarUno {	   position: absolute;	top: 410px;	left: 265px;	width: 50px;	height: 30px;	}  
+#idCrud12EquipoDeColmenaTraerUno {	   position: absolute;	top: 450px;	left: 265px;	width: 50px;	height: 30px;	} 
+
+
+  
+ 
+ /*********************
+Registro de sanidad 
+**********************/ 
+#idLabelTituloRegistroSanidad {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivForm06{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivMensajeForm06 { position: absolute;	top: 10px;	left: 20px;	width: 300px;	height: 20px; font-size: 13px;	}
+  
+#idForm06Label_1{	position: absolute;	top: 30px;	left: 50px;	width: 200px;	height: 15px; 	}
+#idForm06_1{	 position: absolute;	top: 30px;	left: 260px; width: 250px;	height: 20px;	}
+
+#idForm06Label_2{	position: absolute;	top: 65px;	left: 50px;	width: 200px;	height: 15px; 	}  
+#idForm06_2{	 position: absolute;	top: 65px;	left: 260px; width: 250px;	height: 20px;	}
+
+#idForm06Label_3{	position: absolute;	top: 105px;	left: 50px;	width: 200px;	height: 15px; 	}
+#idForm06_3{	 position: absolute;	top: 105px;	left: 260px; width: 200px;	height: 	20px;	}
+
+#idForm06Label_4{	position: absolute;	top: 140px;	left: 50px;	width: 200px;	height: 15px; 	}
+#idForm06_4{	 position: absolute;	top: 140px;	left: 260px; width: 200px;	height: 20px;	}
+
+#idForm06Label_5{	position: absolute;	top: 175px;	left: 50px;	width: 200px;	height: 15px; 	}
+#idForm06_5{	 position: absolute;	top: 175px;	left: 260px; width: 200px;	height: 20px;	}
+
+#idForm06Agregar{	  position: absolute;	top: 245px;	left: 50px;	width: 90px;	height: 30px;	}
+
+/**********************************
+ Intranet   
+***********************************/
+#idDivIntranet{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 520px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idIntranetTitulo {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+#idIntranetImagen{	  position: absolute;	top: 70px;	left: 350px;	width: 400px;	height: 400px;	}
+
+
+
+ /****************************************************
+Mantenimiento de colmenar
+*****************************************************/ 
+  
+#idDivCrud15{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idTituloCrud15 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorManteColmenar{	position: absolute;	top: 40px;	left: 200px;	width: 750px;	height: 490px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivCrud15Resultado{	position: absolute;	top: 240px;	left: 20px;	width: 850px;	height: 250px; 	}
+
+#idCrud15LabelDescripcion {	position: absolute;	top: 40px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud15Descripcion {	 		position: absolute;	top: 40px;	left: 320px; width: 200px;	height: 15px;	}
+
+#idCrud15LabelZona {	position: absolute;	top: 80px;	left: 150px;	width: 150px;	height: 15px; 	}   
+#idCrud15Zona {	 		position: absolute;	top: 80px;	left: 320px; width: 205px;	height: 25px;	}
+    
+
+#idCrud15Agregar {	  position: absolute;	top: 170px;	left: 140px;	width: 90px;	height: 30px;	}  
+#idCrud15Actualizar {	  position: absolute;	top: 170px;	left: 240px;	width: 90px;	height: 30px;	}  
+#idCrud15Eliminar {	  position: absolute;	top: 170px;	left: 340px;	width: 90px;	height: 30px;	}  
+#idCrud15Listar {	  position: absolute;	top: 170px;	left: 440px;	width: 90px;	height: 30px;	}
+
+
+ /****************************************************
+Mantenimiento de Equipo de apoyo
+*****************************************************/ 
+  
+#idDivCrud16{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 542px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idTituloCrud16 {		position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorManteEquipoDeApoyo{	position: absolute;	top: 40px;	left: 200px;	width: 750px;	height: 490px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idDivCrud16Resultado{	position: absolute;	top: 240px;	left: 100px;	width: 690px;	height: 250px;  	}
+
+#idCrud16LabelDescripcion {	position: absolute;	top: 40px;	left: 150px;	width: 150px;	height: 15px; 	}
+#idCrud16Descripcion {	 		position: absolute;	top: 40px;	left: 320px; width: 200px;	height: 15px;	}
+
+#idCrud16LabelTipo {	position: absolute;	top: 80px;	left: 150px;	width: 150px;	height: 15px; 	}   
+#idCrud16Tipo {	 		position: absolute;	top: 80px;	left: 320px; width: 205px;	height: 25px;	}
+    
+
+#idCrud16Agregar {	  position: absolute;	top: 170px;	left: 140px;	width: 90px;	height: 30px;	}  
+#idCrud16Actualizar {	  position: absolute;	top: 170px;	left: 240px;	width: 90px;	height: 30px;	}  
+#idCrud16Eliminar {	  position: absolute;	top: 170px;	left: 340px;	width: 90px;	height: 30px;	}  
+#idCrud16Listar {	  position: absolute;	top: 170px;	left: 440px;	width: 90px;	height: 30px;	}
+
+
+ /****************************************************
+Reporte estado colmenar
+*****************************************************/ 
+  
+#idDivRep01{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 520px; background-color:  #EBFCE4; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idTituloRep01 {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:20px;font-weight:bold;color:#679b14;background-color:#EBFCE4;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idDivContenedorRep01{	position: absolute;	top: 40px;	left: 50px;	width: 1030px;	height: 460px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idRep01Colmenar { position: absolute;	top: 40px;	left: 40px;	width: 150px;	height: 20px;	}
+#idRep01SegColmenar { position: absolute;	top: 40px;	left: 170px; width: 250px;	height: 20px;	}  
+
+#idRep02Fecha { position: absolute;	top: 70px;	left: 40px;	width: 150px;	height: 20px;	}
+#idRep02SegFecha { position: absolute;	top: 70px;	left: 170px; width: 250px;	height: 20px;	}  
+
+
+
+#idReporte01Agregar {	  position: absolute;	top: 40px;	left: 440px;	width: 90px;	height: 30px;	}  
+
+#idTabsRep01{	position: absolute;	top: 150px;	left: 30px;	width: 800px;	height: 300px; font-size: 13px;}
+#idDivReporte01_01{	position: absolute;	top: 50px;	left: 10px;	width: 780px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivReporte01_02{	position: absolute;	top: 50px;	left: 10px;	width: 780px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivReporte01_03{	position: absolute;	top: 50px;	left: 10px;	width: 780px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivReporte01_04{	position: absolute;	top: 50px;	left: 10px;	width: 780px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idDivReporte01_05{	position: absolute;	top: 50px;	left: 10px;	width: 780px;	height: 250px; background-color:  white; padding: 0px;color: green;	font-size: 13px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+#idDivReporte01_Grid01{	position: absolute;	top: 20px;	left: 20px;	width: 600px;	height: 200px; background-color:  white; padding: 0px;color: green;		}
+#idDivReporte01_Grid02{	position: absolute;	top: 20px;	left: 20px;	width: 600px;	height: 200px; background-color:  white; padding: 0px;color: green;		}
+#idDivReporte01_Grid03{	position: absolute;	top: 20px;	left: 20px;	width: 600px;	height: 200px; background-color:  white; padding: 0px;color: green;		}
+#idDivReporte01_Grid04{	position: absolute;	top: 20px;	left: 20px;	width: 600px;	height: 200px; background-color:  white; padding: 0px;color: green;		}
+#idDivReporte01_Grid05{	position: absolute;	top: 20px;	left: 20px;	width: 600px;	height: 200px; background-color:  white; padding: 0px;color: green;		}
+ 
+ 
