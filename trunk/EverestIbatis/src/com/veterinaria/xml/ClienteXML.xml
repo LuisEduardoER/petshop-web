@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        		idUsuario=if(#{idUsuario} = 0, null, #{idUsuario}),
        		idDistrito=#{idDistrito},
        		dni=#{dni},
-       		ruc=#{ruc},
+       		ruc=IF( #{ruc}=0,null,#{ruc} ),
        		nombres=#{nombres},
        		apePat=#{apePat},
        		apeMat=#{apeMat},
