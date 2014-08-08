@@ -81,6 +81,14 @@
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mantenimiento/rolOpcion/rolOpcionLista.jsp"/>
   </definition>
+  <definition name="usuarioListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/usuario/usuarioLista.jsp"/>
+  </definition>
+  <definition name="usuarioFormTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Bienvenido"/>
+      <put-attribute name="body"   value="/mantenimiento/usuario/usuarioForm.jsp"/>
+  </definition>
   
   
 </tiles-definitions>
