@@ -15,8 +15,8 @@
 	openDialog="dlgForm"
 	href="%{insert}"
 	button="true" 
-	buttonIcon="ui-icon-plus"
-	>Agregar</sj:a>
+	buttonIcon="ui-icon-circle-plus"
+	>Agregar Opcion</sj:a>
 
 <table id="table" class="dls-table" cellspacing="0" cellpadding="0">
     <thead>

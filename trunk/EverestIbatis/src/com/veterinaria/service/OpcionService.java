@@ -49,4 +49,9 @@ public class OpcionService implements IOpcion {
 		return dao.obtenerOpcionByParent(obj);
 	}
 
+	@Override
+	public ArrayList<Opcion> listarParentOpcion() throws Exception {
+		return dao.listarParentOpcion();
+	}
+
 }

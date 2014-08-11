@@ -52,8 +52,6 @@ public class CitaEvento extends DHXEventsManager {
 			e1.printStackTrace();
 		}
 		
-		
-		
 		return evs;
 	}
 
@@ -68,7 +66,6 @@ public class CitaEvento extends DHXEventsManager {
 			System.out.println("-->" + event.getId());
 			System.out.println("-->" + event.getStart_date());
 		
-
 			if (status == DHXStatus.UPDATE) {
 				System.out.println("---> UPATE");
 				
@@ -88,8 +85,6 @@ public class CitaEvento extends DHXEventsManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 
 		return status;
 	}

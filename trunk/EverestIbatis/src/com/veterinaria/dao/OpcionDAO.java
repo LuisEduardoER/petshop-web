@@ -136,4 +136,19 @@ public class OpcionDAO implements IOpcion {
 		return lista;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Opcion> listarParentOpcion() throws Exception {
+		ArrayList<Opcion> lista= null;
+		SqlSession session=sqlmapper.openSession();
+		try {
+			lista= (ArrayList<Opcion>)session.selectList("opcionXML.listarParentOpcion");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return lista;
+	}
+
 }

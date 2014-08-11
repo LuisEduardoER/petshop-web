@@ -62,56 +62,18 @@ public class CitaAction extends ActionSupport {
 	ClienteService clienteService = new ClienteService();
 	MascotaService mascotaService = new MascotaService();
 	LocalService localService = new LocalService();
-
-	@Action(value = "/cargaCalendario", results = { @Result(name = "success", location = "citaCalendarTile", type="tiles") })
-	public String cargaCalendario() throws Exception {
-		System.out.println("===== cargaCalendario =====");
-
-
-		try {
-			// creates and configures scheduler instance
-	    	DHXPlanner s = new DHXPlanner("./codebase/", DHXSkin.TERRACE);
-	    	s.setWidth(900);
-	    	s.setInitialDate(new Date());
-	    	s.config.setScrollHour(12);
-	    	s.config.setDetailsOnCreate(true);
-	    	s.config.setDblClickCreate(true);
-	    	s.config.setDetailsOnDblClick(true);
-	    	s.config.setHighlightDisplayedEvent(true);
-	    	
-	     	//invoca al action eventoProgramacionEnvasado
-	    	s.load("evento", DHXDataFormat.JSON);
-	    	s.data.dataprocessor.setURL("evento");
-
-	    	//invoca al action editarProgramacion
-	    	DHXExternalLightboxForm box = s.lightbox.setExternalLightboxForm("./editar", 450, 280);    
-	    	box.setClassName("custom_lightbox");
-
-	    	//s.render se va a generar el caledario en html	
-			messageStore.setScheduler(s.render());
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return SUCCESS;
-	}
 	
-	@Action(value = "/editar", results = { @Result(location = "/editar.jsp", name = "success") })
+	@Action(value = "/editar", results = { @Result(location = "/transaccional/cita/editar.jsp", name = "success") })
 	public String editar() throws Exception {
 		System.out.println("===== editar =====");
-		
-		
-		
 		return SUCCESS;
 	}
 	
-	@Action(value = "/evento", results = { @Result(location = "/evento.jsp", name = "success") })
+	@Action(value = "/evento", results = { @Result(location = "/transaccional/cita/evento.jsp", name = "success") })
 	public String eventoProgramacionEnvasado() throws Exception {
 		System.out.println("===== eventoProgramacionEnvasado =====");
 		
 		try {
-			
-			
 			CitaEvento evs = new CitaEvento(ServletActionContext.getRequest());
 			String data = evs.run();
 			messageStore.setData(data);
@@ -173,6 +135,38 @@ public class CitaAction extends ActionSupport {
 				System.out.println("medicoLista: "+medicoLista.size());
 			}
 		
+		return SUCCESS;
+	}
+	
+	@Action(value = "/showCitaCalendario", results = { @Result(name = "success", location="citaCalendarTile", type="tiles") })
+	public String showCitaCalendario() throws Exception {
+		System.out.println("===== showCitaCalendario =====");
+		
+		try {
+			// creates and configures scheduler instance
+	    	DHXPlanner s = new DHXPlanner("./codebase/", DHXSkin.TERRACE);
+	    	s.setWidth(900);
+	    	s.setInitialDate(new Date());
+	    	s.config.setScrollHour(12);
+	    	s.config.setDetailsOnCreate(true);
+	    	s.config.setDblClickCreate(true);
+	    	s.config.setDetailsOnDblClick(true);
+	    	s.config.setHighlightDisplayedEvent(true);
+	    	
+	     	//invoca al action eventoProgramacionEnvasado
+	    	s.load("evento", DHXDataFormat.JSON);
+	    	s.data.dataprocessor.setURL("evento");
+
+	    	//invoca al action editarProgramacion
+	    	DHXExternalLightboxForm box = s.lightbox.setExternalLightboxForm("./editar", 450, 280);    
+	    	box.setClassName("custom_lightbox");
+
+	    	//s.render se va a generar el caledario en html	
+			messageStore.setScheduler(s.render());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	

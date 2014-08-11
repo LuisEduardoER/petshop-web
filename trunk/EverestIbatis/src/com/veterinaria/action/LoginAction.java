@@ -19,6 +19,7 @@ import com.veterinaria.service.OpcionService;
 import com.veterinaria.service.RolService;
 import com.veterinaria.service.UsuarioService;
 
+
 @ParentPackage(value = "Veterinaria")
 public class LoginAction extends ActionSupport{
 	
@@ -104,14 +105,17 @@ public class LoginAction extends ActionSupport{
 		cliente = new Cliente();
 		
 		try {
+			usuario.setIdUsuario(0);
 			usuario = usuarioService.obtenerUsuario(usuario);
-			
+			System.out.println("usuario: "+usuario);
+			System.out.println("IdRol: "+usuario.getIdRol());
 			
 			rol.setIdRol( usuario.getIdRol() );
 			
 			usuario.setRol( rolService.obtenerRol( rol ));
 			
 			cliente = clienteService.obtenerClienteByUsuario(usuario);
+			System.out.println("cliente: "+cliente);
 			cliente.setUsuario(usuario);
 			
 			strNameUsuario = cliente.getNombres()+" "+cliente.getApePat();

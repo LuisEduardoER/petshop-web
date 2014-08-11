@@ -14,7 +14,8 @@ public interface IOpcion {
 	public abstract String ModificarOpcion(Opcion obj) throws Exception;
 	public abstract String EliminarOpcion(Opcion obj) throws Exception;
 	
-	public List<Opcion> obtenerOpcionParentByRol(Rol obj) throws Exception;
-	public List<Opcion> obtenerOpcionByParent(Opcion obj) throws Exception;
+	public abstract List<Opcion> obtenerOpcionParentByRol(Rol obj) throws Exception;
+	public abstract List<Opcion> obtenerOpcionByParent(Opcion obj) throws Exception;
+	public abstract ArrayList<Opcion> listarParentOpcion() throws Exception;
 	
 }

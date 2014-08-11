@@ -35,7 +35,7 @@ public class OpcionAction extends ActionSupport{
 			
 			List<Opcion> listaParentOpcion = new ArrayList<Opcion>();
 			List<Opcion> listaChildOpcion;
-			listaParentOpcion = opcionService.listarOpcion();
+			listaParentOpcion = opcionService.listarParentOpcion();
 			opcionLista= new ArrayList<Opcion>();
 			
 			for (Opcion parentOpcion : listaParentOpcion) {
