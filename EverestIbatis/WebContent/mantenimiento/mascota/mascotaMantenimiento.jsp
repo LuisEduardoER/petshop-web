@@ -73,7 +73,16 @@
             <td><s:property value="nombre"/></td>
             <td><s:property value="edad"/></td>
             <td><s:property value="raza"/></td>
-            <td><s:property value="sexo"/></td>
+            <td>
+<%--             	<s:property value="sexo"/> --%>
+            	<s:select 
+			       name="mascota.sexo"
+			       headerKey="" headerValue="-- Seleccione --"
+			       list="#{'M':'Macho', 'H':'Hembra'}"
+			       value="sexo"
+			       disabled="true"
+				/>
+            </td>
             <td class="tdButton">
             	<s:form id="frmEdit%{#status.count}" action="showMascotaForm">
 		       		    <s:hidden name="mascota.idMascota" value="%{idMascota}"/>

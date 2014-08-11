@@ -6,18 +6,17 @@
 	Cita
 </h1>
 
-<s:form id="frm01">
+<s:form id="frm01" action="showCitaCalendario">
 <s:url var="urlLoadTurno" action="loadTurnoJSON"></s:url>
 
 <table class="dls-table-form" style="width: 100%;" cellspacing="0" cellpadding="0">
 	<tr>
 		<th>DNI</th>
 		<th>Nombre</th>
-		<th>Mascota</th>			
+		<th>Mascota</th>
 	</tr>
 	<tr id="trMascota">
 		<jsp:include page="citaMascota.jsp"/>
-<%-- 		<sj:div href="loadMascota" formIds="frm01"/> --%>
 	</tr>
 	<tr>
 		<th>Local</th>
@@ -59,5 +58,15 @@
 		</td>
 	</tr>
 </table>
+
+<br/>
+
+<sj:submit 
+	type="button"
+	button="true" 
+	formIds="frm01"
+	buttonIcon="ui-icon-calculator">
+	Calendario
+</sj:submit>
 
 </s:form>

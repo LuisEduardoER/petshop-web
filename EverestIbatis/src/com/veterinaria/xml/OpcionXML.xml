@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="listarOpcion"
              resultType="opcionAlias">
      	SELECT * FROM Opcion
-     </select>  
+     </select>
      
      <select id="obtenerOpcion"
              resultType="opcionAlias"
@@ -67,5 +67,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	  FROM Opcion
 		 WHERE parentOpcionId = #{idOpcion}
 	  ORDER BY orden
+     </select>
+     
+     <select id="listarParentOpcion"
+             resultType="opcionAlias">
+     	SELECT * FROM Opcion
+     	 WHERE parentOpcionId IS NULL
      </select>
 </mapper>

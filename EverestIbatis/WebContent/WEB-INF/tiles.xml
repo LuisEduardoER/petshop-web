@@ -30,6 +30,14 @@
       <put-attribute name="body"		value="/layoutIntranet/body.jsp"/>
   </definition>
   
+  <definition name="layoutIntranet2" 	template="/layoutIntranet/baseLayout2.jsp">
+      <put-attribute name="title"  		value="Template Intranet"/>
+      <put-attribute name="footer"		value="/layout/footer.jsp"/>
+      
+      <put-attribute name="topMenu"		value="/layoutIntranet/topMenu.jsp"/>
+      <put-attribute name="body"		value="/layoutIntranet/body.jsp"/>
+  </definition>
+  
   <definition name="loginTile" extends="layoutSecond">
       <put-attribute name="title"  value="Login"/>
       <put-attribute name="body"   value="/login.jsp"/>
@@ -56,13 +64,13 @@
       <put-attribute name="body"   value="/mantenimiento/mascota/mascotaForm.jsp"/>
   </definition>
   
-  <definition name="citaCalendarTile" extends="layoutIntranet">
-      <put-attribute name="title"  value="Cita"/>
-      <put-attribute name="body"   value="/transaccional/cita/citaCalendar.jsp"/>
-  </definition>
   <definition name="citaIniTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Cita"/>
       <put-attribute name="body"   value="/transaccional/cita/citaIni.jsp"/>
+  </definition>
+  <definition name="citaCalendarTile" extends="layoutIntranet2">
+      <put-attribute name="title"  value="Cita"/>
+      <put-attribute name="body"   value="/transaccional/cita/citaCalendar.jsp"/>
   </definition>
   
   <definition name="localListaTile" extends="layoutIntranet">

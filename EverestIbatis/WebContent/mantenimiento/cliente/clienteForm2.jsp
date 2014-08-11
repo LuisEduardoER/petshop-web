@@ -2,6 +2,12 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
+<style>
+span .ui-spinner-buttons{
+ 	display: none; 
+}
+</style>
+
 <h1>
 	<s:if test="oper=='add'">
 		Agregar 
@@ -55,7 +61,18 @@
 		    </tr>
 		    <tr>
 		    	<td class="tdLabel"><s:text name="DNI"/></td>
-		    	<td><sj:textfield name="cliente.dni" maxlength="8" required="true"/></td>
+		    	<td>
+		    		<sj:spinner
+		    			id="spinDni" 
+		    			min="10000000" 
+		    			max="99999999" 
+		    			name="cliente.dni"
+		    			maxlength="8"
+		    			step="1"
+		    			required="true"
+		    			cssStyle="width: 150px;"
+		    			/>
+		    	</td>
 		    </tr>
 		    <tr>
 		    	<td class="tdLabel"><s:text name="Sexo"/></td>
@@ -88,11 +105,33 @@
 		    </tr>
 		    <tr>
 		    	<td class="tdLabel">Telefono </td>
-		    	<td><sj:textfield name="cliente.telefono" maxlength="7"/></td>
+		    	<td>
+<%-- 		    		<s:textfield name="cliente.telefono"/> --%>
+		    		<sj:spinner
+		    			id="spinTelefono"
+		    		    min="1000000" 
+		    			max="9999999" 
+		    			step="1"
+		    			name="cliente.telefono"
+		    			required="true"
+		    			cssStyle="width: 150px;"
+		    			/>
+		    	</td>
 		    </tr>
 		    <tr>
 		    	<td class="tdLabel">Celular</td>
-		    	<td><sj:textfield name="cliente.celular" required="true" maxlength="9"/></td>
+		    	<td>
+<%-- 		    		<s:textfield name="cliente.celular" required="true"/> --%>
+		    		<sj:spinner 
+		    			id="spinCelular"
+		    			min="100000000" 
+		    			max="999999999"
+		    			step="1" 
+		    			name="cliente.celular" 
+		    			required="true"
+		    			cssStyle="width: 150px;"
+		    			/>
+		    	</td>
 		    </tr>
 		    <tr>
 		    	<td class="tdLabel">Distrito</td>

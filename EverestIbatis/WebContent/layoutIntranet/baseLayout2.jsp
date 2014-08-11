@@ -40,7 +40,6 @@
 					<img alt="Home Intranet" src="img/PetShop_Only.png" style="height: 50px; float: left; margin: 10px 20px;">
 				</a>
 			</li>
-			<!-- 
 			<li><a href="#">Menu 1</a></li>
 			<li><a href="#">Menu 2</a></li>
 			<li><a href="#">Menu 3</a>
@@ -72,8 +71,6 @@
 				</li>
 				</ul>
 			</li>
-			 -->
-			 <li style="width: 770px;">&nbsp;</li>
 			<li><a href="logOut">LogOut</a></li>
 		</ul>
 
@@ -81,7 +78,7 @@
 	
 	<div class="tm-middle uk-grid" data-uk-grid-match="" data-uk-grid-margin="">
 		<div class="tm-main uk-width-medium-3-4" style="min-height: 512px;">                
-			<main id="mainContent" class="tm-content">
+			<main id="mainContent" class="tm-content" style="width: 1000px;">
 				
 				<sj:dialog 
 		    	id="dlgForm" 
@@ -110,7 +107,7 @@
 		</div>
 		
 		<!-- ############################### RIGTH MENU ############################### -->
-            <s:action name="loadMenuAction" executeResult="true"/>
+<%--             <s:action name="loadMenuAction" executeResult="true"/> --%>
 		
 	</div>
 	

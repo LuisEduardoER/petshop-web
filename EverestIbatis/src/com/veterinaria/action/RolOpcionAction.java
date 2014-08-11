@@ -81,7 +81,7 @@ public class RolOpcionAction extends ActionSupport{
 		if(idOpcionParent == null)
 			idOpcionParent = "";
 		
-		opcionParentLista = opcionService.listarOpcion();
+		opcionParentLista = opcionService.listarParentOpcion();
 		System.out.println("opcionParentLista: "+opcionParentLista.size() );
 		
 		System.out.println("opcionParent: "+idOpcionParent);
@@ -90,19 +90,6 @@ public class RolOpcionAction extends ActionSupport{
 			opcionParent.setIdOpcion(Integer.parseInt(idOpcionParent));
 		
 			opcionLista = opcionService.obtenerOpcionByParent(opcionParent);
-//			List<Opcion> opcionListaAux = opcionService.obtenerOpcionChildByRol(opcionParent, rol);
-//			
-////			for(Opcion objOpcion : opcionLista)
-////				for(Opcion objOpcionAux: opcionListaAux)
-////					if(objOpcion.getIdOpcion() == objOpcionAux.getIdOpcion())
-////						opcionLista.remove(objOpcion);
-//			
-//			for(int c=0;c>opcionListaAux.size();c++)
-//				for(int p=0;p>opcionLista.size();p++)				
-//					if(opcionLista.get(p).getIdOpcion() == opcionListaAux.get(c).getIdOpcion() ){
-//						opcionLista.remove(p);
-//						p--;
-//					}
 			
 			System.out.println("opcionLista: "+opcionLista.size() );
 			
