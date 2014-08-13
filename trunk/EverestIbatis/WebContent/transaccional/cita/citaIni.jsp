@@ -9,19 +9,15 @@
 <s:form id="frm01" action="showCitaCalendario">
 <s:url var="urlLoadTurno" action="loadTurnoJSON"></s:url>
 
+<div id="divMascota">
+	<jsp:include page="citaMascota.jsp"/>
+</div>
+
 <table class="dls-table-form" style="width: 100%;" cellspacing="0" cellpadding="0">
 	<tr>
-		<th>DNI</th>
-		<th>Nombre</th>
-		<th>Mascota</th>
-	</tr>
-	<tr id="trMascota">
-		<jsp:include page="citaMascota.jsp"/>
-	</tr>
-	<tr>
-		<th>Local</th>
-		<th>Turno</th>
-		<th>Medico</th>			
+		<th style="width: 200px;">Local</th>
+		<th style="width: 235px;">Turno</th>
+		<th style="width: 235px;">Medico</th>
 	</tr>
 	<tr>
 		<td>
@@ -68,5 +64,16 @@
 	buttonIcon="ui-icon-calculator">
 	Calendario
 </sj:submit>
+
+<s:url var="urlShowCitaCalendario" action="showCitaCalendario"/>
+<sj:a 
+	openDialog="dlgForm"
+	href="%{urlShowCitaCalendario}"
+	button="true" 
+	formIds="frm01"
+	effectMode="show"
+	buttonIcon="ui-icon-calculator">
+	Calendario
+</sj:a>
 
 </s:form>

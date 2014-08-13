@@ -90,8 +90,9 @@
 		    	minHeight="250"
 		    	modal="true" 
 		    	onCloseTopics="closeDialog"
-		    	showEffect="slide" 
+		    	showEffect="slide"
 		    	hideEffect="explode"
+		    	effectMode="show"
 		    	title="Titulo">
 		        
 		        <table style="width: 100%;">
