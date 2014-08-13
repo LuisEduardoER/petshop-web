@@ -55,7 +55,7 @@ public class CitaAction extends ActionSupport {
 	private List<Medico> 	medicoLista;
 	private List<Local>		localLista;
 	
-	private String idLocal, idTurno, idMedico, idMascota;
+	private String idLocal, idTurno, idMedico, idMascota, message;
 	
 	MedicoService medicoService = new MedicoService();
 	TurnoService turnoService = new TurnoService();
@@ -103,15 +103,20 @@ public class CitaAction extends ActionSupport {
 			System.out.println("dni: "+cliente.getDni());
 			cliente = clienteService.obtenerCliente(cliente);
 			
-			cliente.setNombreCompleto( cliente.getNombres()+" "+cliente.getApePat()+" "+cliente.getApeMat() );
-			System.out.println("NombreCompleto: "+cliente.getNombreCompleto());
-			
-			mascotaLista = mascotaService.obtenerMascotaXCliente(cliente);
-			System.out.println("mascotaLista: "+mascotaLista.size());
-			
+				if(cliente != null){
+					cliente.setNombreCompleto( cliente.getNombres()+" "+cliente.getApePat()+" "+cliente.getApeMat() );
+					System.out.println("NombreCompleto: "+cliente.getNombreCompleto());
+					
+					mascotaLista = mascotaService.obtenerMascotaXCliente(cliente);
+					System.out.println("mascotaLista: "+mascotaLista.size());
+				}else{
+					message = "DNI no registrado en el sistema.";
+				}
+				
 			}
 		}
 		
+		System.out.println("message: "+message);
 		return SUCCESS;
 	}
 	
@@ -350,6 +355,14 @@ public class CitaAction extends ActionSupport {
 
 	public void setIdMascota(String idMascota) {
 		this.idMascota = idMascota;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }
