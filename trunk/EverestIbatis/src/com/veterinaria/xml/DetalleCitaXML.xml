@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="detalleCitaXML">		
+
+     <select id="listarDetalleCita"
+             resultType="detalleCitaAlias">
+     	SELECT * FROM DetalleCita
+     </select>  
+     
+     <select id="obtenerDetalleCita"
+             resultType="detalleCitaAlias"
+             parameterType="detalleCitaAlias">
+     	SELECT * FROM DetalleCita where idCita=#{idCita}
+     </select>
+          
+     <insert id="grabarDetalleCita"
+             parameterType="detalleCitaAlias">
+     insert into detalleCita (idCita, idServicio, pelo, tamano, tiempoAprox, costo, observaciones)
+     				 values (#{idCita}, #{idServicio}, #{pelo}, #{tamano}, #{tiempoAprox}, #{costo}, #{observaciones})
+     
+     </insert>
+     
+     <update id="modificarDetalleCita"
+                 parameterType="detalleCitaAlias">
+     
+       update detalleCita
+       set 	pelo=#{pelo},
+       		tamano=#{tamano},
+       		tiempoAprox=#{tiempoAprox},
+       		costo=#{costo},
+       		observaciones=#{observaciones}
+       where idCita=#{idCita}
+         and idServicio=#{idServicio}
+     </update>
+     
+     <delete id="eliminarDetalleCita"
+              parameterType="detalleCitaAlias">
+     delete from detalleCita where idCita=#{idCita} and idServicio=#{idServicio}
+     
+     </delete>
+</mapper>

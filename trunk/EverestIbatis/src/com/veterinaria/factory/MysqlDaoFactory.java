@@ -3,6 +3,7 @@ package com.veterinaria.factory;
 import com.veterinaria.dao.CitaDAO;
 import com.veterinaria.dao.ClienteDAO;
 import com.veterinaria.dao.CorrelativoDAO;
+import com.veterinaria.dao.DetalleCitaDAO;
 import com.veterinaria.dao.LocalDAO;
 import com.veterinaria.dao.MascotaDAO;
 import com.veterinaria.dao.MedicoDAO;
@@ -10,6 +11,7 @@ import com.veterinaria.dao.OpcionDAO;
 import com.veterinaria.dao.ProveedorDAO;
 import com.veterinaria.dao.RolDAO;
 import com.veterinaria.dao.RolOpcionDAO;
+import com.veterinaria.dao.ServicioDAO;
 import com.veterinaria.dao.TipoAnimalDAO;
 import com.veterinaria.dao.TipoProductoDAO;
 import com.veterinaria.dao.TurnoDAO;
@@ -17,6 +19,7 @@ import com.veterinaria.dao.UsuarioDAO;
 import com.veterinaria.interfaces.ICita;
 import com.veterinaria.interfaces.ICliente;
 import com.veterinaria.interfaces.ICorrelativo;
+import com.veterinaria.interfaces.IDetalleCita;
 import com.veterinaria.interfaces.ILocal;
 import com.veterinaria.interfaces.IMascota;
 import com.veterinaria.interfaces.IMedico;
@@ -24,6 +27,7 @@ import com.veterinaria.interfaces.IOpcion;
 import com.veterinaria.interfaces.IProveedor;
 import com.veterinaria.interfaces.IRol;
 import com.veterinaria.interfaces.IRolOpcion;
+import com.veterinaria.interfaces.IServicio;
 import com.veterinaria.interfaces.ITipoAnimal;
 import com.veterinaria.interfaces.ITipoProducto;
 import com.veterinaria.interfaces.ITurno;
@@ -101,6 +105,16 @@ public class MysqlDaoFactory extends DAOFactory {
 	@Override
 	public IMedico getMedico() {
 		return new MedicoDAO();
+	}
+
+	@Override
+	public IDetalleCita getDetalleCita() {
+		return new DetalleCitaDAO();
+	}
+
+	@Override
+	public IServicio getServicio() {
+		return new ServicioDAO();
 	}
 
 }

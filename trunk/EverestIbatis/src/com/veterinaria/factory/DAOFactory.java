@@ -3,6 +3,7 @@ package com.veterinaria.factory;
 import com.veterinaria.interfaces.ICita;
 import com.veterinaria.interfaces.ICliente;
 import com.veterinaria.interfaces.ICorrelativo;
+import com.veterinaria.interfaces.IDetalleCita;
 import com.veterinaria.interfaces.ILocal;
 import com.veterinaria.interfaces.IMascota;
 import com.veterinaria.interfaces.IMedico;
@@ -10,6 +11,7 @@ import com.veterinaria.interfaces.IOpcion;
 import com.veterinaria.interfaces.IProveedor;
 import com.veterinaria.interfaces.IRol;
 import com.veterinaria.interfaces.IRolOpcion;
+import com.veterinaria.interfaces.IServicio;
 import com.veterinaria.interfaces.ITipoAnimal;
 import com.veterinaria.interfaces.ITipoProducto;
 import com.veterinaria.interfaces.ITurno;
@@ -36,6 +38,8 @@ public abstract class DAOFactory {
 	public abstract ITurno 			getTurno();
 	public abstract IRolOpcion 		getRolOpcion();
 	public abstract IMedico 		getMedico();
+	public abstract IDetalleCita 	getDetalleCita();
+	public abstract IServicio		getServicio();
 	
 	public static DAOFactory getDAOFactory(int factory){
 		switch(factory){
