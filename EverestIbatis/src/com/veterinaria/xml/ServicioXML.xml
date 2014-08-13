@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="servicioXML">		
+
+     <select id="listarServicio"
+             resultType="servicioAlias">
+     	SELECT * FROM Servicio
+     </select>  
+     
+     <select id="obtenerServicio"
+             resultType="servicioAlias"
+             parameterType="servicioAlias">
+     	SELECT * FROM Servicio where idServicio=#{idServicio}
+     </select>
+     
+     <insert id="grabarServicio"
+             parameterType="servicioAlias">
+     insert into servicio (descripcion, tiempoAprox, costoRef, estado)
+     			   values (#{descripcion}, #{tiempoAprox}, #{costoRef}, #{estado})
+     
+     </insert>
+     
+     <update id="modificarServicio"
+                 parameterType="servicioAlias">
+     
+       update servicio
+       set descripcion=#{descripcion}, 
+           tiempoAprox=#{tiempoAprox},
+           costoRef=#{costoRef},
+           estado=#{estado}
+       where idServicio=#{idServicio}
+     </update>
+     
+     <delete id="eliminarServicio"
+              parameterType="servicioAlias">
+     delete from servicio where idServicio=#{idServicio}
+     
+     </delete>
+</mapper>

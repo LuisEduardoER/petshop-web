@@ -21,6 +21,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="turnoAlias" 		type="com.veterinaria.beans.Turno" />
 		<typeAlias alias="rolOpcionAlias" 	type="com.veterinaria.beans.RolOpcion" />
 		<typeAlias alias="medicoAlias" 		type="com.veterinaria.beans.Medico" />
+		<typeAlias alias="detalleCitaAlias" type="com.veterinaria.beans.DetalleCita" />
+		<typeAlias alias="servicioAlias" 	type="com.veterinaria.beans.Servicio" />
 		 	           	
 	</typeAliases>
 	
@@ -53,6 +55,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	    <mapper resource="com/veterinaria/xml/TurnoXML.xml" />
 	    <mapper resource="com/veterinaria/xml/RolOpcionXML.xml" />
 	    <mapper resource="com/veterinaria/xml/MedicoXML.xml" />
+	    <mapper resource="com/veterinaria/xml/DetalleCitaXML.xml" />
+	    <mapper resource="com/veterinaria/xml/ServicioXML.xml" />
 	    
 	</mappers>
 </configuration>

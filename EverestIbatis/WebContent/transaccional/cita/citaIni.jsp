@@ -57,6 +57,22 @@
 
 <br/>
 
+<s:url var="urlShowCitaServicio" action="showCitaServicioForm"/>
+<sj:a 
+	openDialog="dlgServicio"
+	href="%{urlShowCitaServicio}"
+	button="true" 
+	formIds="frm01"
+	buttonIcon="ui-icon-circle-plus">
+	Agregar Servicio
+</sj:a>
+
+<div id="divListaServicios">
+	<jsp:include page="citaDetalle.jsp"/>
+</div>
+
+<br/>
+
 <sj:submit 
 	type="button"
 	button="true" 
@@ -65,15 +81,16 @@
 	Calendario
 </sj:submit>
 
-<s:url var="urlShowCitaCalendario" action="showCitaCalendario"/>
-<sj:a 
-	openDialog="dlgForm"
-	href="%{urlShowCitaCalendario}"
-	button="true" 
-	formIds="frm01"
-	effectMode="show"
-	buttonIcon="ui-icon-calculator">
-	Calendario
-</sj:a>
-
 </s:form>
+
+<sj:dialog 
+	id="dlgServicio"
+	showEffect="slide"
+	hideEffect="explode"
+	autoOpen="false"
+	modal="true"
+	title="Agregar Servicio"
+	width="400"
+>
+	<jsp:include page="citaServicio.jsp"/>
+</sj:dialog>
