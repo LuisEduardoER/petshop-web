@@ -13,4 +13,17 @@
 		indicator="myLoadingBar"
 		/>
 
+<br/>
+
+<s:url var="urlAddDetalleCita" action="addDetalleCita"/>
+<sj:a
+	button="true"
+	href="%{urlAddDetalleCita}"
+	buttonIcon="ui-icon-disk"
+	formIds="frmDetalleCita"
+	targets="divListaServicios"
+	>
+	Agregar
+</sj:a>
+
 </s:form>
