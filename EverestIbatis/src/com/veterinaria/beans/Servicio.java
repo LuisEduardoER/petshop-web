@@ -1,11 +1,9 @@
 package com.veterinaria.beans;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Servicio implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Servicio{
+	
 	private String idServicio;
 	private double costoRef;
 	private Date dateCreate;
