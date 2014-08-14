@@ -67,6 +67,7 @@
 	Agregar Servicio
 </sj:a>
 
+<%-- <s:url var="urlListaServicios" action="loadDetalleCitaLista"/> --%>
 <div id="divListaServicios">
 	<jsp:include page="citaDetalle.jsp"/>
 </div>
@@ -88,7 +89,6 @@
 	showEffect="slide"
 	hideEffect="explode"
 	autoOpen="false"
-	modal="true"
 	title="Agregar Servicio"
 	width="400"
 >

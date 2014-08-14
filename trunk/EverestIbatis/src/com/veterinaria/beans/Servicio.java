@@ -13,6 +13,8 @@ public class Servicio implements Serializable {
 	private String estado;
 	private Date tiempoAprox;
 	private String userCreate;
+	
+	private String strTiempoAprox;
 
 	//bi-directional many-to-one association to DetalleCita
 //	private List<DetalleCita> detalleCitas;
@@ -77,6 +79,14 @@ public class Servicio implements Serializable {
 
 	public void setUserCreate(String userCreate) {
 		this.userCreate = userCreate;
+	}
+
+	public String getStrTiempoAprox() {
+		return strTiempoAprox;
+	}
+
+	public void setStrTiempoAprox(String strTiempoAprox) {
+		this.strTiempoAprox = strTiempoAprox;
 	}
 
 }

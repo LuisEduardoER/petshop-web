@@ -1,6 +1,7 @@
 package com.veterinaria.action;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,24 +21,30 @@ import com.dhtmlx.planner.data.DHXDataFormat;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.veterinaria.beans.Cliente;
+import com.veterinaria.beans.DetalleCita;
 import com.veterinaria.beans.Local;
 import com.veterinaria.beans.Mascota;
 import com.veterinaria.beans.Medico;
+import com.veterinaria.beans.Servicio;
 import com.veterinaria.beans.Turno;
 import com.veterinaria.planner.CitaEvento;
 import com.veterinaria.planner.MessageStore;
 import com.veterinaria.service.ClienteService;
+import com.veterinaria.service.DetalleCitaService;
 import com.veterinaria.service.LocalService;
 import com.veterinaria.service.MascotaService;
 import com.veterinaria.service.MedicoService;
+import com.veterinaria.service.ServicioService;
 import com.veterinaria.service.TurnoService;
 
 @ParentPackage(value = "Veterinaria")
 public class CitaAction extends ActionSupport {
 
 	private static final long serialVersionUID = 6790540391660566857L;
+	@SuppressWarnings("unused")
 	private static final Log log = LogFactory.getLog(CitaAction.class);
 	
+	@SuppressWarnings("unused")
 	private SessionMap<String, Object> session = (SessionMap<String, Object>)ActionContext.getContext().getSession();
 	
 	private String mensaje, productoApicola, envase, cantidad,envase2;
@@ -49,19 +56,27 @@ public class CitaAction extends ActionSupport {
 	private Turno 			turno;
 	private Medico 			medico;
 	private Local			local;
+	private DetalleCita 				detalleCita;
+	private Servicio 					servicio;
 	
 	private List<Mascota> 	mascotaLista = new ArrayList<Mascota>();
 	private List<Turno> 	turnoLista;
 	private List<Medico> 	medicoLista;
-	private List<Local>		localLista;
+	private List<Local>		localLista;	
+	private static List<DetalleCita> 	detalleCitaLista;
+	private static List<Servicio>				servicioLista;
 	
 	private String idLocal, idTurno, idMedico, idMascota, message;
 	
-	MedicoService medicoService = new MedicoService();
-	TurnoService turnoService = new TurnoService();
-	ClienteService clienteService = new ClienteService();
-	MascotaService mascotaService = new MascotaService();
-	LocalService localService = new LocalService();
+	MedicoService 		medicoService = 	new MedicoService();
+	TurnoService 		turnoService = 		new TurnoService();
+	ClienteService 		clienteService = 	new ClienteService();
+	MascotaService 		mascotaService = 	new MascotaService();
+	LocalService 		localService = 		new LocalService();
+	ServicioService 	servicioService = 	new ServicioService();
+	DetalleCitaService 	detalleCitaService =new DetalleCitaService();
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
 	
 	@Action(value = "/editar", results = { @Result(location = "/transaccional/cita/editar.jsp", name = "success") })
 	public String editar() throws Exception {
@@ -86,9 +101,17 @@ public class CitaAction extends ActionSupport {
 	
 	@Action(value = "/showCitaIni", results = { @Result(name = "success", location = "citaIniTile", type="tiles") })
 	public String showCitaIni() throws Exception {
+		System.out.println("===== showCitaIni =====");
 		
 		localLista = localService.listarLocal();
 		System.out.println("localLista: "+localLista.size());
+		
+		servicioLista = servicioService.listarServicio();	
+		
+		if(detalleCitaLista == null)
+			detalleCitaLista = new ArrayList<DetalleCita>();
+		
+		System.out.println("detalleCitaLista: "+detalleCitaLista.size());
 		
 		return SUCCESS;
 	}
@@ -172,6 +195,76 @@ public class CitaAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return SUCCESS;
+	}
+	
+	/****************************************************************/
+	@Action(value = "/showCitaServicioForm", results = { @Result(location = "/transaccional/cita/citaServicio.jsp", name = "success") })
+	public String showCitaServicioForm() throws Exception {
+		System.out.println("===== showCitaServicioForm =====");
+		return SUCCESS;
+	}
+	
+	@Action(value = "/loadServicioAJAX", results = { @Result(location = "/transaccional/cita/citaServicioAJAX.jsp", name = "success") })
+	public String loadServicioAJAX() throws Exception {
+		System.out.println("===== loadServicioAJAX =====");
+		
+		if(servicio != null){
+			System.out.println("idServicio: "+servicio.getIdServicio());
+			
+			servicio = servicioService.obtenerServicio(servicio);
+//			servicio.setStrTiempoAprox( sdf.format( servicio.getTiempoAprox() ) );
+			System.out.println("servicio: "+servicio);
+			
+			if(servicio != null){
+				detalleCita.setIdServicio( Integer.parseInt( servicio.getIdServicio()) );
+				detalleCita.setCosto( servicio.getCostoRef() );
+			}else{
+				detalleCita = new DetalleCita();
+			}
+			
+		}
+		
+		return SUCCESS;
+	}
+	
+	@Action(value = "/loadServicioJSON", results = { @Result(name = "success", type="json") })
+	public String loadServicioJSON() throws Exception {
+		System.out.println("===== loadServicioJSON ======");
+		
+		servicioLista = servicioService.listarServicio();
+		System.out.println("servicioLista: "+servicioLista.size());
+		
+		return SUCCESS;
+	}
+	
+	@Action(value = "/addDetalleCita", results = { @Result(name = "success", location="/transaccional/cita/citaDetalle.jsp") })
+	public String addDetalleCita() throws Exception {
+		System.out.println("===== addDetalleCita =====");
+				
+		if(detalleCita != null){
+			detalleCita.setIdServicio( Integer.parseInt(servicio.getIdServicio()) );
+			detalleCitaLista.add(detalleCita);
+			System.out.println("detalleCitaLista: "+detalleCitaLista.size());
+			
+//			servicioLista = servicioService.listarServicio();
+		}
+		
+		return SUCCESS;
+	}
+	
+	@Action(value = "/loadDetalleCitaLista", results = { @Result(name = "success", location="/transaccional/cita/citaDetalle.jsp") })
+	public String loadDetalleCitaLista() throws Exception {
+		System.out.println("====== loadDetalleCitaLista =====");
+			
+//			detalleCitaLista = detalleCitaService.listarDetalleCita();
+			servicioLista = servicioService.listarServicio();
+			
+			if(detalleCitaLista == null)
+				detalleCitaLista = new ArrayList<DetalleCita>();
+			
+			System.out.println("detalleCitaLista: "+detalleCitaLista.size());
+			
 		return SUCCESS;
 	}
 	
@@ -363,6 +456,38 @@ public class CitaAction extends ActionSupport {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public DetalleCita getDetalleCita() {
+		return detalleCita;
+	}
+
+	public void setDetalleCita(DetalleCita detalleCita) {
+		this.detalleCita = detalleCita;
+	}
+
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
+	public List<DetalleCita> getDetalleCitaLista() {
+		return detalleCitaLista;
+	}
+
+	public void setDetalleCitaLista(List<DetalleCita> detalleCitaLista) {
+		CitaAction.detalleCitaLista = detalleCitaLista;
+	}
+
+	public List<Servicio> getServicioLista() {
+		return servicioLista;
+	}
+
+	public void setServicioLista(List<Servicio> servicioLista) {
+		this.servicioLista = servicioLista;
 	}
 
 }
