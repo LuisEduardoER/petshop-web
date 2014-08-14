@@ -91,6 +91,31 @@
 	autoOpen="false"
 	title="Agregar Servicio"
 	width="400"
+	minHeight="370"
+	position="right"
+	onCloseTopics="onCloseDlgServicio"
 >
-	<jsp:include page="citaServicio.jsp"/>
+	<table style="width: 100%;">
+     	<tr>
+     		<td style="width: 100%; text-align: center;">
+     			<img alt="Loading" src="img/loading.gif">
+     		</td>
+     	</tr>
+     </table>
 </sj:dialog>
+
+<script type="text/javascript">
+$(function() {
+	$.subscribe('onCloseDlgServicio', function(event,data) {
+		var html = "<table style='width: 100%;'>"+
+				    	"<tr>"+
+						"<td style='width: 100%; text-align: center;'>"+
+							"<img alt='Loading' src='img/loading.gif'>"+
+						"</td>"+
+					"</tr>"+
+				"</table>";
+        $("#dlgServicio").empty();
+        $("#dlgServicio").html(html);
+    });
+});
+</script>

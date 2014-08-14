@@ -218,6 +218,8 @@ public class CitaAction extends ActionSupport {
 			
 			if(servicio != null){
 				detalleCita.setIdServicio( Integer.parseInt( servicio.getIdServicio()) );
+				detalleCita.setTiempoAprox( servicio.getTiempoAprox() );
+				System.out.println( detalleCita.getTiempoAprox().toString() );
 				detalleCita.setCosto( servicio.getCostoRef() );
 			}else{
 				detalleCita = new DetalleCita();

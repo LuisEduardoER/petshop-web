@@ -22,6 +22,7 @@
 	buttonIcon="ui-icon-disk"
 	formIds="frmDetalleCita"
 	targets="divListaServicios"
+	indicator="myLoadingBar"
 	>
 	Agregar
 </sj:a>

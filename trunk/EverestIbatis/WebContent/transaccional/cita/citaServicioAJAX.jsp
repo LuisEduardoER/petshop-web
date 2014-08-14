@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
+<% SimpleDateFormat sdf = new SimpleDateFormat("hh:mm"); %>
 
 <table>
 	<tr>
@@ -46,17 +49,25 @@
 	<tr>
 		<td>Tiempo Aprox. </td>
 		<td>
+			<s:date name="detalleCita.tiempoAprox" format="hh:mm" id="hdnTiempoAprox"/>			
 			<sj:datepicker
+				id="dtTiempoAprox"
 				name="detalleCita.tiempoAprox"
-				value="%{detalleCita.tiempoAprox}"
-				timepickerFormat="hh:mm"
+				displayFormat="hh:mm"
 				timepicker="true" 
 				timepickerOnly="true" 
 				timepickerShowHour="false"
 				timepickerGridMinute="10" 
 				timepickerStepMinute="10"
-				inline="true"
+				onchange="setTime();"
 			/>
+			<script type="text/javascript">
+				function setTime(){
+					hdnTiempoAprox = document.getElementById("hdnTiempoAprox").value;
+					document.getElmentById("dtTiempoAprox").value = hdnTiempoAprox;  
+				}
+			</script>
+			
 		</td>
 	</tr>
 	<tr>
