@@ -73,6 +73,15 @@
       <put-attribute name="body"   value="/transaccional/cita/citaCalendar.jsp"/>
   </definition>
   
+  <definition name="citaAtencionListaTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Atencion de Cita"/>
+      <put-attribute name="body"   value="/transaccional/citaAtencion/citaAtencionLista.jsp"/>
+  </definition>
+  <definition name="citaAtencionFormTile" extends="layoutIntranet">
+      <put-attribute name="title"  value="Atencion de Cita"/>
+      <put-attribute name="body"   value="/transaccional/citaAtencion/citaAtencionForm.jsp"/>
+  </definition>
+  
   <definition name="localListaTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Bienvenido"/>
       <put-attribute name="body"   value="/mantenimiento/local/localLista.jsp"/>

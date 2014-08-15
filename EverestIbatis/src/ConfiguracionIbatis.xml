@@ -6,23 +6,24 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<typeAliases>	
 	
-		<typeAlias alias="clienteAlias" 	type="com.veterinaria.beans.Cliente" />
-		<typeAlias alias="usuarioAlias" 	type="com.veterinaria.beans.Usuario" />
-		<typeAlias alias="correlativoAlias" type="com.veterinaria.beans.Correlativo" />
-		<typeAlias alias="mascotaAlias" 	type="com.veterinaria.beans.Mascota" />
-		<typeAlias alias="tipoAnimalAlias" 	type="com.veterinaria.beans.TipoAnimal" />
-		<typeAlias alias="rolAlias" 		type="com.veterinaria.beans.Rol" />
-		<typeAlias alias="opcionAlias" 		type="com.veterinaria.beans.Opcion" />
-		<typeAlias alias="correlativoAlias" type="com.veterinaria.beans.Correlativo" />
-		<typeAlias alias="citaAlias" 		type="com.veterinaria.beans.Cita" />
-		<typeAlias alias="localAlias" 		type="com.veterinaria.beans.Local" />
-		<typeAlias alias="proveedorAlias" 	type="com.veterinaria.beans.Proveedor" />
-		<typeAlias alias="tipoProductoAlias" type="com.veterinaria.beans.TipoProducto" />
-		<typeAlias alias="turnoAlias" 		type="com.veterinaria.beans.Turno" />
-		<typeAlias alias="rolOpcionAlias" 	type="com.veterinaria.beans.RolOpcion" />
-		<typeAlias alias="medicoAlias" 		type="com.veterinaria.beans.Medico" />
-		<typeAlias alias="detalleCitaAlias" type="com.veterinaria.beans.DetalleCita" />
-		<typeAlias alias="servicioAlias" 	type="com.veterinaria.beans.Servicio" />
+		<typeAlias alias="clienteAlias" 		type="com.veterinaria.beans.Cliente" />
+		<typeAlias alias="usuarioAlias" 		type="com.veterinaria.beans.Usuario" />
+		<typeAlias alias="correlativoAlias" 	type="com.veterinaria.beans.Correlativo" />
+		<typeAlias alias="mascotaAlias" 		type="com.veterinaria.beans.Mascota" />
+		<typeAlias alias="tipoAnimalAlias" 		type="com.veterinaria.beans.TipoAnimal" />
+		<typeAlias alias="rolAlias" 			type="com.veterinaria.beans.Rol" />
+		<typeAlias alias="opcionAlias" 			type="com.veterinaria.beans.Opcion" />
+		<typeAlias alias="correlativoAlias" 	type="com.veterinaria.beans.Correlativo" />
+		<typeAlias alias="citaAlias" 			type="com.veterinaria.beans.Cita" />
+		<typeAlias alias="localAlias" 			type="com.veterinaria.beans.Local" />
+		<typeAlias alias="proveedorAlias" 		type="com.veterinaria.beans.Proveedor" />
+		<typeAlias alias="tipoProductoAlias" 	type="com.veterinaria.beans.TipoProducto" />
+		<typeAlias alias="turnoAlias" 			type="com.veterinaria.beans.Turno" />
+		<typeAlias alias="rolOpcionAlias" 		type="com.veterinaria.beans.RolOpcion" />
+		<typeAlias alias="medicoAlias" 			type="com.veterinaria.beans.Medico" />
+		<typeAlias alias="detalleCitaAlias" 	type="com.veterinaria.beans.DetalleCita" />
+		<typeAlias alias="servicioAlias" 		type="com.veterinaria.beans.Servicio" />
+		<typeAlias alias="historiaClinicaAlias" type="com.veterinaria.beans.HistoriaClinica" />
 		 	           	
 	</typeAliases>
 	
