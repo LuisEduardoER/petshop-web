@@ -2,6 +2,7 @@ package com.veterinaria.service;
 
 import java.util.ArrayList;
 
+import com.veterinaria.beans.Cita;
 import com.veterinaria.beans.DetalleCita;
 import com.veterinaria.factory.DAOFactory;
 import com.veterinaria.interfaces.IDetalleCita;
@@ -35,6 +36,11 @@ public class DetalleCitaService implements IDetalleCita {
 	@Override
 	public String EliminarDetalleCita(DetalleCita obj) throws Exception {
 		return dao.EliminarDetalleCita(obj);
+	}
+
+	@Override
+	public ArrayList<DetalleCita> obtenerDetalleCita(Cita obj) throws Exception {
+		return dao.obtenerDetalleCita(obj);
 	}
 
 }

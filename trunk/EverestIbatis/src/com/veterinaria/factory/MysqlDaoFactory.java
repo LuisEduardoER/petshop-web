@@ -4,6 +4,7 @@ import com.veterinaria.dao.CitaDAO;
 import com.veterinaria.dao.ClienteDAO;
 import com.veterinaria.dao.CorrelativoDAO;
 import com.veterinaria.dao.DetalleCitaDAO;
+import com.veterinaria.dao.HistoriaClinicaDAO;
 import com.veterinaria.dao.LocalDAO;
 import com.veterinaria.dao.MascotaDAO;
 import com.veterinaria.dao.MedicoDAO;
@@ -20,6 +21,7 @@ import com.veterinaria.interfaces.ICita;
 import com.veterinaria.interfaces.ICliente;
 import com.veterinaria.interfaces.ICorrelativo;
 import com.veterinaria.interfaces.IDetalleCita;
+import com.veterinaria.interfaces.IHistoriaClinica;
 import com.veterinaria.interfaces.ILocal;
 import com.veterinaria.interfaces.IMascota;
 import com.veterinaria.interfaces.IMedico;
@@ -115,6 +117,11 @@ public class MysqlDaoFactory extends DAOFactory {
 	@Override
 	public IServicio getServicio() {
 		return new ServicioDAO();
+	}
+
+	@Override
+	public IHistoriaClinica getHistoriaClinica() {
+		return new HistoriaClinicaDAO();
 	}
 
 }

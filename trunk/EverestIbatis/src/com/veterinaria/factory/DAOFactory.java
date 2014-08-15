@@ -4,6 +4,7 @@ import com.veterinaria.interfaces.ICita;
 import com.veterinaria.interfaces.ICliente;
 import com.veterinaria.interfaces.ICorrelativo;
 import com.veterinaria.interfaces.IDetalleCita;
+import com.veterinaria.interfaces.IHistoriaClinica;
 import com.veterinaria.interfaces.ILocal;
 import com.veterinaria.interfaces.IMascota;
 import com.veterinaria.interfaces.IMedico;
@@ -24,22 +25,23 @@ public abstract class DAOFactory {
 	public static final int ORACLE=3;
 	public static final int DB2=4;
 	
-	public abstract IMascota 		getIMascota();	
-	public abstract ICliente 		getCliente();
-	public abstract IUsuario 		getUsuario();
-	public abstract ITipoAnimal 	getTipoAnimal();
-	public abstract IRol 			getRol();
-	public abstract IOpcion 		getOpcion();
-	public abstract ICorrelativo 	getCorrelativo();
-	public abstract ICita 			getCita();
-	public abstract ILocal 			getLocal();
-	public abstract IProveedor 		getProveedor();
-	public abstract ITipoProducto 	getTipoProducto();
-	public abstract ITurno 			getTurno();
-	public abstract IRolOpcion 		getRolOpcion();
-	public abstract IMedico 		getMedico();
-	public abstract IDetalleCita 	getDetalleCita();
-	public abstract IServicio		getServicio();
+	public abstract IMascota 			getIMascota();	
+	public abstract ICliente 			getCliente();
+	public abstract IUsuario 			getUsuario();
+	public abstract ITipoAnimal 		getTipoAnimal();
+	public abstract IRol 				getRol();
+	public abstract IOpcion 			getOpcion();
+	public abstract ICorrelativo 		getCorrelativo();
+	public abstract ICita 				getCita();
+	public abstract ILocal 				getLocal();
+	public abstract IProveedor 			getProveedor();
+	public abstract ITipoProducto 		getTipoProducto();
+	public abstract ITurno 				getTurno();
+	public abstract IRolOpcion 			getRolOpcion();
+	public abstract IMedico 			getMedico();
+	public abstract IDetalleCita 		getDetalleCita();
+	public abstract IServicio			getServicio();
+	public abstract IHistoriaClinica	getHistoriaClinica();
 	
 	public static DAOFactory getDAOFactory(int factory){
 		switch(factory){

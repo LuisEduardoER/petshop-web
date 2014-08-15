@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="historiaClinicaXML">		
+
+     <select id="listarHistoriaClinica"
+             resultType="historiaClinicaAlias">
+     	SELECT * FROM HistoriaClinica
+     </select>  
+     
+     <select id="obtenerHistoriaClinica"
+             resultType="historiaClinicaAlias"
+             parameterType="historiaClinicaAlias">
+     	SELECT * FROM HistoriaClinica where idHistoriaClinica=#{idHistoriaClinica}
+     </select>
+        
+     <insert id="grabarHistoriaClinica"
+             parameterType="historiaClinicaAlias">
+     insert into historiaClinica ( idCliente, idMascota, procedencia, alergia, talla, raza, peso, temperatura, fechaNac, observacion, diagnostico, tratamiento )
+     				 values (#{idCliente}, #{idMascota}, #{procedencia}, #{alergia}, #{talla}, #{raza}, #{peso}, #{temperatura}, #{fechaNac}, #{observacion}, #{diagnostico}, #{tratamiento})
+     
+     </insert>
+     
+     <update id="modificarHistoriaClinica"
+                 parameterType="historiaClinicaAlias">
+     
+       update historiaClinica
+       	  set idCliente=#{idCliente}, 
+       		  idMascota=#{idMascota},
+       		  procedencia=#{procedencia},
+       		  alergia=#{alergia},
+       		  talla=#{talla},
+       		  raza=#{raza},
+       		  peso=#{peso},
+       		  temperatura=#{temperatura},
+       		  fechaNac=#{fechaNac},
+       		  observacion=#{observacion},
+       		  diagnostico=#{diagnostico},
+       		  tratamiento=#{tratamiento}
+       where idHistoriaClinica=#{idHistoriaClinica}
+     </update>
+     
+     <delete id="eliminarHistoriaClinica"
+              parameterType="historiaClinicaAlias">
+     delete from historiaClinica where idHistoriaClinica=#{idHistoriaClinica}
+     
+     </delete>
+</mapper>

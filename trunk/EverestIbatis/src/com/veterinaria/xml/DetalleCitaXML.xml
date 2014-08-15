@@ -8,6 +8,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="listarDetalleCita"
              resultType="detalleCitaAlias">
      	SELECT * FROM DetalleCita
+     </select>
+     
+     <select id="obtenerDetalleCitaByCita"
+     		 parameterType="citaAlias"
+             resultType="detalleCitaAlias">
+     	SELECT * FROM DetalleCita
+     	 WHERE idCita = #{idCita}
      </select>  
      
      <select id="obtenerDetalleCita"

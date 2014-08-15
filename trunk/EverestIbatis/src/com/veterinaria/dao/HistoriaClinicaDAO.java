@@ -9,11 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.veterinaria.beans.Cita;
-import com.veterinaria.beans.DetalleCita;
-import com.veterinaria.interfaces.IDetalleCita;
+import com.veterinaria.beans.HistoriaClinica;
+import com.veterinaria.interfaces.IHistoriaClinica;
 
-public class DetalleCitaDAO implements IDetalleCita {
+public class HistoriaClinicaDAO implements IHistoriaClinica {
 	
 	SqlSessionFactory sqlmapper=null;{
 		try {
@@ -27,26 +26,11 @@ public class DetalleCitaDAO implements IDetalleCita {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<DetalleCita> listarDetalleCita() throws Exception {
-		ArrayList<DetalleCita> lista= null;
+	public ArrayList<HistoriaClinica> listarHistoriaClinica() throws Exception {
+		ArrayList<HistoriaClinica> lista= null;
 		SqlSession session=sqlmapper.openSession();
 		try {
-			lista= (ArrayList<DetalleCita>)session.selectList("detalleCitaXML.listarDetalleCita");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-		return lista;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<DetalleCita> obtenerDetalleCita(Cita obj) throws Exception {
-		ArrayList<DetalleCita> lista= null;
-		SqlSession session=sqlmapper.openSession();
-		try {
-			lista= (ArrayList<DetalleCita>)session.selectList("detalleCitaXML.obtenerDetalleCitaByCita", obj);
+			lista= (ArrayList<HistoriaClinica>)session.selectList("historiaClinicaXML.listarHistoriaClinica");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -56,26 +40,27 @@ public class DetalleCitaDAO implements IDetalleCita {
 	}
 
 	@Override
-	public DetalleCita obtenerDetalleCita(DetalleCita obj) throws Exception {
-		DetalleCita detalleCita= null;
+	public HistoriaClinica obtenerHistoriaClinica(HistoriaClinica obj)
+			throws Exception {
+		HistoriaClinica historiaClinica= null;
 		SqlSession session=sqlmapper.openSession();
 		try {
-			detalleCita= (DetalleCita)session.selectOne("detalleCitaXML.obtenerDetalleCita",obj);
+			historiaClinica= (HistoriaClinica)session.selectOne("historiaClinicaXML.obtenerHistoriaClinica",obj);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		return detalleCita;
+		return historiaClinica;
 	}
 
 	@Override
-	public String GrabarDetalleCita(DetalleCita obj) throws Exception {
+	public String GrabarHistoriaClinica(HistoriaClinica obj) throws Exception {
 		String msg="";
 	    SqlSession session=sqlmapper.openSession();
 		try {
 			
-			msg = ""+session.insert("detalleCitaXML.grabarDetalleCita",obj);
+			msg = ""+session.insert("historiaClinicaXML.grabarHistoriaClinica",obj);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,12 +72,13 @@ public class DetalleCitaDAO implements IDetalleCita {
 	}
 
 	@Override
-	public String ModificarDetalleCita(DetalleCita obj) throws Exception {
+	public String ModificarHistoriaClinica(HistoriaClinica obj)
+			throws Exception {
 		SqlSession session=sqlmapper.openSession();
 		String msg="";
 		try {
 		
-			msg=""+session.update("detalleCitaXML.modificarDetalleCita",obj);
+			msg=""+session.update("historiaClinicaXML.modificarHistoriaClinica",obj);
 			session.commit();
 		} catch (Exception e) {
 			msg=e.getMessage();
@@ -104,12 +90,12 @@ public class DetalleCitaDAO implements IDetalleCita {
 	}
 
 	@Override
-	public String EliminarDetalleCita(DetalleCita obj) throws Exception {
+	public String EliminarHistoriaClinica(HistoriaClinica obj) throws Exception {
 		SqlSession session=sqlmapper.openSession();
 		String msg="";
 		try {
 		
-			msg=""+session.delete("detalleCitaXML.eliminarDetalleCita",obj);
+			msg=""+session.delete("historiaClinicaXML.eliminarHistoriaClinica",obj);
 			session.commit();
 		} catch (Exception e) {
 			msg=e.getMessage();
@@ -119,4 +105,5 @@ public class DetalleCitaDAO implements IDetalleCita {
 		
 		return msg;
 	}
+
 }
