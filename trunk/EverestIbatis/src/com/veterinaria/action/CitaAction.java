@@ -56,17 +56,20 @@ public class CitaAction extends ActionSupport {
 	private Turno 			turno;
 	private Medico 			medico;
 	private Local			local;
-	private DetalleCita 				detalleCita;
-	private Servicio 					servicio;
+	private DetalleCita 	detalleCita;
+	private Servicio 		servicio;
 	
 	private List<Mascota> 	mascotaLista = new ArrayList<Mascota>();
 	private List<Turno> 	turnoLista;
 	private List<Medico> 	medicoLista;
 	private List<Local>		localLista;	
 	private static List<DetalleCita> 	detalleCitaLista;
-	private static List<Servicio>				servicioLista;
+	private static List<Servicio> 		servicioLista;
 	
-	private String idLocal, idTurno, idMedico, idMascota, message;
+	private static Date tiempoTotal;
+	private static Double costoTotal;
+	private String idLocal, idTurno, idCliente, idMedico, idMascota, message, strTiempoTotal;
+	private String start_date, end_date;
 	
 	MedicoService 		medicoService = 	new MedicoService();
 	TurnoService 		turnoService = 		new TurnoService();
@@ -76,17 +79,28 @@ public class CitaAction extends ActionSupport {
 	ServicioService 	servicioService = 	new ServicioService();
 	DetalleCitaService 	detalleCitaService =new DetalleCitaService();
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+	SimpleDateFormat sdf = new SimpleDateFormat("mm");
 	
 	@Action(value = "/editar", results = { @Result(location = "/transaccional/cita/editar.jsp", name = "success") })
 	public String editar() throws Exception {
 		System.out.println("===== editar =====");
+		
+		if(start_date != null)
+			System.out.println("start_date: "+start_date);
+		if(end_date != null)
+			System.out.println("end_date: "+end_date);
+		
 		return SUCCESS;
 	}
 	
 	@Action(value = "/evento", results = { @Result(location = "/transaccional/cita/evento.jsp", name = "success") })
 	public String eventoProgramacionEnvasado() throws Exception {
 		System.out.println("===== eventoProgramacionEnvasado =====");
+		
+		if(start_date != null)
+			System.out.println("start_date: "+start_date);
+		if(end_date != null)
+			System.out.println("end_date: "+end_date);
 		
 		try {
 			CitaEvento evs = new CitaEvento(ServletActionContext.getRequest());
@@ -99,6 +113,7 @@ public class CitaAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Action(value = "/showCitaIni", results = { @Result(name = "success", location = "citaIniTile", type="tiles") })
 	public String showCitaIni() throws Exception {
 		System.out.println("===== showCitaIni =====");
@@ -108,8 +123,11 @@ public class CitaAction extends ActionSupport {
 		
 		servicioLista = servicioService.listarServicio();	
 		
-		if(detalleCitaLista == null)
+		if(detalleCitaLista == null){
 			detalleCitaLista = new ArrayList<DetalleCita>();
+			tiempoTotal = new Date(1, 1, 1970, 0, 0, 0);
+			costoTotal = (double) 0;
+		}
 		
 		System.out.println("detalleCitaLista: "+detalleCitaLista.size());
 		
@@ -127,6 +145,7 @@ public class CitaAction extends ActionSupport {
 			cliente = clienteService.obtenerCliente(cliente);
 			
 				if(cliente != null){
+					idCliente = cliente.getIdCliente()+"";
 					cliente.setNombreCompleto( cliente.getNombres()+" "+cliente.getApePat()+" "+cliente.getApeMat() );
 					System.out.println("NombreCompleto: "+cliente.getNombreCompleto());
 					
@@ -169,16 +188,35 @@ public class CitaAction extends ActionSupport {
 	@Action(value = "/showCitaCalendario", results = { @Result(name = "success", location="citaCalendarTile", type="tiles") })
 	public String showCitaCalendario() throws Exception {
 		System.out.println("===== showCitaCalendario =====");
+		System.out.println("idCliente: "+idCliente);
+		System.out.println("idMascota: "+idMascota);
+		System.out.println("idMedico: "+idMedico);
+		System.out.println("idTurno: "+idTurno);
 		
 		try {
 			// creates and configures scheduler instance
 	    	DHXPlanner s = new DHXPlanner("./codebase/", DHXSkin.TERRACE);
-	    	s.setWidth(900);
+	    	s.setWidth(675);
 	    	s.setInitialDate(new Date());
-	    	s.config.setScrollHour(12);
 	    	s.config.setDetailsOnCreate(true);
 	    	s.config.setDblClickCreate(true);
-	    	s.config.setDetailsOnDblClick(true);
+//	    	s.config.setDetailsOnDblClick(true);
+	    	
+	    	if(idTurno!=null){
+	    		if(turno.equals("1")){
+	    			s.config.setFirstHour(8);
+			    	s.config.setLastHour(13);
+	    		}else if(turno.equals("2")){
+	    			s.config.setFirstHour(14);
+			    	s.config.setLastHour(19);
+	    		}else{
+	    			s.config.setFirstHour(8);
+			    	s.config.setLastHour(13);
+	    		}
+	    	}else{
+	    		s.config.setFirstHour(8);
+		    	s.config.setLastHour(13);
+	    	}
 	    	s.config.setHighlightDisplayedEvent(true);
 	    	
 	     	//invoca al action eventoProgramacionEnvasado
@@ -186,7 +224,7 @@ public class CitaAction extends ActionSupport {
 	    	s.data.dataprocessor.setURL("evento");
 
 	    	//invoca al action editarProgramacion
-	    	DHXExternalLightboxForm box = s.lightbox.setExternalLightboxForm("./editar", 450, 280);    
+	    	DHXExternalLightboxForm box = s.lightbox.setExternalLightboxForm("./editar", 400, 150);    
 	    	box.setClassName("custom_lightbox");
 
 	    	//s.render se va a generar el caledario en html	
@@ -220,6 +258,7 @@ public class CitaAction extends ActionSupport {
 				detalleCita.setIdServicio( Integer.parseInt( servicio.getIdServicio()) );
 				detalleCita.setTiempoAprox( servicio.getTiempoAprox() );
 				System.out.println( detalleCita.getTiempoAprox().toString() );
+				detalleCita.setStrTiempoAprox( sdf.format( detalleCita.getTiempoAprox() ) );
 				detalleCita.setCosto( servicio.getCostoRef() );
 			}else{
 				detalleCita = new DetalleCita();
@@ -240,13 +279,19 @@ public class CitaAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Action(value = "/addDetalleCita", results = { @Result(name = "success", location="/transaccional/cita/citaDetalle.jsp") })
 	public String addDetalleCita() throws Exception {
 		System.out.println("===== addDetalleCita =====");
 				
 		if(detalleCita != null){
+			detalleCita.setIdCita( ""+(detalleCitaLista.size()+1) );
 			detalleCita.setIdServicio( Integer.parseInt(servicio.getIdServicio()) );
+			detalleCita.setTiempoAprox( sdf.parse( detalleCita.getStrTiempoAprox() ) );
 			detalleCitaLista.add(detalleCita);
+			tiempoTotal.setMinutes( tiempoTotal.getMinutes()+detalleCita.getTiempoAprox().getMinutes() );
+			costoTotal = detalleCita.getCosto()+costoTotal;
+			System.out.println("dTiempoTotal: "+tiempoTotal.toString());
 			System.out.println("detalleCitaLista: "+detalleCitaLista.size());
 			
 //			servicioLista = servicioService.listarServicio();
@@ -488,8 +533,57 @@ public class CitaAction extends ActionSupport {
 		return servicioLista;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setServicioLista(List<Servicio> servicioLista) {
 		this.servicioLista = servicioLista;
 	}
 
+	public Date getTiempoTotal() {
+		return tiempoTotal;
+	}
+
+	public void setTiempoTotal(Date tiempoTotal) {
+		CitaAction.tiempoTotal = tiempoTotal;
+	}
+
+	public Double getCostoTotal() {
+		return costoTotal;
+	}
+
+	public void setCostoTotal(Double costoTotal) {
+		CitaAction.costoTotal = costoTotal;
+	}
+
+	public String getStrTiempoTotal() {
+		return strTiempoTotal;
+	}
+
+	public void setStrTiempoTotal(String strTiempoTotal) {
+		this.strTiempoTotal = strTiempoTotal;
+	}
+
+	public String getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(String idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public String getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
+
+	public String getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
+	
 }

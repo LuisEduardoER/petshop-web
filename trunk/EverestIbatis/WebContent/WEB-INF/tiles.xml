@@ -68,7 +68,7 @@
       <put-attribute name="title"  value="Cita"/>
       <put-attribute name="body"   value="/transaccional/cita/citaIni.jsp"/>
   </definition>
-  <definition name="citaCalendarTile" extends="layoutIntranet2">
+  <definition name="citaCalendarTile" extends="layoutIntranet">
       <put-attribute name="title"  value="Cita"/>
       <put-attribute name="body"   value="/transaccional/cita/citaCalendar.jsp"/>
   </definition>

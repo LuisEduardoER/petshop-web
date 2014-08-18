@@ -6,7 +6,7 @@
   <sj:a button="true" buttonIcon="ui-icon-info" buttonText="false">Info</sj:a>	<s:property value="%{message}"/>
 </s:if>
 
-
+<s:hidden name="idCliente" value="%{cliente.idCliente}"/>
 <table class="dls-table-form" style="width: 100%;" cellspacing="0" cellpadding="0">
 	<tr>
 		<th style="width: 200px;">DNI</th>

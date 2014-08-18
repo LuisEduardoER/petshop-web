@@ -29,10 +29,10 @@
 			</td>
 		</tr>
 	</s:if>
-	
+	<s:else>
 	<s:iterator value="detalleCitaLista" status="stat">
 		<tr>
-			<td><s:property value="#stat.count"/> </td>
+			<td><s:property value="idCita"/> </td>
 			<td>
 				<s:select 
 					list="servicioLista"
@@ -42,7 +42,7 @@
 					disabled="true"
 				/> 
 			</td>
-			<td><s:date name="tiempoAprox" format="hh:mm"/> </td>
+			<td><s:date name="tiempoAprox" format="HH:mm"/> </td>
 			<td><s:property value="costo"/> </td>
 			<td class="tdButton">
 	       		<s:form id="formDetalleCita%{#stat.count}" action="" method="post">
@@ -61,6 +61,15 @@
            </td>
 		</tr>
 	</s:iterator>
+	<tr>
+		<td> </td>
+		<td style="text-align: right;"><b>Total</b> </td>
+		<td><b><s:date name="tiempoTotal" format="HH:mm"/></b> </td>
+		<td><b><s:property value="costoTotal"/></b> </td>
+		<td> </td>
+	</tr>
+	</s:else>
+	
 	<tr>
 		<td colspan="5"> </td>
 	</tr>

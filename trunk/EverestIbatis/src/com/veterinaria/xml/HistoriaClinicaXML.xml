@@ -6,8 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="historiaClinicaXML">		
 
      <select id="listarHistoriaClinica"
-             resultType="historiaClinicaAlias">
+             resultType="historiaClinicaAlias"
+             parameterType="mascotaAlias">
      	SELECT * FROM HistoriaClinica
+     	 WHERE idMascota = #{idMascota}
      </select>  
      
      <select id="obtenerHistoriaClinica"
@@ -18,8 +20,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         
      <insert id="grabarHistoriaClinica"
              parameterType="historiaClinicaAlias">
-     insert into historiaClinica ( idCliente, idMascota, procedencia, alergia, talla, raza, peso, temperatura, fechaNac, observacion, diagnostico, tratamiento )
-     				 values (#{idCliente}, #{idMascota}, #{procedencia}, #{alergia}, #{talla}, #{raza}, #{peso}, #{temperatura}, #{fechaNac}, #{observacion}, #{diagnostico}, #{tratamiento})
+     insert into historiaClinica ( idHistoriaClinica, idCliente, idMascota, idMedico,
+								    procedencia, alergia, talla, raza, peso, temperatura, 
+									analisis, anamnesis, observaciones, diagnostico, tratamiento, fecAtencion )
+     				 values (#{idHistoriaClinica}, #{idCliente}, #{idMascota}, #{idMedico}, 
+     				 		 #{procedencia}, #{alergia}, #{talla}, #{raza}, #{peso}, #{temperatura}, 
+     				 		 #{analisis}, #{anamnesis}, #{observaciones}, #{diagnostico}, #{tratamiento}, #{fecAtencion})
      
      </insert>
      
@@ -29,16 +35,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        update historiaClinica
        	  set idCliente=#{idCliente}, 
        		  idMascota=#{idMascota},
+       		  idMedico=#{idMedico},
+       		  
        		  procedencia=#{procedencia},
        		  alergia=#{alergia},
        		  talla=#{talla},
        		  raza=#{raza},
        		  peso=#{peso},
        		  temperatura=#{temperatura},
-       		  fechaNac=#{fechaNac},
-       		  observacion=#{observacion},
+       		  
+       		  analisis=#{analisis},
+       		  anamnesis=#{anamnesis},
+       		  observaciones=#{observaciones},
        		  diagnostico=#{diagnostico},
-       		  tratamiento=#{tratamiento}
+       		  tratamiento=#{tratamiento},
+       		  fecAtencion=#{fecAtencion}
        where idHistoriaClinica=#{idHistoriaClinica}
      </update>
      

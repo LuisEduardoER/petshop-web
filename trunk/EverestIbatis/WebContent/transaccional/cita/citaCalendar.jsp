@@ -15,6 +15,9 @@
 #scheduler_here{
 	border: 1px solid #CECECE;
 }
+.dhx_cal_event .dhx_title{
+	height: 17px !important;
+}
 </style>
 
 <s:form>

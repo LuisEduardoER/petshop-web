@@ -25,6 +25,7 @@
 				listKey="idLocal"
 				listValue="nomLocal"
 				name="idLocal"
+				required="true"
 			/>
 		</td>
 		<td>
@@ -35,7 +36,8 @@
 				list="turnoLista" 
 				listKey="idTurno" 
 				listValue="nomTurno"
-				formIds="frm01" 
+				formIds="frm01"
+				required="true" 
 				headerKey="-1" 
 				headerValue="-- Seleccione --"
 			/>
@@ -48,6 +50,7 @@
 				list="medicoLista" 
 				listKey="idMedico" 
 				listValue="nombreCompleto"
+				required="true"
 				formIds="frm01"
 				cssStyle="min-width: 100px;"
 			/>
@@ -75,11 +78,11 @@
 <br/>
 
 <sj:submit 
-	type="button"
-	button="true" 
+	type="button" 
 	formIds="frm01"
+	button="true"
 	buttonIcon="ui-icon-calculator">
-	Calendario
+	Disponibilidad de Citas
 </sj:submit>
 
 </s:form>
@@ -90,8 +93,8 @@
 	hideEffect="explode"
 	autoOpen="false"
 	title="Agregar Servicio"
-	width="400"
-	minHeight="370"
+	width="360"
+	minHeight="260"
 	position="right"
 	onCloseTopics="onCloseDlgServicio"
 >
