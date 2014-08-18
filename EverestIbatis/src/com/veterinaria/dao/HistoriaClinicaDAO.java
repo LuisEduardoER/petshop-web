@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.veterinaria.beans.HistoriaClinica;
+import com.veterinaria.beans.Mascota;
 import com.veterinaria.interfaces.IHistoriaClinica;
 
 public class HistoriaClinicaDAO implements IHistoriaClinica {
@@ -26,11 +27,11 @@ public class HistoriaClinicaDAO implements IHistoriaClinica {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<HistoriaClinica> listarHistoriaClinica() throws Exception {
+	public ArrayList<HistoriaClinica> listarHistoriaClinica(Mascota obj) throws Exception {
 		ArrayList<HistoriaClinica> lista= null;
 		SqlSession session=sqlmapper.openSession();
 		try {
-			lista= (ArrayList<HistoriaClinica>)session.selectList("historiaClinicaXML.listarHistoriaClinica");
+			lista= (ArrayList<HistoriaClinica>)session.selectList("historiaClinicaXML.listarHistoriaClinica, obj");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{

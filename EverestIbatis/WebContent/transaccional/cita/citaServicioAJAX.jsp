@@ -47,32 +47,19 @@
 	</s:if>
 	
 	<tr>
-		<td>Tiempo Aprox. </td>
+		<td>Tiempo Aprox. (Min)</td>
 		<td>
-			<s:date name="detalleCita.tiempoAprox" format="hh:mm" id="hdnTiempoAprox"/>			
-			<sj:datepicker
-				id="dtTiempoAprox"
-				name="detalleCita.tiempoAprox"
-				displayFormat="hh:mm"
-				timepicker="true" 
-				timepickerOnly="true" 
-				timepickerShowHour="false"
-				timepickerGridMinute="10" 
-				timepickerStepMinute="10"
-				onchange="setTime();"
-			/>
-			<script type="text/javascript">
-				function setTime(){
-					hdnTiempoAprox = document.getElementById("hdnTiempoAprox").value;
-					document.getElmentById("dtTiempoAprox").value = hdnTiempoAprox;  
-				}
-			</script>
-			
+<%-- 			<s:date name="detalleCita.tiempoAprox" format="mm"/> --%>
+			<s:property value="detalleCita.strTiempoAprox"/>
+			<s:hidden name="detalleCita.strTiempoAprox"/>
 		</td>
 	</tr>
 	<tr>
-		<td>Costo </td>
-		<td><s:textfield name="detalleCita.costo"/> </td>
+		<td>Costo (S/.)</td>
+		<td>
+			<s:property value="detalleCita.costo"/>
+			<s:hidden name="detalleCita.costo"/> 
+		</td>
 	</tr>
 	<tr>
 		<td>Observaciones </td>

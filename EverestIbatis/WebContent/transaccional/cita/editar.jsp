@@ -5,18 +5,12 @@
 
 <s:form>
 	
-	<table>
-		<tr>
-			<td><label>Nombre</label> </td>
-			<td><s:textfield name="text" /> </td>
-		</tr>
+	<table style="width: 100%;">
 		<tr>
 			<td><label>Desde</label> </td>
 			<td>
 				<sj:datepicker showOn="focus" 
-								displayFormat="dd/mm/yy" 
-								changeMonth="true" 
-								changeYear="true"
+								displayFormat="dd/mm/yy"
 								name="start_date"/>
 			</td>
 		</tr>
@@ -24,28 +18,22 @@
 			<td><label>Hasta</label> </td>
 			<td>
 				<sj:datepicker showOn="focus" 
-								displayFormat="dd/mm/yy" 
-								changeMonth="true" 
-								changeYear="true"
+								displayFormat="dd/mm/yy"
 								name="end_date"/> 
 			</td>
 		</tr>
-		<tr>
-			<td><label>Cantidad (unidades)</label> </td>
-			<td><sj:textfield name="" onkeypress="return validarSoloNumerosEnteros(event);" maxlength="5"/> </td>
-		</tr>
 	</table>
+	
+		<sj:submit id="idForm28LightboxGuardar"  button="true" value="Guardar" onclick="lightbox.save();" />
+		<sj:submit id="idForm28LightboxCancelar" button="true" value="Cancelar" onclick="lightbox.close()" />
 	
 		<s:hidden id="productoApicola" name="productoApicola"  />
 		<s:hidden id="envase" name="envase"  />
 		
-		<sj:submit id="idForm28LightboxGuardar"  button="true" value="Guardar" onclick="lightbox.save();" />
-		<sj:submit id="idForm28LightboxCancelar" button="true" value="Cancelar" onclick="lightbox.close()" />
-		<sj:submit  id="idForm28LightboxEliminar" button="true" value="Eliminar" onclick="lightbox.remove()" />
 </s:form>
 	
 <script>
-	var nombres = ["","","","","","","Guardar","Cancelar","Eliminar"];
+	var nombres = ["","","Guardar","Cancelar","",""];
 
 	getValues = function () {
 		var ev = {};

@@ -3,6 +3,7 @@ package com.veterinaria.service;
 import java.util.ArrayList;
 
 import com.veterinaria.beans.HistoriaClinica;
+import com.veterinaria.beans.Mascota;
 import com.veterinaria.factory.DAOFactory;
 import com.veterinaria.interfaces.IHistoriaClinica;
 import com.veterinaria.utils.Constantes;
@@ -13,8 +14,8 @@ public class HistoriaClinicaService implements IHistoriaClinica {
 	IHistoriaClinica dao= factory.getHistoriaClinica();
 	
 	@Override
-	public ArrayList<HistoriaClinica> listarHistoriaClinica() throws Exception {
-		return dao.listarHistoriaClinica();
+	public ArrayList<HistoriaClinica> listarHistoriaClinica(Mascota obj) throws Exception {
+		return dao.listarHistoriaClinica(obj);
 	}
 
 	@Override

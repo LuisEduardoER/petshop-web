@@ -1,5 +1,6 @@
 package com.veterinaria.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -10,11 +11,13 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.veterinaria.beans.Cita;
 import com.veterinaria.beans.Cliente;
 import com.veterinaria.beans.DetalleCita;
+import com.veterinaria.beans.HistoriaClinica;
 import com.veterinaria.beans.Mascota;
 import com.veterinaria.beans.Servicio;
 import com.veterinaria.service.CitaService;
 import com.veterinaria.service.ClienteService;
 import com.veterinaria.service.DetalleCitaService;
+import com.veterinaria.service.HistoriaClinicaService;
 import com.veterinaria.service.MascotaService;
 import com.veterinaria.service.ServicioService;
 
@@ -23,22 +26,25 @@ public class CitaAtencionAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Cita				cita;
-	private Cliente				cliente;
-	private Mascota				mascota;
-	private Servicio			servicio;
+	private Cita					cita;
+	private Cliente					cliente;
+	private Mascota					mascota;
+	private Servicio				servicio;
+	private HistoriaClinica			historiaClinica;
 	
-	private List<Cita> 			citaLista;
-	private List<DetalleCita> 	detalleCitaLista;
-	private static List<Servicio>		servicioLista;
+	private List<Cita> 				citaLista;
+	private List<DetalleCita> 		detalleCitaLista;
+	private static List<Servicio>	servicioLista;
+	private List<HistoriaClinica>	historiaClinicaLista;
 	
 	private String 		oper, message;
 	
-	CitaService 		citaService =			new CitaService();
-	DetalleCitaService	detalleCitaService = 	new DetalleCitaService();
-	ClienteService		clienteService = 		new ClienteService();
-	MascotaService		mascotaService =		new MascotaService();
-	ServicioService 	servicioService =		new ServicioService();
+	CitaService 			citaService =				new CitaService();
+	DetalleCitaService		detalleCitaService = 		new DetalleCitaService();
+	ClienteService			clienteService = 			new ClienteService();
+	MascotaService			mascotaService =			new MascotaService();
+	ServicioService 		servicioService =			new ServicioService();
+	HistoriaClinicaService	historiaClinicaService = 	new HistoriaClinicaService();
 	
 	@Action(value = "/showCitas", results = { @Result(location = "citaAtencionListaTile", name = "success", type="tiles") })
 	public String showCitas() throws Exception {
@@ -69,9 +75,10 @@ public class CitaAtencionAction extends ActionSupport {
 	public String showCitaAtencionForm() throws Exception {
 		System.out.println("===== showCitaAtencionForm =====");
 		
-		if(servicioLista.size() == 0)
+		if(servicioLista == null)
 			servicioLista = servicioService.listarServicio();
 		
+		//Obteniendo el detalle de Cita
 		System.out.println("cita: "+cita);
 		if(cita != null){
 			System.out.println("idCita: "+cita.getIdCita());
@@ -82,6 +89,13 @@ public class CitaAtencionAction extends ActionSupport {
 			
 			detalleCitaLista = detalleCitaService.obtenerDetalleCita(cita);
 			System.out.println( "detalleCitaLista: "+detalleCitaLista.size() );
+			
+			//Obteniendo HistoriaClinica			
+			historiaClinicaLista = historiaClinicaService.listarHistoriaClinica(mascota);
+			System.out.println("historiaClinicaLista: "+historiaClinicaLista);
+			if(historiaClinicaLista == null)
+				historiaClinicaLista = new ArrayList<HistoriaClinica>();
+			
 		}
 		
 		return SUCCESS;
@@ -141,6 +155,17 @@ public class CitaAtencionAction extends ActionSupport {
 	@SuppressWarnings("static-access")
 	public void setServicioLista(List<Servicio> servicioLista) {
 		this.servicioLista = servicioLista;
+	}
+	public HistoriaClinica getHistoriaClinica() {
+		return historiaClinica;
+	}	public void setHistoriaClinica(HistoriaClinica historiaClinica) {
+		this.historiaClinica = historiaClinica;
+	}
+	public List<HistoriaClinica> getHistoriaClinicaLista() {
+		return historiaClinicaLista;
+	}
+	public void setHistoriaClinicaLista(List<HistoriaClinica> historiaClinicaLista) {
+		this.historiaClinicaLista = historiaClinicaLista;
 	}
 	
 }
